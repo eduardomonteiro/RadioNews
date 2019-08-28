@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  site:
+    ports:
+      - "80"
+  api:
+    ports:
+      - "80"
+  administrativo:
+    ports:
+      - "80"
+networks:
+  default:
+    external:
+      name: nat
+
+

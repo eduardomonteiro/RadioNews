@@ -1,0 +1,109 @@
+﻿@model Administrativo.Models.Ouvintes
+
+@{
+    ViewBag.Title = "Marcação de Denuncías";
+    ViewBag.Icon = "fa fa-bell";
+    ViewBag.SmallDescription = "Marcação de Denuncías";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string Tipo = "";
+}
+
+<div class="content">
+    <div class="row">
+        <div class="box box-warning">
+            <div class="box-header">
+                <h3 class="box-title">Marcação de Denuncías</h3>
+            </div>
+            @using (Html.BeginForm())
+            {
+                <div class="box-body">
+                    @Html.HiddenFor(model => model.id)
+                    @Html.HiddenFor(model => model.assunto)
+                    @Html.HiddenFor(model => model.comentario)
+                    @Html.HiddenFor(model => model.data)
+                    @Html.HiddenFor(model => model.arquivo)
+                    @Html.HiddenFor(model => model.email)
+                    @Html.HiddenFor(model => model.horario)
+                    @Html.HiddenFor(model => model.local)
+                    @Html.HiddenFor(model => model.nome)
+                    @Html.HiddenFor(model => model.regiao)
+                    @Html.HiddenFor(model => model.telefone)
+                    @Html.HiddenFor(model => model.tipoArquivo)
+                    @Html.HiddenFor(model => model.excluido)
+                    @Html.HiddenFor(model => model.DataCadastro)
+                    
+
+                    <table class="table table-bordered table-striped responsive">
+                        <tbody>
+                            <tr>
+                                <td style="width:200px;">@Html.DisplayNameFor(model => model.id)</td>
+                                <td>@Html.DisplayFor(model => model.id)</td>
+                            </tr>
+
+                            <tr>
+                                <td>@Html.DisplayNameFor(model => model.nome)</td>
+                                <td>@Html.DisplayFor(model => model.nome)</td>
+                            </tr>
+
+                            <tr>
+                                <td>@Html.DisplayNameFor(model => model.email)</td>
+                                <td>@Html.DisplayFor(model => model.email)</td>
+                            </tr>
+
+                            <tr>
+                                <td>@Html.DisplayNameFor(model => model.regiao)</td>
+                                <td>@Html.DisplayFor(model => model.regiao)</td>
+                            </tr>
+
+                            <tr>
+                                <td>@Html.DisplayNameFor(model => model.endereco)</td>
+                                <td>@Html.DisplayFor(model => model.endereco)</td>
+                            </tr>
+
+                            <tr>
+                                <td>@Html.DisplayNameFor(model => model.assunto)</td>
+                                <td>@Html.DisplayFor(model => model.assunto)</td>
+                            </tr>
+
+                            <tr>
+                                <td>@Html.DisplayNameFor(model => model.horario)</td>
+                                <td>@Html.DisplayFor(model => model.horario)</td>
+                            </tr>
+
+                            <tr>
+                                <td>@Html.DisplayNameFor(model => model.data)</td>
+                                <td>@Html.DisplayFor(model => model.data)</td>
+                            </tr>
+
+                            <tr>
+                                <td>@Html.DisplayNameFor(model => model.telefone)</td>
+                                <td>@Html.DisplayFor(model => model.telefone)</td>
+                            </tr>
+                          
+                            <tr>
+                                <td>@Html.DisplayNameFor(model => model.comentario)</td>
+                                <td>@Html.DisplayFor(model => model.comentario)</td>
+                            </tr>
+                          
+                            <tr>
+                                <td>@Html.DisplayNameFor(model => model.DataCadastro)</td>
+                                <td>@Html.DisplayFor(model => model.DataCadastro)</td>
+                            </tr>
+                           
+                        </tbody>
+                    </table>
+                </div>
+                <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a href="@Url.Action("Index", "Ouvintes")" class="btn btn-info">Voltar</a>
+                </div>
+            }
+        </div>
+
+
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

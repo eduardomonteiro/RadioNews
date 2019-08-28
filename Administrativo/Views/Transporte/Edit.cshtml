@@ -1,0 +1,91 @@
+﻿@model Administrativo.Models.Transporte
+
+
+@{
+    ViewBag.Title = "Editar Transporte";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Altere as informações de Transporte";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+
+
+<div class="content">
+    <div class="row">
+        <div class="box box-warning">
+            <div class="box-header">
+                <h3 class="box-title">Editar Transporte (@Model.Titulo)</h3>
+            </div>
+				@using (Html.BeginForm()) {
+					 <div class="box-body">
+
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.Titulo)
+        @Html.HiddenFor(model => model.CssClass)
+        @Html.HiddenFor(model => model.DataCadastro)
+        @Html.HiddenFor(model => model.Excluido)
+
+
+        <div class="form-group">
+            <div class="form-group">
+                       <select id="Status" name="Status" class="form-control">
+                           <option value="Bom" @(Model.Status == "Bom" ? Html.Raw("selected=selected") : Html.Raw(""))>Bom</option>
+                           <option value="Regular" @(Model.Status == "Regular" ? Html.Raw("selected=selected") : Html.Raw(""))>Regular</option>
+                           <option value="Ruim" @(Model.Status == "Ruim" ? Html.Raw("selected=selected") : Html.Raw(""))>Ruim</option>
+                       </select>
+                    </div>
+        </div>
+
+
+        <div class="form-group" id="texto-group">
+
+            @Html.LabelFor(model => model.Texto)
+
+        
+
+            @Html.TextAreaFor(model => model.Texto, new { @class = "text-box", style = "height: 250px;" })
+
+            @Html.ValidationMessageFor(model => model.Texto)
+        </div>
+
+
+        </div>
+		<div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a href="@Url.Action("Index", "Transporte")" class="btn btn-info">Voltar</a>
+
+                </div>
+}
+
+		</div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            @if(Model.Status == "Bom"){
+             <text>$('#texto-group').hide();</text>
+            }
+            var editor = CKEDITOR.replace('Texto',
+                {
+                    height: "200px"
+                });
+
+        });
+
+        $('#Status').on('change', function () {
+            if ($('#Status :selected').val() == 'Bom') {
+                $('#texto-group').hide();
+            } else {
+                $('#texto-group').show();
+            }
+        });
+    </script>
+            }
+

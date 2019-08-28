@@ -1,0 +1,88 @@
+﻿@model Administrativo.Models.Noticias
+@{
+    ViewBag.Title = "Cadastrar Post";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Insere um post no sistema";
+}
+
+<div class="content">
+    <div class="row">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Cadastrar Post</h3>
+            </div>
+            @using (Html.BeginForm("Create", "EspecialParlamentoAberto", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="box-body">
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.texto)
+
+                        @Html.TextAreaFor(model => model.texto, new { @class = "text-box", style = "height: 100px;" })
+                        @Html.ValidationMessageFor(model => model.texto)
+                    </div>
+
+                    @Html.HiddenFor(m => m.titulo, null)
+
+                    <input type="hidden" name="idEditoria" value="@ViewBag.EditorialId" />
+
+                    <h4 class="page-header"></h4>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+
+                                <label>Foto - <em>Resolução mínima recomendada (744x500)</em></label>
+
+                                <input type="file" name="foto" id="foto" />
+                                <label id="lblFotoExistente"></label>
+                                @Html.ValidationMessageFor(model => model.foto)
+
+                                <input type="hidden" id="fotoExistente" name="fotoExistente" />
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="callout callout-info">
+                                <h4>Ou escolha uma imagem já enviada </h4>
+                                <a class="btn btn-primary iframe" href="@Url.Action("Index","Elfinder")"><i class="fa fa-search-plus"></i>&nbsp;Procurar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ativo?</label>
+                        @Html.BooleanFieldFor(model => model.liberado, true, new { @class = "form-control", style = "width: 120px;" })
+                        @Html.ValidationMessageFor(model => model.liberado)
+                    </div>
+
+                </div>
+                <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a href="@Url.Action("Index", "EspecialParlamentoAberto", new { EditoriaId = 5})" class="btn btn-info">Voltar</a>
+
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".iframe").colorbox({ iframe: true, width: "80%", height: "80%" })
+            $('#texto').wysihtml5();
+
+        });
+
+        function getvalue(valor) {
+            document.getElementById('fotoExistente').value = valor;
+            $("#lblFotoExistente").html(valor);
+            $.colorbox.close();
+        }
+    </script>
+}

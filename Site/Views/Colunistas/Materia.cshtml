@@ -1,0 +1,826 @@
+﻿@using System.Text.RegularExpressions
+@using Site.Helpers
+@model Site.Models.Noticias
+@{
+    var url = Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host + (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port);
+}
+@section SEO{
+    <meta name="DC.title" content="@Model.titulo" />
+    <meta property="og:title" content="@Model.titulo" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="@Html.Raw(!string.IsNullOrEmpty(Model.chamada)?Utils.TruncateText(Model.chamada,135,true):"" )" />
+    <meta property="og:image" content="@(!string.IsNullOrEmpty(Model.foto)?url+ Url.Content("/admin/Conteudo/noticias/"+Model.id+"/405x270/"+Model.foto) : Url.Content("~/images/ico-facebook.jpg"))" />
+    <meta property="og:url" content="@HttpContext.Current.Request.Url.AbsoluteUri" />
+    <title>@Model.titulo - Rádio CompanyName | A Rádio de Minas</title>
+}
+
+
+<div class="wrapper-general center">
+    <header class="nav-intern clearfix">
+        <div class="buttons">
+            <a class="bt-back" href="javascript:window.history.go(-1)"> <i class="fa fa-angle-left"></i> Voltar</a>
+            Texto: <button class="more bt-resize">+</button> <button class="bt-resize minus">-</button>
+        </div>
+        <nav class="breadcumb">
+            <a href="@Url.Action("Index","Home")">Home</a>
+            <a href="@Url.Action("Index","Colunistas")">Colunistas</a>
+            <span>@Model.titulo</span>
+        </nav>
+    </header>
+
+    @if (Model != null)
+    {
+        <div class="row-grid clearfix">
+            <div class="grid-9 main-grid">
+                <div class="box-header-column clearfix">
+                    @if (!string.IsNullOrEmpty(Model.Colunista.foto))
+                    {
+                        <img src="/admin/Conteudo/Colunistas/Foto/@Model.Colunista.foto?width=130&heigth=100" alt="@Model.Colunista.nome">
+                    }
+                    <h1 class="title">Coluna @(Model.Colunista.sexo == "M" ? "do" : "da") <strong>@Model.Colunista.nome</strong></h1>
+                    <a href="@Url.Action("Detalhes","Colunistas", new { colunistaSlug = Model.Colunista.chave })" class="todas-colunas pull-right">
+                        Veja todas as colunas
+                    </a>
+                </div>
+                <header class="clearfix">
+                    @if (Model.Editoriais != null && Model.Editoriais.Any())
+                    {
+                        <h1 class="title-page pull-left" style="margin-bottom: 20px">@Model.Editoriais.FirstOrDefault().nome</h1>
+                    }
+
+                    <div class="box-share pull-right">
+                        <span class="title">
+                            <i class="fa fa-share-alt"></i>Compartilhar
+                        </span>
+                        <nav>
+                            <a href="#" class="icon-facebook" onclick="openwindow('https://www.facebook.com/sharer/sharer.php?u=@HttpContext.Current.Request.Url.AbsoluteUri&display=popup&ref=plugin');">
+                                <i class="fa fa-facebook"></i> Facebook
+                            </a>
+
+                            <a href="#" class="icon-twitter-squared" onclick="openwindow('https://twitter.com/intent/tweet?text=@Regex.Replace(Model.titulo, @"<[^>]+>|&nbsp;", "").Trim()&url=@HttpContext.Current.Request.Url.AbsoluteUri');">
+                                <i class="fa fa-twitter"></i>Twitter
+                            </a>
+                        </nav>
+                    </div>
+
+                </header>
+                <h2 class="title-big">@Model.titulo</h2>
+                <h3 class="description-noticie">@Html.Raw(Model.chamada)</h3>
+                <div class="divisor-new clearfix">
+                    <span class="info-publication">
+                        @if (!string.IsNullOrEmpty(Model.porAutor))
+                        {
+                            <strong>Por @Model.porAutor ,</strong>
+                        }
+                        @Model.dataAtualizacao.ToShortDateString() às @string.Format("{0:hh:mm}", Model.dataAtualizacao)
+                    </span>
+
+
+                    @if (!string.IsNullOrEmpty(Model.audio))
+                    {
+                        <div class="box-audio">
+                            <span>Ouça na Íntegra</span>
+                            <article class="podcast-item flex">
+                                <button class="fa button fa-play-circle"></button>
+                                <div class="player-audio clearfix">
+                                    <div class="playbar">
+                                        <div class="progress"></div>
+                                    </div>
+                                    <audio preload="none">
+                                        <source src="/Admin/conteudo/noticias/@Model.id/audio/@Model.audio" type="audio/mpeg">
+                                    </audio>
+                                </div>
+                                <div class="timer-play">
+                                    <span class="rolling">00:00</span>
+                                    <span class="full-time">00:00</span>
+                                </div>
+                            </article>
+                        </div>
+
+                    }
+                    
+                </div>
+                <div class="block-text">
+                    @if (!string.IsNullOrEmpty(Model.foto))
+                    {
+                        <figure class="pic-text">
+                            @if (!string.IsNullOrEmpty(Model.fotoCredito))
+                            {
+                                <figcaption class="legend">Foto: @Model.fotoCredito.Replace("Foto:", "").Replace("Imagem:", "").Replace("<br>", "")</figcaption>
+                            }
+
+                            <img src="@Utils.fullUrlImage("405x270", Model.id,420)" alt="@Model.titulo">
+                            <p><em>@Model.fotoDescricao</em></p>
+                        </figure>
+                    }
+
+                    <p>@Html.Raw(Model.texto)</p>
+
+                    @if (!string.IsNullOrWhiteSpace(Model.videoYoutube))
+                    {
+                        <iframe width="420" height="315"
+                                src="https://www.youtube.com/embed/@Model.videoYoutube"></iframe>
+                    }
+
+                </div>
+
+                @*<footer class="coments-wrapper">
+                        <div class="fb-comments" data-href="@HttpContext.Current.Request.Url.AbsoluteUri" data-width="100%" data-numposts="4"></div>
+                    </footer>*@
+
+                
+            <section class="wrapper-comments">
+                <button class="bt-red large" id="bt-comentario">Comentar</button>
+                <fieldset class="form-post-comment">
+                    <div class="content">
+                        <div class="write-comment">
+                            <h2 class="title-medium">Escreva seu comentário</h2>
+                            <textarea id="msg-comentario" maxlength="500"></textarea>
+                            <div class="recaptcha">
+                                <div class="g-recaptcha" data-sitekey="6LfApwkUAAAAAFzdCpMnHhM__-ddbOvTnGX2QfpZ"></div>
+                            </div>
+                        </div>
+                        <div class="posts-data">
+                            <h2 class="title-medium">Preencha seus wdados</h2>
+                            <input type="text" placeholder="Nome" id="nome-user" maxlength="250">
+                            <input type="text" placeholder="CPF" id="cpf" maxlength="20">
+                            <button class="bt-red total" id="post-comment">Enviar Comentário</button>
+                            <span class="or">ou</span>
+                            <button class="login-facebook" id="post-facebook">Enviar com Facebook</button>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="box-comment">
+                    <header class="header-control">
+                         <h2 class="title-bottom"></h2>
+                        
+                        <div class="select-box" style="display:none;">
+                            <label for="order-by">Ordenar Por:</label>
+                            <select name="order" id="orderby">
+                                <option value="0">Mais Recentes</option>
+                                <option value="1">Mais Revelantes</option>
+                                <option value="2">Ordem Alfabética</option>
+                            </select>
+                        </div>
+                    </header>
+                    <ul class="posts-comments" id="post-comments"></ul>
+                    <div class="pagination-bottom">
+                        <input type="hidden" id="pagina-atual" value="0" />
+                        <img src="~/images/loading-circle.gif" id="loading" />
+                        <button class="bt-red" id="load-comments" style="display:none;">Carregar Mais</button>
+                    </div>
+
+
+                </div>
+            </section>
+
+            </div>
+
+            @{Html.RenderAction("SidebarColunista", "Colunistas", new { colunista = Model.Colunista });}
+        </div>
+                }
+</div>
+
+@section scripts{
+<script src='https://www.google.com/recaptcha/api.js'></script>
+    <script language="JavaScript1.2">
+        function openwindow(url) {
+            window.open(url,
+                "mywindow", "location=no,status=no,scrollbars=no,width=400,height=300");
+        }
+
+
+        function OnColunistaSuccess(response) {
+
+            if (response.result == "success") {
+                swal('Sucesso', 'Seu cadastro foi efetuado com sucesso! Obrigado!', 'success');
+            }
+            else if (response.result == "invalid") {
+                swal('Atenção', 'Não foi possivel gravar! Verifique as informações preenchidas', 'warning');
+            }
+            else if (response.result == "already") {
+                swal('Atenção', 'Este email já está cadastrado para este colunista!', 'warning');
+            }
+            else {
+                swal('Erro', 'Ocorreu um erro tente novamente mais tarde!', 'error');
+            }
+        }
+
+        function OnColunistaFailure(response) {
+            swal('Erro', 'Ocorreu um erro tente novamente mais tarde!', 'error');
+        }
+
+    </script>
+
+
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '296505570791797',
+                xfbml: true,
+                version: 'v2.9'
+            });
+            FB.AppEvents.logPageView();
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var gostarComentario = function (idComentario) {
+                if ($('.like[data-id=' + idComentario + ']')) {
+                    $.post({
+                        url: "@Url.Action("GostarComentario", "Comentarios")",
+                        data: { id: idComentario },
+                        dataType: "json"
+                    }).done(function () {
+
+                        if (verificaNaoGostei(idComentario)) {
+                            $.post({
+                                url: "@Url.Action("RemoverNaoGostarComentario", "Comentarios")",
+                                data: { id: idComentario },
+                                dataType: "json"
+                            }).done(function () {
+                                var naoGosteiPagina = localStorage.getItem("naogostei-@Model.id").split(',');
+                                if (naoGosteiPagina) {
+                                    $(naoGosteiPagina).each(function () {
+                                        naoGosteiPagina = jQuery.grep(naoGosteiPagina, function (value) {
+                                            return value != idComentario;
+                                        });
+                                    })
+                                }
+
+                                localStorage.setItem("naogostei-@Model.id", naoGosteiPagina);
+                            })
+                        }
+                        var gosteiPagina = localStorage.getItem("gostei-@Model.id");
+                        if (gosteiPagina) {
+                            gosteiPagina = gosteiPagina.split(',');
+                            gosteiPagina.push(idComentario);
+                        } else {
+                            gosteiPagina = [ idComentario ];
+                        }
+
+                        localStorage.setItem("gostei-@Model.id", gosteiPagina);
+
+                    })
+                }
+            }
+
+            var naoGostarComentario = function (idComentario) {
+
+                if ($('.deslike[data-id=' + idComentario + ']')) {
+                    $.post({
+                        url: "@Url.Action("NaoGostarComentario", "Comentarios")",
+                        data: { id: idComentario },
+                        dataType: "json"
+                    }).done(function () {
+
+                        if (verificaGostei(idComentario)) {
+                            $.post({
+                                url: "@Url.Action("RemoverGostarComentario", "Comentarios")",
+                                data: { id: idComentario },
+                                dataType: "json"
+                            }).done(function () {
+                                var gosteiPagina = localStorage.getItem("gostei-@Model.id").split(',');
+                                if (gosteiPagina) {
+                                    gosteiPagina = jQuery.grep(gosteiPagina, function (value) {
+                                        return value != idComentario;
+                                    });
+                                }
+
+                                localStorage.setItem("gostei-@Model.id", gosteiPagina);
+                            })
+                        }
+                        var naoGosteiPagina = localStorage.getItem("naogostei-@Model.id");
+                        if (naoGosteiPagina) {
+                            naoGosteiPagina = naoGosteiPagina.split(',');
+                            naoGosteiPagina.push(idComentario);
+                        } else {
+                            naoGosteiPagina = [ idComentario ];
+                        }
+
+                        localStorage.setItem("naogostei-@Model.id", naoGosteiPagina);
+
+                    })
+                }
+                }
+
+            var verificaGostei = function (idComentario)
+            {
+                var retorno = false;
+
+                var gosteiPagina = localStorage.getItem("gostei-@Model.id");
+                if (gosteiPagina) {
+                    $(gosteiPagina.split(',')).each(function ()
+                    {
+                        if (parseInt(this) == idComentario) {
+                            retorno = true;
+                        }
+                    })
+                }
+                return retorno;
+            }
+
+            var verificaNaoGostei = function (idComentario)
+            {
+                var retorno = false;
+
+                var naoGosteiPagina = localStorage.getItem("naogostei-@Model.id");
+                if (naoGosteiPagina) {
+                    $(naoGosteiPagina.split(',')).each(function ()
+                    {
+                        if (parseInt(this) == idComentario) {
+                            retorno = true;
+                        }
+                    })
+                }
+                return retorno;
+            }
+
+            var pintarGosteiNaoGostei = function()
+            {
+                var gosteiPagina = localStorage.getItem("gostei-@Model.id");
+
+                if (gosteiPagina) {
+                    $(gosteiPagina.split(',')).each(function () {
+                        var curtirAtual = $(".action.like[data-id='" + this + "']");
+                        if (curtirAtual) {
+                            curtirAtual.addClass('active');
+                        }
+                    })
+                }
+                var naoGosteiPagina = localStorage.getItem("naogostei-@Model.id");
+
+                if (naoGosteiPagina) {
+                    $(naoGosteiPagina.split(',')).each(function () {
+                        var descurtirAtual = $(".action.deslike[data-id='" + this + "']");
+                        if (descurtirAtual) {
+                            descurtirAtual.addClass('active');
+                        }
+                    })
+                }
+            }
+            pintarGosteiNaoGostei();
+
+            $('#cpf').mask('999.999.999-99');
+
+            $('#bt-comentario').click(function () {
+                $(this).hide()
+                $('.form-post-comment').slideDown(600);
+            });
+
+            var IniciarContador = function ()
+            {
+                $.get({
+                    url: "@Url.Action("QuantidadeComentarios", "Comentarios")",
+                    data: { idNoticia: @Model.id },
+                    dataType: "json"
+                }).done(function (data) {
+                        var totalNoticias = data;
+
+                        if (totalNoticias && totalNoticias > 0) {
+                        $(".header-control .title-bottom").html("Comentários (<span id='numero-posts'>" + totalNoticias + "</span>)");
+                        $(".select-box").show();
+                            if (totalNoticias > 3) {
+                            $("#load-comments").show();
+                            }
+                        } else {
+                        $(".header-control .title-bottom").html("Nenhum comentário");
+                        }
+                    });
+
+            }
+
+            IniciarContador();
+
+            var AtualizaContador = function()
+            {
+                var contador = $(".header-control .title-bottom #numero-posts")[0];
+
+                if (contador)
+                {
+                    $(contador).val($(contador).val() + 1)
+                } else {
+                    $(".header-control .title-bottom").html("Comentários (<span id='numero-posts'>1</span>)");
+                    $(".select-box").show();
+                }
+            }
+
+            var reordenarComentarios = function ()
+            {
+                $("#pagina-atual").val(0);
+                $("#post-comments").html("");
+
+                CarregarMais();
+            }
+
+            var MontarComentario = function (comentario)
+            {
+                var post =
+                    "<li data-id='" + comentario.Id +"'>"
+                    + "<h3 class='name'>" + comentario.Nome + "</h3>"
+                    + "<small class='date'>" + comentario.DataCadastro + "</small>"
+                    + "<div class='block-text'><p>" + comentario.Texto + "</p>" + "</div>"
+                    + "<ul class='sub-comments block-text'>";
+                if (comentario.Respostas) {
+                    $(comentario.Respostas).each(function () {
+                        post +=
+                      "<li>"
+                          + "<h3 class='name'>" + this.Nome + "</h3>"
+                          + "<small class='date'>" + this.DataCadastro + "</small>"
+                          + "<div class='block-text'><p>" + this.Texto + "</p></div>"
+                        + "<div class='actions-comment'>"
+                        + "<button class='action like' data-id='" + this.Id + "'><i class='fa fa-thumbs-o-up " + (verificaGostei(this.Id) ? "active" : "") + "'></i> <span class='count'>" + this.Gostei + "</span></button>"
+                        + "<button class='action deslike' data-id=" + this.Id + "><i class='fa fa-thumbs-o-down " + (verificaNaoGostei(this.Id) ? "active" : "") + "'></i> <span class='count'>" + this.NaoGostei + "</span></button>"
+                          + "</div>"
+                    + "</li>"
+                    })
+                }
+                post += "</ul>";
+
+                if (comentario.Gostei == null) {
+                    comentario.Gostei = 0
+                }
+
+                if (comentario.NaoGostei == null) {
+                    comentario.NaoGostei = 0
+                }
+
+                var textoCompactado = comentario.Texto.length > 25 ? comentario.Texto.substring(0, 25) + "..." : comentario.Texto;
+
+                var linkFacebook = "https://www.facebook.com/sharer.php?caption=" + comentario.Nome + "&description=" + textoCompactado + "&u=@HttpContext.Current.Request.Url.AbsoluteUri&display=popup&ref=plugin";
+                var openFacebook = 'window.open("' + linkFacebook + '");';
+
+                var linkTwitter = "https://twitter.com/intent/tweet?text=" + textoCompactado + "&amp;url=@("http://" + HttpContext.Current.Request.Url.Authority)";
+                var openTwitter = 'window.open("' + linkTwitter + '");';
+
+
+                post +=
+                      "<div class='actions-comment'>"
+                    + "<button class='action like' data-id='" + comentario.Id + "'>"
+                    + "<i class='fa fa-thumbs-o-up'></i> <span class='count'>" + comentario.Gostei + "</span>"
+                    + "</button>"
+                    + "<button class='action deslike' data-id='" + comentario.Id + "'>"
+                    + "<i class='fa fa-thumbs-o-down'></i> <span class='count'>" + comentario.NaoGostei + "</span>"
+                    + "</button>"
+                //    + "<div class='box-share'>"
+                //    + "<span class='title'>"
+                //    + "<i class='fa fa-share-alt'></i>Compartilhar"
+                //    + "</span>"
+                //+ "<nav>"
+                //+ "<a href='#' onclick='" + openFacebook + "' class='icon-facebook'>"
+                //    + "<i class='fa fa-facebook'></i> Facebook"
+                //+ "</a>"
+                //+ "<a href='#' class='icon-twitter-squared' onclick='" + openTwitter + "');'><i class='fa fa-twitter'></i>Twitter"
+                //    + "</a>"
+                //    + "</nav>"
+                //    + " </div>"
+                    + "<button class='insert-comment'>"
+                + "<i class='fa fa-commenting'></i> "
+                + "Responder Comentário"
+                    + "</button>"
+                    + " </div>"
+                    + "</li>";
+
+                return post;
+            }
+
+            $("#orderby").change(function () {
+                reordenarComentarios();
+            });
+
+            var CarregarMais = function ()
+            {
+                var paginaAtual = parseInt($("#pagina-atual").val());
+                var ordem = parseInt($("#orderby").val());
+
+                $.get({
+                    url: "@Url.Action("CarregarComentarios", "Comentarios")",
+                    data: { pagina: paginaAtual + 1, noticiaId: @Model.id, ordem: ordem },
+                    dataType: "json",
+                    beforeSend: function ()
+                    {
+                        $("#load-comments").hide();
+                        $("#loading").show();
+                    },
+                    success: function (data)
+                    {
+                        setTimeout(function () {
+                        if (data) {
+                            $("#pagina-atual").val(data.Pagina);
+
+                            $(data.Comentarios).each(function ()
+                            {
+                                var comentario = { Id: this.Id, Nome: this.Nome, DataCadastro: this.DataCadastro, Texto: this.Texto, Respostas: this.Respostas, Gostei: this.Gostei, NaoGostei: this.NaoGostei };
+
+                                var post = MontarComentario(comentario);
+
+                                $('.posts-comments').append(post);
+                            });
+
+                            if (!isNaN(parseInt($("#numero-posts").html()))) {
+                                if ($("ul.posts-comments li").length >= parseInt($("#numero-posts").html())) {
+                                    $("#load-comments").hide();
+                                } else {
+                                    $("#load-comments").show();
+                                }
+                            }
+
+
+                            bindEvents();
+                            pintarGosteiNaoGostei();
+                            }
+                        $("#loading").hide();
+                        $('.posts-comments').show('slow');
+                        }, 600);
+
+                    }
+                });
+            }
+
+            CarregarMais();
+            IniciarContador();
+
+            var OcultarEnvio = function ()
+            {
+                //$('.posts-data').hide();
+            };
+
+            var PostComment = function (user) {
+
+                OcultarEnvio();
+
+                user.noticiaId = @Model.id;
+
+                if ($('.posts-comments li.selected')[0]) {
+                    user.comentarioId = $('.posts-comments li.selected').data("id");
+                }
+
+                $.post({
+                    url: "@Url.Action("Comentar", "Comentarios")",
+                    data: { comentarioVM: user },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data) {
+
+                            sweetAlert({
+                                title: "Sucesso",
+                                text: "Seu comentário foi enviado!",
+                                type: "success",
+                                timer: 3000,
+                                showConfirmButton: false
+                            });
+
+                            setTimeout(function () {
+
+                                $('.form-post-comment').slideUp(600);
+
+                                actionsButton();
+
+                                $('#msg-comentario').val('');
+                                $('#nome-user').val('');
+                                $('#cpf').val('');
+
+                                if ($('.posts-comments li').hasClass('selected')) {
+
+                                    var subcomment =
+                                        "<li>"
+                                        + "<h3 class='name'>" + user.nameUser + "</h3>"
+                                        + "<small class='date'>" + data.MomentoPostagem + "</small>"
+                                        + "<div class='block-text'><p>" + user.mensagemUser + "</p>" + "</div>"
+                                        + "<div class='actions-comment'>"
+                                        + "<button class='action like' data-id=" + data.Id + ">" + "<i class='fa fa-thumbs-o-up'></i><span class='count'>0</span></button>"
+                                        + "<button class='action deslike' data-id=" + data.Id + ">" + "<i class='fa fa-thumbs-o-down'></i><span class='count'>0</span></button>"
+                                        + "</div>"
+                                        + "</div>"
+                                        + "</li>";
+
+                                    setTimeout(function () {
+
+                                        $('body, html').animate({
+                                            scrollTop: $('.posts-comments li.selected').offset().top - 100
+                                        }, 800);
+                                        $('.posts-comments li.selected .sub-comments').prepend(subcomment);
+                                        $('.posts-comments li').removeClass('selected');
+
+                                    }, 1000);
+                                }
+                                else {
+
+                                    var comentario = { Nome: user.nameUser, DataCadastro: data.MomentoPostagem, Texto: user.mensagemUser, Id: data.Id };
+
+                                    var post = MontarComentario(comentario);
+
+                                    $('.posts-comments').prepend(post);
+
+                                    if ($(".post-comments .li").length > 3) {
+                                        $('.posts-comments').last().remove();
+                                    }
+
+                                }
+
+                                AtualizaContador();
+
+                                $('.box-share').on("click", function () {
+                                    if ($(this).hasClass('ok')) {
+                                        $('.box-share.ok').removeClass('ok');
+                                    }
+                                    else {
+                                        $('.box-share.ok').removeClass('ok');
+                                        $(this).toggleClass('ok');
+                                    }
+                                });
+                            }, 3100);
+                        } else {
+                            sweetAlert({
+                                title: "Error",
+                                text: "Ocorreu um erro durante o processamento de seu comentário! Reveja os campos preenchidos e tente novamente.",
+                                type: "error",
+                                timer: 3000,
+                                showConfirmButton: false
+                            });
+                        }
+                    }
+                });
+            };
+
+            var validarCPF = function (strCPF) {
+                strCPF = strCPF.replace(/[^\d]+/g, '');
+                var Soma;
+                var Resto;
+                Soma = 0;
+                if (strCPF == "00000000000") return false;
+
+                for (i = 1; i <= 9; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (11 - i);
+                Resto = (Soma * 10) % 11;
+
+                if ((Resto == 10) || (Resto == 11)) Resto = 0;
+                if (Resto != parseInt(strCPF.substring(9, 10))) return false;
+
+                Soma = 0;
+                for (i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (12 - i);
+                Resto = (Soma * 10) % 11;
+
+                if ((Resto == 10) || (Resto == 11)) Resto = 0;
+                if (Resto != parseInt(strCPF.substring(10, 11))) return false;
+                return true;
+            }
+            // Ação de like e deslike
+
+            var actionsButton = function () {
+                $('.posts-comments .actions-comment .action').click(function () {
+
+                    var id = $(this).data("id");
+
+                    if (!$(this).hasClass('active')) {
+                        if ($(this).hasClass('like')) {
+                            gostarComentario(id);
+                        }
+                        else {
+                            naoGostarComentario(id);
+                        }
+                        var contador = $(this).find('.count');
+                        contador.text(parseInt(contador.text()) + 1);
+
+                        var botao = $($(this).siblings('.action.active')[0]);
+                        var contadorOposto = $(botao.find('.count')[0]);
+                        if (contadorOposto) {
+                            contadorOposto.text(parseInt(contadorOposto.text()) - 1);
+                            contadorOposto.closest('.action.active').removeClass('active');
+                        }
+
+                        $(this).addClass('active');
+                    }
+                })
+          }
+
+            $("#load-comments").click(function (e) {
+                e.preventDefault();
+                CarregarMais();
+            });
+
+                var compartilharComentario = function (idComentario) {
+
+                    FB.ui({
+                        method: 'feed',
+                        name: 'Testeee',
+                        link: '@("http://www." + HttpContext.Current.Request.Url.Authority + Url.Action("ComentarioCompartilhado", "Comentarios"))/' + idComentario,
+                        picture: 'url_da_imagem_aqui',
+                        caption: 'Testando',
+                        description: 'Descrição'
+                    });
+                }
+
+            var bindEvents = function ()
+            {
+                $('.insert-comment').off('click');
+                $(".icon-facebook").off('click');
+                $('.posts-comments .actions-comment .action').off('click');
+
+                $(".icon-facebook").click(function ()
+                {
+                    var idComentario = $(this).closest("li").data("id");
+
+                    compartilharComentario(idComentario);
+
+                });
+
+                $('.insert-comment').click(function () {
+
+                    $('.form-post-comment').slideDown(600);
+                    $('body, html').animate({
+                        scrollTop: $('.form-post-comment').offset().top - 100
+                    }, 800);
+                    $("li.selected").removeClass('selected');
+                    $(this).parent().parent().addClass('selected');
+                });
+
+                structure.share();
+
+                actionsButton();
+
+            }
+
+            bindEvents();
+
+            var user = new Object();
+
+            // Posta um comentário retornando o usuário normal
+            $('#post-comment').click(function (e) {
+
+                e.preventDefault();
+                var mensagem = $('#msg-comentario').val();
+                var nomeinput = $('#nome-user').val();
+                var cpf = $('#cpf').val();
+
+                var response = grecaptcha.getResponse();
+                
+                if (response.length == 0)
+                {
+                    sweetAlert("Por favor...", "Marque a caixa de verificação para confirmar que não é uma máquina!", "error");
+                    return;
+                }
+
+                if (nomeinput == '' || cpf == '' || mensagem == '' || !validarCPF(cpf)) {
+                    sweetAlert("Por favor...", "preencha seus dados corretamente!", "error");
+                }
+                else {
+                    user.nameUser = nomeinput;
+                    user.cpfUser = cpf;
+                    user.mensagemUser = mensagem;
+                    PostComment(user);
+                    $("#bt-comentario").show();
+                }
+
+            });
+
+
+            // Posta um comentário retornando o usuário via Facebook
+
+            $('#post-facebook').click(function (e) {
+                e.preventDefault();
+
+                var response = grecaptcha.getResponse();
+                
+                if (response.length == 0) {
+                    sweetAlert("Por favor...", "Marque a caixa de verificação para confirmar que não é uma máquina!", "error");
+                    return;
+                }
+
+                var mensagem = $('#msg-comentario').val();
+
+                if (mensagem != '') {
+                    FB.login(function (response) {
+
+                        if (response.authResponse) {
+
+                            FB.api('/me', { fields: 'name, email, id, link' }, function (response) {
+                                user.nameUser = response.name;
+                                user.emailUser = response.email;
+                                user.idUser = response.id;
+                                user.link = response.link;
+                                user.mensagemUser = mensagem;
+                                PostComment(user);
+
+                                $("#bt-comentario").show();
+                            });
+                        }
+
+                    });
+                } else {
+                    sweetAlert("Por favor...", "Digite sua mensagem", "error");
+                }
+
+            });
+        });
+    </script>
+
+}

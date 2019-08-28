@@ -1,0 +1,169 @@
+﻿@model Site.ViewModels.MenuViewModel
+
+<div class="top-bar">
+    <div class="center clearfix">
+        <form class="search-block">
+            <input type="text" placeholder="Buscar" list="item" class="text-search" name="buscar" maxlength="150" id="buscar" value="@(ViewContext.RouteData.Values["busca"]!=null?ViewContext.RouteData.Values["busca"]:null)">
+            <!-- Opções do Autocomplete -->
+            <datalist id="item">
+                <option value="Notícias">
+                <option value="Promoções">
+                <option value="Esportes">
+                <option value="Podcast">
+                <option value="Política">
+            </datalist>
+			
+            <button class="bt-submit" id="btn-busca-all">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+        </form>
+		
+<nav class="socials-top fix-top">
+	<a href="https://www.facebook.com/radioCompanyName/?fref=ts" class="icons" target="_blank" title="Curta nossa página no Facebook">
+		<i class="fa fa-facebook"></i>
+	</a>
+	<a href="https://twitter.com/radioCompanyName?lang=pt" class="icons" target="_blank" title="Siga-nos no Twitter">
+		<i class="fa fa-twitter"></i>
+	</a>
+</nav>
+
+        <small class="info-timer">
+                <img src="~/images/nublado.png" class="icone-clima-branco" width="30" alt="Tempo">
+                <strong id="texto-previsao">21°c - 28°c</strong>             
+            | Belo Horizonte, @DateTime.Now.Date.Day de @DateTime.Now.ToString("MMMM") de @DateTime.Now.Year
+        </small>
+		
+		
+		
+		<div class="submenu" id="submenu">
+            <div class="content">
+                <div class="column">
+                    <ul class="list-categories">
+                        <li class="link-red" data-submenu="esportes">
+                            <span>Esportes</span>
+                            <i class="fa fa-angle-right"></i>
+                        </li>
+                        @if (Model.Editorias.Any())
+                        {
+                            <li class="link-red" data-submenu="noticias">
+                                <span>Editorias</span>
+                                <i class="fa fa-angle-right"></i>
+                            </li>
+                        }
+                        <li class="link-red" data-submenu="audios">
+                            <span>Central de áudios</span>
+                            <i class="fa fa-angle-right"></i>
+                            @*<a href="@Url.Action("Index","Podcast")">Podcast</a>*@
+                        </li>
+                        @*<li class="link-black">
+                                <a href="@Url.Action("Ouvintes","Editorias")">Ouvinte no ar</a>
+                            </li>*@
+                        <li class="link-black">
+                            <a href="@Url.Action("Index","Colunistas")">Colunistas</a>
+                        </li>
+                        @*<li class="link-black">
+                                <a href="promocoes.html">Promoções</a>
+                            </li>*@
+                        <li class="link-black">
+                            <a href="@Url.Action("Index","Eventos")">CompanyName no ponto</a>
+                        </li>
+                        <li data-submenu="radio" class="link-black">
+                            <span>A Rádio</span>
+                            <i class="fa fa-angle-right"></i>
+
+                        </li>
+                    </ul>
+                </div>
+                <div class="second-column">
+                    <span class="bt-return">Voltar</span>
+                    <nav class="list-side" data-link="esportes">
+                        <div class="section-equips">
+                            <h4 class="mini-title">Times</h4>
+                            <a href="@Url.Action("Index","Clubes",new{id = "america"})">
+                                <img src="/images/thumb_america-mineiro.png" alt="América">
+                            </a>
+                            <a href="@Url.Action("Index", "Clubes", new { id = "atletico" })">
+                                <img src="/images/thumb_galo-logo.png" alt="Atlético">
+                            </a>
+                            <a href="@Url.Action("Index", "Clubes", new { id = "cruzeiro" })">
+                                <img src="/images/thumb_cruzeiro-logo-01.png" alt="Cruzeiro">
+                            </a>
+                            <a href="@Url.Action("Index", "Clubes", new { id = "brasil" })">
+                                <img src="/images/thumb_brasil-logo-brasil.png" alt="Seleção Brasileira">
+                            </a>
+                        </div>
+
+                        <h4 class="mini-title">Notícias</h4>
+                        <a href="@Url.Action("Index","Editorias", new { chave = "esporte" })">Últimas notícias</a>
+
+                        <h4 class="mini-title">Campeonatos</h4>
+                        @if (Model.Campeonatos != null && Model.Campeonatos.Count > 0)
+                        {
+                            foreach (var item in Model.Campeonatos)
+                            {
+                                <a href="@Url.Action(item.Action,"Campeonatos")">@item.nome</a>
+                            }
+                        }
+
+
+                    </nav>
+                    <nav class="list-side" data-link="radio">
+                        <a href="@Url.Action("Index","Programacao")">Programação</a>
+                        @*<a href="@Url.Action("Equipe","Sobre")">Equipe</a>*@
+                        <a href="@Url.Action("Fotos","Bastidores")">Bastidores da Redação</a>
+                        <a href="@Url.Action("QuemSomos","Sobre")">Quem Somos</a>
+                        <a href="@Url.Action("Index","FaleConosco")">Fale Conosco</a>
+                        <a href="@Url.Action("MidiaKit","Sobre")">Midia Kit</a>
+                        <a href="@Url.Action("CopaCompanyName","Sobre")">Copa CompanyName</a>
+                        <a href="@Url.Action("TrofeuGuara","Sobre")">Troféu Guará</a>
+                    </nav>
+                    <nav class="list-side" data-link="noticias">
+                        @if (Model.Editorias != null && Model.Editorias.Count > 0)
+                        {
+                            foreach (var item in Model.Editorias)
+                            {
+                                <a href="@Url.Action("Index","Editorias", new { chave = item.chave})">@item.nome</a>
+                            }
+                        }
+
+                    </nav>
+                    <nav class="list-side" data-link="audios">
+                        <a href="@Url.Action("Index","Podcast")">Podcast</a>
+                        @*<a href="@Url.Action("Horoscopo", "Podcast")">Horóscopo</a>*@
+                        @foreach (var categoria in Model.CategoriasAudios)
+                        {
+                            <a href="@Url.Action("CategoriaAudio", "Podcast", new { @id = categoria.Id, @slug = Site.Helpers.Utils.GenerateSlug(categoria.Descricao) })">@categoria.Descricao</a>
+                        }
+                    </nav>
+                </div>
+            </div>
+            <!-- <footer class="informations">
+                <div class="box">
+                    <i class="fa fa-whatsapp"></i>
+                    <h4>Whatsapp</h4>
+                    <small>9999 333 3333</small>
+                </div>
+                <div class="box">
+                    <i class="fa fa-mobile"></i>
+                    <h4>Telefone</h4>
+                    <small>0800 333 3333</small>
+                </div>
+                <a class="box" href="mailto:#">
+                    <i class="fa fa-envelope" style="font-size: 18px"></i>
+                    <h4>Fale com CompanyName</h4>
+                    <small></small>
+                </a>
+            </footer> -->
+        </div>
+        <div id="header-2017" class="left" style="padding-top: 9px;">
+            <button class="bt-menu">Menu</button>
+            <a href="@Url.Action("Denuncia","FaleConosco")" class="link">Enviar Denúncia</a>
+        </div>
+        <a href="@Url.Action("Index","Home")" class="main-logo">
+            <img src="~/images/Logo_CompanyName_Radio_Branco.png" alt="CompanyName 610 am - 95,7 fm" class="logo-1">
+            <img src="~/images/logo-b.png" alt="CompanyName 610 am - 95,7 fm" class="logo-2">
+        </a>
+		
+		
+    </div>
+</div>

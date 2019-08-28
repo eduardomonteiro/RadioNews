@@ -1,0 +1,193 @@
+﻿@using System.Text.RegularExpressions
+@using PagedList
+@using PagedList.Mvc
+@using Site.Helpers
+@model Site.ViewModels.ColunistaMateriasViewModel
+
+@section SEO{
+    <meta name="DC.title" content="Blog - @Model.Colunista.nome - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:title" content="Blog - @Model.Colunista.nome - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="@Url.Content("~/images/logo-branca.png")" />
+    <meta property="og:url" content="@HttpContext.Current.Request.Url.AbsoluteUri" />
+    <title>Blog - @Model.Colunista.nome - Rádio CompanyName | A Rádio de Minas</title>
+}
+
+
+<div class="wrapper-general center">
+    <header class="nav-intern clearfix">
+        <div class="buttons">
+            <a class="bt-back" href="javascript:window.history.go(-1)"> <i class="fa fa-angle-left"></i> Voltar</a>
+            Texto: <button class="more bt-resize">+</button> <button class="bt-resize minus">-</button>
+        </div>
+        <nav class="breadcumb">
+            <a href="@Url.Action("Index","Home")">Home</a>
+            <a href="@Url.Action("Index","Colunistas")">Colunistas</a>
+            <span>@Model.Colunista.nome</span>
+        </nav>
+    </header>
+
+    @if (Model != null)
+    {
+        <div class="row-grid clearfix">
+            <div class="grid-9 main-grid">
+                <div class="box-header-column clearfix">
+                    @if (!string.IsNullOrEmpty(Model.Colunista.foto))
+                    {
+                        <img src="/admin/Conteudo/Colunistas/Foto/@Model.Colunista.foto?width=130&heigth=100" alt="@Model.Colunista.nome">
+                    }
+                    <h1 class="title">Coluna @(Model.Colunista.sexo == "M" ? "do" : "da")<strong>@Model.Colunista.nome</strong></h1>
+                </div>
+
+                <section style="margin-top: -20px">
+                    <header class="filters">
+
+                        @using (Html.BeginForm("Detalhes", "Colunistas", FormMethod.Post, new { colunistaSlug = Model.Colunista.chave, @class = "row-grid clearfix" }))
+                        {
+                            <div class="grid-4">
+                                <label for="palavrachave">Palavra Chave</label>
+                                <input type="text" class="input-form" name="palavrachave" id="palavrachave" value="@Request.Params["palavrachave"]">
+                            </div>
+                            <div class="grid-3">
+                                <label for="editoria">Editoria</label>
+                                @Html.DropDownList("editoria", null, "Selecione...", new { @class = "input-form", @id = "editoria", @name = "editoria" })
+                            </div>
+                            <div class="grid-2">
+                                <label for="datainicio">De</label>
+                                <input type="date" class="input-form dates" id="datainicio" name="datainicio" value="@Request.Params["datainicio"]">
+                            </div>
+                            <div class="grid-2">
+                                <label for="datafinal">Até</label>
+                                <input type="date" class="input-form dates" id="datafinal" name="datafinal" value="@Request.Params["datafinal"]">
+                            </div>
+                            <div class="grid-1">
+                                <button type="submit" id="post-search" title="Buscar" class="search-filter fa fa-search"></button>
+                            </div>
+                        }
+
+                    </header>
+
+
+                    @if (Model.paginacao != null && Model.paginacao.Count > 0)
+                    {
+                        <ul class="news-line">
+                            @foreach (var item in Model.paginacao)
+                            {
+                                var urlCompartilha = HttpContext.Current.Request.Url.Authority + Url.Action("Detalhes", "Noticias", new { chave = item.url });
+
+                                <li class="li-itens">
+                                    <article class="container">
+                                        <div class="info">
+                                            <div class="clearfix header-content">
+                                                <span class="info-publication">
+                                                    Por <strong>@item.Colunista.nome</strong>, às @item.dataCadastro.ToShortDateString() - @item.dataCadastro.ToString("HH:mm")
+                                                </span>
+
+                                                <div class="box-share">
+                                                    <span class="title">
+                                                        <i class="fa fa-share-alt"></i>Compartilhar
+                                                    </span>
+                                                    <nav>
+                                                        <a href="#" class="icon-facebook" onclick="openwindow('https://www.facebook.com/sharer/sharer.php?u=@urlCompartilha&display=popup&ref=plugin');">
+                                                            <i class="fa fa-facebook"></i> Facebook
+                                                        </a>
+
+                                                        <a href="#" class="icon-twitter-squared" onclick="openwindow('https://twitter.com/intent/tweet?text=@Regex.Replace(item.titulo, @"<[^>]+>|&nbsp;", "").Trim()&url=@urlCompartilha');">
+                                                            <i class="fa fa-twitter"></i>Twitter
+                                                        </a>
+                                                    </nav>
+                                                </div>
+
+                                            </div>
+                                            <a href="@Url.Action("Materia", "Colunistas", new { chave = item.url, colunistaSlug = item.Colunista.chave })">
+                                                @*<span class="tag-area">@item.Editoriais.FirstOrDefault().nome</span>*@
+                                                <h3 class="title-medium">@item.titulo</h3>
+                                            </a>
+                                        </div>
+                                    </article>
+                                </li>
+                            }
+
+                        </ul>
+                    }
+                    else
+                    {
+                        <div class="block-text">
+                            <h3>Não foram encontrados resultados.</h3>
+                        </div>
+
+                    }
+
+                    <footer class="pagination-bottom">
+
+                        <ul class="pag">
+                            @if (Model.paginacao.PageCount > 1)
+                            {
+                                @Html.PagedListPager(Model.paginacao, page => Url.Action("Detalhes", new
+                           {
+                               page,
+                               colunistaSlug = Model.Colunista.chave,
+                               palavrachave = Request.Params["palavrachave"],
+                               editoria = Request.Params["editoria"],
+                               datainicio = Request.Params["datainicio"],
+                               datafinal = Request.Params["datafinal"]
+                           }),
+                           new PagedListRenderOptions
+                           {
+                               LinkToNextPageFormat = "Próximo",
+                               LinkToPreviousPageFormat = "Anterior",
+                               MaximumPageNumbersToDisplay = 5,
+                               DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                               DisplayLinkToFirstPage = PagedListDisplayMode.Never
+                           })
+                            }
+                        </ul>
+
+                    </footer>
+
+                </section>
+            </div>
+
+
+            @{Html.RenderAction("SidebarColunista", "Colunistas", new { colunista = Model.Colunista });}
+
+        </div>
+    }
+
+</div>
+
+
+@section scripts{
+    <script language="JavaScript1.2">
+        function openwindow(url) {
+            window.open(url,
+                "mywindow", "location=no,status=no,scrollbars=no,width=400,height=300");
+        }
+
+        function OnColunistaSuccess(response) {
+
+            if (response.result == "success") {
+                swal('Sucesso', 'Seu cadastro foi efetuado com sucesso! Obrigado!', 'success');
+            }
+            else if (response.result == "invalid") {
+                swal('Atenção', 'Não foi possivel gravar! Verifique as informações preenchidas', 'warning');
+            }
+            else if (response.result == "already") {
+                swal('Atenção', 'Este email já está cadastrado para este colunista!', 'warning');
+            }
+            else {
+                swal('Erro', 'Ocorreu um erro tente novamente mais tarde!', 'error');
+            }
+        }
+
+        function OnColunistaFailure(response) {
+            swal('Erro', 'Ocorreu um erro tente novamente mais tarde!', 'error');
+        }
+
+
+    </script>
+
+
+
+}

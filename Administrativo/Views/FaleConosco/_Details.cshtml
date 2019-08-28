@@ -1,0 +1,74 @@
+﻿@model Administrativo.Models.FaleConosco
+
+<table class="table table-bordered table-striped responsive">
+    <tbody>
+        <tr>
+            <td style="width:200px;">Id</td>
+            <td>@Html.DisplayFor(model => model.id)</td>
+        </tr>
+
+        <tr>
+            <td>Nome</td>
+            <td>@Html.DisplayFor(model => model.nome)</td>
+        </tr>
+
+        <tr>
+            <td>E-mail</td>
+            <td>@Html.DisplayFor(model => model.email)</td>
+        </tr>
+
+        @if (!string.IsNullOrEmpty(Model.estado))
+        {
+            <tr>
+                <td>Estado</td>
+                <td>@Html.DisplayFor(model => model.estado)</td>
+            </tr>
+
+        }
+
+        @if (!string.IsNullOrEmpty(Model.cidade))
+        {
+            <tr>
+                <td>Cidade</td>
+                <td>@Html.DisplayFor(model => model.cidade)</td>
+            </tr>
+        }
+        <tr>
+            <td>Celular</td>
+            <td>@Html.DisplayFor(model => model.celular)</td>
+        </tr>
+
+        <tr>
+            <td>Telefone</td>
+            <td>@Html.DisplayFor(model => model.telefone)</td>
+        </tr>
+
+        <tr>
+            <td>Mensagem</td>
+            <td>@Html.DisplayFor(model => model.mensagem)</td>
+        </tr>
+
+        @if (!string.IsNullOrEmpty(Model.resposta))
+        {
+
+            <tr>
+                <td>Resposta</td>
+                <td>@Html.Raw(Model.resposta)</td>
+            </tr>
+        }
+
+        @if (Model.dataResposta.HasValue)
+        {
+
+            <tr>
+                <td>Data da Resposta</td>
+                <td>@Html.DisplayFor(model => model.dataResposta)</td>
+            </tr>
+        }
+        <tr>
+            <td>Data de cadastro</td>
+            <td>@Html.DisplayFor(model => model.dataCadastro)</td>
+        </tr>
+
+    </tbody>
+</table>

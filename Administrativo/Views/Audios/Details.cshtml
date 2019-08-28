@@ -1,0 +1,27 @@
+﻿@model Administrativo.Models.Audios
+
+@{
+    ViewBag.Title = "Audios";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Visualizar detalhes do Audio";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">Detalhes</h3>
+            </div>
+            <div class="box-content padded">
+                @Html.Partial("_Details")
+            </div>
+            <div class="box-footer">
+
+                <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-warning">Editar</a>
+                <a href="@Url.Action("Index")" class="btn btn-info">Voltar</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+

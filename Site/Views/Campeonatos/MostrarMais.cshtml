@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Site.Models.Noticias>
+
+@{ 
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <li>
+        <article class="container">
+            @if (!string.IsNullOrEmpty(item.foto))
+            {
+                <figure>
+                    <a href="@Url.Action("Detalhes", "Noticias", new { chave = item.url })">
+                        <img src="@Url.Content(string.Format("/admin/conteudo/noticias/{0}/365x240/{1}", item.id, item.foto))?width=365" alt="@item.titulo">
+                    </a>
+                </figure>
+            }
+
+            <div class="info">
+                <div class="clearfix header-content">
+                    <span class="info-publication">
+                        Por <strong>@item.porAutor</strong>, às @item.dataCadastro.ToShortDateString() - @item.dataCadastro.ToShortTimeString()
+                    </span>
+                    <div class="box-share">
+                        <span class="title">
+                            <i class="fa fa-share-alt"></i>Compartilhar
+                        </span>
+                        <nav>
+                            <a href="@Url.Action("Detalhes", "Noticias", new { chave = item.url })">
+                                <i class="fa fa-facebook"></i> Facebook
+                            </a>
+                            <a href="@Url.Action("Detalhes", "Noticias", new { chave = item.url })">
+                                <i class="fa fa-twitter"></i>Twitter
+                            </a>
+                        </nav>
+                    </div>
+                </div>
+                <a href="@Url.Action("Detalhes", "Noticias", new { chave = item.url })">
+                    <span class="tag-area">@item.titulo</span>
+                    <h3 class="title-medium">@Html.Raw(item.chamada)</h3>
+                </a>
+            </div>
+        </article>
+    </li>
+
+}

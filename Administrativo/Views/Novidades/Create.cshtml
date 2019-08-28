@@ -1,0 +1,117 @@
+﻿@model Administrativo.Models.MateriaNovidades
+
+
+	@{
+		ViewBag.Title = "Cadastrar Novidades";
+		ViewBag.Icon = "fa ";
+		ViewBag.SmallDescription = "Insere uma novidade em uma causa";
+	
+		Layout = "~/Views/Shared/_Layout.cshtml";
+	
+	}
+
+<div class="content">
+    <div class="row">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Cadastrar Novidades</h3>
+            </div>
+				@using (Html.BeginForm("Create", "Novidades", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+					@Html.AntiForgeryToken()
+
+				<div class="box-body">
+
+
+						<div class="form-group">
+
+                            @Html.LabelFor(model => model.idMateria, "Materia")
+	
+                            <select class="form-control" readonly="readonly" name="idMateria" id="idMateria">
+                                <option value="@ViewBag.Materia.id" selected="selected">@ViewBag.Materia.titulo"</option>
+                            </select>
+                                
+								@Html.ValidationMessageFor(model => model.idMateria)
+						</div>
+
+	
+                     
+						<div class="form-group">
+
+								@Html.LabelFor(model => model.status)
+
+	
+
+								@Html.EditorFor(model => model.status)
+
+								@Html.ValidationMessageFor(model => model.status)
+						</div>
+
+
+						<div class="form-group">
+
+								@Html.LabelFor(model => model.novidades)
+
+	
+
+								@Html.EditorFor(model => model.novidades)
+
+								@Html.ValidationMessageFor(model => model.novidades)
+						</div>
+
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.dataPrograma)
+
+
+
+                        <input type="datetime" id="dataPrograma" name="dataPrograma" class="form-control" />
+                        @Html.ValidationMessageFor(model => model.dataPrograma)
+                    </div>
+
+	
+
+						<div class="form-group">
+
+								@Html.LabelFor(model => model.audio)
+
+	
+
+								<input type="file" name="audio" id="audio"/>
+                                <label class="field-validation-error" id="erroMP3">Somente arquivos mp3</label>
+								@Html.ValidationMessageFor(model => model.audio)
+						</div>
+
+				</div> 
+                <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a href="@Url.Action("Details", "Causas", new { id = ViewBag.Materia.id })" class="btn btn-info">Voltar</a>
+
+                </div>  
+					}
+		</div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script>
+    $(document).ready(function () {
+        $('#erroMP3').hide();
+    });
+
+    $('#audio').on('change', function () {
+        console.log($(this).val());
+        if ($(this).val().indexOf('mp3', $(this).length) < 0) {
+            $(this).val('');
+            $('#erroMP3').show();
+        } else {
+            $('#erroMP3').hide();
+        };
+    });
+</script>
+}
+
+
+

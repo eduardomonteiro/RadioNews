@@ -1,0 +1,344 @@
+﻿<!-- Desenvolvimento Front: Iago Machado -->
+<!doctype html>
+<html xml:lang="pt-br" lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="author" content="AM4 - A Internet de Resultados" />
+        <meta name="description" content=""/>
+        <meta name="resource-type" content="document"/>
+        <meta name="content-language" content="pt-br"/>
+        <meta name="revisit" content="1 day"/>
+        <meta name="ICBM" content="-20.8341668,-45.51577"/>
+        <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+        <meta name="DC.title" content="Quem Somos - Rádio Itaitiaia | A Rádio de Minas"/>
+        <meta property="og:title" content="Quem Somos - Rádio Itaitiaia | A Rádio de Minas" /> 
+        <meta property="og:type" content="#"/>
+        <meta property="og:description" content="" />
+        <meta property="og:image" content="../images/ico-facebook.jpg"/>
+        <meta property="og:url" content=""/>
+        <link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
+        <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon" href="/images/touch-icon-iphone.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="../images/touch-icon-ipad.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="../images/touch-icon-iphone-retina.png" />
+        <title>Quem Somos - Rádio Itaitiaia | A Rádio de Minas</title>
+        <link rel="stylesheet" href="styles/jquery.fancybox.css">
+        <link rel="stylesheet" href="styles/styles.css">
+        <!--[if lt IE 9]>
+            <script src="scripts/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <!-- Google Analitycs     -->
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-86304380-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+        <header  class="main-header" role="banner">
+            <div class="top-bar">
+                <div class="center clearfix">
+                    <small class="info-timer">
+                        <img src="images/nublado.png" alt="Nublado" title="Nublado">
+                        <strong>20°c</strong> | Belo Horizonte, 20 de novembro de 2017
+                    </small>
+                    <form action="busca.html" class="search-block">
+                        <input type="text" placeholder="Buscar" list="item" class="text-search" name="buscar" maxlength="25" id="buscar">
+                        <!-- Opções do Autocomplete -->
+                        <datalist id="item">
+                          <option value="Notícias">
+                          <option value="Promoções">
+                          <option value="Esportes">
+                          <option value="Podcast">
+                          <option value="Política">
+                        </datalist>
+                        <button class="bt-submit">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="medium-bar">
+                <div class="center clearfix">
+                    <div class="submenu" id="submenu">
+                        <div class="content">
+                            <div class="column">
+                                <ul class="list-categories">
+                                    <li class="link-red" data-submenu="esportes">
+                                        <span>Esportes</span>
+                                        <i class="fa fa-angle-right"></i>
+                                    </li>
+                                    <li class="link-red">
+                                        <a href="noticias.html">Notícias</a>
+                                    </li>
+                                    <li class="link-red">
+                                        <a href="editoria.html">Política</a>
+                                    </li>
+                                    <li class="link-red">
+                                        <a href="editoria.html">Cidades</a>
+                                    </li>
+                                    <li class="link-red">
+                                        <a href="editoria.html">Entretenimento</a>
+                                    </li>
+                                    <li class="link-black">
+                                        <a href="ouvinte.html">Ouvinte no Ar</a>
+                                    </li>
+                                    <li class="link-black">
+                                        <a href="colunistas.html">Colunistas</a>
+                                    </li>
+                                    <li class="link-black">
+                                        <a href="promocoes.html">Promoções</a>
+                                    </li>
+                                    <li class="link-black">
+                                        <a href="podcasts.html">Podcast</a>
+                                    </li>
+                                    <li data-submenu="radio" class="link-black">
+                                        <span>A Rádio</span>
+                                        <i class="fa fa-angle-right"></i>
+                                        
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="second-column">
+                                <span class="bt-return">Voltar</span>
+                                <nav class="list-side" data-link="esportes">
+                                    <div class="section-equips">
+                                        <h4 class="mini-title">Times</h4>
+                                        <a href="esportes-interna.html">
+                                            <img src="images/thumb_america-mineiro.png" alt="América Mineiro">
+                                        </a>
+                                        <a href="esportes-interna.html">
+                                            <img src="images/thumb_cruzeiro-logo-01.png" alt="Cruzeiro">
+                                        </a>
+                                        <a href="esportes-interna.html">
+                                            <img src="images/thumb_america-mineiro.png" alt="América Mineiro">
+                                        </a>
+                                        <a href="esportes-interna.html">
+                                            <img src="images/thumb_brasil-logo-brasil.png" alt="Seleção Brasileira">
+                                        </a>
+                                    </div>
+                                    <h4 class="mini-title">Campeonatos</h4>
+                                    <a href="campeonato-brasileiro.html">Amistoso</a>
+                                    <a href="campeonato-brasileiro.html">Campeonato Brasileiro A</a>
+                                    <a href="campeonato-brasileiro.html">Copa América 2016</a>
+                                    <a href="campeonato-brasileiro.html">Copa do Brasil 2016</a>
+                                    <a href="campeonato-brasileiro.html">Copa Libertadores 2016</a>
+                                    <a href="campeonato-brasileiro.html">Eliminatórias da Copa</a>
+                                    <a href="campeonato-brasileiro.html">Olimpíadas 2016</a>
+                                </nav>
+                                <nav class="list-side" data-link="radio">
+                                    <a href="programacao.html">Programação</a>
+                                    <a href="equipe.html">Equipe</a>
+                                    <a href="bastidores.html">Bastidores da Redação</a>
+                                    <a href="quemsomos.html">Quem Somos</a>
+                                    <a href="faleconosco.html">Fale Conosco</a>
+                                    <a href="midiakit.html">Midia Kit</a>
+                                </nav>
+                            </div>
+                        </div>
+                        <!-- <footer class="informations">
+                            <div class="box">
+                                <i class="fa fa-whatsapp"></i>
+                                <h4>Whatsapp</h4>
+                                <small>9999 333 3333</small>
+                            </div>
+                            <div class="box">
+                                <i class="fa fa-mobile"></i>
+                                <h4>Telefone</h4>
+                                <small>0800 333 3333</small>
+                            </div>
+                            <a class="box" href="mailto:#">
+                                <i class="fa fa-envelope" style="font-size: 18px"></i>
+                                <h4>Fale com Itatiaia</h4>
+                                <small></small>
+                            </a>
+                        </footer> -->
+                    </div>
+                    <div class="left">
+                        <button class="bt-menu">Menu</button>
+                        <a href="enviardenuncia.html" class="link">Enviar Denúncia</a>
+                    </div>
+                    <a href="index.html" class="main-logo">
+                        <img src="images/logo.png" alt="Itatiaia 610 am - 95,7 fm">
+                    </a>
+                    <nav class="socials-top">
+                        <a href="https://www.facebook.com/radioitatiaia/?fref=ts" class="icons" target="_blank" title="Curta nossa página no Facebook">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                        <a href="https://twitter.com/radioitatiaia?lang=pt" class="icons" target="_blank" title="Siga-nos no Twitter">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <div class="choice-station">
+                            <header class="title">
+                                <i class="fa fa-play-circle"></i>
+                                Selecione a Rádio
+                            </header>
+                            <nav class="stations">
+                                <a href="#">Belo Horizonte</a>
+                                <a href="#">Itatiaia</a>
+                            </nav>
+                        </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <div class="navigation-bottom">
+                <button class="button" id="nav-bottom">
+                    <i class="fa fa-caret-square-o-down"></i>
+                    <span>Especiais</span>
+                </button>
+                <nav class="center">
+                    <span>Especiais:</span>
+                    <a href="parlamentoaberto.html">Parlamento Aberto</a>
+                    <a href="vendaingressos.html">Venda de Ingressos</a>
+                    <a href="bhfiscaliza.html">Bh Fiscaliza</a>
+                    <a href="feirao.html">Feirão de Veículos</a>
+                    <a href="pampulha.html">Pampulha</a>
+                    <a href="turismo.html">Turismo</a>
+                    <a href="gastronomia.html">Gastronomia</a>
+                    <a href="carnaval.html">Carnaval 2017</a>
+                </nav>
+            </div>
+        </header>
+
+        <div class="wrapper-general center">
+            <header class="nav-intern clearfix">
+                <div class="buttons">
+                    <a class="bt-back" href="javascript:window.history.go(-1)"> <i class="fa fa-angle-left"></i> Voltar</a>
+                    Texto: <button class="more bt-resize">+</button> <button class="bt-resize minus">-</button>
+                </div>
+                <nav class="breadcumb">
+                    <a href="index.html">Home</a>
+                    <a href="aradio.html">A Rádio</a>
+                    <span>Quem Somos</span>
+                </nav>
+            </header>
+            <h1 class="title-page">Quem Somos</h1>
+            <div class="block-text">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo.Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                <p>Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo.</p>
+            </div>
+            <section class="content-margin">
+                <h2 class="title-sector">Diretoria Atual</h2>
+                <ul class="row-grid clearfix">
+                    <li class="grid-4">
+                        <img src="images/diretoria/1.jpg" alt="Emanuel Carneiro" class="pic-radius">
+                        <h3 class="name-people">Emanuel Carneiro</h3>
+                        <h4 class="tit-function">Presidente</h4>
+                        <div class="block-text small">
+                            <p>A história de vida de Emanuel Soares Carneiro está intrínseca com a criação e o crescimento da Rádio Itatiaia. Iniciado no mundo radiofônico aos 13 anos, ele primeiro assumiu o cargo de office-boy da empresa. Nos anos seguintes, atuou nas funções de operador de som, plantonista esportivo, repórter, redator, programador musical, diretor artístico e diretor de operações. Formado em Administração de Empresas, assumiu a presidência da emissora após o falecimento de seu irmão Januário Carneiro, em 1994. Atualmente, continua colaborando para as áreas de jornalismo e esporte da emissora. Apresentador e comentarista, Emanuel Carneiro apresenta de segunda a sábado o programa “Turma do Bate Bola”, e,  aos domingos, a “Grande Resenha Esportiva”.</p>
+                        </div>   
+                    </li>
+                    <li class="grid-4">
+                        <img src="images/diretoria/2.jpg" alt="Cláudio Emanuel Carneiro" class="pic-radius">
+                        <h3 class="name-people">Cláudio Emanuel Carneiro</h3>
+                        <h4 class="tit-function">Vice-presidente</h4>
+                        <div class="block-text small">
+                            <p>Cláudio Emanuel Carneiro tem o rádio como parte de seu cotidiano desde os 15 anos, quando foi contratado como operador de gravações e externas na Rádio Itatiaia. Em uma época em que o rádio ainda não era digital, Cláudio assumiu o cargo de Diretor de Operações e, sob sua orientação, a empresa consolidou um padrão de instalações e de equipamentos que rendem um diferencial em sua qualidade de som. Hoje, a Rádio Itatiaia possui um moderno parque de transmissão. Com potência de 100KW em AM e 260KW em FM e equipamentos de última geração, os sinais da emissora ultrapassam os limites da Região Metropolitana de Belo Horizonte em um raio de 300 quilômetros, além de Internet, Canal Sky e nos aplicativos de celular.</p>
+                        </div>   
+                    </li>
+                    <li class="grid-4">
+                        <img src="images/diretoria/3.jpg" alt="Carlos Rubens Doné" class="pic-radius">
+                        <h3 class="name-people">Carlos Rubens Doné</h3>
+                        <h4 class="tit-function">Diretor de Mercado</h4>
+                        <div class="block-text small">
+                            <p>Responsável pelas áreas comercial, de marketing e de promoções, Carlos Rubens dos Santos Doné trabalha na Rádio Itatiaia desde 1992, após uma passagem de 13 anos pela Rede Globo. Formado em jornalismo e publicidade pela antiga FAFI-BH, e pós-graduado em Administração de Marketing pela UNA, Doné também realiza palestras em diversos estados do país. Foi vencedor por seis vezes do prêmio Melhores da Comunicação de Minas, promovido pela AMP (Associação Mineira de Propaganda) e pela Sinapro-MG (Sindicato das Agências de Propaganda) – quatro como profissional de veículo do ano e dois como publicitário do ano. Para ele, a busca incessante pela informação e a agilidade são as principais virtudes de um profissional de comunicação.</p>
+                        </div>   
+                    </li>
+                </ul>
+            </section>
+        </div>  
+        <section class="widgets-social">
+            <div class="center">
+                <header>
+                    <h2>#ItatiaiaNasRedes</h2>
+                    <div class="links">
+                        <span>Siga-nos</span>
+                        <a href="https://www.facebook.com/radioitatiaia/?fref=ts" class="icons" target="_blank" title="Curta nossa página no Facebook">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                        <a href="https://twitter.com/radioitatiaia?lang=pt" class="icons" target="_blank" title="Siga-nos no Twitter">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </div>
+                </header>
+                <div class="box clearfix">
+                    <div class="content-articles-social">
+                        <div class="wrapper" id="twitter-post">
+                            <article class="block tw">
+                                <h2>RadioItatiaia</h2>
+                                <p>Cruzeiro relança categoria de sócios para crianças de até 12 anos de idade: </p>
+                                <a href="http://bit.ly/2d4tRnY">http://bit.ly/2d4tRnY</a>
+                            </article>
+                            <article class="block tw">
+                                <h2>RadioItatiaia</h2>
+                                <p>Cruzeiro relança categoria de sócios para crianças de até 12 anos de idade: </p>
+                                <a href="http://bit.ly/2d4tRnY">http://bit.ly/2d4tRnY</a>
+                            </article>
+                        </div>
+                        <div class="wrapper" id="fb-post">
+                            <article class="block fb">
+                                <h2>RadioItatiaia</h2>
+                                <p>Casemiro sofre lesão no Real Madrid e deve ser cortado da seleção brasileira:</p>
+                                <a href="http://bit.ly/2d4tRnY">http://bit.ly/2d4tRnY</a>
+                            </article>
+                            <article class="block fb">
+                                <h2>RadioItatiaia</h2>
+                                <p>Casemiro sofre lesão no Real Madrid e deve ser cortado da seleção brasileira:</p>
+                                <a href="http://bit.ly/2d4tRnY">http://bit.ly/2d4tRnY</a>
+                            </article> 
+                        </div>
+                    </div>
+                    <article class="featured-box" id="fb-big">
+                        <a href="#">
+                            <img src="images/pic-insta.jpg" alt="{{Titulo da Imagem}}">
+                        </a>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <footer class="main-footer" role="contentinfo">
+            <div class="wrapper">
+                <div class="center clearfix">
+                    <div class="info">
+                        <a href="index.html">
+                            <img src="images/logo-bottom.png" alt="Radio Itatiaia">
+                        </a>
+                        <address>Rua Itatiaia, 117, Bonfim - Belo Horizonte, MG <br/>Tel.: (31) 2105-3588 - Fax: (31) 2105-3613 </address>
+                    </div>
+                    <nav class="links">
+                        <a href="https://www.facebook.com/radioitatiaia/?fref=ts" class="icons fa fa-facebook" target="_blank" title="Curta nossa página no Facebook"></a>
+                        <a href="https://twitter.com/radioitatiaia?lang=pt" class="icons fa fa-twitter" target="_blank" title="Siga-nos no Twitter">
+                        </a>
+                        <div class="button-expandmap">
+                            Expandir mapa do site <i class="fa fa-angle-down"></i>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <div class="bottom">
+                <div class="center clearfix">
+                    <nav>
+                        <a href="faleconosco.html">Fale Conosco</a>
+                        <a href="midiakit.html">MídiaKit</a>
+                    </nav>
+                    <a href="http://www.am4.com.br" target="_blank">
+                        <img src="images/am4.png" alt="Desenvolvido por Am4">
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
+<script src="scripts/jquery.js"></script>
+<script src="scripts/pace.js"></script>
+<script src="scripts/slick.js"></script>
+<script src="scripts/scripts.js"></script>
+<!-- STREAMING DA RÁDIO -->  
+<script type="text/javascript" data-embed_id="ls_embed_1475173798" src="//livestream.com/assets/plugins/referrer_tracking.js"></script> 

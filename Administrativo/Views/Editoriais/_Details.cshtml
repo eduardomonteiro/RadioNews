@@ -1,0 +1,33 @@
+﻿@model Administrativo.Models.Editoriais
+<table class="table table-bordered table-striped responsive">
+    <tbody>
+        <tr>
+            <td style="width:200px;">@Html.DisplayNameFor(model => model.id)</td>
+            <td>@Html.DisplayFor(model => model.id)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.nome)</td>
+            <td>@Html.DisplayFor(model => model.nome)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.DataCadastro)</td>
+            <td>@Html.DisplayFor(model => model.DataCadastro)</td>
+        </tr>
+        <tr>
+            <td>Categorias</td>
+            <td>
+                @foreach (var categoria in Model.Categorias)
+                {
+                    <div class="col-md-3 col-sm-4">
+                        <i class="fa fa-fw fa-user"></i>@categoria.Titulo
+                    </div>
+                }
+
+                @Html.Raw((Model.Categorias.Count() == 0 ? "<p class=\"text-yellow\">Nenhuma categoria cadastrada.</p>" : ""))
+            </td>
+        </tr>
+
+    </tbody>
+</table>

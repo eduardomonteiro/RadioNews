@@ -1,0 +1,1149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{92F4F4F5-4D47-400E-A9BF-EAF1E496362D}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Site</RootNamespace>
+    <AssemblyName>Site</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FlickrNet, Version=3.22.0.0, Culture=neutral, PublicKeyToken=2491df59efa5d132, processorArchitecture=MSIL">
+      <HintPath>..\packages\FlickrNet.3.22.0\lib\net20\FlickrNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ImageProcessor, Version=2.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageProcessor.2.5.1\lib\net45\ImageProcessor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ImageProcessor.Web, Version=4.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageProcessor.Web.4.8.0\lib\net45\ImageProcessor.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.1.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.1.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.1.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.1.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.1.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.1.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.1.2.0\lib\net45\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop, Version=1.0.168.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Recaptcha.Web, Version=2.1.0.0, Culture=neutral, PublicKeyToken=171a6ec5fa4b1644, processorArchitecture=MSIL">
+      <HintPath>..\packages\RecaptchaNet.2.1.0\lib\net451\Recaptcha.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="StackExchange.Redis, Version=1.2.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StackExchange.Redis.1.2.4\lib\net45\StackExchange.Redis.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AudioController.cs" />
+    <Compile Include="Controllers\ComentariosController.cs" />
+    <Compile Include="Controllers\LiveStreamingController.cs" />
+    <Compile Include="Controllers\MontesClarosController.cs" />
+    <Compile Include="Controllers\BannersController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BastidoresController.cs" />
+    <Compile Include="Controllers\CacheController.cs" />
+    <Compile Include="Controllers\CampeonatosController.cs" />
+    <Compile Include="Controllers\BuscaController.cs" />
+    <Compile Include="Controllers\ClubesController.cs" />
+    <Compile Include="Controllers\ColunistasController.cs" />
+    <Compile Include="Controllers\EditoriasController.cs" />
+    <Compile Include="Controllers\ErrosController.cs" />
+    <Compile Include="Controllers\EspeciaisController.cs" />
+    <Compile Include="Controllers\EsportesController.cs" />
+    <Compile Include="Controllers\FaleConoscoController.cs" />
+    <Compile Include="Controllers\GaleriasController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\EventosController.cs" />
+    <Compile Include="Controllers\LayoutController.cs" />
+    <Compile Include="Controllers\NoticiasController.cs" />
+    <Compile Include="Controllers\OuropretoController.cs" />
+    <Compile Include="Controllers\PodcastController.cs" />
+    <Compile Include="Controllers\ProgramacaoController.cs" />
+    <Compile Include="Controllers\RedesSociaisController.cs" />
+    <Compile Include="Controllers\SeuBolsoController.cs" />
+    <Compile Include="Controllers\SobreController.cs" />
+    <Compile Include="Controllers\TempoController.cs" />
+    <Compile Include="Enums\RedeSocialTipo.cs" />
+    <Compile Include="Enums\TipoDestaque.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\BannerTopo.cs" />
+    <Compile Include="Helpers\ChavesBannerSeuBolso.cs" />
+    <Compile Include="Helpers\ItatiaiaFlickr.cs" />
+    <Compile Include="Helpers\Tweet.cs" />
+    <Compile Include="Helpers\Utils.cs" />
+    <Compile Include="Migrations\201612221606180_campomigracao.cs" />
+    <Compile Include="Migrations\201612221606180_campomigracao.Designer.cs">
+      <DependentUpon>201612221606180_campomigracao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701131324428_addActionEditoria.cs" />
+    <Compile Include="Migrations\201701131324428_addActionEditoria.Designer.cs">
+      <DependentUpon>201701131324428_addActionEditoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701131328175_sizefield.cs" />
+    <Compile Include="Migrations\201701131328175_sizefield.Designer.cs">
+      <DependentUpon>201701131328175_sizefield.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Acontecimentos.cs" />
+    <Compile Include="Models\IndicadoresBovespa.cs" />
+    <Compile Include="Models\IndicadorFinanceiro.cs" />
+    <Compile Include="Models\MoedaValor.cs" />
+    <Compile Include="Models\PAD\ApoioPAD.cs" />
+    <Compile Include="Models\Apresentadores.cs" />
+    <Compile Include="Models\AreaBanner.cs" />
+    <Compile Include="Models\AssuntoMateria.cs" />
+    <Compile Include="Models\Audio.cs" />
+    <Compile Include="Models\Bairros.cs" />
+    <Compile Include="Models\Banners.cs" />
+    <Compile Include="Models\BannersVisualizacoesCliques.cs" />
+    <Compile Include="Models\Bastidores.cs" />
+    <Compile Include="Models\BastidoresMidias.cs" />
+    <Compile Include="Models\Blocos.cs" />
+    <Compile Include="Models\CategoriasAudios.cs" />
+    <Compile Include="Models\Categorias.cs" />
+    <Compile Include="Models\CategoriasMapa.cs" />
+    <Compile Include="Models\cidade.cs" />
+    <Compile Include="Models\ColecaoAudios.cs" />
+    <Compile Include="Models\Colunista.cs" />
+    <Compile Include="Models\ColunistaSeguidores.cs" />
+    <Compile Include="Models\Comentario.cs" />
+    <Compile Include="Models\Editoriais.cs" />
+    <Compile Include="Models\Editoriais_Equipe.cs" />
+    <Compile Include="Models\Elencos.cs" />
+    <Compile Include="Models\Enquete.cs" />
+    <Compile Include="Models\Equipe.cs" />
+    <Compile Include="Models\Especiais.cs" />
+    <Compile Include="Models\Especiais_Modelos.cs" />
+    <Compile Include="Models\Especiais_Secoes.cs" />
+    <Compile Include="Models\estado.cs" />
+    <Compile Include="Models\FaleConosco.cs" />
+    <Compile Include="Models\FotosAcontecimento.cs" />
+    <Compile Include="Models\Galeria.cs" />
+    <Compile Include="Models\GruposPush.cs" />
+    <Compile Include="Models\Horario_programacao.cs" />
+    <Compile Include="Models\Horoscopo.cs" />
+    <Compile Include="Models\LiveStreaming.cs" />
+    <Compile Include="Models\Materia.cs" />
+    <Compile Include="Models\MateriaNovidades.cs" />
+    <Compile Include="Models\MidiaKit.cs" />
+    <Compile Include="Models\Midias.cs" />
+    <Compile Include="Models\ModeloDados.cs" />
+    <Compile Include="Models\Newsletter.cs" />
+    <Compile Include="Models\Eventos.cs" />
+    <Compile Include="Models\Noticias.cs" />
+    <Compile Include="Models\PAD\EGolPAD.cs" />
+    <Compile Include="Models\PAD\NoticiasPAD.cs" />
+    <Compile Include="Models\NoticiasRegioes.cs" />
+    <Compile Include="Models\NotificacoesPush.cs" />
+    <Compile Include="Models\Ouvintes.cs" />
+    <Compile Include="Models\OuvintesArquivos.cs" />
+    <Compile Include="Models\PAD\RedesSociaisPAD.cs" />
+    <Compile Include="Models\PAD\TimesPAD.cs" />
+    <Compile Include="Models\Programacao.cs" />
+    <Compile Include="Models\Promocoes.cs" />
+    <Compile Include="Models\Promocoes_Participantes.cs" />
+    <Compile Include="Models\Promocoes_Resultados.cs" />
+    <Compile Include="Models\RedesSociais.cs" />
+    <Compile Include="Models\Radios.cs" />
+    <Compile Include="Models\Regioes.cs" />
+    <Compile Include="Models\Respostas.cs" />
+    <Compile Include="Models\RotasNoRio.cs" />
+    <Compile Include="Models\Secoes_Locais.cs" />
+    <Compile Include="Models\Tags.cs" />
+    <Compile Include="Models\Times.cs" />
+    <Compile Include="Models\TrabalheConosco.cs" />
+    <Compile Include="Models\Transporte.cs" />
+    <Compile Include="Models\UserProfile.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Cache.cs" />
+    <Compile Include="Services\Classes\Campeonato.cs" />
+    <Compile Include="Services\Classes\Campeonatos\SulAmericana.cs" />
+    <Compile Include="Services\Classes\Campeonatos\CopaDoBrasil.cs" />
+    <Compile Include="Services\Classes\Campeonatos\Mineiro.cs" />
+    <Compile Include="Services\Classes\Campeonatos\Eliminatorias.cs" />
+    <Compile Include="Services\Classes\Campeonatos\PrimeiraLiga.cs" />
+    <Compile Include="Services\Classes\Campeonatos\Libertadores.cs" />
+    <Compile Include="Services\Classes\Campeonatos\CopaAmerica.cs" />
+    <Compile Include="Services\Classes\Campeonatos\SerieB.cs" />
+    <Compile Include="Services\Classes\Fase.cs" />
+    <Compile Include="Services\Classes\Grupo.cs" />
+    <Compile Include="Services\Classes\Rodada.cs" />
+    <Compile Include="Services\Classes\Artilheiros.cs" />
+    <Compile Include="Services\Classes\Classificacao.cs" />
+    <Compile Include="Services\Classes\Clube.cs" />
+    <Compile Include="Services\Classes\Jogo.cs" />
+    <Compile Include="Services\Classes\Campeonatos\SerieA.cs" />
+    <Compile Include="Services\RedisService.cs" />
+    <Compile Include="ViewModels\AudioPageViewModel.cs" />
+    <Compile Include="ViewModels\BannerTopoViewModel.cs" />
+    <Compile Include="ViewModels\BuscaViewModel.cs" />
+    <Compile Include="ViewModels\Campeonatos\SerieA\ViewModel.cs" />
+    <Compile Include="ViewModels\CategoriaAudiosViewModel.cs" />
+    <Compile Include="ViewModels\ClubesViewModel.cs" />
+    <Compile Include="ViewModels\ColunistaSideBarViewModel.cs" />
+    <Compile Include="ViewModels\ComentarioViewModel.cs" />
+    <Compile Include="ViewModels\DenunciaViewModel.cs" />
+    <Compile Include="ViewModels\EditoriasViewModel.cs" />
+    <Compile Include="ViewModels\EnqueteViewModel.cs" />
+    <Compile Include="ViewModels\EquipeViewModel.cs" />
+    <Compile Include="ViewModels\EspeciaisViewModel.cs" />
+    <Compile Include="ViewModels\EsportesViewModel.cs" />
+    <Compile Include="ViewModels\EventoViewModel.cs" />
+    <Compile Include="ViewModels\FooterViewModel.cs" />
+    <Compile Include="ViewModels\FotoViewModel.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\SeuBolso\IndicadoresViewModel.cs" />
+    <Compile Include="ViewModels\LiveStreamViewModel.cs" />
+    <Compile Include="ViewModels\MenuViewModel.cs" />
+    <Compile Include="ViewModels\ModeloEspecialViewModel.cs" />
+    <Compile Include="ViewModels\EditoriasLayoutViewModel.cs" />
+    <Compile Include="ViewModels\NavigationBarViewModel.cs" />
+    <Compile Include="ViewModels\NoticiaViewModel.cs" />
+    <Compile Include="ViewModels\RadiosViewModel.cs" />
+    <Compile Include="ViewModels\RedesSociaisViewModel.cs" />
+    <Compile Include="ViewModels\ReportagensEspeciaisViewModel.cs" />
+    <Compile Include="ViewModels\SeuBolso\BannerSeuBolsoViewModel.cs" />
+    <Compile Include="ViewModels\SeuBolso\SeuBolsoViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\banner-topo.css" />
+    <Content Include="Content\bg-contador.png" />
+    <Content Include="Content\blank.gif" />
+    <Content Include="Content\bola-animacao.gif" />
+    <Content Include="Content\bola-batendo-mobile.gif" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\chzn-select\chosen-sprite%402x.png" />
+    <Content Include="Content\chzn-select\chosen-sprite.png" />
+    <Content Include="Content\chzn-select\chosen.css" />
+    <Content Include="Content\chzn-select\chosen.min.css" />
+    <Content Include="Content\chzn-select\docsupport\chosen.png" />
+    <Content Include="Content\chzn-select\docsupport\oss-credit.png" />
+    <Content Include="Content\chzn-select\docsupport\prism.css" />
+    <Content Include="Content\chzn-select\docsupport\prism.js" />
+    <Content Include="Content\chzn-select\docsupport\style.css" />
+    <Content Include="Content\copa.css" />
+    <Content Include="Content\fancybox_loading%402x.gif" />
+    <Content Include="Content\fancybox_loading.gif" />
+    <Content Include="Content\fancybox_overlay.png" />
+    <Content Include="Content\fancybox_sprite%402x.png" />
+    <Content Include="Content\fancybox_sprite.png" />
+    <Content Include="Content\fileinput.min.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\footer-copa.png" />
+    <Content Include="Content\helpers\fancybox_buttons.png" />
+    <Content Include="Content\helpers\jquery.fancybox-buttons.css" />
+    <Content Include="Content\helpers\jquery.fancybox-buttons.js" />
+    <Content Include="Content\helpers\jquery.fancybox-media.js" />
+    <Content Include="Content\helpers\jquery.fancybox-thumbs.css" />
+    <Content Include="Content\helpers\jquery.fancybox-thumbs.js" />
+    <Content Include="Content\Imagem-Microfone.jpg" />
+    <Content Include="Content\Itatiaia-na-copa.jpg" />
+    <Content Include="Content\jquery.fancybox.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\player\animation.css" />
+    <Content Include="Content\player\fontello-codes.css" />
+    <Content Include="Content\player\fontello-embedded.css" />
+    <Content Include="Content\player\fontello-ie7-codes.css" />
+    <Content Include="Content\player\fontello-ie7.css" />
+    <Content Include="Content\player\fontello.css" />
+    <Content Include="Content\player\player.css" />
+    <Content Include="Content\rangecalendar.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\jquery.mCustomScrollbar.min.css" />
+    <Content Include="Content\slick-theme.min.css" />
+    <Content Include="Content\slick.min.css" />
+    <Content Include="Content\styles_seubolso.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\sombra.png" />
+    <Content Include="Content\styles.css" />
+    <Content Include="Content\sweetalert2.min.css" />
+    <Content Include="Content\zabuto.css" />
+    <Content Include="conteudo\noticias\1031\260x173\mi08-11-2016_18-11-13.jpg" />
+    <Content Include="conteudo\noticias\1031\365x240\mi08-11-2016_18-11-13.jpg" />
+    <Content Include="conteudo\noticias\1031\405x270\mi08-11-2016_18-11-13.jpg" />
+    <Content Include="conteudo\noticias\1031\744x500\mi08-11-2016_18-11-13.jpg" />
+    <Content Include="conteudo\noticias\1031\original\mi08-11-2016_18-11-13.jpg" />
+    <Content Include="conteudo\noticias\1032\260x173\cachoeiradorobertao-amparo-rj16-11-2016_14-28-08.jpg" />
+    <Content Include="conteudo\noticias\1032\365x240\cachoeiradorobertao-amparo-rj16-11-2016_14-28-08.jpg" />
+    <Content Include="conteudo\noticias\1032\405x270\cachoeiradorobertao-amparo-rj16-11-2016_14-28-08.jpg" />
+    <Content Include="conteudo\noticias\1032\744x500\cachoeiradorobertao-amparo-rj16-11-2016_14-28-08.jpg" />
+    <Content Include="conteudo\noticias\1032\original\cachoeiradorobertao-amparo-rj16-11-2016_14-28-08.jpg" />
+    <Content Include="conteudo\noticias\1033\260x173\carnaval16-11-2016_14-35-43.jpg" />
+    <Content Include="conteudo\noticias\1033\365x240\carnaval16-11-2016_14-35-43.jpg" />
+    <Content Include="conteudo\noticias\1033\405x270\carnaval16-11-2016_14-35-43.jpg" />
+    <Content Include="conteudo\noticias\1033\744x500\carnaval16-11-2016_14-35-43.jpg" />
+    <Content Include="conteudo\noticias\1033\original\carnaval16-11-2016_14-35-43.jpg" />
+    <Content Include="conteudo\noticias\1035\260x173\424-11-2016_13-39-48.jpg" />
+    <Content Include="conteudo\noticias\1035\365x240\424-11-2016_13-39-48.jpg" />
+    <Content Include="conteudo\noticias\1035\405x270\424-11-2016_13-39-48.jpg" />
+    <Content Include="conteudo\noticias\1035\744x500\424-11-2016_13-39-48.jpg" />
+    <Content Include="conteudo\noticias\1035\original\424-11-2016_13-39-48.jpg" />
+    <Content Include="conteudo\noticias\1040\260x173\donizeteint-fotoalexdejesusotempoestadoconted24-11-2016_14-28-21.jpg" />
+    <Content Include="conteudo\noticias\1040\365x240\donizeteint-fotoalexdejesusotempoestadoconted24-11-2016_14-28-21.jpg" />
+    <Content Include="conteudo\noticias\1040\405x270\donizeteint-fotoalexdejesusotempoestadoconted24-11-2016_14-28-21.jpg" />
+    <Content Include="conteudo\noticias\1040\744x500\donizeteint-fotoalexdejesusotempoestadoconted24-11-2016_14-28-21.jpg" />
+    <Content Include="conteudo\noticias\1040\original\donizeteint-fotoalexdejesusotempoestadoconted24-11-2016_14-28-21.jpg" />
+    <Content Include="conteudo\noticias\15\260x173\doubledeckeeeeeeeeeeer28-10-2016_15-12-04.jpg" />
+    <Content Include="conteudo\noticias\15\365x240\doubledeckeeeeeeeeeeer28-10-2016_15-12-04.jpg" />
+    <Content Include="conteudo\noticias\15\405x270\doubledeckeeeeeeeeeeer28-10-2016_15-12-04.jpg" />
+    <Content Include="conteudo\noticias\15\744x500\doubledeckeeeeeeeeeeer28-10-2016_15-12-04.jpg" />
+    <Content Include="conteudo\noticias\15\original\doubledeckeeeeeeeeeeer28-10-2016_15-12-04.jpg" />
+    <Content Include="conteudo\noticias\16\260x173\paraty0920075931-10-2016_17-47-37.JPG" />
+    <Content Include="conteudo\noticias\16\365x240\paraty0920075931-10-2016_17-47-37.JPG" />
+    <Content Include="conteudo\noticias\16\405x270\paraty0920075931-10-2016_17-47-37.JPG" />
+    <Content Include="conteudo\noticias\16\744x500\paraty0920075931-10-2016_17-47-37.JPG" />
+    <Content Include="conteudo\noticias\16\original\paraty0920075931-10-2016_17-47-37.JPG" />
+    <Content Include="conteudo\noticias\17\260x173\201-11-2016_15-28-45.jpg" />
+    <Content Include="conteudo\noticias\17\365x240\201-11-2016_15-28-45.jpg" />
+    <Content Include="conteudo\noticias\17\405x270\201-11-2016_15-28-45.jpg" />
+    <Content Include="conteudo\noticias\17\744x500\201-11-2016_15-28-45.jpg" />
+    <Content Include="conteudo\noticias\17\original\201-11-2016_15-28-45.jpg" />
+    <Content Include="conteudo\noticias\19\260x173\classico03-11-2016_12-42-48.jpg" />
+    <Content Include="conteudo\noticias\19\365x240\classico03-11-2016_12-42-48.jpg" />
+    <Content Include="conteudo\noticias\19\405x270\classico03-11-2016_12-42-48.jpg" />
+    <Content Include="conteudo\noticias\19\744x500\classico03-11-2016_12-42-48.jpg" />
+    <Content Include="conteudo\noticias\19\original\classico03-11-2016_12-42-48.jpg" />
+    <Content Include="conteudo\noticias\20\260x173\classico03-11-2016_12-50-36.jpg" />
+    <Content Include="conteudo\noticias\20\365x240\classico03-11-2016_12-50-36.jpg" />
+    <Content Include="conteudo\noticias\20\405x270\classico03-11-2016_12-50-36.jpg" />
+    <Content Include="conteudo\noticias\20\744x500\classico03-11-2016_12-50-36.jpg" />
+    <Content Include="conteudo\noticias\20\original\classico03-11-2016_12-50-36.jpg" />
+    <Content Include="conteudo\noticias\21\260x173\filmeslogo03-11-2016_13-25-25.jpg" />
+    <Content Include="conteudo\noticias\21\365x240\filmeslogo03-11-2016_13-25-25.jpg" />
+    <Content Include="conteudo\noticias\21\405x270\filmeslogo03-11-2016_13-25-25.jpg" />
+    <Content Include="conteudo\noticias\21\744x500\filmeslogo03-11-2016_13-25-25.jpg" />
+    <Content Include="conteudo\noticias\21\original\filmeslogo03-11-2016_13-25-25.jpg" />
+    <Content Include="conteudo\noticias\22\260x173\filmeslogo03-11-2016_13-30-56.jpg" />
+    <Content Include="conteudo\noticias\22\365x240\filmeslogo03-11-2016_13-30-56.jpg" />
+    <Content Include="conteudo\noticias\22\405x270\filmeslogo03-11-2016_13-30-56.jpg" />
+    <Content Include="conteudo\noticias\22\744x500\filmeslogo03-11-2016_13-30-56.jpg" />
+    <Content Include="conteudo\noticias\22\original\filmeslogo03-11-2016_13-30-56.jpg" />
+    <Content Include="conteudo\noticias\23\260x173\filmeslogo03-11-2016_13-33-54.jpg" />
+    <Content Include="conteudo\noticias\23\365x240\filmeslogo03-11-2016_13-33-54.jpg" />
+    <Content Include="conteudo\noticias\23\405x270\filmeslogo03-11-2016_13-33-54.jpg" />
+    <Content Include="conteudo\noticias\23\744x500\filmeslogo03-11-2016_13-33-54.jpg" />
+    <Content Include="conteudo\noticias\23\original\filmeslogo03-11-2016_13-33-54.jpg" />
+    <Content Include="conteudo\noticias\24\260x173\autocaixa03-11-2016_14-55-01.png" />
+    <Content Include="conteudo\noticias\24\365x240\autocaixa03-11-2016_14-55-01.png" />
+    <Content Include="conteudo\noticias\24\405x270\autocaixa03-11-2016_14-55-01.png" />
+    <Content Include="conteudo\noticias\24\744x500\autocaixa03-11-2016_14-55-01.png" />
+    <Content Include="conteudo\noticias\24\original\autocaixa03-11-2016_14-55-01.png" />
+    <Content Include="conteudo\noticias\26\260x173\images03-11-2016_14-57-22.jpg" />
+    <Content Include="conteudo\noticias\26\365x240\images03-11-2016_14-57-22.jpg" />
+    <Content Include="conteudo\noticias\26\405x270\images03-11-2016_14-57-22.jpg" />
+    <Content Include="conteudo\noticias\26\744x500\images03-11-2016_14-57-22.jpg" />
+    <Content Include="conteudo\noticias\26\original\images03-11-2016_14-57-22.jpg" />
+    <Content Include="conteudo\noticias\27\260x173\dsc0035104-11-2016_12-37-58.jpg" />
+    <Content Include="conteudo\noticias\27\365x240\dsc0035104-11-2016_12-37-58.jpg" />
+    <Content Include="conteudo\noticias\27\405x270\dsc0035104-11-2016_12-37-58.jpg" />
+    <Content Include="conteudo\noticias\27\744x500\dsc0035104-11-2016_12-37-58.jpg" />
+    <Content Include="conteudo\noticias\27\original\dsc0035104-11-2016_12-37-58.jpg" />
+    <Content Include="conteudo\noticias\28\260x173\dscf375104-11-2016_12-39-15.JPG" />
+    <Content Include="conteudo\noticias\28\365x240\dscf375104-11-2016_12-39-15.JPG" />
+    <Content Include="conteudo\noticias\28\405x270\dscf375104-11-2016_12-39-15.JPG" />
+    <Content Include="conteudo\noticias\28\744x500\dscf375104-11-2016_12-39-15.JPG" />
+    <Content Include="conteudo\noticias\28\original\dscf375104-11-2016_12-39-15.JPG" />
+    <Content Include="conteudo\noticias\29\260x173\tab04-11-2016_12-40-26.JPG" />
+    <Content Include="conteudo\noticias\29\365x240\tab04-11-2016_12-40-26.JPG" />
+    <Content Include="conteudo\noticias\29\405x270\tab04-11-2016_12-40-26.JPG" />
+    <Content Include="conteudo\noticias\29\744x500\tab04-11-2016_12-40-26.JPG" />
+    <Content Include="conteudo\noticias\29\original\tab04-11-2016_12-40-26.JPG" />
+    <Content Include="conteudo\noticias\30\260x173\tabua-de-frios04-11-2016_12-40-52.jpg" />
+    <Content Include="conteudo\noticias\30\365x240\tabua-de-frios04-11-2016_12-40-52.jpg" />
+    <Content Include="conteudo\noticias\30\405x270\tabua-de-frios04-11-2016_12-40-52.jpg" />
+    <Content Include="conteudo\noticias\30\744x500\tabua-de-frios04-11-2016_12-40-52.jpg" />
+    <Content Include="conteudo\noticias\30\original\tabua-de-frios04-11-2016_12-40-52.jpg" />
+    <Content Include="conteudo\noticias\31\260x173\cachoeiradorobertao-amparo-rj07-11-2016_13-11-27.jpg" />
+    <Content Include="conteudo\noticias\31\365x240\cachoeiradorobertao-amparo-rj07-11-2016_13-11-27.jpg" />
+    <Content Include="conteudo\noticias\31\405x270\cachoeiradorobertao-amparo-rj07-11-2016_13-11-27.jpg" />
+    <Content Include="conteudo\noticias\31\744x500\cachoeiradorobertao-amparo-rj07-11-2016_13-11-27.jpg" />
+    <Content Include="conteudo\noticias\31\original\cachoeiradorobertao-amparo-rj07-11-2016_13-11-27.jpg" />
+    <Content Include="conteudo\noticias\32\260x173\parquedaserafina407-11-2016_13-13-03.JPG" />
+    <Content Include="conteudo\noticias\32\365x240\parquedaserafina407-11-2016_13-13-03.JPG" />
+    <Content Include="conteudo\noticias\32\405x270\parquedaserafina407-11-2016_13-13-03.JPG" />
+    <Content Include="conteudo\noticias\32\744x500\parquedaserafina407-11-2016_13-13-03.JPG" />
+    <Content Include="conteudo\noticias\32\original\parquedaserafina407-11-2016_13-13-03.JPG" />
+    <Content Include="conteudo\noticias\33\260x173\casarao-da-fazenda9107-11-2016_13-14-50.jpg" />
+    <Content Include="conteudo\noticias\33\365x240\casarao-da-fazenda9107-11-2016_13-14-50.jpg" />
+    <Content Include="conteudo\noticias\33\405x270\casarao-da-fazenda9107-11-2016_13-14-50.jpg" />
+    <Content Include="conteudo\noticias\33\744x500\casarao-da-fazenda9107-11-2016_13-14-50.jpg" />
+    <Content Include="conteudo\noticias\33\original\casarao-da-fazenda9107-11-2016_13-14-50.jpg" />
+    <Content Include="conteudo\noticias\34\260x173\casarao-da-fazenda9107-11-2016_15-34-19.jpg" />
+    <Content Include="conteudo\noticias\34\365x240\casarao-da-fazenda9107-11-2016_15-34-19.jpg" />
+    <Content Include="conteudo\noticias\34\405x270\casarao-da-fazenda9107-11-2016_15-34-19.jpg" />
+    <Content Include="conteudo\noticias\34\744x500\casarao-da-fazenda9107-11-2016_15-34-19.jpg" />
+    <Content Include="conteudo\noticias\34\original\casarao-da-fazenda9107-11-2016_15-34-19.jpg" />
+    <Content Include="conteudo\noticias\35\260x173\parquedaserafina407-11-2016_15-42-34.JPG" />
+    <Content Include="conteudo\noticias\35\365x240\parquedaserafina407-11-2016_15-42-34.JPG" />
+    <Content Include="conteudo\noticias\35\405x270\parquedaserafina407-11-2016_15-42-34.JPG" />
+    <Content Include="conteudo\noticias\35\744x500\parquedaserafina407-11-2016_15-42-34.JPG" />
+    <Content Include="conteudo\noticias\35\original\parquedaserafina407-11-2016_15-42-34.JPG" />
+    <Content Include="conteudo\noticias\38\260x173\images07-11-2016_16-10-26.jpg" />
+    <Content Include="conteudo\noticias\38\365x240\images07-11-2016_16-10-26.jpg" />
+    <Content Include="conteudo\noticias\38\405x270\images07-11-2016_16-10-26.jpg" />
+    <Content Include="conteudo\noticias\38\744x500\images07-11-2016_16-10-26.jpg" />
+    <Content Include="conteudo\noticias\38\original\images07-11-2016_16-10-26.jpg" />
+    <Content Include="conteudo\noticias\39\300x200\papagaios-noticia-paranaonline07-11-2016_17-04-13.jpg" />
+    <Content Include="conteudo\noticias\39\620x200\papagaios-noticia-paranaonline07-11-2016_17-04-13.jpg" />
+    <Content Include="conteudo\noticias\39\620x415\papagaios-noticia-paranaonline07-11-2016_17-04-13.jpg" />
+    <Content Include="conteudo\noticias\39\700x460\papagaios-noticia-paranaonline07-11-2016_17-04-13.jpg" />
+    <Content Include="conteudo\noticias\39\93x93\papagaios-noticia-paranaonline07-11-2016_17-04-13.jpg" />
+    <Content Include="conteudo\noticias\39\original\papagaios-noticia-paranaonline07-11-2016_17-04-13.jpg" />
+    <Content Include="conteudo\noticias\40\260x173\papagaios-noticia-paranaonline07-11-2016_18-05-36.jpg" />
+    <Content Include="conteudo\noticias\40\365x240\papagaios-noticia-paranaonline07-11-2016_18-05-36.jpg" />
+    <Content Include="conteudo\noticias\40\405x270\papagaios-noticia-paranaonline07-11-2016_18-05-36.jpg" />
+    <Content Include="conteudo\noticias\40\744x500\papagaios-noticia-paranaonline07-11-2016_18-05-36.jpg" />
+    <Content Include="conteudo\noticias\40\original\papagaios-noticia-paranaonline07-11-2016_18-05-36.jpg" />
+    <Content Include="conteudo\noticias\6\260x173\apucarana-abre-processo-de-selecao-para-profe28-10-2016_14-01-51.jpg" />
+    <Content Include="conteudo\noticias\6\365x240\apucarana-abre-processo-de-selecao-para-profe28-10-2016_14-01-51.jpg" />
+    <Content Include="conteudo\noticias\6\405x270\apucarana-abre-processo-de-selecao-para-profe28-10-2016_14-01-51.jpg" />
+    <Content Include="conteudo\noticias\6\744x500\apucarana-abre-processo-de-selecao-para-profe28-10-2016_14-01-51.jpg" />
+    <Content Include="conteudo\noticias\6\original\apucarana-abre-processo-de-selecao-para-profe28-10-2016_14-01-51.jpg" />
+    <Content Include="conteudo\noticias\7\original\apucarana-abre-processo-de-selecao-para-profe28-10-2016_14-25-32.jpg" />
+    <Content Include="conteudo\ouvintes\arquivos\bg_headerMail %281%29.png" />
+    <Content Include="conteudo\ouvintes\arquivos\Donizete_INT-_Foto_ALEX_DE_JESUSO_TEMPOESTAD_O_CONTE_DO.jpg" />
+    <Content Include="conteudo\ouvintes\arquivos\tapume_14_1.jpg" />
+    <Content Include="crossdomain.xml" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\FontAwesome.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="images\am4.png" />
+    <Content Include="images\Anuncio.jpg" />
+    <Content Include="images\arrow-select.png" />
+    <Content Include="images\arrowacordion.png" />
+    <Content Include="images\banner-carnaval.png" />
+    <Content Include="images\Banner.jpg" />
+    <Content Include="images\bar-menu-white.png" />
+    <Content Include="images\bar-menu.png" />
+    <Content Include="images\bg-carnaval.png" />
+    <Content Include="images\bg-principal.jpg" />
+    <Content Include="images\bg-social.jpg" />
+    <Content Include="images\botafogo.png" />
+    <Content Include="images\bt-fechar.png" />
+    <Content Include="images\check-ative.png" />
+    <Content Include="images\check-radio.png" />
+    <Content Include="images\chuvoso.png" />
+    <Content Include="images\clima_icones\branco\c.png" />
+    <Content Include="images\clima_icones\branco\ch.png" />
+    <Content Include="images\clima_icones\branco\ci.png" />
+    <Content Include="images\clima_icones\branco\cl.png" />
+    <Content Include="images\clima_icones\branco\cm.png" />
+    <Content Include="images\clima_icones\branco\cn.png" />
+    <Content Include="images\clima_icones\branco\ct.png" />
+    <Content Include="images\clima_icones\branco\cv.png" />
+    <Content Include="images\clima_icones\branco\e.png" />
+    <Content Include="images\clima_icones\branco\ec.png" />
+    <Content Include="images\clima_icones\branco\g.png" />
+    <Content Include="images\clima_icones\branco\in.png" />
+    <Content Include="images\clima_icones\branco\n.png" />
+    <Content Include="images\clima_icones\branco\ncm.png" />
+    <Content Include="images\clima_icones\branco\ncn.png" />
+    <Content Include="images\clima_icones\branco\nd.png" />
+    <Content Include="images\clima_icones\branco\ne.png" />
+    <Content Include="images\clima_icones\branco\np.png" />
+    <Content Include="images\clima_icones\branco\npm.png" />
+    <Content Include="images\clima_icones\branco\npn.png" />
+    <Content Include="images\clima_icones\branco\npp.png" />
+    <Content Include="images\clima_icones\branco\npt.png" />
+    <Content Include="images\clima_icones\branco\nv.png" />
+    <Content Include="images\clima_icones\branco\pc.png" />
+    <Content Include="images\clima_icones\branco\pcm.png" />
+    <Content Include="images\clima_icones\branco\pcn.png" />
+    <Content Include="images\clima_icones\branco\pct.png" />
+    <Content Include="images\clima_icones\branco\pm.png" />
+    <Content Include="images\clima_icones\branco\pn.png" />
+    <Content Include="images\clima_icones\branco\pnt.png" />
+    <Content Include="images\clima_icones\branco\pp.png" />
+    <Content Include="images\clima_icones\branco\ppm.png" />
+    <Content Include="images\clima_icones\branco\ppn.png" />
+    <Content Include="images\clima_icones\branco\ppt.png" />
+    <Content Include="images\clima_icones\branco\ps.png" />
+    <Content Include="images\clima_icones\branco\psc.png" />
+    <Content Include="images\clima_icones\branco\pt.png" />
+    <Content Include="images\clima_icones\branco\t.png" />
+    <Content Include="images\clima_icones\branco\vn.png" />
+    <Content Include="images\clima_icones\branco\ícones-39.png" />
+    <Content Include="images\clima_icones\preto\c.png" />
+    <Content Include="images\clima_icones\preto\ch.png" />
+    <Content Include="images\clima_icones\preto\ci.png" />
+    <Content Include="images\clima_icones\preto\cl.png" />
+    <Content Include="images\clima_icones\preto\cm.png" />
+    <Content Include="images\clima_icones\preto\cn.png" />
+    <Content Include="images\clima_icones\preto\ct.png" />
+    <Content Include="images\clima_icones\preto\cv.png" />
+    <Content Include="images\clima_icones\preto\e.png" />
+    <Content Include="images\clima_icones\preto\ec.png" />
+    <Content Include="images\clima_icones\preto\g.png" />
+    <Content Include="images\clima_icones\preto\in.png" />
+    <Content Include="images\clima_icones\preto\n.png" />
+    <Content Include="images\clima_icones\preto\ncm.png" />
+    <Content Include="images\clima_icones\preto\ncn.png" />
+    <Content Include="images\clima_icones\preto\nct.png" />
+    <Content Include="images\clima_icones\preto\nd.png" />
+    <Content Include="images\clima_icones\preto\ne.png" />
+    <Content Include="images\clima_icones\preto\np.png" />
+    <Content Include="images\clima_icones\preto\npm.png" />
+    <Content Include="images\clima_icones\preto\npn.png" />
+    <Content Include="images\clima_icones\preto\npp.png" />
+    <Content Include="images\clima_icones\preto\npt.png" />
+    <Content Include="images\clima_icones\preto\nv.png" />
+    <Content Include="images\clima_icones\preto\pc.png" />
+    <Content Include="images\clima_icones\preto\pcm.png" />
+    <Content Include="images\clima_icones\preto\pcn.png" />
+    <Content Include="images\clima_icones\preto\pct.png" />
+    <Content Include="images\clima_icones\preto\pm.png" />
+    <Content Include="images\clima_icones\preto\pn.png" />
+    <Content Include="images\clima_icones\preto\pnt.png" />
+    <Content Include="images\clima_icones\preto\pp.png" />
+    <Content Include="images\clima_icones\preto\ppm.png" />
+    <Content Include="images\clima_icones\preto\ppn.png" />
+    <Content Include="images\clima_icones\preto\ppt.png" />
+    <Content Include="images\clima_icones\preto\ps.png" />
+    <Content Include="images\clima_icones\preto\psc.png" />
+    <Content Include="images\clima_icones\preto\pt.png" />
+    <Content Include="images\clima_icones\preto\t.png" />
+    <Content Include="images\clima_icones\preto\vn.png" />
+    <Content Include="images\clubes\americamineiro.png" />
+    <Content Include="images\clubes\atleticomineiro.png" />
+    <Content Include="images\clubes\botafogo.png" />
+    <Content Include="images\clubes\brasil.png" />
+    <Content Include="images\clubes\cruzeiro.png" />
+    <Content Include="images\clubes\flamengo.png" />
+    <Content Include="images\clubes\franca.png" />
+    <Content Include="images\clubes\palmeiras.png" />
+    <Content Include="images\clubes\compressed\am4.png" />
+    <Content Include="images\clubes\compressed\Anuncio.jpg" />
+    <Content Include="images\clubes\compressed\arrow-select.png" />
+    <Content Include="images\clubes\compressed\arrowacordion.png" />
+    <Content Include="images\clubes\compressed\banner-carnaval.png" />
+    <Content Include="images\clubes\compressed\Banner.jpg" />
+    <Content Include="images\clubes\compressed\bar-menu-white.png" />
+    <Content Include="images\clubes\compressed\bar-menu.png" />
+    <Content Include="images\clubes\compressed\bg-carnaval.png" />
+    <Content Include="images\clubes\compressed\bg-principal.jpg" />
+    <Content Include="images\clubes\compressed\bg-social.jpg" />
+    <Content Include="images\clubes\compressed\botafogo.png" />
+    <Content Include="images\clubes\compressed\bt-fechar.png" />
+    <Content Include="images\clubes\compressed\check-ative.png" />
+    <Content Include="images\clubes\compressed\check-radio.png" />
+    <Content Include="images\clubes\compressed\chuvoso.png" />
+    <Content Include="images\clubes\compressed\cruzeiro-logo-01.png" />
+    <Content Include="images\clubes\compressed\dates.png" />
+    <Content Include="images\clubes\compressed\download-bg.png" />
+    <Content Include="images\clubes\compressed\favicon.png" />
+    <Content Include="images\clubes\compressed\flag-fb.png" />
+    <Content Include="images\clubes\compressed\flag-tw.png" />
+    <Content Include="images\clubes\compressed\hero-recaptcha-demo.png" />
+    <Content Include="images\clubes\compressed\ico-facebook.jpg" />
+    <Content Include="images\clubes\compressed\ico-play-white.png" />
+    <Content Include="images\clubes\compressed\ico-play.png" />
+    <Content Include="images\clubes\compressed\img-default.jpg" />
+    <Content Include="images\clubes\compressed\img-presente.png" />
+    <Content Include="images\clubes\compressed\logo-bottom.png" />
+    <Content Include="images\clubes\compressed\logo.png" />
+    <Content Include="images\clubes\compressed\Mockup-celular.png" />
+    <Content Include="images\clubes\compressed\nublado.png" />
+    <Content Include="images\clubes\compressed\pic-insta.jpg" />
+    <Content Include="images\clubes\compressed\podcast-ico-pause.png" />
+    <Content Include="images\clubes\compressed\podcast-ico.png" />
+    <Content Include="images\clubes\compressed\thumb_america-mineiro.png" />
+    <Content Include="images\clubes\compressed\thumb_brasil-logo-brasil.png" />
+    <Content Include="images\clubes\compressed\thumb_cruzeiro-logo-01.png" />
+    <Content Include="images\clubes\compressed\thumb_galo-logo.png" />
+    <Content Include="images\clubes\compressed\touch-icon-ipad.png" />
+    <Content Include="images\clubes\compressed\touch-icon-iphone-retina.png" />
+    <Content Include="images\clubes\compressed\touch-icon-iphone.png" />
+    <Content Include="images\clubes\compressed\user-prog.png" />
+    <Content Include="images\conteudo\carnaval\1.png" />
+    <Content Include="images\conteudo\carnaval\2.png" />
+    <Content Include="images\conteudo\colunistas\1.png" />
+    <Content Include="images\conteudo\colunistas\10.png" />
+    <Content Include="images\conteudo\colunistas\2.png" />
+    <Content Include="images\conteudo\feirao\1.jpg" />
+    <Content Include="images\conteudo\galeria\bastidores\1.jpg" />
+    <Content Include="images\conteudo\galeria\bastidores\2.jpg" />
+    <Content Include="images\conteudo\galeria\bastidores\3.jpg" />
+    <Content Include="images\conteudo\galeria\bastidores\4.jpg" />
+    <Content Include="images\conteudo\noticias\1.jpg" />
+    <Content Include="images\conteudo\noticias\2.jpg" />
+    <Content Include="images\conteudo\noticias\3.jpg" />
+    <Content Include="images\conteudo\noticias\4.jpg" />
+    <Content Include="images\conteudo\noticias\5.jpg" />
+    <Content Include="images\cruzeiro-logo-01.png" />
+    <Content Include="images\dates.png" />
+    <Content Include="images\diretoria\1.jpg" />
+    <Content Include="images\diretoria\2.jpg" />
+    <Content Include="images\diretoria\3.jpg" />
+    <Content Include="images\download-bg.png" />
+    <Content Include="images\download.png" />
+    <Content Include="images\favicon.ico" />
+    <Content Include="images\favicon.png" />
+    <Content Include="images\flag-fb.png" />
+    <Content Include="images\flag-tw.png" />
+    <Content Include="images\hero-recaptcha-demo.png" />
+    <Content Include="images\ico-facebook.jpg" />
+    <Content Include="images\ico-play-white.png" />
+    <Content Include="images\ico-play.png" />
+    <Content Include="images\img-default.jpg" />
+    <Content Include="images\loading-circle.gif" />
+    <Content Include="images\logo-bottom.png" />
+    <Content Include="images\logo-branca.png" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\Mockup-celular.png" />
+    <Content Include="images\nublado.png" />
+    <Content Include="images\pic-insta.jpg" />
+    <Content Include="images\player\bg-texture.png" />
+    <Content Include="images\player\bg-vermelho.jpg" />
+    <Content Include="images\player\icon-pause.png" />
+    <Content Include="images\player\icon-play.png" />
+    <Content Include="images\player\icon-sound.png" />
+    <Content Include="images\player\img-volume.png" />
+    <Content Include="images\player\logo-itatiaia.png" />
+    <Content Include="images\podcast-ico-pause.png" />
+    <Content Include="images\podcast-ico.png" />
+    <Content Include="images\podcast\podcast.mp3" />
+    <Content Include="images\ban-bancointer1.jpg" />
+    <Content Include="images\ban-inter1.jpg" />
+    <Content Include="images\ban-inter2.jpg" />
+    <Content Include="images\bg-tarifometro.jpg" />
+    <Content Include="images\ico-calc.png" />
+    <Content Include="images\tarifometro.jpg" />
+    <Content Include="images\thumb_america-mineiro.png" />
+    <Content Include="images\thumb_brasil-logo-brasil.png" />
+    <Content Include="images\thumb_cruzeiro-logo-01.png" />
+    <Content Include="images\thumb_galo-logo.png" />
+    <Content Include="images\touch-icon-ipad.png" />
+    <Content Include="images\touch-icon-iphone-retina.png" />
+    <Content Include="images\touch-icon-iphone.png" />
+    <Content Include="images\user-prog.png" />
+    <Content Include="images\videos\exemplo.mp4" />
+    <Content Include="images\videos\thumbs\thumb.jpg" />
+    <Content Include="ModelosEmail\mail_fale_conosco.asp" />
+    <Content Include="ModelosEmail\mail_seguidor.asp" />
+    <Content Include="RecaptchaNet.Readme.txt" />
+    <Content Include="scripts\bootstrap.min.js" />
+    <Content Include="scripts\calendar.js" />
+    <Content Include="scripts\chzn-select\chosen.jquery.js" />
+    <Content Include="scripts\chzn-select\docsupport\chosen.png" />
+    <Content Include="scripts\chzn-select\docsupport\oss-credit.png" />
+    <Content Include="scripts\chzn-select\docsupport\prism.css" />
+    <Content Include="scripts\chzn-select\docsupport\prism.js" />
+    <Content Include="scripts\chzn-select\docsupport\style.css" />
+    <Content Include="scripts\cidades-estados-utf8.js" />
+    <Content Include="scripts\fileinput.min.js" />
+    <Content Include="scripts\html5shiv.js" />
+    <Content Include="scripts\jquery-1.1.0.js" />
+    <Content Include="scripts\jquery-ui-1.1.0.js" />
+    <Content Include="scripts\jquery.fancybox.js" />
+    <Content Include="scripts\jquery.fancybox.pack.js" />
+    <Content Include="scripts\jquery.iframetracker.js" />
+    <Content Include="scripts\jquery.js" />
+    <Content Include="scripts\jquery.rangecalendar.js" />
+    <Content Include="scripts\jquery.ui.touch-punch.min.js" />
+    <Content Include="scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="scripts\layout.js" />
+    <Content Include="scripts\moment-with-locales.js" />
+    <Content Include="scripts\moment.js" />
+    <Content Include="scripts\money.min.js" />
+    <Content Include="scripts\pace.js" />
+    <Content Include="scripts\player.js" />
+    <Content Include="scripts\scripts.js" />
+    <Content Include="scripts\seubolso\js\aposentadoria.js" />
+    <Content Include="scripts\seubolso\js\Chart.min.js" />
+    <Content Include="scripts\seubolso\js\conversor.js" />
+    <Content Include="scripts\seubolso\js\jquery.maskMoney.min.js" />
+    <Content Include="scripts\seubolso\js\jquery.mCustomScrollbar.min.js" />
+    <Content Include="scripts\seubolso\js\main.js" />
+    <Content Include="scripts\seubolso\js\materialize.min.js" />
+    <Content Include="scripts\seubolso\js\seubolso.js" />
+    <Content Include="scripts\slick.js" />
+    <Content Include="scripts\src\_includes\jquery.fancybox.js" />
+    <Content Include="scripts\src\_includes\jquery.maskedinput.js" />
+    <Content Include="scripts\src\_includes\main.js" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fonts\FontAwesome.eot" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\FontAwesome.ttf" />
+    <Content Include="fonts\FontAwesome.woff" />
+    <Content Include="fonts\FontAwesome.woff2" />
+    <Content Include="config\imageprocessor\security.config" />
+    <Content Include="config\imageprocessor\processing.config" />
+    <Content Include="config\imageprocessor\cache.config" />
+    <Content Include="conteudo\ouvintes\arquivos\Apresenta-o-Professor-Marcos-Fl-vio.pdf" />
+    <Content Include="Content\gotham-bold-webfont.woff" />
+    <Content Include="Content\gotham-bold-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <None Include="Properties\PublishProfiles\deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FTP-PROD.pubxml" />
+    <None Include="Properties\PublishProfiles\Local.pubxml" />
+    <Content Include="scripts\sweetalert2.min - Copy.js" />
+    <Content Include="scripts\sweetalert2.min.js" />
+    <Content Include="scripts\underscore.js" />
+    <Content Include="scripts\zabuto.js" />
+    <Content Include="tabelafacil\brasileiroa\artilharia.xml" />
+    <Content Include="tabelafacil\brasileiroa\class.xml" />
+    <Content Include="tabelafacil\brasileiroa\fases.xml" />
+    <Content Include="tabelafacil\brasileiroa\jogos.xml" />
+    <Content Include="tabelafacil\brasileirob\artilharia.xml" />
+    <Content Include="tabelafacil\brasileirob\class.xml" />
+    <Content Include="tabelafacil\brasileirob\fases.xml" />
+    <Content Include="tabelafacil\brasileirob\jogos.xml" />
+    <Content Include="tabelafacil\campeonatomineiro\artilharia.xml" />
+    <Content Include="tabelafacil\campeonatomineiro\classificacao.xml" />
+    <Content Include="tabelafacil\campeonatomineiro\fases.xml" />
+    <Content Include="tabelafacil\campeonatomineiro\jogos.xml" />
+    <Content Include="tabelafacil\conmebol\class.xml" />
+    <Content Include="tabelafacil\conmebol\fases.xml" />
+    <Content Include="tabelafacil\conmebol\jogos.xml" />
+    <Content Include="tabelafacil\copaamerica\artilharia.xml" />
+    <Content Include="tabelafacil\copaamerica\class.xml" />
+    <Content Include="tabelafacil\copaamerica\fases.xml" />
+    <Content Include="tabelafacil\copaamerica\jogos.xml" />
+    <Content Include="tabelafacil\copadobrasil\artilharia.xml" />
+    <Content Include="tabelafacil\copadobrasil\fases.xml" />
+    <Content Include="tabelafacil\copadobrasil\jogos.xml" />
+    <Content Include="tabelafacil\escudos\1003.gif" />
+    <Content Include="tabelafacil\escudos\105.gif" />
+    <Content Include="tabelafacil\escudos\106.gif" />
+    <Content Include="tabelafacil\escudos\1067.gif" />
+    <Content Include="tabelafacil\escudos\108.gif" />
+    <Content Include="tabelafacil\escudos\1114.gif" />
+    <Content Include="tabelafacil\escudos\1117.gif" />
+    <Content Include="tabelafacil\escudos\113.gif" />
+    <Content Include="tabelafacil\escudos\1171.gif" />
+    <Content Include="tabelafacil\escudos\122.gif" />
+    <Content Include="tabelafacil\escudos\1351.gif" />
+    <Content Include="tabelafacil\escudos\1367.gif" />
+    <Content Include="tabelafacil\escudos\33.gif" />
+    <Content Include="tabelafacil\escudos\330.gif" />
+    <Content Include="tabelafacil\escudos\331.gif" />
+    <Content Include="tabelafacil\escudos\332.gif" />
+    <Content Include="tabelafacil\escudos\333.gif" />
+    <Content Include="tabelafacil\escudos\334.gif" />
+    <Content Include="tabelafacil\escudos\336.gif" />
+    <Content Include="tabelafacil\escudos\337.gif" />
+    <Content Include="tabelafacil\escudos\338.gif" />
+    <Content Include="tabelafacil\escudos\34.gif" />
+    <Content Include="tabelafacil\escudos\340.gif" />
+    <Content Include="tabelafacil\escudos\37.gif" />
+    <Content Include="tabelafacil\escudos\373.gif" />
+    <Content Include="tabelafacil\escudos\38.gif" />
+    <Content Include="tabelafacil\escudos\39.gif" />
+    <Content Include="tabelafacil\escudos\40.gif" />
+    <Content Include="tabelafacil\escudos\41.gif" />
+    <Content Include="tabelafacil\escudos\412.gif" />
+    <Content Include="tabelafacil\escudos\413.gif" />
+    <Content Include="tabelafacil\escudos\416.gif" />
+    <Content Include="tabelafacil\escudos\42.gif" />
+    <Content Include="tabelafacil\escudos\426.gif" />
+    <Content Include="tabelafacil\escudos\43.gif" />
+    <Content Include="tabelafacil\escudos\44.gif" />
+    <Content Include="tabelafacil\escudos\45.gif" />
+    <Content Include="tabelafacil\escudos\46.gif" />
+    <Content Include="tabelafacil\escudos\47.gif" />
+    <Content Include="tabelafacil\escudos\471.gif" />
+    <Content Include="tabelafacil\escudos\49.gif" />
+    <Content Include="tabelafacil\escudos\499.gif" />
+    <Content Include="tabelafacil\escudos\50.gif" />
+    <Content Include="tabelafacil\escudos\51.gif" />
+    <Content Include="tabelafacil\escudos\52.gif" />
+    <Content Include="tabelafacil\escudos\56.gif" />
+    <Content Include="tabelafacil\escudos\57.gif" />
+    <Content Include="tabelafacil\escudos\58.gif" />
+    <Content Include="tabelafacil\escudos\60.gif" />
+    <Content Include="tabelafacil\escudos\62.gif" />
+    <Content Include="tabelafacil\escudos\63.gif" />
+    <Content Include="tabelafacil\escudos\64.gif" />
+    <Content Include="tabelafacil\escudos\65.gif" />
+    <Content Include="tabelafacil\escudos\67.gif" />
+    <Content Include="tabelafacil\escudos\68.gif" />
+    <Content Include="tabelafacil\escudos\69.gif" />
+    <Content Include="tabelafacil\escudos\70.gif" />
+    <Content Include="tabelafacil\escudos\71.gif" />
+    <Content Include="tabelafacil\escudos\72.gif" />
+    <Content Include="tabelafacil\escudos\93.gif" />
+    <Content Include="tabelafacil\escudos\987.gif" />
+    <Content Include="tabelafacil\escudos\988.gif" />
+    <Content Include="tabelafacil\escudos\989.gif" />
+    <Content Include="tabelafacil\escudos\99.gif" />
+    <Content Include="tabelafacil\escudos\992.gif" />
+    <Content Include="tabelafacil\escudos\993.gif" />
+    <Content Include="tabelafacil\escudos\996.gif" />
+    <Content Include="tabelafacil\escudos\998.gif" />
+    <Content Include="tabelafacil\libertadores\artilharia.xml" />
+    <Content Include="tabelafacil\libertadores\class.xml" />
+    <Content Include="tabelafacil\libertadores\fases.xml" />
+    <Content Include="tabelafacil\libertadores\jogos.xml" />
+    <Content Include="tabelafacil\primeiraliga\class.xml" />
+    <Content Include="tabelafacil\primeiraliga\fases.xml" />
+    <Content Include="tabelafacil\primeiraliga\jogos.xml" />
+    <Content Include="tabelafacil\sulamericana\artilharia.xml" />
+    <Content Include="tabelafacil\sulamericana\fases.xml" />
+    <Content Include="tabelafacil\sulamericana\jogos.xml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_SidebarHome.cshtml" />
+    <Content Include="Views\Shared\_Menu.cshtml" />
+    <Content Include="Views\Shared\_NavigationBar.cshtml" />
+    <Content Include="Views\Shared\_RedesSociais.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Sobre\QuemSomos.cshtml" />
+    <Content Include="Views\Noticias\Detalhes.cshtml" />
+    <Content Include="Views\Shared\_Sidebar.cshtml" />
+    <Content Include="Views\Programacao\Index.cshtml" />
+    <Content Include="Views\FaleConosco\Index.cshtml" />
+    <Content Include="Views\Sobre\Equipe.cshtml" />
+    <Content Include="Views\Sobre\MidiaKit.cshtml" />
+    <Content Include="Views\Bastidores\Videos.cshtml" />
+    <Content Include="Views\Bastidores\Fotos.cshtml" />
+    <Content Include="Views\FaleConosco\Denuncia.cshtml" />
+    <Content Include="Views\FaleConosco\Enviado.cshtml" />
+    <Content Include="Views\Podcast\Index.cshtml" />
+    <Content Include="Views\Colunistas\Index.cshtml" />
+    <Content Include="Views\Colunistas\Detalhes.cshtml" />
+    <Content Include="Views\Colunistas\_SidebarColunista.cshtml" />
+    <Content Include="Views\Colunistas\Materia.cshtml" />
+    <Content Include="Views\Colunistas\_Materias.cshtml" />
+    <Content Include="Views\Editorias\Index.cshtml" />
+    <Content Include="Views\Noticias\Index.cshtml" />
+    <Content Include="Views\Especiais\ParlamentoAberto.cshtml" />
+    <Content Include="Views\Especiais\ModeloSimples.cshtml" />
+    <Content Include="Views\Especiais\ModeloSecoes.cshtml" />
+    <Content Include="Views\Especiais\BHFiscaliza.cshtml" />
+    <Content Include="Views\Especiais\Carnaval.cshtml" />
+    <Content Include="Views\Especiais\Pampulha.cshtml" />
+    <Content Include="Views\Especiais\MaisParlamento.cshtml" />
+    <Content Include="Views\Esportes\Index.cshtml" />
+    <Content Include="Views\Esportes\Clubes.cshtml" />
+    <Content Include="Views\Campeonatos\SerieA.cshtml" />
+    <Content Include="Views\Especiais\VerMaisBloco.cshtml" />
+    <Content Include="scripts\chzn-select\chosen.jquery.min.js.map" />
+    <Content Include="Views\Campeonatos\SerieB.cshtml" />
+    <Content Include="Views\Campeonatos\Mineiro.cshtml" />
+    <Content Include="Views\Busca\Index.cshtml" />
+    <Content Include="Views\Home\Player.cshtml" />
+    <Content Include="Views\Campeonatos\_Noticias.cshtml" />
+    <Content Include="Views\Campeonatos\CopaDoBrasil.cshtml" />
+    <Content Include="Views\Campeonatos\MostrarMais.cshtml" />
+    <Content Include="Views\Clubes\Cruzeiro.cshtml" />
+    <Content Include="Views\Clubes\Atletico.cshtml" />
+    <Content Include="Views\Clubes\America.cshtml" />
+    <Content Include="Views\Clubes\Selecao.cshtml" />
+    <Content Include="Views\Clubes\MostrarMais.cshtml" />
+    <Content Include="Views\Clubes\_Noticias.cshtml" />
+    <Content Include="Views\Campeonatos\Libertadores.cshtml" />
+    <Content Include="Views\Campeonatos\PrimeiraLiga.cshtml" />
+    <Content Include="Views\Campeonatos\CopaAmerica.cshtml" />
+    <Content Include="Views\Campeonatos\Eliminatorias.cshtml" />
+    <Content Include="Views\Campeonatos\Olimpiadas.cshtml" />
+    <Content Include="Views\Campeonatos\Amistoso.cshtml" />
+    <None Include="Properties\PublishProfiles\Radio Itatiaia - Site.pubxml" />
+    <None Include="Properties\PublishProfiles\Radio Itatiaia.pubxml" />
+    <None Include="Properties\PublishProfiles\RadioItatiaia.pubxml" />
+    <Content Include="Views\Editorias\Ouvintes.cshtml" />
+    <Content Include="Views\Especiais\FeiraVeiculos.cshtml" />
+    <Content Include="Views\Especiais\VendaIngressos.cshtml" />
+    <Content Include="Views\Eventos\Index.cshtml" />
+    <Content Include="Views\Eventos\Detalhes.cshtml" />
+    <Content Include="Views\Eventos\Acontecimento.cshtml" />
+    <Content Include="Views\Eventos\_Proximos.cshtml" />
+    <Content Include="Views\Galerias\Index.cshtml" />
+    <Content Include="Views\Galerias\Videos.cshtml" />
+    <Content Include="Views\Erros\Erro500.cshtml" />
+    <Content Include="Views\Podcast\Horoscopo.cshtml" />
+    <Content Include="Views\FaleConosco\DetalhesOuvintes.cshtml" />
+    <Content Include="Views\Sobre\TrofeuGuara.cshtml" />
+    <Content Include="Views\Sobre\CopaItatiaia.cshtml" />
+    <Content Include="Views\Clubes\Index.cshtml" />
+    <Content Include="Views\Podcast\CategoriaAudio.cshtml" />
+    <Content Include="Views\Campeonatos\SulAmericana.cshtml" />
+    <Content Include="Views\LiveStreaming\Index.cshtml" />
+    <Content Include="Views\Comentarios\ComentarioCompartilhado.cshtml" />
+    <Content Include="Views\Especiais\T1.cshtml" />
+    <Content Include="Views\Especiais\_RioDasVelhasNoticiasPartial.cshtml" />
+    <Content Include="Views\Shared\_Copa.cshtml" />
+    <Content Include="Views\Home\PartialIndex.cshtml" />
+    <Content Include="Views\Especiais\T2.cshtml" />
+    <Content Include="Views\Especiais\ReportagensEspeciais.cshtml" />
+    <Content Include="Views\Audio\Index.cshtml" />
+    <Content Include="Views\SeuBolso\Index.cshtml" />
+    <Content Include="Views\SeuBolso\_SeuBolso.cshtml" />
+    <Content Include="Views\SeuBolso\_Aposentadoria.cshtml" />
+    <Content Include="Views\SeuBolso\_NoticiasSeuBolso.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="App_Readme\" />
+    <Folder Include="bin\" />
+    <Folder Include="images\seubolso\" />
+    <Folder Include="Views\AoVivo\" />
+    <Folder Include="Views\Ouropreto\" />
+    <Folder Include="Views\Search\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201612221606180_campomigracao.resx">
+      <DependentUpon>201612221606180_campomigracao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701131324428_addActionEditoria.resx">
+      <DependentUpon>201701131324428_addActionEditoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701131328175_sizefield.resx">
+      <DependentUpon>201701131328175_sizefield.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>54088</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:5000</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

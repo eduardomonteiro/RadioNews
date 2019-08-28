@@ -1,0 +1,67 @@
+﻿@{ 
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>elFinder 2.0</title>
+
+		<!-- jQuery and jQuery UI (REQUIRED) -->
+		<link rel="stylesheet" type="text/css" href="~/Content/ElFinder/css/jquery-ui.css">
+		<script src="~/Content/ElFinder/js/jquery.min.js"></script>
+		<script src="~/Content/ElFinder/js/jquery-ui.min.js"></script>
+
+		<!-- elFinder CSS (REQUIRED) -->
+		<link rel="stylesheet" type="text/css" href="~/Content/ElFinder/css/elfinder.min.css">
+		<link rel="stylesheet" type="text/css" href="~/Content/ElFinder/css/theme.css">
+        <link href="~/Content/ElFinder/css/colorbox.css" rel="stylesheet" />
+
+		<!-- elFinder JS (REQUIRED) -->
+		<script src="~/Content/ElFinder/js/elfinder.full.js"></script>
+        <link href="~/Content/ElFinder/css/colorbox.css" rel="stylesheet" />
+        <script src="~/Content/ElFinder/js/jquery.colorbox.js"></script>
+		<!-- elFinder translation (OPTIONAL) -->
+		<script src="~/Content/ElFinder/js/i18n/elfinder.pt_BR.js"></script>
+
+		<!-- elFinder initialization (REQUIRED) -->
+        <script type="text/javascript" charset="utf-8">
+
+			// Documentation for client options:
+            // https://github.com/Studio-42/elFinder/wiki/Client-configuration-options
+
+            $(document).ready(function () {
+                updateID = $(this).attr('data-upateimage'); // Btn id clicked
+                $('#elfinder').elfinder({
+                    url: "/Admin/ELFinderConnector",
+                    useBrowserHistory: false,
+                    rememberLastDir: true,
+                    lang: 'pt_BR',                   // language (OPTIONAL)
+
+                    commandsOptions: {
+                        getfile: {
+                            oncomplete: 'destroy'
+                        }
+                    },
+                    getFileCallback: function (url) {
+                        console.log(url)
+                        //document.getElementById('feature_image').value = url.path;
+                        //document.parentElement().feature_image.
+                        parent.getvalue(url.path);
+                        jQuery('a.ui-dialog-titlebar-close[role="button"]').click();
+                    }
+                }).elfinder('instance');
+
+            });
+
+      </script>
+	</head>
+	<body>
+        <h3>Instruções</h3>
+        <p>Navegue até a imagem desejada e para visualiza-la clique em cima da imagem e depois no ícone 
+            <img src="~/Images/ico-visualizar.png" />.Ou clique com o botão direito do mouse em cima da imagem e escolha Pré-Visualização</p>
+        <p><strong>Para escolher uma imagem dê dois cliques em cima da mesma.</strong></p>
+        <div id="elfinder"></div>
+	</body>
+</html>

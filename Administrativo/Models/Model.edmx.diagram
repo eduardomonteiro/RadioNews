@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fa43713c11a6423291ab338180541dd8" Name="Diagram1" ZoomLevel="67">
+        <EntityTypeShape EntityType="RadioCompanyNameModel.AssuntoMateria" Width="1.5" PointX="16" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Categorias" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.CategoriasMapa" Width="1.5" PointX="7" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.cidade" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Editoriais_Equipe" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Enquete" Width="1.5" PointX="13.5" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.FaleConosco" Width="1.5" PointX="9.75" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Galeria" Width="1.5" PointX="3" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Horario_programacao" Width="1.5" PointX="15.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Materia" Width="1.5" PointX="18.25" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.MateriaNovidades" Width="1.5" PointX="20.5" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Midias" Width="1.5" PointX="5.25" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Newsletter" Width="1.5" PointX="17.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.NoticiasRegioes" Width="1.5" PointX="6" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Respostas" Width="1.5" PointX="15" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.RotasNoRio" Width="1.5" PointX="13.75" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Tags" Width="1.5" PointX="9.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.TrabalheConosco" Width="1.5" PointX="17.75" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Transporte" Width="1.5" PointX="0.75" PointY="18.875" IsExpanded="true" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_Materia_AssuntoMateria" ManuallyRouted="false" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK__Respostas__idEnq__05D8E0BE" ManuallyRouted="false" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_FotosGaleria_Galeria" ManuallyRouted="false" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_MateriaNovidades_Materia" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Equipe" Width="1.5" PointX="20.375" PointY="6.75" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Bastidores" Width="1.5" PointX="3.375" PointY="21" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.BastidoresMidias" Width="1.5" PointX="5.625" PointY="21" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_BastidoresMidias_Galeria" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Apresentadores" Width="1.5" PointX="12.875" PointY="2" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Programacao" Width="1.5" PointX="3" PointY="25.125" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK__Horario_p__idPro__2CF2ADDF" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_Materia_Programacao" />
+        <AssociationConnector Association="RadioCompanyNameModel.Prog_Apresent" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.MidiaKit" Width="1.5" PointX="5.375" PointY="12.75" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.AreaBanner" Width="1.5" PointX="20.375" PointY="12.75" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Banners" Width="1.5" PointX="22.625" PointY="12" />
+        <AssociationConnector Association="RadioCompanyNameModel.AreasBanners" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.BannersVisualizacoesCliques" Width="1.5" PointX="24.875" PointY="13" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_BannersVisualizacoesCliques_Banners" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Colunista" Width="1.5" PointX="5.125" PointY="0.875" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.ColunistaSeguidores" Width="1.5" PointX="7.625" PointY="1.625" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_ColunistaSeguidores_Colunista" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Especiais" Width="1.5" PointX="10.375" PointY="13.75" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.OuvintesArquivos" Width="1.5" PointX="18.625" PointY="22" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Regioes" Width="1.5" PointX="0.75" PointY="11" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.estado" Width="1.5" PointX="13.375" PointY="12.75" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Promocoes" Width="1.5" PointX="8.375" PointY="22.5" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Promocoes_Participantes" Width="1.5" PointX="10.625" PointY="22.125" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Promocoes_Resultados" Width="1.5" PointX="10.625" PointY="25" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_Promocoes_Participantes_Promocoes" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_Promocoes_Resultados_Promocoes" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Editoriais" Width="1.5" PointX="0.75" PointY="12.875" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_EditoriaisCategorias_Editoriais" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_Editoriais_Equipe_Editoriais" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_Programacao_Editoriais" />
+        <AssociationConnector Association="RadioCompanyNameModel.Editoriais_Galerias" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Noticias" Width="2.875" PointX="9.625" PointY="0.625" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_Noticias_CategoriasMapa" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_Noticias_Colunista" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_Noticias_Galeria" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_Noticias_NoticiasRegioes" />
+        <AssociationConnector Association="RadioCompanyNameModel.Categorias_Noticias" />
+        <AssociationConnector Association="RadioCompanyNameModel.Noticias_Editoriais" />
+        <AssociationConnector Association="RadioCompanyNameModel.NoticiasTags" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Especiais_Modelos" Width="1.5" PointX="0.75" PointY="8.25" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Especiais_Secoes" Width="1.5" PointX="3" PointY="30.875" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_Editoriais_Especiais_Modelos" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_Especiais_Secoes_Editoriais" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Secoes_Locais" Width="1.5" PointX="5.25" PointY="30.25" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_Secoes_Locais_Especiais_Secoes" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Blocos" Width="1.5" PointX="7.375" PointY="12.75" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Elencos" Width="1.5" PointX="5.625" PointY="35.125" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Times" Width="1.5" PointX="3.375" PointY="34.75" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_Times_Editoriais" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_Elencos_Times" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Acontecimentos" Width="1.5" PointX="22.625" PointY="18" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Eventos" Width="1.5" PointX="20.375" PointY="18" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_dbo_Acontecimentos_dbo_Eventos_EventoId" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.AreasADM" Width="1.5" PointX="21.375" PointY="22.375" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Logs" Width="1.5" PointX="23.625" PointY="22" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_Logs_Logs" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Horoscopoes" Width="1.5" PointX="15.75" PointY="11.75" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Bairros" Width="1.5" PointX="13.375" PointY="23.25" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.FotosAcontecimentoes" Width="1.5" PointX="24.875" PointY="20" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Radios" Width="1.5" PointX="15.375" PointY="23.25" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_dbo_FotosAcontecimentoes_dbo_Acontecimentos_AcontecimentoId" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Audios" Width="1.5" PointX="26.875" PointY="7" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.CategoriasAudios" Width="1.5" PointX="22.375" PointY="7.25" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.ColecoesAudios" Width="1.5" PointX="24.625" PointY="7" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_dbo_Audio_dbo_ColecoesAudios_ColecaoId" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_dbo_Audios_dbo_ColecoesAudios_ColecaoId" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_dbo_ColecoesAudios_dbo_CategoriasAudios_CategoriaId" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Ouvintes" Width="1.5" PointX="3" PointY="0.75" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_Ouvintes_Cidades" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_Ouvintes_Regioes" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_OuvintesArquivos_Ouvintes" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.Comentarios" Width="1.5" PointX="13.25" PointY="27" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_dbo_Comentarios_dbo_Comentarios_IdComentarioRaiz" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_dbo_Comentarios_dbo_Noticias_IdNoticia" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.LiveStreamings" Width="1.5" PointX="13.25" PointY="31.625" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_dbo_LiveStreams_dbo_Noticias_IdNoticia" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.GruposPush" Width="1.5" PointX="16" PointY="29.875" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.NotificacoesPush" Width="1.5" PointX="18.25" PointY="0.75" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_dbo_NotificacoesPush_dbo_GruposPush_GrupoPush_Id" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_dbo_NotificacoesPush_dbo_Noticias_Noticia_id" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_dbo_Tags_dbo_GruposPush_GruposPush_Id" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.RedesSociais" Width="1.5" PointX="23.375" PointY="0.75" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.ApoioPADs" Width="1.5" PointX="17.25" PointY="27.875" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.EGolPADs" Width="1.5" PointX="22.5" PointY="27.375" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.NoticiasPADs" Width="1.5" PointX="19.5" PointY="26.125" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.RedesSociaisPADs" Width="1.5" PointX="19.5" PointY="34" />
+        <EntityTypeShape EntityType="RadioCompanyNameModel.TimesPADs" Width="1.5" PointX="20.25" PointY="30" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_dbo_EGolPADs_dbo_ApoioPADs_ApoioId" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_dbo_NoticiasPADs_dbo_ApoioPADs_ApoioId" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_dbo_RedesSociaisPADs_dbo_ApoioPADs_ApoioId" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_dbo_EGolPADs_dbo_TimesPADs_MandanteId" />
+        <AssociationConnector Association="RadioCompanyNameModel.FK_dbo_EGolPADs_dbo_TimesPADs_VisitanteId" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

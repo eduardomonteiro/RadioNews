@@ -1,0 +1,754 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<results id="289">
+<match id="1" uid="40243" stage="1" round="1" group="" status="2" date="31/01/2016" wday="1" time="17:00" venue="Mineirão" city="Belo Horizonte" et="0" pk="0">
+<team name="Cruzeiro" code="CRU" uid="40" order="1" home="true" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+<team name="U.R.T." code="URT" uid="1412" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="2" uid="40244" stage="1" round="1" group="" status="2" date="31/01/2016" wday="1" time="17:00" venue="Ronaldão" city="Poços de Caldas" et="0" pk="0">
+<team name="Caldense" code="CAL" uid="340" order="1" home="true" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Tiago Azulão" uid="96343" partial="3" minute="9" />
+<event type="1" player="Marcelo Regis" uid="1000282" partial="3" minute="37" />
+
+</team>
+<team name="Boa" code="BOA" uid="99" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="3" uid="40246" stage="1" round="1" group="" status="2" date="31/01/2016" wday="1" time="17:00" venue="Castor Cifuentes" city="Nova Lima" et="0" pk="0">
+<team name="Villa Nova" code="VIL" uid="345" order="1" home="true" score="2" rtscore="2" etscore="" pkscore="">
+<event type="3" player="Mancini" uid="1013030" partial="3" minute="31" />
+<event type="1" player="Fabio Junior" uid="38651" partial="4" minute="48" />
+
+</team>
+<team name="Tombense" code="TMB" uid="1331" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Caio" uid="74080" partial="3" minute="8" />
+
+</team>
+</match>
+<match id="4" uid="40247" stage="1" round="1" group="" status="2" date="31/01/2016" wday="1" time="19:30" venue="Independência" city="Belo Horizonte" et="0" pk="0">
+<team name="América-MG" code="AME" uid="53" order="1" home="true" score="3" rtscore="3" etscore="" pkscore="">
+<event type="1" player="Tony" uid="89737" partial="3" minute="20" />
+<event type="1" player="Osman Junior" uid="1011942" partial="4" minute="2" />
+<event type="1" player="Osman Junior" uid="1011942" partial="4" minute="22" />
+
+</team>
+<team name="Tupi" code="TUP" uid="344" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="5" uid="40248" stage="1" round="1" group="" status="2" date="31/01/2016" wday="1" time="19:30" venue="Parque do Sabiá" city="Uberlândia" et="0" pk="0">
+<team name="Uberlândia-MG" code="UBE" uid="1133" order="1" home="true" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+<team name="Atlético-MG" code="ATL" uid="33" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Leonardo Silva" uid="45450" partial="4" minute="41" />
+
+</team>
+</match>
+<match id="6" uid="40249" stage="1" round="2" group="" status="2" date="03/02/2016" wday="4" time="19:30" venue="Soares de Azevedo" city="Muriaé" et="0" pk="0">
+<team name="Tombense" code="TMB" uid="1331" order="1" home="true" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Paulo Otavio" uid="1013048" partial="3" minute="19" />
+
+</team>
+<team name="Cruzeiro" code="CRU" uid="40" order="2" home="false" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Alisson" uid="1010301" partial="4" minute="6" />
+<event type="1" player="Rafael Silva" uid="92285" partial="4" minute="42" />
+
+</team>
+</match>
+<match id="7" uid="40250" stage="1" round="2" group="" status="2" date="04/02/2016" wday="5" time="16:00" venue="Farião" city="Divinópolis" et="0" pk="0">
+<team name="Guarani-MG" code="GUA" uid="343" order="1" home="true" score="3" rtscore="3" etscore="" pkscore="">
+<event type="1" player="Carlos Renato" uid="1010382" partial="4" minute="18" />
+<event type="1" player="Marcus Vinicius" uid="88647" partial="4" minute="8" />
+<event type="1" player="Jonathan" uid="1012066" partial="4" minute="2" />
+
+</team>
+<team name="América-MG" code="AME" uid="53" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="8" uid="40251" stage="1" round="2" group="" status="2" date="06/02/2016" wday="7" time="11:00" venue="Melão" city="Varginha" et="0" pk="0">
+<team name="Boa" code="BOA" uid="99" order="1" home="true" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Rafael Vitor" uid="92291" partial="3" minute="39" />
+<event type="1" player="Wallace" uid="1013064" partial="4" minute="35" />
+
+</team>
+<team name="Tricordiano" code="TRI" uid="1489" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Leandro Love" uid="85892" partial="4" minute="45" />
+
+</team>
+</match>
+<match id="9" uid="40253" stage="1" round="2" group="" status="2" date="06/02/2016" wday="7" time="17:00" venue="Zama Maciel" city="Patos de Minas" et="0" pk="0">
+<team name="U.R.T." code="URT" uid="1412" order="1" home="true" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+<team name="Villa Nova" code="VIL" uid="345" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="2" player="Mauro Viana" uid="1010008" partial="4" minute="28" />
+
+</team>
+</match>
+<match id="10" uid="40254" stage="1" round="2" group="" status="2" date="06/02/2016" wday="7" time="17:00" venue="Mário Helênio" city="Juiz de Fora" et="0" pk="0">
+<team name="Tupi" code="TUP" uid="344" order="1" home="true" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+<team name="Uberlândia-MG" code="UBE" uid="1133" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Wendel" uid="48506" partial="4" minute="36" />
+
+</team>
+</match>
+<match id="11" uid="40245" stage="1" round="1" group="" status="2" date="09/02/2016" wday="3" time="20:00" venue="Elias Arbex" city="Três Corações" et="0" pk="0">
+<team name="Tricordiano" code="TRI" uid="1489" order="1" home="true" score="3" rtscore="3" etscore="" pkscore="">
+<event type="1" player="Diogo Capela" uid="91548" partial="3" minute="20" />
+<event type="3" player="Leandro Love" uid="85892" partial="4" minute="11" />
+<event type="1" player="Diogo Capela" uid="91548" partial="4" minute="18" />
+
+</team>
+<team name="Guarani-MG" code="GUA" uid="343" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="12" uid="40252" stage="1" round="2" group="" status="2" date="10/02/2016" wday="4" time="21:45" venue="Independência" city="Belo Horizonte" et="0" pk="0">
+<team name="Atlético-MG" code="ATL" uid="33" order="1" home="true" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Leonardo Silva" uid="45450" partial="3" minute="43" />
+<event type="1" player="Lucas Pratto" uid="1000439" partial="4" minute="13" />
+
+</team>
+<team name="Caldense" code="CAL" uid="340" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="13" uid="40255" stage="1" round="3" group="" status="2" date="13/02/2016" wday="7" time="17:00" venue="Farião" city="Divinópolis" et="0" pk="0">
+<team name="Guarani-MG" code="GUA" uid="343" order="1" home="true" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+<team name="Atlético-MG" code="ATL" uid="33" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="14" uid="40256" stage="1" round="3" group="" status="2" date="14/02/2016" wday="1" time="16:00" venue="Ronaldão" city="Poços de Caldas" et="0" pk="0">
+<team name="Caldense" code="CAL" uid="340" order="1" home="true" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+<team name="Uberlândia-MG" code="UBE" uid="1133" order="2" home="false" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Mikael" uid="1011764" partial="3" minute="45" />
+<event type="1" player="Caio Dantas" uid="1013104" partial="4" minute="9" />
+
+</team>
+</match>
+<match id="15" uid="40257" stage="1" round="3" group="" status="2" date="14/02/2016" wday="1" time="17:00" venue="Mineirão" city="Belo Horizonte" et="0" pk="0">
+<team name="Cruzeiro" code="CRU" uid="40" order="1" home="true" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Elber" uid="1012243" partial="4" minute="29" />
+
+</team>
+<team name="Tupi" code="TUP" uid="344" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="16" uid="40259" stage="1" round="3" group="" status="2" date="14/02/2016" wday="1" time="17:00" venue="Melão" city="Varginha" et="0" pk="0">
+<team name="Boa" code="BOA" uid="99" order="1" home="true" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Romario" uid="94306" partial="3" minute="37" />
+
+</team>
+<team name="U.R.T." code="URT" uid="1412" order="2" home="false" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Alex" uid="71261" partial="3" minute="15" />
+<event type="1" player="*" uid="0" partial="4" minute="45" />
+
+</team>
+</match>
+<match id="17" uid="40260" stage="1" round="3" group="" status="2" date="14/02/2016" wday="1" time="19:30" venue="Independência" city="Belo Horizonte" et="0" pk="0">
+<team name="Villa Nova" code="VIL" uid="345" order="1" home="true" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Mancini" uid="1013030" partial="4" minute="37" />
+
+</team>
+<team name="América-MG" code="AME" uid="53" order="2" home="false" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Bruno Savio" uid="1012821" partial="3" minute="1" />
+<event type="1" player="Osman Junior" uid="1011942" partial="4" minute="47" />
+
+</team>
+</match>
+<match id="18" uid="40261" stage="1" round="4" group="" status="2" date="20/02/2016" wday="7" time="17:00" venue="Independência" city="Belo Horizonte" et="0" pk="0">
+<team name="América-MG" code="AME" uid="53" order="1" home="true" score="3" rtscore="3" etscore="" pkscore="">
+<event type="1" player="Osman Junior" uid="1011942" partial="3" minute="21" />
+<event type="3" player="Danilo Barcelos" uid="76096" partial="4" minute="27" />
+<event type="1" player="Tiago Luis" uid="96311" partial="4" minute="49" />
+
+</team>
+<team name="Caldense" code="CAL" uid="340" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Rafamar" uid="92044" partial="4" minute="44" />
+
+</team>
+</match>
+<match id="19" uid="40265" stage="1" round="4" group="" status="2" date="20/02/2016" wday="7" time="18:00" venue="Mário Helênio" city="Juiz de Fora" et="0" pk="0">
+<team name="Tupi" code="TUP" uid="344" order="1" home="true" score="3" rtscore="3" etscore="" pkscore="">
+<event type="1" player="Michel" uid="1011759" partial="4" minute="7" />
+<event type="1" player="Rubens" uid="1011971" partial="4" minute="15" />
+<event type="1" player="Rubens" uid="1011971" partial="4" minute="27" />
+
+</team>
+<team name="Guarani-MG" code="GUA" uid="343" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Jonathan" uid="1012066" partial="3" minute="36" />
+
+</team>
+</match>
+<match id="20" uid="40262" stage="1" round="4" group="" status="2" date="20/02/2016" wday="7" time="19:30" venue="Arena do Jacaré" city="Sete Lagoas" et="0" pk="0">
+<team name="Tricordiano" code="TRI" uid="1489" order="1" home="true" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+<team name="Cruzeiro" code="CRU" uid="40" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Arrascaeta" uid="1010389" partial="4" minute="12" />
+
+</team>
+</match>
+<match id="21" uid="40263" stage="1" round="4" group="" status="2" date="21/02/2016" wday="1" time="17:00" venue="Zama Maciel" city="Patos de Minas" et="0" pk="0">
+<team name="U.R.T." code="URT" uid="1412" order="1" home="true" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Rodrigo Possebon" uid="93810" partial="3" minute="28" />
+
+</team>
+<team name="Tombense" code="TMB" uid="1331" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Daniel Amorim" uid="1011879" partial="4" minute="46" />
+
+</team>
+</match>
+<match id="22" uid="40264" stage="1" round="4" group="" status="2" date="21/02/2016" wday="1" time="17:00" venue="Independência" city="Belo Horizonte" et="0" pk="0">
+<team name="Atlético-MG" code="ATL" uid="33" order="1" home="true" score="5" rtscore="5" etscore="" pkscore="">
+<event type="1" player="Eduardo" uid="1012187" partial="3" minute="22" />
+<event type="1" player="Júnior Urso" uid="85383" partial="3" minute="16" />
+<event type="1" player="Luan" uid="86710" partial="4" minute="16" />
+<event type="1" player="Dodô" uid="1011539" partial="4" minute="42" />
+<event type="1" player="Luan" uid="86710" partial="4" minute="44" />
+
+</team>
+<team name="Boa" code="BOA" uid="99" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Sillas" uid="1013149" partial="4" minute="34" />
+
+</team>
+</match>
+<match id="23" uid="40266" stage="1" round="4" group="" status="2" date="21/02/2016" wday="1" time="17:00" venue="Parque do Sabiá" city="Uberlândia" et="0" pk="0">
+<team name="Uberlândia-MG" code="UBE" uid="1133" order="1" home="true" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Wellington" uid="1013148" partial="3" minute="32" />
+
+</team>
+<team name="Villa Nova" code="VIL" uid="345" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="24" uid="40267" stage="1" round="5" group="" status="2" date="27/02/2016" wday="7" time="17:00" venue="Arena Kickball" city="Patos de Minas" et="0" pk="0">
+<team name="U.R.T." code="URT" uid="1412" order="1" home="true" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Fabio" uid="79613" partial="4" minute="24" />
+
+</team>
+<team name="Atlético-MG" code="ATL" uid="33" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="25" uid="40272" stage="1" round="5" group="" status="2" date="27/02/2016" wday="7" time="17:00" venue="Tombos" city="Tombos" et="0" pk="0">
+<team name="Tombense" code="TMB" uid="1331" order="1" home="true" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+<team name="Tupi" code="TUP" uid="344" order="2" home="false" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Thiago" uid="1013180" partial="3" minute="24" />
+<event type="1" player="Michel" uid="1011759" partial="4" minute="29" />
+
+</team>
+</match>
+<match id="26" uid="40268" stage="1" round="5" group="" status="2" date="27/02/2016" wday="7" time="19:00" venue="Ronaldão" city="Poços de Caldas" et="0" pk="0">
+<team name="Caldense" code="CAL" uid="340" order="1" home="true" score="3" rtscore="3" etscore="" pkscore="">
+<event type="1" player="Rafamar" uid="92044" partial="4" minute="26" />
+<event type="1" player="Ewerton Maradona" uid="1013183" partial="4" minute="42" />
+<event type="3" player="Ewerton Maradona" uid="1013183" partial="4" minute="21" />
+
+</team>
+<team name="Tricordiano" code="TRI" uid="1489" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="2" player="Rafael Estevam" uid="1013184" partial="4" minute="17" />
+
+</team>
+</match>
+<match id="27" uid="40269" stage="1" round="5" group="" status="2" date="28/02/2016" wday="1" time="17:00" venue="Parque do Sabiá" city="Uberlândia" et="0" pk="0">
+<team name="Uberlândia-MG" code="UBE" uid="1133" order="1" home="true" score="2" rtscore="2" etscore="" pkscore="">
+<event type="3" player="Marco Tiago" uid="88406" partial="3" minute="44" />
+<event type="1" player="Magalhães" uid="87526" partial="4" minute="42" />
+
+</team>
+<team name="Guarani-MG" code="GUA" uid="343" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="28" uid="40270" stage="1" round="5" group="" status="2" date="28/02/2016" wday="1" time="17:00" venue="Castor Cifuentes" city="Nova Lima" et="0" pk="0">
+<team name="Villa Nova" code="VIL" uid="345" order="1" home="true" score="3" rtscore="3" etscore="" pkscore="">
+<event type="1" player="Fabio Junior" uid="38651" partial="3" minute="6" />
+<event type="1" player="Mancini" uid="1013030" partial="4" minute="7" />
+<event type="1" player="Fabio Junior" uid="38651" partial="4" minute="11" />
+
+</team>
+<team name="Boa" code="BOA" uid="99" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="29" uid="40271" stage="1" round="5" group="" status="2" date="28/02/2016" wday="1" time="17:00" venue="Mineirão" city="Belo Horizonte" et="0" pk="0">
+<team name="Cruzeiro" code="CRU" uid="40" order="1" home="true" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Arrascaeta" uid="1010389" partial="3" minute="44" />
+
+</team>
+<team name="América-MG" code="AME" uid="53" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Bryan" uid="1011471" partial="4" minute="46" />
+
+</team>
+</match>
+<match id="30" uid="40258" stage="1" round="3" group="" status="2" date="02/03/2016" wday="4" time="19:30" venue="Tombos" city="Tombos" et="0" pk="0">
+<team name="Tombense" code="TMB" uid="1331" order="1" home="true" score="3" rtscore="3" etscore="" pkscore="">
+<event type="1" player="Conrado" uid="1013200" partial="3" minute="39" />
+<event type="1" player="Wangler" uid="1012265" partial="4" minute="6" />
+<event type="1" player="Marcelo Macedo" uid="1009756" partial="4" minute="17" />
+
+</team>
+<team name="Tricordiano" code="TRI" uid="1489" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Diogo Capela" uid="91548" partial="3" minute="44" />
+
+</team>
+</match>
+<match id="31" uid="40273" stage="1" round="6" group="" status="2" date="05/03/2016" wday="7" time="16:00" venue="Soares de Azevedo" city="Muriaé" et="0" pk="0">
+<team name="Tricordiano" code="TRI" uid="1489" order="1" home="true" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Juninho Arcanjo" uid="84990" partial="3" minute="33" />
+
+</team>
+<team name="América-MG" code="AME" uid="53" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="32" uid="40274" stage="1" round="6" group="" status="2" date="05/03/2016" wday="7" time="16:00" venue="Farião" city="Divinópolis" et="0" pk="0">
+<team name="Guarani-MG" code="GUA" uid="343" order="1" home="true" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Marcel" uid="87862" partial="4" minute="32" />
+
+</team>
+<team name="U.R.T." code="URT" uid="1412" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Rafael Magalhães" uid="91969" partial="3" minute="19" />
+
+</team>
+</match>
+<match id="33" uid="40276" stage="1" round="6" group="" status="2" date="05/03/2016" wday="7" time="18:30" venue="Mário Helênio" city="Juiz de Fora" et="0" pk="0">
+<team name="Tupi" code="TUP" uid="344" order="1" home="true" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+<team name="Villa Nova" code="VIL" uid="345" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Roger Guerreiro" uid="54249" partial="3" minute="33" />
+
+</team>
+</match>
+<match id="34" uid="40275" stage="1" round="6" group="" status="2" date="06/03/2016" wday="1" time="16:00" venue="Independência" city="Belo Horizonte" et="0" pk="0">
+<team name="Atlético-MG" code="ATL" uid="33" order="1" home="true" score="4" rtscore="4" etscore="" pkscore="">
+<event type="1" player="Luan" uid="86710" partial="3" minute="10" />
+<event type="1" player="Robinho" uid="305" partial="4" minute="12" />
+<event type="1" player="Robinho" uid="305" partial="4" minute="24" />
+<event type="1" player="Robinho" uid="305" partial="4" minute="48" />
+
+</team>
+<team name="Tombense" code="TMB" uid="1331" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Paulo Otavio" uid="1013048" partial="4" minute="31" />
+
+</team>
+</match>
+<match id="35" uid="40277" stage="1" round="6" group="" status="2" date="06/03/2016" wday="1" time="16:00" venue="Melão" city="Varginha" et="0" pk="0">
+<team name="Boa" code="BOA" uid="99" order="1" home="true" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Roberto Jacaré" uid="98835" partial="3" minute="44" />
+<event type="1" player="Renato" uid="1013209" partial="4" minute="49" />
+
+</team>
+<team name="Uberlândia-MG" code="UBE" uid="1133" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="36" uid="40278" stage="1" round="6" group="" status="2" date="06/03/2016" wday="1" time="18:30" venue="Ronaldão" city="Poços de Caldas" et="0" pk="0">
+<team name="Caldense" code="CAL" uid="340" order="1" home="true" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+<team name="Cruzeiro" code="CRU" uid="40" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Alisson" uid="1010301" partial="3" minute="12" />
+
+</team>
+</match>
+<match id="37" uid="40283" stage="1" round="7" group="" status="2" date="12/03/2016" wday="7" time="16:00" venue="Tombos" city="Tombos" et="0" pk="0">
+<team name="Tombense" code="TMB" uid="1331" order="1" home="true" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Doriva" uid="77480" partial="3" minute="45" />
+<event type="1" player="Wangler" uid="1012265" partial="4" minute="39" />
+
+</team>
+<team name="Guarani-MG" code="GUA" uid="343" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Renan Silva" uid="56666" partial="4" minute="26" />
+
+</team>
+</match>
+<match id="38" uid="40282" stage="1" round="7" group="" status="2" date="13/03/2016" wday="1" time="11:00" venue="Melão" city="Varginha" et="0" pk="0">
+<team name="Boa" code="BOA" uid="99" order="1" home="true" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+<team name="Tupi" code="TUP" uid="344" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Hiroshi" uid="65699" partial="4" minute="21" />
+
+</team>
+</match>
+<match id="39" uid="40279" stage="1" round="7" group="" status="2" date="13/03/2016" wday="1" time="16:00" venue="Zama Maciel" city="Patos de Minas" et="0" pk="0">
+<team name="U.R.T." code="URT" uid="1412" order="1" home="true" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Marco Antonio" uid="88390" partial="4" minute="46" />
+
+</team>
+<team name="Tricordiano" code="TRI" uid="1489" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="40" uid="40280" stage="1" round="7" group="" status="2" date="13/03/2016" wday="1" time="16:00" venue="Castor Cifuentes" city="Nova Lima" et="0" pk="0">
+<team name="Villa Nova" code="VIL" uid="345" order="1" home="true" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Gabriel Santos" uid="49307" partial="3" minute="38" />
+
+</team>
+<team name="Caldense" code="CAL" uid="340" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Rafamar" uid="92044" partial="3" minute="20" />
+
+</team>
+</match>
+<match id="41" uid="40281" stage="1" round="7" group="" status="2" date="13/03/2016" wday="1" time="16:00" venue="Independência" city="Belo Horizonte" et="0" pk="0">
+<team name="América-MG" code="AME" uid="53" order="1" home="true" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Victor Rangel" uid="1013241" partial="3" minute="33" />
+
+</team>
+<team name="Atlético-MG" code="ATL" uid="33" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Clayton" uid="1010667" partial="4" minute="14" />
+
+</team>
+</match>
+<match id="42" uid="40284" stage="1" round="7" group="" status="2" date="15/03/2016" wday="3" time="20:30" venue="Mineirão" city="Belo Horizonte" et="0" pk="0">
+<team name="Cruzeiro" code="CRU" uid="40" order="1" home="true" score="3" rtscore="3" etscore="" pkscore="">
+<event type="1" player="Bruno Rodrigo" uid="73509" partial="3" minute="34" />
+<event type="1" player="Romero" uid="1008992" partial="4" minute="11" />
+<event type="1" player="Ariel Cabral" uid="1013247" partial="4" minute="33" />
+
+</team>
+<team name="Uberlândia-MG" code="UBE" uid="1133" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="43" uid="40285" stage="1" round="8" group="" status="2" date="19/03/2016" wday="7" time="16:00" venue="Farião" city="Divinópolis" et="0" pk="0">
+<team name="Guarani-MG" code="GUA" uid="343" order="1" home="true" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Junior Barros" uid="1013266" partial="3" minute="4" />
+<event type="1" player="Felipe Cordeiro" uid="80055" partial="4" minute="12" />
+
+</team>
+<team name="Boa" code="BOA" uid="99" order="2" home="false" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Sillas" uid="1013149" partial="3" minute="14" />
+<event type="1" player="Thaciano" uid="1012834" partial="4" minute="2" />
+
+</team>
+</match>
+<match id="44" uid="40286" stage="1" round="8" group="" status="2" date="19/03/2016" wday="7" time="16:00" venue="Tombos" city="Tombos" et="0" pk="0">
+<team name="Tombense" code="TMB" uid="1331" order="1" home="true" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Gelson" uid="1013267" partial="3" minute="30" />
+<event type="1" player="Daniel Amorim" uid="1011879" partial="4" minute="29" />
+
+</team>
+<team name="América-MG" code="AME" uid="53" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="45" uid="40287" stage="1" round="8" group="" status="2" date="19/03/2016" wday="7" time="19:00" venue="Ronaldão" city="Poços de Caldas" et="0" pk="0">
+<team name="Caldense" code="CAL" uid="340" order="1" home="true" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Tiago Azulão" uid="96343" partial="3" minute="18" />
+<event type="1" player="Ewerton Maradona" uid="1013183" partial="4" minute="12" />
+
+</team>
+<team name="U.R.T." code="URT" uid="1412" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="46" uid="40288" stage="1" round="8" group="" status="2" date="20/03/2016" wday="1" time="16:00" venue="Mineirão" city="Belo Horizonte" et="0" pk="0">
+<team name="Cruzeiro" code="CRU" uid="40" order="1" home="true" score="3" rtscore="3" etscore="" pkscore="">
+<event type="1" player="Manoel" uid="89372" partial="4" minute="23" />
+<event type="1" player="Rafael Silva" uid="92285" partial="4" minute="30" />
+<event type="1" player="Bruno Rodrigo" uid="73509" partial="4" minute="44" />
+
+</team>
+<team name="Villa Nova" code="VIL" uid="345" order="2" home="false" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Fabio Junior" uid="38651" partial="4" minute="1" />
+<event type="1" player="Mancini" uid="1013030" partial="4" minute="28" />
+
+</team>
+</match>
+<match id="47" uid="40289" stage="1" round="8" group="" status="2" date="20/03/2016" wday="1" time="16:00" venue="Parque do Sabiá" city="Uberlândia" et="0" pk="0">
+<team name="Uberlândia-MG" code="UBE" uid="1133" order="1" home="true" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+<team name="Tricordiano" code="TRI" uid="1489" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Léo Guerreiro" uid="86462" partial="4" minute="39" />
+
+</team>
+</match>
+<match id="48" uid="40290" stage="1" round="8" group="" status="2" date="20/03/2016" wday="1" time="18:30" venue="Mário Helênio" city="Juiz de Fora" et="0" pk="0">
+<team name="Tupi" code="TUP" uid="344" order="1" home="true" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+<team name="Atlético-MG" code="ATL" uid="33" order="2" home="false" score="3" rtscore="3" etscore="" pkscore="">
+<event type="1" player="Lucas Pratto" uid="1000439" partial="3" minute="15" />
+<event type="1" player="Robinho" uid="305" partial="4" minute="36" />
+<event type="1" player="Robinho" uid="305" partial="4" minute="50" />
+
+</team>
+</match>
+<match id="49" uid="40291" stage="1" round="9" group="" status="2" date="26/03/2016" wday="7" time="16:00" venue="Independência" city="Belo Horizonte" et="0" pk="0">
+<team name="América-MG" code="AME" uid="53" order="1" home="true" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Rafael Bastos" uid="3528" partial="3" minute="11" />
+
+</team>
+<team name="Uberlândia-MG" code="UBE" uid="1133" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="50" uid="40292" stage="1" round="9" group="" status="2" date="26/03/2016" wday="7" time="16:00" venue="Farião" city="Divinópolis" et="0" pk="0">
+<team name="Guarani-MG" code="GUA" uid="343" order="1" home="true" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Romario" uid="1013278" partial="4" minute="43" />
+
+</team>
+<team name="Caldense" code="CAL" uid="340" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="51" uid="40293" stage="1" round="9" group="" status="2" date="26/03/2016" wday="7" time="19:00" venue="Elias Arbex" city="Três Corações" et="0" pk="0">
+<team name="Tricordiano" code="TRI" uid="1489" order="1" home="true" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Bruno Moreno" uid="1007248" partial="4" minute="27" />
+
+</team>
+<team name="Villa Nova" code="VIL" uid="345" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Soares" uid="73307" partial="4" minute="31" />
+
+</team>
+</match>
+<match id="52" uid="40294" stage="1" round="9" group="" status="2" date="27/03/2016" wday="1" time="11:00" venue="Independência" city="Belo Horizonte" et="0" pk="0">
+<team name="Atlético-MG" code="ATL" uid="33" order="1" home="true" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+<team name="Cruzeiro" code="CRU" uid="40" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Rafael Silva" uid="92285" partial="4" minute="29" />
+
+</team>
+</match>
+<match id="53" uid="40295" stage="1" round="9" group="" status="2" date="27/03/2016" wday="1" time="11:00" venue="Melão" city="Varginha" et="0" pk="0">
+<team name="Boa" code="BOA" uid="99" order="1" home="true" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Daniel Cruz" uid="1012201" partial="3" minute="1" />
+<event type="1" player="Rafael Vitor" uid="92291" partial="4" minute="44" />
+
+</team>
+<team name="Tombense" code="TMB" uid="1331" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Daniel Amorim" uid="1011879" partial="3" minute="26" />
+
+</team>
+</match>
+<match id="54" uid="40296" stage="1" round="9" group="" status="2" date="27/03/2016" wday="1" time="16:00" venue="Zama Maciel" city="Patos de Minas" et="0" pk="0">
+<team name="U.R.T." code="URT" uid="1412" order="1" home="true" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Carlos Magno" uid="74552" partial="3" minute="9" />
+<event type="1" player="Carlos Magno" uid="74552" partial="3" minute="41" />
+
+</team>
+<team name="Tupi" code="TUP" uid="344" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Rubens" uid="1011971" partial="4" minute="30" />
+
+</team>
+</match>
+<match id="55" uid="40297" stage="1" round="10" group="" status="2" date="02/04/2016" wday="7" time="16:00" venue="Mineirão" city="Belo Horizonte" et="0" pk="0">
+<team name="Villa Nova" code="VIL" uid="345" order="1" home="true" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Soares" uid="73307" partial="4" minute="6" />
+<event type="1" player="Mancini" uid="1013030" partial="4" minute="8" />
+
+</team>
+<team name="Atlético-MG" code="ATL" uid="33" order="2" home="false" score="7" rtscore="7" etscore="" pkscore="">
+<event type="1" player="Júnior Urso" uid="85383" partial="3" minute="1" />
+<event type="1" player="Robinho" uid="305" partial="3" minute="21" />
+<event type="1" player="Robinho" uid="305" partial="3" minute="27" />
+<event type="2" player="Rafael Morisco" uid="92273" partial="3" minute="43" />
+<event type="1" player="Robinho" uid="305" partial="4" minute="11" />
+<event type="1" player="Lucas Pratto" uid="1000439" partial="4" minute="19" />
+<event type="1" player="Lucas Pratto" uid="1000439" partial="4" minute="38" />
+
+</team>
+</match>
+<match id="56" uid="40298" stage="1" round="10" group="" status="2" date="02/04/2016" wday="7" time="19:00" venue="Ronaldão" city="Poços de Caldas" et="0" pk="0">
+<team name="Caldense" code="CAL" uid="340" order="1" home="true" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Ewerton Maradona" uid="1013183" partial="3" minute="25" />
+<event type="1" player="Marcinho" uid="1011949" partial="3" minute="22" />
+
+</team>
+<team name="Tombense" code="TMB" uid="1331" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="57" uid="40299" stage="1" round="10" group="" status="2" date="02/04/2016" wday="7" time="19:00" venue="Elias Arbex" city="Três Corações" et="0" pk="0">
+<team name="Tricordiano" code="TRI" uid="1489" order="1" home="true" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+<team name="Tupi" code="TUP" uid="344" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Hiroshi" uid="65699" partial="4" minute="30" />
+
+</team>
+</match>
+<match id="58" uid="40300" stage="1" round="10" group="" status="2" date="03/04/2016" wday="1" time="16:00" venue="Parque do Sabiá" city="Uberlândia" et="0" pk="0">
+<team name="Uberlândia-MG" code="UBE" uid="1133" order="1" home="true" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+<team name="U.R.T." code="URT" uid="1412" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Carlos Magno" uid="74552" partial="3" minute="17" />
+
+</team>
+</match>
+<match id="59" uid="40301" stage="1" round="10" group="" status="2" date="03/04/2016" wday="1" time="16:00" venue="Mineirão" city="Belo Horizonte" et="0" pk="0">
+<team name="Cruzeiro" code="CRU" uid="40" order="1" home="true" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Alisson" uid="1010301" partial="3" minute="18" />
+<event type="1" player="Sánchez Mino" uid="1007473" partial="3" minute="34" />
+
+</team>
+<team name="Guarani-MG" code="GUA" uid="343" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="60" uid="40302" stage="1" round="10" group="" status="2" date="03/04/2016" wday="1" time="18:30" venue="Independência" city="Belo Horizonte" et="0" pk="0">
+<team name="América-MG" code="AME" uid="53" order="1" home="true" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Victor Rangel" uid="1013241" partial="3" minute="10" />
+<event type="1" player="Bryan" uid="1011471" partial="4" minute="2" />
+
+</team>
+<team name="Boa" code="BOA" uid="99" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="61" uid="40303" stage="1" round="11" group="" status="2" date="10/04/2016" wday="1" time="16:00" venue="Independência" city="Belo Horizonte" et="0" pk="0">
+<team name="Atlético-MG" code="ATL" uid="33" order="1" home="true" score="2" rtscore="2" etscore="" pkscore="">
+<event type="3" player="Cazares" uid="1012345" partial="3" minute="26" />
+<event type="1" player="Robinho" uid="305" partial="4" minute="49" />
+
+</team>
+<team name="Tricordiano" code="TRI" uid="1489" order="2" home="false" score="4" rtscore="4" etscore="" pkscore="">
+<event type="1" player="Marcinho" uid="88277" partial="3" minute="32" />
+<event type="3" player="Juninho Arcanjo" uid="84990" partial="4" minute="1" />
+<event type="1" player="Marquinhos" uid="60725" partial="4" minute="8" />
+<event type="1" player="Arnold" uid="1013344" partial="4" minute="50" />
+
+</team>
+</match>
+<match id="62" uid="40304" stage="1" round="11" group="" status="2" date="10/04/2016" wday="1" time="16:00" venue="Farião" city="Divinópolis" et="0" pk="0">
+<team name="Guarani-MG" code="GUA" uid="343" order="1" home="true" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Marcus Vinicius" uid="88647" partial="3" minute="18" />
+<event type="1" player="Felipe Cordeiro" uid="80055" partial="4" minute="25" />
+
+</team>
+<team name="Villa Nova" code="VIL" uid="345" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Mancini" uid="1013030" partial="3" minute="36" />
+
+</team>
+</match>
+<match id="63" uid="40305" stage="1" round="11" group="" status="2" date="10/04/2016" wday="1" time="16:00" venue="Zama Maciel" city="Patos de Minas" et="0" pk="0">
+<team name="U.R.T." code="URT" uid="1412" order="1" home="true" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Nádson" uid="52677" partial="3" minute="48" />
+
+</team>
+<team name="América-MG" code="AME" uid="53" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="3" player="Osman Junior" uid="1011942" partial="3" minute="11" />
+
+</team>
+</match>
+<match id="64" uid="40306" stage="1" round="11" group="" status="2" date="10/04/2016" wday="1" time="16:00" venue="Tombos" city="Tombos" et="0" pk="0">
+<team name="Tombense" code="TMB" uid="1331" order="1" home="true" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Rodney" uid="1013340" partial="3" minute="20" />
+<event type="1" player="Doriva" uid="77480" partial="3" minute="27" />
+
+</team>
+<team name="Uberlândia-MG" code="UBE" uid="1133" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Lenilson" uid="86119" partial="4" minute="17" />
+
+</team>
+</match>
+<match id="65" uid="40307" stage="1" round="11" group="" status="2" date="10/04/2016" wday="1" time="16:00" venue="Melão" city="Varginha" et="0" pk="0">
+<team name="Boa" code="BOA" uid="99" order="1" home="true" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Leonardo" uid="1011241" partial="3" minute="29" />
+<event type="1" player="Rodrigo Mucuri" uid="1013343" partial="4" minute="43" />
+
+</team>
+<team name="Cruzeiro" code="CRU" uid="40" order="2" home="false" score="3" rtscore="3" etscore="" pkscore="">
+<event type="1" player="Douglas Coutinho" uid="1009119" partial="3" minute="18" />
+<event type="1" player="Douglas Coutinho" uid="1009119" partial="3" minute="26" />
+<event type="1" player="Allano" uid="1013342" partial="4" minute="33" />
+
+</team>
+</match>
+<match id="66" uid="40308" stage="1" round="11" group="" status="2" date="10/04/2016" wday="1" time="16:00" venue="Mário Helênio" city="Juiz de Fora" et="0" pk="0">
+<team name="Tupi" code="TUP" uid="344" order="1" home="true" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Hiroshi" uid="65699" partial="3" minute="13" />
+
+</team>
+<team name="Caldense" code="CAL" uid="340" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Rafamar" uid="92044" partial="4" minute="46" />
+
+</team>
+</match>
+<match id="67" uid="40309" stage="2" round="12" group="" status="2" date="16/04/2016" wday="7" time="16:20" venue="Independência" city="Belo Horizonte" et="0" pk="0">
+<team name="América-MG" code="AME" uid="53" order="1" home="true" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Adalberto" uid="70465" partial="3" minute="42" />
+<event type="1" player="Victor Rangel" uid="1013241" partial="4" minute="30" />
+
+</team>
+<team name="Cruzeiro" code="CRU" uid="40" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="68" uid="40311" stage="2" round="12" group="" status="2" date="17/04/2016" wday="1" time="16:00" venue="Arena Kickball" city="Patos de Minas" et="0" pk="0">
+<team name="U.R.T." code="URT" uid="1412" order="1" home="true" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Jonathan Balotelli" uid="1013368" partial="3" minute="4" />
+<event type="1" player="Ramos" uid="92440" partial="4" minute="11" />
+
+</team>
+<team name="Atlético-MG" code="ATL" uid="33" order="2" home="false" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Douglas Santos" uid="1011443" partial="3" minute="19" />
+<event type="1" player="Clayton" uid="1010667" partial="4" minute="31" />
+
+</team>
+</match>
+<match id="69" uid="40312" stage="2" round="13" group="" status="2" date="23/04/2016" wday="7" time="16:00" venue="Independência" city="Belo Horizonte" et="0" pk="0">
+<team name="Atlético-MG" code="ATL" uid="33" order="1" home="true" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Lucas Pratto" uid="1000439" partial="4" minute="27" />
+<event type="1" player="Rafael Carioca" uid="91986" partial="4" minute="47" />
+
+</team>
+<team name="U.R.T." code="URT" uid="1412" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="70" uid="40310" stage="2" round="13" group="" status="2" date="24/04/2016" wday="1" time="16:00" venue="Mineirão" city="Belo Horizonte" et="0" pk="0">
+<team name="Cruzeiro" code="CRU" uid="40" order="1" home="true" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+<team name="América-MG" code="AME" uid="53" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="71" uid="40313" stage="3" round="14" group="" status="2" date="01/05/2016" wday="1" time="16:00" venue="Independência" city="Belo Horizonte" et="0" pk="0">
+<team name="América-MG" code="AME" uid="53" order="1" home="true" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Danilo Barcelos" uid="76096" partial="3" minute="33" />
+<event type="1" player="Danilo Barcelos" uid="76096" partial="4" minute="5" />
+
+</team>
+<team name="Atlético-MG" code="ATL" uid="33" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Lucas Pratto" uid="1000439" partial="4" minute="48" />
+
+</team>
+</match>
+<match id="72" uid="40314" stage="3" round="15" group="" status="2" date="08/05/2016" wday="1" time="16:00" venue="Mineirão" city="Belo Horizonte" et="0" pk="0">
+<team name="Atlético-MG" code="ATL" uid="33" order="1" home="true" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Clayton" uid="1010667" partial="4" minute="13" />
+
+</team>
+<team name="América-MG" code="AME" uid="53" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Danilo Barcelos" uid="76096" partial="4" minute="38" />
+
+</team>
+</match>
+
+</results>

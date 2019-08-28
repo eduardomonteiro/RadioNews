@@ -1,0 +1,39 @@
+﻿body {
+    background-image: url(/images/player/bg-texture.png), url(/images/player/bg-vermelho.jpg);
+    background-position: top bottom, left top;
+    background-repeat: repeat, repeat;
+}
+
+.bg-player {
+    align-items: center;
+    background: rgba(255,255,255,1);
+    height: 10px;
+    border-radius: 35px;
+    padding: 20px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.container-radio-mp3 {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    padding-top: 10%;
+    text-align: center;
+}
+
+span#tracktime {
+    font-size: 12px;
+    color: #fff;
+    padding-top: 9px;
+}

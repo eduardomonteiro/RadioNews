@@ -1,0 +1,221 @@
+input[type="radio"], input[type="checkbox"] {
+    height: 12px;
+    width: 12px;
+    vertical-align: text-top;
+    display: inline-block;
+    background: white;
+    border: 1px solid #ccc;
+    &:checked {
+      background: url(../images/check-ative.png) no-repeat center center white;
+    }
+}
+label {
+	font-size: 14px;
+	display: block;
+	line-height: 20px;
+	margin-bottom: 10px;
+	cursor: pointer;
+	text-align: left;
+}
+.form-contact {
+	margin-bottom: 100px !important;
+	&:after {
+		clear: both;
+		display: block;
+		content: '';
+	}
+	.capthca-box {
+		float: left;
+	}
+	.bt-red {
+		float: right;
+		padding: 10px 35px;
+		margin-top: 15px;
+		@include breakpoint(mobile) {
+			width: 100%;
+		}
+	}
+}
+.file-row {
+	position: relative;
+	border-radius: $radius;
+	height: 40px;
+	overflow: hidden;
+	font-size: 12px;
+	background: #e7e7e7;
+	vertical-align: middle;
+	padding: 15px 20px;
+	display: inline-block;
+	&:after {
+		content: 'Procurar';
+		cursor: pointer;
+		text-transform: uppercase;
+		color: white;
+		background: #909090;
+		position: absolute;
+		top: 0;
+		right: 0;
+		box-sizing: border-box;
+		line-height: 10px;
+		height: 100%;
+		font-size: 14px;
+		padding: 15px 20px;
+	}
+	input {
+		-webkit-appearance: none;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		cursor: pointer;
+		opacity: 0;
+		z-index: 5;
+	}
+}
+.boxs-upload {
+	margin-bottom: 10px;
+	.file-row {
+		width: 87%;
+		@include breakpoint(mobile) {
+			width: 100%;
+		}
+	}
+}
+.check {
+	float: left;
+	margin-right: 2%;
+	margin-bottom: 15px;
+}
+.capthca-box {
+	display: inline-block;
+	vertical-align: middle;
+}
+.input-form {
+	height: 40px;
+	border-radius: $radius;
+	width: 100%;
+	outline: none;
+	padding: 5px 15px;
+	box-sizing: border-box;
+	font-family: $font;
+	color: black;
+	border: 0;
+	margin-bottom: 15px;
+	background: #e7e7e7;
+	&.dates {
+		background: url(../images/dates.png) no-repeat 93% center #e7e7e7;
+	}
+}
+textarea.input-form {
+	height: 150px;
+	resize: none;
+}
+.msg-info {
+	text-align: center;
+	margin-bottom: 50px;
+	.fa {
+		font-size: 80px;
+		color: $vermelhoescuro;
+		margin-bottom: 15px;
+		font-weight: 300;
+	}
+}
+
+.filters {
+	padding-top: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	> .row-grid {
+		margin: 0 -8px;
+	}
+	[class*="grid-"] {
+		padding: 0 8px;
+		margin-bottom: 10px;
+		@include breakpoint(desktop) {
+			margin-bottom: 5px;
+			.input-form {
+				margin-bottom: 5px;
+			}
+		}
+	}
+	.grid-2, .grid-3 {
+		@include breakpoint(tablet) {
+			width: 100%;
+		}
+	}
+	.search-filter {
+		margin-top: 30px;
+		@include breakpoint(mobile) {
+			margin-top: 10px;
+			&:after {
+				content: 'Buscar';
+				font-family: $font;
+				text-transform: uppercase;
+				font-size: 14px;
+			}
+		}
+	}
+	.grid-4 {
+		@include breakpoint(desktop) {
+			width: 50%;
+		}
+		@include breakpoint(mobile) {
+			width: 100%;
+		}
+	}
+	.grid-3, .grid-8 {
+		@include breakpoint(mobile) {
+			width: 100%;
+		}
+	}
+	.title-bottom {
+		margin-top: 10px;
+		font-size: 17px;
+		margin-bottom: 10px;
+		@include breakpoint(mobile) {
+			text-align: center;
+		}
+	}
+}
+.box-post {
+	margin: 25px 0;
+	border-top: 1px solid #ccc;
+	padding: 15px;
+	background: white;
+	border-radius: $radius;
+}
+.forgoten-pass {
+	font-size: 13px;
+	cursor: pointer;
+	text-transform: uppercase;
+	transition: color 0.8s ease;
+	float: left;
+	line-height: 18px;
+	margin-top: 12px;
+	margin-bottom: 	10px;
+	&:hover {
+		color: $vermelho;
+	}
+}
+.field-login {
+	.bt-red {
+		float: right;
+	}
+	footer {
+		margin-top: 10px;
+	}
+}
+aside .input-form {
+	margin-bottom: 8px;
+	height: 35px;
+}
+
+.footer-border {
+	margin-top: 40px;
+	padding-top: 40px !important;
+	border-top: 1px solid #e7e7e7;
+	text-align: right;
+	width: 100%;
+	float: left;
+}

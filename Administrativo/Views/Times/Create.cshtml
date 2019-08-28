@@ -1,0 +1,119 @@
+﻿@model Administrativo.Models.Times
+
+@{
+    ViewBag.Title = "Cadastrar Times";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Insere um Time no sistema";
+}
+
+<div class="content">
+    <div class="row">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Cadastrar Time</h3>
+            </div>
+            @using (Html.BeginForm("Create", "Times", FormMethod.Post, new { enctype = "multipart/form-data", @Id = "form-time" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="box-body">
+
+
+                    <div class="form-group">
+                        <label for="EditoriaId">Ligado a Editoria de Notícias</label>
+                        @Html.DropDownList("EditoriaId", null, "Selecione...", new { @class = "chosen-select" })
+                        @Html.ValidationMessage("EditoriaId")
+                    </div>
+
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Nome)
+
+                        @Html.TextBoxFor(model => model.Nome, new { @maxlength = 100, @class = "text-box" })
+                        @Html.ValidationMessageFor(model => model.Nome)
+                    </div>
+                   
+
+
+                    <h4 class="page-header"></h4>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+
+                                <label>Escudo do Time - <em></em></label>
+
+                                <input type="file" name="Escudo" id="Escudo" />
+                                <label id="lblFotoExistente"></label>
+                                @Html.ValidationMessageFor(model => model.Escudo)
+
+                                <input type="hidden" id="fotoExistente" name="fotoExistente" />
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Informacoes)
+
+                        @Html.TextAreaFor(model => model.Informacoes)
+                        @Html.ValidationMessageFor(model => model.Informacoes)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Titulos)
+
+                        @Html.TextAreaFor(model => model.Titulos, new { @class = "text-box", style = "height: 100px;" })
+                        @Html.ValidationMessageFor(model => model.Titulos)
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Cor)
+                        <input type="color" name="Cor" id="Cor" />
+                        @Html.ValidationMessageFor(model => model.Cor)
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Ativo?</label>
+                        @Html.BooleanFieldFor(model => model.Ativo, true, new { @class = "form-control", style = "width: 120px;" })
+                        @Html.ValidationMessageFor(model => model.Ativo)
+                    </div>
+
+                </div>
+                <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a href="@Url.Action("Index", "Times")" class="btn btn-info">Voltar</a>
+
+                </div> 
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+   <script type="text/javascript">
+        $(document).ready(function () {
+            $(".iframe").colorbox({ iframe: true, width: "80%", height: "80%" })
+            $(".chosen-select").chosen({ width: "100%" });
+            
+
+            var editor = CKEDITOR.replace('Informacoes',
+               {
+                   height: "200px"
+               });
+            $('#Titulos').wysihtml5();
+        });
+
+        function getvalue(valor) {
+            document.getElementById('fotoExistente').value = valor;
+
+            $("#lblFotoExistente").html(valor);
+            $.colorbox.close();
+        }
+
+</script>
+}

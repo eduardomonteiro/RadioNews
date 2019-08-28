@@ -1,0 +1,96 @@
+﻿@model Administrativo.Models.MidiaKit
+
+@{
+    ViewBag.Title = "Cadastrar MidiaKit";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Insere um MidiaKit no sistema";
+}
+
+<div class="content">
+    <div class="row">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Cadastrar MidiaKit</h3>
+            </div>
+            @using (Html.BeginForm("Create", "MidiaKit", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="box-body">
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Titulo)
+
+                        @Html.TextBoxFor(model => model.Titulo, new { @maxlength = 100, @class = "text-box" })
+                        @Html.ValidationMessageFor(model => model.Titulo)
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Arquivo)
+                        @Html.TextBoxFor(model => model.Arquivo, new { style = "display: none;" })
+                        <input type="file" name="Arquivo" title="" id="Arquivo" onchange="javascript: $('#Arquivo').val($(this).val().split('\\').pop());" />
+                        @Html.ValidationMessageFor(model => model.Arquivo)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Miniatura)
+                        @Html.TextBoxFor(model => model.Miniatura, new { style = "display: none;" })
+                        <input type="file" name="Miniatura" title="" id="Miniatura" onchange="javascript: $('#Miniatura').val($(this).val().split('\\').pop());" />
+                        @Html.ValidationMessageFor(model => model.Miniatura)
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Ativo)
+
+                        @Html.BooleanFieldFor(model => model.Ativo, true, new { @class = "form-control", style = "width: 120px;" })
+                        @Html.ValidationMessageFor(model => model.Ativo)
+                    </div>
+
+                </div>
+                <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a href="@Url.Action("Index", "MidiaKit")" class="btn btn-info">Voltar</a>
+
+                </div>  }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('input[name="Arquivo"]').change(function () {
+                var valor = $(this).val().split('/').pop().split('\\').pop();
+
+                var value = valor, ext = value.split(".").pop();
+                var arrayPermitidos = ["jpg", "jpeg", "gif", "js", "zip", "png", "rar", "doc", "docx", "txt", "mp3 ", "pdf", "mpeg", "mp4", "ogg"];
+
+                if ($.inArray(ext.toLowerCase(), arrayPermitidos) == -1) {
+                    swal({ title: 'Erro', text: "Extensão inválida!<br> As extensões aceitas são :<br><br><strong> jpg,gif,png,zip,rar,doc,docx,txt,pdf,mp3,mp4,mpeg e ogg.</strong>", type: 'error', html: true });
+                    $(this).val('');
+                }
+                
+            });
+
+
+
+            $('input[name="Miniatura"]').change(function () {
+                var valor = $(this).val().split('/').pop().split('\\').pop();
+
+                var value = valor, ext = value.split(".").pop();
+                var arrayPermitidos = ["jpg", "jpeg", "gif", "png"];
+
+                if ($.inArray(ext.toLowerCase(), arrayPermitidos) == -1) {
+                    swal({ title: 'Erro', text: "Extensão inválida!<br> As extensões aceitas são :<br><br><strong> jpg,gif,png.</strong>", type: 'error', html: true });
+                    $(this).val('');
+                }
+
+            });
+
+        });
+    </script>
+}

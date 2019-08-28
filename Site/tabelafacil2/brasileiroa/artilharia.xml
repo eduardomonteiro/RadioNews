@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<scorers>
+<player name="Fred" pos="1" goals="14" teamuid="33" teamname="Atlético-MG" teamid="CAM" />
+<player name="William Pottker" pos="2" goals="13" teamuid="68" teamname="Ponte Preta" teamid="PON" />
+<player name="Grafite" pos="2" goals="13" teamuid="113" teamname="Santa Cruz" teamid="STC" />
+<player name="Diego Souza" pos="2" goals="13" teamuid="51" teamname="Sport" teamid="SPO" />
+<player name="Robinho" pos="5" goals="12" teamuid="33" teamname="Atlético-MG" teamid="CAM" />
+<player name="Sassá" pos="5" goals="12" teamuid="37" teamname="Botafogo" teamid="BOT" />
+<player name="Gabriel Jesus" pos="5" goals="12" teamuid="47" teamname="Palmeiras" teamid="PAL" />
+<player name="Marinho" pos="8" goals="11" teamuid="52" teamname="Vitória" teamid="VIT" />
+<player name="Bruno Rangel" pos="9" goals="10" teamuid="93" teamname="Chapecoense" teamid="CHA" />
+<player name="Keno" pos="9" goals="10" teamuid="113" teamname="Santa Cruz" teamid="STC" />
+<player name="Copete" pos="9" goals="10" teamuid="49" teamname="Santos" teamid="SAN" />
+<player name="Ricardo Oliveira" pos="9" goals="10" teamuid="49" teamname="Santos" teamid="SAN" />
+<player name="Vitor Bueno" pos="9" goals="10" teamuid="49" teamname="Santos" teamid="SAN" />
+<player name="Kieza" pos="9" goals="10" teamuid="52" teamname="Vitória" teamid="VIT" />
+<player name="Pablo" pos="15" goals="9" teamuid="34" teamname="Atlético-PR" teamid="CAP" />
+<player name="Kempes" pos="15" goals="9" teamuid="93" teamname="Chapecoense" teamid="CHA" />
+<player name="Kléber" pos="15" goals="9" teamuid="39" teamname="Coritiba" teamid="CFC" />
+<player name="Paolo Guerrero" pos="15" goals="9" teamuid="41" teamname="Flamengo" teamid="FLA" />
+<player name="Cícero" pos="15" goals="9" teamuid="42" teamname="Fluminense" teamid="FLU" />
+<player name="Arrascaeta" pos="20" goals="8" teamuid="40" teamname="Cruzeiro" teamid="CRU" />
+<player name="Rafael Moura" pos="20" goals="8" teamuid="62" teamname="Figueirense" teamid="FIG" />
+<player name="Gustavo Scarpa" pos="20" goals="8" teamuid="42" teamname="Fluminense" teamid="FLU" />
+<player name="Vitinho" pos="20" goals="8" teamuid="45" teamname="Internacional" teamid="INT" />
+<player name="Roger" pos="20" goals="8" teamuid="68" teamname="Ponte Preta" teamid="PON" />
+<player name="Rogério" pos="20" goals="8" teamuid="51" teamname="Sport" teamid="SPO" />
+<player name="Neilton" pos="26" goals="7" teamuid="37" teamname="Botafogo" teamid="BOT" />
+<player name="Chávez" pos="26" goals="7" teamuid="50" teamname="São Paulo" teamid="SPL" />
+<player name="Cueva" pos="26" goals="7" teamuid="50" teamname="São Paulo" teamid="SPL" />
+<player name="Cazares" pos="29" goals="6" teamuid="33" teamname="Atlético-MG" teamid="CAM" />
+<player name="Hernani" pos="29" goals="6" teamuid="34" teamname="Atlético-PR" teamid="CAP" />
+<player name="Camilo" pos="29" goals="6" teamuid="37" teamname="Botafogo" teamid="BOT" />
+<player name="Ábila" pos="29" goals="6" teamuid="40" teamname="Cruzeiro" teamid="CRU" />
+<player name="Diego" pos="29" goals="6" teamuid="41" teamname="Flamengo" teamid="FLA" />
+<player name="Marcos Júnior" pos="29" goals="6" teamuid="42" teamname="Fluminense" teamid="FLU" />
+<player name="Luan" pos="29" goals="6" teamuid="44" teamname="Grêmio" teamid="GRE" />
+<player name="Dudu" pos="29" goals="6" teamuid="47" teamname="Palmeiras" teamid="PAL" />
+<player name="Jean" pos="29" goals="6" teamuid="47" teamname="Palmeiras" teamid="PAL" />
+<player name="Arthur" pos="29" goals="6" teamuid="113" teamname="Santa Cruz" teamid="STC" />
+<player name="Lucas Pratto" pos="39" goals="5" teamuid="33" teamname="Atlético-MG" teamid="CAM" />
+<player name="André Lima" pos="39" goals="5" teamuid="34" teamname="Atlético-PR" teamid="CAP" />
+<player name="Thiego" pos="39" goals="5" teamuid="93" teamname="Chapecoense" teamid="CHA" />
+<player name="Ángel Romero" pos="39" goals="5" teamuid="38" teamname="Corinthians" teamid="COR" />
+<player name="Guilherme" pos="39" goals="5" teamuid="38" teamname="Corinthians" teamid="COR" />
+<player name="Marlone" pos="39" goals="5" teamuid="38" teamname="Corinthians" teamid="COR" />
+<player name="Marquinhos Gabriel" pos="39" goals="5" teamuid="38" teamname="Corinthians" teamid="COR" />
+<player name="Juan" pos="39" goals="5" teamuid="39" teamname="Coritiba" teamid="CFC" />
+<player name="Leandro" pos="39" goals="5" teamuid="39" teamname="Coritiba" teamid="CFC" />
+<player name="Felipe Vizeu" pos="39" goals="5" teamuid="41" teamname="Flamengo" teamid="FLA" />
+<player name="Eduardo Sasha" pos="39" goals="5" teamuid="45" teamname="Internacional" teamid="INT" />
+<player name="Felipe Azevedo" pos="39" goals="5" teamuid="68" teamname="Ponte Preta" teamid="PON" />
+<player name="Edmilson" pos="39" goals="5" teamuid="51" teamname="Sport" teamid="SPO" />
+<player name="Danilo Barcelos" pos="52" goals="4" teamuid="53" teamname="América-MG" teamid="AME" />
+<player name="Clayton" pos="52" goals="4" teamuid="33" teamname="Atlético-MG" teamid="CAM" />
+<player name="Júnior Urso" pos="52" goals="4" teamuid="33" teamname="Atlético-MG" teamid="CAM" />
+<player name="Thiago Heleno" pos="52" goals="4" teamuid="34" teamname="Atlético-PR" teamid="CAP" />
+<player name="Tiaguinho" pos="52" goals="4" teamuid="93" teamname="Chapecoense" teamid="CHA" />
+<player name="Bruno Henrique" pos="52" goals="4" teamuid="38" teamname="Corinthians" teamid="COR" />
+<player name="Rodriguinho" pos="52" goals="4" teamuid="38" teamname="Corinthians" teamid="COR" />
+<player name="Alisson" pos="52" goals="4" teamuid="40" teamname="Cruzeiro" teamid="CRU" />
+<player name="Henrique" pos="52" goals="4" teamuid="40" teamname="Cruzeiro" teamid="CRU" />
+<player name="Rafael Sóbis" pos="52" goals="4" teamuid="40" teamname="Cruzeiro" teamid="CRU" />
+<player name="Willian" pos="52" goals="4" teamuid="40" teamname="Cruzeiro" teamid="CRU" />
+<player name="Lins" pos="52" goals="4" teamuid="62" teamname="Figueirense" teamid="FIG" />
+<player name="Alan Patrick" pos="52" goals="4" teamuid="41" teamname="Flamengo" teamid="FLA" />
+<player name="Willian Arão" pos="52" goals="4" teamuid="41" teamname="Flamengo" teamid="FLA" />
+<player name="Richarlison" pos="52" goals="4" teamuid="42" teamname="Fluminense" teamid="FLU" />
+<player name="Douglas" pos="52" goals="4" teamuid="44" teamname="Grêmio" teamid="GRE" />
+<player name="Aylon" pos="52" goals="4" teamuid="45" teamname="Internacional" teamid="INT" />
+<player name="Seijas" pos="52" goals="4" teamuid="45" teamname="Internacional" teamid="INT" />
+<player name="Valdívia" pos="52" goals="4" teamuid="45" teamname="Internacional" teamid="INT" />
+<player name="Cleiton Xavier" pos="52" goals="4" teamuid="47" teamname="Palmeiras" teamid="PAL" />
+<player name="Roger Guedes" pos="52" goals="4" teamuid="47" teamname="Palmeiras" teamid="PAL" />
+<player name="Vitor Hugo" pos="52" goals="4" teamuid="47" teamname="Palmeiras" teamid="PAL" />
+<player name="Yerry Mina" pos="52" goals="4" teamuid="47" teamname="Palmeiras" teamid="PAL" />
+<player name="Wendel" pos="52" goals="4" teamuid="68" teamname="Ponte Preta" teamid="PON" />
+<player name="Gabriel" pos="52" goals="4" teamuid="49" teamname="Santos" teamid="SAN" />
+<player name="Rodrigão" pos="52" goals="4" teamuid="49" teamname="Santos" teamid="SAN" />
+<player name="Rodney Wallace" pos="52" goals="4" teamuid="51" teamname="Sport" teamid="SPO" />
+<player name="Diego Renan" pos="52" goals="4" teamuid="52" teamname="Vitória" teamid="VIT" />
+<player name="Kanu" pos="52" goals="4" teamuid="52" teamname="Vitória" teamid="VIT" />
+<player name="Zé Eduardo" pos="52" goals="4" teamuid="52" teamname="Vitória" teamid="VIT" />
+<player name="Jonas" pos="82" goals="3" teamuid="53" teamname="América-MG" teamid="AME" />
+<player name="Michael" pos="82" goals="3" teamuid="53" teamname="América-MG" teamid="AME" />
+<player name="Walter" pos="82" goals="3" teamuid="34" teamname="Atlético-PR" teamid="CAP" />
+<player name="Bruno Silva" pos="82" goals="3" teamuid="37" teamname="Botafogo" teamid="BOT" />
+<player name="Rodrigo Pimpão" pos="82" goals="3" teamuid="37" teamname="Botafogo" teamid="BOT" />
+<player name="Dener" pos="82" goals="3" teamuid="93" teamname="Chapecoense" teamid="CHA" />
+<player name="Lucas Gomes" pos="82" goals="3" teamuid="93" teamname="Chapecoense" teamid="CHA" />
+<player name="Giovanni Augusto" pos="82" goals="3" teamuid="38" teamname="Corinthians" teamid="COR" />
+<player name="Lucca" pos="82" goals="3" teamuid="38" teamname="Corinthians" teamid="COR" />
+<player name="Kazim" pos="82" goals="3" teamuid="39" teamname="Coritiba" teamid="CFC" />
+<player name="Raphael  Veiga" pos="82" goals="3" teamuid="39" teamname="Coritiba" teamid="CFC" />
+<player name="Robinho" pos="82" goals="3" teamuid="40" teamname="Cruzeiro" teamid="CRU" />
+<player name="Carlos Alberto" pos="82" goals="3" teamuid="62" teamname="Figueirense" teamid="FIG" />
+<player name="Dodô" pos="82" goals="3" teamuid="62" teamname="Figueirense" teamid="FIG" />
+<player name="Everton" pos="82" goals="3" teamuid="41" teamname="Flamengo" teamid="FLA" />
+<player name="Fernandinho" pos="82" goals="3" teamuid="41" teamname="Flamengo" teamid="FLA" />
+<player name="Gabriel" pos="82" goals="3" teamuid="41" teamname="Flamengo" teamid="FLA" />
+<player name="Leandro Damião" pos="82" goals="3" teamuid="41" teamname="Flamengo" teamid="FLA" />
+<player name="Mancuello" pos="82" goals="3" teamuid="41" teamname="Flamengo" teamid="FLA" />
+<player name="Wellington Silva" pos="82" goals="3" teamuid="42" teamname="Fluminense" teamid="FLU" />
+<player name="Everton" pos="82" goals="3" teamuid="44" teamname="Grêmio" teamid="GRE" />
+<player name="Giuliano" pos="82" goals="3" teamuid="44" teamname="Grêmio" teamid="GRE" />
+<player name="Pedro Geromel" pos="82" goals="3" teamuid="44" teamname="Grêmio" teamid="GRE" />
+<player name="Pedro Rocha" pos="82" goals="3" teamuid="44" teamname="Grêmio" teamid="GRE" />
+<player name="Ernando" pos="82" goals="3" teamuid="45" teamname="Internacional" teamid="INT" />
+<player name="Erik" pos="82" goals="3" teamuid="47" teamname="Palmeiras" teamid="PAL" />
+<player name="Moisés" pos="82" goals="3" teamuid="47" teamname="Palmeiras" teamid="PAL" />
+<player name="Clayson" pos="82" goals="3" teamuid="68" teamname="Ponte Preta" teamid="PON" />
+<player name="Fabio Ferreira" pos="82" goals="3" teamuid="68" teamname="Ponte Preta" teamid="PON" />
+<player name="Bruno Moraes" pos="82" goals="3" teamuid="113" teamname="Santa Cruz" teamid="STC" />
+<player name="Zeca" pos="82" goals="3" teamuid="49" teamname="Santos" teamid="SAN" />
+<player name="Alan Kardec" pos="82" goals="3" teamuid="50" teamname="São Paulo" teamid="SPL" />
+<player name="Calleri" pos="82" goals="3" teamuid="50" teamname="São Paulo" teamid="SPL" />
+<player name="Gabriel Xavier" pos="82" goals="3" teamuid="51" teamname="Sport" teamid="SPO" />
+<player name="Vander" pos="82" goals="3" teamuid="52" teamname="Vitória" teamid="VIT" />
+<player name="Adalberto" pos="117" goals="2" teamuid="53" teamname="América-MG" teamid="AME" />
+<player name="Juninho" pos="117" goals="2" teamuid="53" teamname="América-MG" teamid="AME" />
+<player name="Osman Junior" pos="117" goals="2" teamuid="53" teamname="América-MG" teamid="AME" />
+<player name="Victor Rangel" pos="117" goals="2" teamuid="53" teamname="América-MG" teamid="AME" />
+<player name="Carlos" pos="117" goals="2" teamuid="33" teamname="Atlético-MG" teamid="CAM" />
+<player name="Carlos César" pos="117" goals="2" teamuid="33" teamname="Atlético-MG" teamid="CAM" />
+<player name="Hyuri" pos="117" goals="2" teamuid="33" teamname="Atlético-MG" teamid="CAM" />
+<player name="Leandro Donizete" pos="117" goals="2" teamuid="33" teamname="Atlético-MG" teamid="CAM" />
+<player name="Maicosuel" pos="117" goals="2" teamuid="33" teamname="Atlético-MG" teamid="CAM" />
+<player name="Otero" pos="117" goals="2" teamuid="33" teamname="Atlético-MG" teamid="CAM" />
+<player name="Patric" pos="117" goals="2" teamuid="33" teamname="Atlético-MG" teamid="CAM" />
+<player name="Matheus Rossetto" pos="117" goals="2" teamuid="34" teamname="Atlético-PR" teamid="CAP" />
+<player name="Paulo André" pos="117" goals="2" teamuid="34" teamname="Atlético-PR" teamid="CAP" />
+<player name="Diogo Barbosa" pos="117" goals="2" teamuid="37" teamname="Botafogo" teamid="BOT" />
+<player name="Fernandes" pos="117" goals="2" teamuid="37" teamname="Botafogo" teamid="BOT" />
+<player name="Leandrinho" pos="117" goals="2" teamuid="37" teamname="Botafogo" teamid="BOT" />
+<player name="Ananias" pos="117" goals="2" teamuid="93" teamname="Chapecoense" teamid="CHA" />
+<player name="Arthur Maia" pos="117" goals="2" teamuid="93" teamname="Chapecoense" teamid="CHA" />
+<player name="Hyoran" pos="117" goals="2" teamuid="93" teamname="Chapecoense" teamid="CHA" />
+<player name="Sergio Manoel" pos="117" goals="2" teamuid="93" teamname="Chapecoense" teamid="CHA" />
+<player name="Silvinho" pos="117" goals="2" teamuid="93" teamname="Chapecoense" teamid="CHA" />
+<player name="Uendel" pos="117" goals="2" teamuid="38" teamname="Corinthians" teamid="COR" />
+<player name="Amaral" pos="117" goals="2" teamuid="39" teamname="Coritiba" teamid="CFC" />
+<player name="Iago" pos="117" goals="2" teamuid="39" teamname="Coritiba" teamid="CFC" />
+<player name="Elber" pos="117" goals="2" teamuid="40" teamname="Cruzeiro" teamid="CRU" />
+<player name="Rafinha" pos="117" goals="2" teamuid="40" teamname="Cruzeiro" teamid="CRU" />
+<player name="Ayrton" pos="117" goals="2" teamuid="62" teamname="Figueirense" teamid="FIG" />
+<player name="Bady" pos="117" goals="2" teamuid="62" teamname="Figueirense" teamid="FIG" />
+<player name="Ferrugem" pos="117" goals="2" teamuid="62" teamname="Figueirense" teamid="FIG" />
+<player name="Gustavo Ermel" pos="117" goals="2" teamuid="62" teamname="Figueirense" teamid="FIG" />
+<player name="Jorge" pos="117" goals="2" teamuid="41" teamname="Flamengo" teamid="FLA" />
+<player name="Marcelo Cirino" pos="117" goals="2" teamuid="41" teamname="Flamengo" teamid="FLA" />
+<player name="Réver" pos="117" goals="2" teamuid="41" teamname="Flamengo" teamid="FLA" />
+<player name="Gum" pos="117" goals="2" teamuid="42" teamname="Fluminense" teamid="FLU" />
+<player name="Henrique" pos="117" goals="2" teamuid="42" teamname="Fluminense" teamid="FLU" />
+<player name="Magno Alves" pos="117" goals="2" teamuid="42" teamname="Fluminense" teamid="FLU" />
+<player name="Fred" pos="117" goals="2" teamuid="44" teamname="Grêmio" teamid="GRE" />
+<player name="Jailson" pos="117" goals="2" teamuid="44" teamname="Grêmio" teamid="GRE" />
+<player name="Marcelo Hermes" pos="117" goals="2" teamuid="44" teamname="Grêmio" teamid="GRE" />
+<player name="Miller Bolaños" pos="117" goals="2" teamuid="44" teamname="Grêmio" teamid="GRE" />
+<player name="Negueba" pos="117" goals="2" teamuid="44" teamname="Grêmio" teamid="GRE" />
+<player name="Alecsandro" pos="117" goals="2" teamuid="47" teamname="Palmeiras" teamid="PAL" />
+<player name="Leandro Pereira" pos="117" goals="2" teamuid="47" teamname="Palmeiras" teamid="PAL" />
+<player name="Tchê Tchê" pos="117" goals="2" teamuid="47" teamname="Palmeiras" teamid="PAL" />
+<player name="Thiago Martins" pos="117" goals="2" teamuid="47" teamname="Palmeiras" teamid="PAL" />
+<player name="Reinaldo" pos="117" goals="2" teamuid="68" teamname="Ponte Preta" teamid="PON" />
+<player name="Rhayner" pos="117" goals="2" teamuid="68" teamname="Ponte Preta" teamid="PON" />
+<player name="Wellington Paulista" pos="117" goals="2" teamuid="68" teamname="Ponte Preta" teamid="PON" />
+<player name="João Paulo" pos="117" goals="2" teamuid="113" teamname="Santa Cruz" teamid="STC" />
+<player name="Léo Moura" pos="117" goals="2" teamuid="113" teamname="Santa Cruz" teamid="STC" />
+<player name="Pisano" pos="117" goals="2" teamuid="113" teamname="Santa Cruz" teamid="STC" />
+<player name="Tiago Costa" pos="117" goals="2" teamuid="113" teamname="Santa Cruz" teamid="STC" />
+<player name="Jean Mota" pos="117" goals="2" teamuid="49" teamname="Santos" teamid="SAN" />
+<player name="Joel" pos="117" goals="2" teamuid="49" teamname="Santos" teamid="SAN" />
+<player name="Lucas Lima" pos="117" goals="2" teamuid="49" teamname="Santos" teamid="SAN" />
+<player name="Paulinho" pos="117" goals="2" teamuid="49" teamname="Santos" teamid="SAN" />
+<player name="Renato" pos="117" goals="2" teamuid="49" teamname="Santos" teamid="SAN" />
+<player name="David Neres" pos="117" goals="2" teamuid="50" teamname="São Paulo" teamid="SPL" />
+<player name="Lugano" pos="117" goals="2" teamuid="50" teamname="São Paulo" teamid="SPL" />
+<player name="Maicon" pos="117" goals="2" teamuid="50" teamname="São Paulo" teamid="SPL" />
+<player name="Thiago Mendes" pos="117" goals="2" teamuid="50" teamname="São Paulo" teamid="SPL" />
+<player name="Matheus Ferraz" pos="117" goals="2" teamuid="51" teamname="Sport" teamid="SPO" />
+<player name="Rithely" pos="117" goals="2" teamuid="51" teamname="Sport" teamid="SPO" />
+<player name="Vinicius Araujo" pos="117" goals="2" teamuid="51" teamname="Sport" teamid="SPO" />
+<player name="David" pos="117" goals="2" teamuid="52" teamname="Vitória" teamid="VIT" />
+<player name="Marcelo" pos="117" goals="2" teamuid="52" teamname="Vitória" teamid="VIT" />
+<player name="Willian Farias" pos="117" goals="2" teamuid="52" teamname="Vitória" teamid="VIT" />
+<player name="Borges" pos="184" goals="1" teamuid="53" teamname="América-MG" teamid="AME" />
+<player name="Bruno Savio" pos="184" goals="1" teamuid="53" teamname="América-MG" teamid="AME" />
+<player name="Éder Lima" pos="184" goals="1" teamuid="53" teamname="América-MG" teamid="AME" />
+<player name="Gilson" pos="184" goals="1" teamuid="53" teamname="América-MG" teamid="AME" />
+<player name="Rafael Bastos" pos="184" goals="1" teamuid="53" teamname="América-MG" teamid="AME" />
+<player name="Leonardo Silva" pos="184" goals="1" teamuid="33" teamname="Atlético-MG" teamid="CAM" />
+<player name="Luan" pos="184" goals="1" teamuid="33" teamname="Atlético-MG" teamid="CAM" />
+<player name="Rafael Carioca" pos="184" goals="1" teamuid="33" teamname="Atlético-MG" teamid="CAM" />
+<player name="Tiago Pagnussat" pos="184" goals="1" teamuid="33" teamname="Atlético-MG" teamid="CAM" />
+<player name="Deivid" pos="184" goals="1" teamuid="34" teamname="Atlético-PR" teamid="CAP" />
+<player name="Ewandro" pos="184" goals="1" teamuid="34" teamname="Atlético-PR" teamid="CAP" />
+<player name="Léo" pos="184" goals="1" teamuid="34" teamname="Atlético-PR" teamid="CAP" />
+<player name="Nikão" pos="184" goals="1" teamuid="34" teamname="Atlético-PR" teamid="CAP" />
+<player name="Otavio" pos="184" goals="1" teamuid="34" teamname="Atlético-PR" teamid="CAP" />
+<player name="Vinicius" pos="184" goals="1" teamuid="34" teamname="Atlético-PR" teamid="CAP" />
+<player name="Canales" pos="184" goals="1" teamuid="37" teamname="Botafogo" teamid="BOT" />
+<player name="Dudu Cearense" pos="184" goals="1" teamuid="37" teamname="Botafogo" teamid="BOT" />
+<player name="Gervasio Nunez" pos="184" goals="1" teamuid="37" teamname="Botafogo" teamid="BOT" />
+<player name="Ribamar" pos="184" goals="1" teamuid="37" teamname="Botafogo" teamid="BOT" />
+<player name="Salgueiro" pos="184" goals="1" teamuid="37" teamname="Botafogo" teamid="BOT" />
+<player name="Filipe Machado" pos="184" goals="1" teamuid="93" teamname="Chapecoense" teamid="CHA" />
+<player name="Lourency" pos="184" goals="1" teamuid="93" teamname="Chapecoense" teamid="CHA" />
+<player name="Martinuccio" pos="184" goals="1" teamuid="93" teamname="Chapecoense" teamid="CHA" />
+<player name="André" pos="184" goals="1" teamuid="38" teamname="Corinthians" teamid="COR" />
+<player name="Camacho" pos="184" goals="1" teamuid="38" teamname="Corinthians" teamid="COR" />
+<player name="Danilo" pos="184" goals="1" teamuid="38" teamname="Corinthians" teamid="COR" />
+<player name="Elias" pos="184" goals="1" teamuid="38" teamname="Corinthians" teamid="COR" />
+<player name="Fagner" pos="184" goals="1" teamuid="38" teamname="Corinthians" teamid="COR" />
+<player name="Léo Príncipe" pos="184" goals="1" teamuid="38" teamname="Corinthians" teamid="COR" />
+<player name="Luciano" pos="184" goals="1" teamuid="38" teamname="Corinthians" teamid="COR" />
+<player name="Rildo" pos="184" goals="1" teamuid="38" teamname="Corinthians" teamid="COR" />
+<player name="Vilson" pos="184" goals="1" teamuid="38" teamname="Corinthians" teamid="COR" />
+<player name="Alan Santos" pos="184" goals="1" teamuid="39" teamname="Coritiba" teamid="CFC" />
+<player name="Carlinhos" pos="184" goals="1" teamuid="39" teamname="Coritiba" teamid="CFC" />
+<player name="João Paulo" pos="184" goals="1" teamuid="39" teamname="Coritiba" teamid="CFC" />
+<player name="Juninho" pos="184" goals="1" teamuid="39" teamname="Coritiba" teamid="CFC" />
+<player name="Luccas Claro" pos="184" goals="1" teamuid="39" teamname="Coritiba" teamid="CFC" />
+<player name="Nery Bareiro" pos="184" goals="1" teamuid="39" teamname="Coritiba" teamid="CFC" />
+<player name="Neto Berola" pos="184" goals="1" teamuid="39" teamname="Coritiba" teamid="CFC" />
+<player name="Ortega" pos="184" goals="1" teamuid="39" teamname="Coritiba" teamid="CFC" />
+<player name="Rafael Marques" pos="184" goals="1" teamuid="39" teamname="Coritiba" teamid="CFC" />
+<player name="Ruy" pos="184" goals="1" teamuid="39" teamname="Coritiba" teamid="CFC" />
+<player name="Walisson" pos="184" goals="1" teamuid="39" teamname="Coritiba" teamid="CFC" />
+<player name="Ariel Cabral" pos="184" goals="1" teamuid="40" teamname="Cruzeiro" teamid="CRU" />
+<player name="Bruno Rodrigo" pos="184" goals="1" teamuid="40" teamname="Cruzeiro" teamid="CRU" />
+<player name="Douglas Coutinho" pos="184" goals="1" teamuid="40" teamname="Cruzeiro" teamid="CRU" />
+<player name="Fabricio Bruno" pos="184" goals="1" teamuid="40" teamname="Cruzeiro" teamid="CRU" />
+<player name="Manoel" pos="184" goals="1" teamuid="40" teamname="Cruzeiro" teamid="CRU" />
+<player name="Riascos" pos="184" goals="1" teamuid="40" teamname="Cruzeiro" teamid="CRU" />
+<player name="Bruno Alves" pos="184" goals="1" teamuid="62" teamname="Figueirense" teamid="FIG" />
+<player name="Marquinhos" pos="184" goals="1" teamuid="62" teamname="Figueirense" teamid="FIG" />
+<player name="Nirley" pos="184" goals="1" teamuid="62" teamname="Figueirense" teamid="FIG" />
+<player name="Rafael Silva" pos="184" goals="1" teamuid="62" teamname="Figueirense" teamid="FIG" />
+<player name="Ederson" pos="184" goals="1" teamuid="41" teamname="Flamengo" teamid="FLA" />
+<player name="Douglas" pos="184" goals="1" teamuid="42" teamname="Fluminense" teamid="FLU" />
+<player name="Maranhão" pos="184" goals="1" teamuid="42" teamname="Fluminense" teamid="FLU" />
+<player name="Marquinho" pos="184" goals="1" teamuid="42" teamname="Fluminense" teamid="FLU" />
+<player name="Renato Chaves" pos="184" goals="1" teamuid="42" teamname="Fluminense" teamid="FLU" />
+<player name="Bobô" pos="184" goals="1" teamuid="44" teamname="Grêmio" teamid="GRE" />
+<player name="Bolanos" pos="184" goals="1" teamuid="44" teamname="Grêmio" teamid="GRE" />
+<player name="Bressan" pos="184" goals="1" teamuid="44" teamname="Grêmio" teamid="GRE" />
+<player name="Edilson" pos="184" goals="1" teamuid="44" teamname="Grêmio" teamid="GRE" />
+<player name="Henrique Almeida" pos="184" goals="1" teamuid="44" teamname="Grêmio" teamid="GRE" />
+<player name="Marcelo Oliveira" pos="184" goals="1" teamuid="44" teamname="Grêmio" teamid="GRE" />
+<player name="Matheus Batista" pos="184" goals="1" teamuid="44" teamname="Grêmio" teamid="GRE" />
+<player name="Ramiro" pos="184" goals="1" teamuid="44" teamname="Grêmio" teamid="GRE" />
+<player name="Walace" pos="184" goals="1" teamuid="44" teamname="Grêmio" teamid="GRE" />
+<player name="Alex" pos="184" goals="1" teamuid="45" teamname="Internacional" teamid="INT" />
+<player name="Anderson" pos="184" goals="1" teamuid="45" teamname="Internacional" teamid="INT" />
+<player name="Ariel" pos="184" goals="1" teamuid="45" teamname="Internacional" teamid="INT" />
+<player name="Fernando Bob" pos="184" goals="1" teamuid="45" teamname="Internacional" teamid="INT" />
+<player name="Gustavo Ferrareis" pos="184" goals="1" teamuid="45" teamname="Internacional" teamid="INT" />
+<player name="Cristaldo" pos="184" goals="1" teamuid="47" teamname="Palmeiras" teamid="PAL" />
+<player name="Fabiano" pos="184" goals="1" teamuid="47" teamname="Palmeiras" teamid="PAL" />
+<player name="Lucas Barrios" pos="184" goals="1" teamuid="47" teamname="Palmeiras" teamid="PAL" />
+<player name="Rafael Marques" pos="184" goals="1" teamuid="47" teamname="Palmeiras" teamid="PAL" />
+<player name="Thiago Santos" pos="184" goals="1" teamuid="47" teamname="Palmeiras" teamid="PAL" />
+<player name="Zé Roberto" pos="184" goals="1" teamuid="47" teamname="Palmeiras" teamid="PAL" />
+<player name="Antônio Carlos" pos="184" goals="1" teamuid="68" teamname="Ponte Preta" teamid="PON" />
+<player name="Douglas Grolli" pos="184" goals="1" teamuid="68" teamname="Ponte Preta" teamid="PON" />
+<player name="Jeferson" pos="184" goals="1" teamuid="68" teamname="Ponte Preta" teamid="PON" />
+<player name="Maycon" pos="184" goals="1" teamuid="68" teamname="Ponte Preta" teamid="PON" />
+<player name="Fernando Gabriel" pos="184" goals="1" teamuid="113" teamname="Santa Cruz" teamid="STC" />
+<player name="Lelê" pos="184" goals="1" teamuid="113" teamname="Santa Cruz" teamid="STC" />
+<player name="Marcilio" pos="184" goals="1" teamuid="113" teamname="Santa Cruz" teamid="STC" />
+<player name="Roberto" pos="184" goals="1" teamuid="113" teamname="Santa Cruz" teamid="STC" />
+<player name="Vítor" pos="184" goals="1" teamuid="113" teamname="Santa Cruz" teamid="STC" />
+<player name="Fabián Noguera" pos="184" goals="1" teamuid="49" teamname="Santos" teamid="SAN" />
+<player name="Gustavo Henrique" pos="184" goals="1" teamuid="49" teamname="Santos" teamid="SAN" />
+<player name="Luiz Felipe" pos="184" goals="1" teamuid="49" teamname="Santos" teamid="SAN" />
+<player name="Victor Ferraz" pos="184" goals="1" teamuid="49" teamname="Santos" teamid="SAN" />
+<player name="Yuri" pos="184" goals="1" teamuid="49" teamname="Santos" teamid="SAN" />
+<player name="Ganso" pos="184" goals="1" teamuid="50" teamname="São Paulo" teamid="SPL" />
+<player name="Gilberto" pos="184" goals="1" teamuid="50" teamname="São Paulo" teamid="SPL" />
+<player name="João Schmidt" pos="184" goals="1" teamuid="50" teamname="São Paulo" teamid="SPL" />
+<player name="Kelvin" pos="184" goals="1" teamuid="50" teamname="São Paulo" teamid="SPL" />
+<player name="Lucas Fernandes" pos="184" goals="1" teamuid="50" teamname="São Paulo" teamid="SPL" />
+<player name="Luiz Araujo" pos="184" goals="1" teamuid="50" teamname="São Paulo" teamid="SPL" />
+<player name="Lyanco" pos="184" goals="1" teamuid="50" teamname="São Paulo" teamid="SPL" />
+<player name="Rodrigo Caio" pos="184" goals="1" teamuid="50" teamname="São Paulo" teamid="SPL" />
+<player name="Wesley" pos="184" goals="1" teamuid="50" teamname="São Paulo" teamid="SPL" />
+<player name="Ytalo" pos="184" goals="1" teamuid="50" teamname="São Paulo" teamid="SPL" />
+<player name="Durval" pos="184" goals="1" teamuid="51" teamname="Sport" teamid="SPO" />
+<player name="Everton Felipe" pos="184" goals="1" teamuid="51" teamname="Sport" teamid="SPO" />
+<player name="Luis Ruiz" pos="184" goals="1" teamuid="51" teamname="Sport" teamid="SPO" />
+<player name="Mark González" pos="184" goals="1" teamuid="51" teamname="Sport" teamid="SPO" />
+<player name="Ronaldo" pos="184" goals="1" teamuid="51" teamname="Sport" teamid="SPO" />
+<player name="Ronaldo Alves" pos="184" goals="1" teamuid="51" teamname="Sport" teamid="SPO" />
+<player name="Serginho" pos="184" goals="1" teamuid="51" teamname="Sport" teamid="SPO" />
+<player name="Túlio de Melo" pos="184" goals="1" teamuid="51" teamname="Sport" teamid="SPO" />
+<player name="Euller" pos="184" goals="1" teamuid="52" teamname="Vitória" teamid="VIT" />
+<player name="Leandro Domingues" pos="184" goals="1" teamuid="52" teamname="Vitória" teamid="VIT" />
+<player name="Nickson" pos="184" goals="1" teamuid="52" teamname="Vitória" teamid="VIT" />
+<player name="Serginho" pos="184" goals="1" teamuid="52" teamname="Vitória" teamid="VIT" />
+<player name="Victor Ramos" pos="184" goals="1" teamuid="52" teamname="Vitória" teamid="VIT" />
+
+</scorers>

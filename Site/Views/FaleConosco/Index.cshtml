@@ -1,0 +1,157 @@
+﻿@using Recaptcha.Web.Mvc;
+@model Site.Models.FaleConosco
+
+@section SEO{
+    <meta name="DC.title" content="Fale Conosco - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:title" content="Fale Conosco - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="@Url.Content("~/images/ico-facebook.jpg")" />
+    <meta property="og:url" content="@HttpContext.Current.Request.Url.AbsoluteUri" />
+    <title>Fale Conosco - Rádio CompanyName | A Rádio de Minas</title>
+}
+
+
+<div class="wrapper-general center">
+    <header class="nav-intern clearfix">
+        <div class="buttons">
+            <a class="bt-back" href="javascript:window.history.go(-1)"> <i class="fa fa-angle-left"></i> Voltar</a>
+            Texto: <button class="more bt-resize">+</button> <button class="bt-resize minus">-</button>
+        </div>
+        <nav class="breadcumb">
+            <a href="@Url.Action("Index","Home")">Home</a>
+            <span>Fale Conosco</span>
+        </nav>
+    </header>
+    <h1 class="title-page">Fale Conosco</h1>
+    <section class="clearfix">
+        <div class="boxs-half">
+            <div class="block-text">
+                <p>Para a CompanyName, sua opini&atilde;o vale muito! Fa&ccedil;a a R&aacute;dio de Minas junto com a gente, enviando seus elogios, cr&iacute;ticas e sugest&otilde;es sobre nossa programa&ccedil;&atilde;o. Para isso, basta preencher corretamente os campos ao lado e clicar em enviar.</p>
+            </div>
+            <div class="content-margin">
+                <h2 class="title-sector mini">Localização</h2>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3751.313592756579!2d-43.9488664!3d-19.9111858!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa6975445f3f1ff%3A0xbe7e387849d9c6c4!2sR%C3%A1dio+CompanyName!5e0!3m2!1spt-BR!2sbr!4v1484576065702" width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <fieldset class="boxs-half">
+            @using (Ajax.BeginForm("Cadastrar", "FaleConosco", new AjaxOptions
+            {
+                OnSuccess = "OnOk",
+                OnFailure = "OnError",
+                OnBegin = "BeforeSend"
+
+            }, new { id = "form-contact", @class = "form-contact row-grid" }))
+            {
+                <div class="grid-12">
+                    <label for="nome">Nome</label>
+                    @Html.TextBoxFor(m => m.nome, new { @required = "required", @class = "input-form", @maxlength = 100 })
+                </div>
+                <div class="grid-12">
+                    <label for="email">E-mail</label>
+                    <input required type="email" class="input-form" id="email" name="email" pattern="[a-z0-9._%+-]+&#64;[a-z0-9.-]+\.[a-z]{2,4}$" maxlength="200">
+                </div>
+                <div class="grid-6">
+                    <label for="telefone">Telefone</label>
+                    <input required type="text" class="input-form" id="telefone" name="telefone">
+                </div>
+                <div class="grid-6">
+                    <label for="celular">Celular</label>
+                    <input required type="text" class="input-form" id="celular" name="celular">
+                </div>
+                <div class="grid-5">
+                    <label for="estado">Estado</label>
+                    <select required type="text" class="input-form" id="estado" name="estado">
+                        <option value="0"></option>
+                    </select>
+                </div>
+                <div class="grid-7">
+                    <label for="cidade">Cidade</label>
+                    <select required type="text" class="input-form" id="cidade" name="cidade"></select>
+                </div>
+
+                <div class="grid-12">
+                    <label for="assunto">Assunto</label>
+                    <input required type="text" class="input-form" id="assunto" name="assunto" maxlength="100">
+                </div>
+                <div class="grid-12">
+                    <label for="msg">Mensagem</label>
+                    <textarea required name="mensagem" class="input-form" id="mensagem" maxlength="800"></textarea>
+                </div>
+
+                <div class="grid-12 clearfix">
+                    <div class="capthca-box">
+                        @Html.Recaptcha()
+                    </div>
+                    <input type="submit" value="Enviar" id="post-enviar" class="bt-red">
+                    <div class="div-loading" style="display:none">
+                            <img src="~/images/loading-circle.gif" />
+                    </div>
+
+                </div>
+            }
+
+
+
+            <div class="msg-info" id="sucesso" style="display: none">
+                <i class="fa fa-check-circle-o"></i>
+                <h2 class="title-area">Obrigado!</h2>
+                <p class="title-medium">Sua Mensagem foi enviada com sucesso!</p>
+            </div>
+
+        </fieldset>
+    </section>
+</div>
+@section scripts {
+    <script src="~/scripts/cidades-estados-utf8.js"></script>
+    <script type="text/javascript">
+        new dgCidadesEstados({
+            cidade: document.getElementById('cidade'),
+            estado: document.getElementById('estado')
+        })
+
+
+        function OnError(response) {
+            console.log(response);
+            swal('Erro', 'Ocorreu um erro interno! Tente novamente mais tarde', 'error');
+            $(".div-loading").hide();
+            $(".bt-red").show();
+            
+        }
+
+        function OnOk(response) {
+            console.log(response);
+            $(".div-loading").hide();
+            $(".bt-red").show();
+
+
+            switch (response.result) {
+                case "success":
+                    swal('Sucesso', 'Seu formulário foi enviado com sucesso! Obrigado!', 'success');
+                    $("#form-contact").find('input:text, select, textarea').val('');
+                    break;
+                case "captcha_branco":
+                    swal('Erro', 'O Captcha não pode ser deixado em branco', 'error');
+                    break;
+                case "captcha_error":
+                    swal('Erro', 'O Captcha não foi validado! Confira o preenchimento!', 'error');
+                    break;
+                case "invalid":
+                    swal('Erro', 'Campos inválidos! Verifique e envie novamente!', 'error');
+                    break;
+                default:
+                    swal('Erro', 'Ocorreu um erro interno! Tente novamente mais tarde', 'error');
+                    break;
+            }
+            
+        }
+        function BeforeSend(content) {
+            $(".bt-red").hide();
+            $(".div-loading").show();
+        }
+
+    </script>
+
+
+}

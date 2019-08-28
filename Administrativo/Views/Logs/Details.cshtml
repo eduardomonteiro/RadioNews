@@ -1,0 +1,65 @@
+﻿@using Administrativo.Helpers
+@using Administrativo.Enums
+@model Administrativo.Models.Logs
+
+@{
+    ViewBag.Title = "Detalhe do Log";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Visualizar detalhes do log selecionado";
+    var obj = new Administrativo.Controllers.LogsController();
+    var username = obj.getUserName(Model.UserId);
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">Detalhes</h3>
+            </div>
+            <div class="box-content padded">
+                 <table class="table table-bordered table-striped responsive">
+                    <tbody>
+                        <tr>
+                            <td style="width:200px;">@Html.DisplayNameFor(model => model.Id)</td>
+                            <td>@Html.DisplayFor(model => model.Id)</td>
+                        </tr>
+
+                        <tr>
+                            <td>Usuário</td>
+                            <td>@username</td>
+                        </tr>
+
+                        <tr>
+                            <td>Area acessada</td>
+                            <td>@Model.AreasADM.Area</td>
+                        </tr>
+                        <tr>
+                            <td>Ação realizada</td>
+                            <td>@(GerenciaLogs.GetDescriptionFromEnumValue((TipoAcesso)Model.Acao))</td>
+                        </tr>
+                        @if (Model.Detalhes.HasValue)
+                        {
+                            <tr>
+                                <td>Id do item</td>
+                                <td>@Model.Detalhes.Value</td>
+                            </tr>
+                        }
+                        <tr>
+                            <td>IP</td>
+                            <td>@Model.IP</td>
+                        </tr>
+                        <tr>
+                            <td>Data e Hora</td>
+                            <td>@Model.Data.ToShortDateString() às @Model.Data.ToShortTimeString()</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="box-footer">
+                <a href="@Url.Action("Index","Logs")" class="btn btn-info">Voltar</a>
+            </div>
+        </div>
+    </div>
+</div>
+

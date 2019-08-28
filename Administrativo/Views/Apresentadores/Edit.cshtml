@@ -1,0 +1,167 @@
+﻿@model Administrativo.Models.Apresentadores
+
+@{
+    ViewBag.Title = "Editar apresentador ou convidado";
+    ViewBag.Icon = "fa fa-male";
+    ViewBag.SmallDescription = "Altere as informações do apresentador ou convidados";
+}
+
+<div class="content">
+    <div class="row">
+        <div class="box box-warning">
+            <div class="box-header">
+                <h3 class="box-title">Editar apresentadores ou convidados</h3>
+            </div>
+            @using (Html.BeginForm("Edit", "Apresentadores", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="box-body">
+                    @Html.HiddenFor(model => model.id)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.nome)
+
+                        @Html.TextBoxFor(model => model.nome, new { @maxlength = 100, @class = "text-box" })
+                        @Html.ValidationMessageFor(model => model.nome)
+                    </div>
+
+                    @*<div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.fotoInterna)
+
+                                @Html.TextBoxFor(model => model.fotoInterna, new { style = "display: none;" })
+                                <input type="file" name="fotoInternaUpload" id="fotoInternaUpload" onchange="javascript: $('#fotoInterna').val($(this).val().split('\\').pop());" />
+                                @Html.ValidationMessageFor(model => model.fotoInterna)
+                            </div>
+                            <div class="col-md-5">
+                                @if (!string.IsNullOrEmpty(Model.fotoInterna))
+                                {
+
+                                    <a class="btn btn-block btn-primary" data-toggle="modal" data-target="#foto-interna" style="width: 120px;">Imagem Atual</a>
+
+                                }
+                                else
+                                {
+                                    <p class="text-yellow">Sem Miniatura.</p>
+                                }
+                            </div>
+                        </div>
+                    </div>*@
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.fotoExterna)
+
+                                @Html.TextBoxFor(model => model.fotoExterna, new { style = "display: none;" })
+                                <input type="file" name="fotoExternaUpload" id="fotoExternaUpload" onchange="javascript: $('#fotoExterna').val($(this).val().split('\\').pop());" />
+                                @Html.ValidationMessageFor(model => model.fotoExterna)
+                            </div>
+                            <div class="col-md-5">
+                                @if (!string.IsNullOrEmpty(Model.fotoExterna))
+                                {
+
+                                    <a class="btn btn-block btn-primary" data-toggle="modal" data-target="#foto-externa" style="width: 120px;">Imagem Atual</a>
+
+                                }
+                                else
+                                {
+                                    <p class="text-yellow">Sem Miniatura.</p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="chamada">Função</label>
+
+                        @Html.TextBoxFor(model => model.chamada, new { @maxlength = 100, @class = "text-box" })
+                        @Html.ValidationMessageFor(model => model.chamada)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.texto)
+
+                        @Html.TextAreaFor(model => model.texto, new { @class = "text-box", style = "height: 250px;" })
+                        @Html.ValidationMessageFor(model => model.texto)
+                    </div>
+
+                    <div class="form-group">
+                        <label>É participante ou convidado de algum programa?</label>
+
+                        @Html.BooleanFieldFor(model => model.participanteConvidado, false, new { @class = "form-control", style = "width: 120px;" })
+                        @Html.ValidationMessageFor(model => model.participanteConvidado)
+                    </div>
+
+                </div>
+                <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a href="@Url.Action("Index", "Apresentadores")" class="btn btn-info">Voltar</a>
+
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="foto-externa" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Imagem Atual</h4>
+
+            </div>
+            <div class="modal-body">
+                <img src="@Url.Content(ViewBag.caminhoListagem + Model.fotoExterna)" />
+            </div>
+            <div class="modal-footer clearfix">
+
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="fa fa-times"></i>Fechar
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="foto-interna" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Imagem Atual</h4>
+
+            </div>
+            <div class="modal-body">
+                <img src="@Url.Content(ViewBag.caminhoInterna + Model.fotoInterna)" />
+            </div>
+            <div class="modal-footer clearfix">
+
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="fa fa-times"></i>Fechar
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var editor = CKEDITOR.replace('texto',
+                {
+                    height: "200px"
+                });
+
+
+
+        });
+    </script>
+}

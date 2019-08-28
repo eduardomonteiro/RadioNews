@@ -1,0 +1,80 @@
+﻿@model Administrativo.Models.ApoioPADs
+
+@{
+    ViewBag.Title = "Detalhes do apoiador: " + Model.Nome + " - Painéis Digitais";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Visualizar detalhes do Apoiador - Painéis Digitais";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">Detalhes</h3>
+            </div>
+            <div class="box-content padded">
+                <table class="table table-bordered table-striped responsive">
+                    <tbody>
+                        <tr>
+                            <td style="width:200px;">@Html.DisplayNameFor(model => model.Id)</td>
+                            <td>@Html.DisplayFor(model => model.Id)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Nome)</td>
+                            <td>@Html.DisplayFor(model => model.Nome)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.DataCadastro)</td>
+                            <td>@Html.DisplayFor(model => model.DataCadastro)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Logo)</td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(Model.Logo))
+                                {
+
+                                    <a class="btn btn-block btn-primary" data-toggle="modal" data-target="#imagem-foto" style="width: 120px; padding: 3px;">Imagem Atual</a>
+
+                                }
+                                else
+                                {
+                                    <p class="text-yellow">Sem Foto</p>
+                                }
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="box-footer">
+                <a href="@Url.Action("Edit","ApoioPaineis", new { id = Model.Id })" class="btn btn-warning">Editar</a>
+                <a href="@Url.Action("Index","ApoioPaineis")" class="btn btn-info">Voltar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="imagem-foto" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Logo Atual</h4>
+            </div>
+            <div class="modal-body">
+                @if (!string.IsNullOrEmpty(Model.Logo))
+                {
+                    <img src="~/Conteudo/ApoioPAD/@Model.Id/@Model.Logo" width="500" />
+                }
+
+            </div>
+            <div class="modal-footer clearfix">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="fa fa-times"></i>Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

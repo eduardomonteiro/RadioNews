@@ -1,0 +1,191 @@
+﻿@model Administrativo.Models.Enquete
+
+@{
+    ViewBag.Title = "Cadastrar Enquete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="content">
+    <div class="row">
+        @using (Html.BeginForm())
+        {
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Cadastrar Enquete</h3>
+                </div>
+
+                @Html.AntiForgeryToken()
+
+                <div class="box-body">
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.pergunta)
+
+                        @Html.TextAreaFor(model => model.pergunta, new { @class = "form-control", @rows = 3,maxlength=300 })
+                        @Html.ValidationMessageFor(model => model.pergunta)
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.dataInicioVotacao)
+                                <input type="datetime" id="dataInicioVotacao" name="dataInicioVotacao" class="form-control" />
+                                @Html.ValidationMessageFor(model => model.dataInicioVotacao)
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.dataFimVotacao)
+                                <input type="datetime" id="dataFimVotacao" name="dataFimVotacao" class="form-control" />
+                                @Html.ValidationMessageFor(model => model.dataFimVotacao)
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.dataFimResultado)
+                        <input type="datetime" id="DataFimResultado" name="DataFimResultado" class="form-control" />
+                        @Html.ValidationMessageFor(model => model.dataFimResultado)
+                    </div>
+                    
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ativa)
+
+                        @Html.CheckBoxFor(model => model.ativa, new { @class = "form-control", @rows = 3 })
+                        @Html.ValidationMessageFor(model => model.ativa)
+
+
+
+
+
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        @Html.LabelFor(model => model.destaque)
+
+                        @Html.CheckBoxFor(model => model.destaque, new { @class = "form-control", @rows = 3 })
+                        @Html.ValidationMessageFor(model => model.destaque)
+                    </div>
+
+
+
+                    <div class="form-group">
+                       
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Respostas</h3>
+                </div>
+
+
+                <div class="box-body">
+                    <table class="table ">
+                        <tr>
+                            @*<th>
+                                Correta
+                            </th>*@
+                            <th style="width:90%;">
+                                Resposta
+                            </th>
+                        </tr>
+                        <tr>
+                            @*<td>
+                                <input type="radio" name="correta" style="margin-left:30%;" value="0" />
+                            </td>*@
+                            <td>
+                                <div class="form-group">
+                                    <input class="text-box single-line valid" name="resposta" type="text" maxlength="60">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            @*<td>
+                                <input type="radio" name="correta" style="margin-left:30%;" value="1"  maxlength="60"/>
+                            </td>*@
+                            <td>
+                                <div class="form-group">
+                                    <input class="text-box single-line valid" name="resposta" type="text" maxlength="60">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            @*<td>
+                                <input type="radio" name="correta" style="margin-left:30%;" value="2" maxlength="60" />
+                            </td>*@
+                            <td>
+                                <div class="form-group">
+                                    <input class="text-box single-line valid" name="resposta" type="text" maxlength="60">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            @*<td>
+                                <input type="radio" name="correta" style="margin-left:30%;" value="3" maxlength="60"/>
+                            </td>*@
+                            <td>
+                                <div class="form-group">
+                                    <input class="text-box single-line valid" name="resposta" type="text" maxlength="60">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            @*<td>
+                                <input type="radio" name="correta" style="margin-left:30%;" value="4" />
+                            </td>*@
+                            <td>
+                                <div class="form-group">
+                                    <input class="text-box single-line valid" name="resposta" type="text" maxlength="60">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            @*<td>
+                                <input type="radio" name="correta" style="margin-left:30%;" value="5" />
+                            </td>*@
+                            <td>
+                                <div class="form-group">
+                                    <input class="text-box single-line valid" name="resposta" type="text" maxlength="60">
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a href="@Url.Action("Index", "Enquete")" class="btn btn-info">Voltar</a>
+
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+
+        $(document).ready(function () {
+            $("textarea[maxlength]").bind('input propertychange', function () {
+                var maxLength = $(this).attr('maxlength');
+                if ($(this).val().length > maxLength) {
+                    $(this).val($(this).val().substring(0, maxLength));
+                }
+            })
+
+
+            $('DataInicio, DataFim, DataFimResultado').datepicker();
+
+        })
+    </script>
+}

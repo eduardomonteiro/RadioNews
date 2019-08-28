@@ -1,0 +1,72 @@
+﻿@model Administrativo.Models.FaleConosco
+
+@{
+    ViewBag.Title = "Responder Mensagens";
+    ViewBag.Icon = "fa fa-envelope";
+    ViewBag.SmallDescription = "Visualizar detalhes de Contato";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+@using (Html.BeginForm())
+{
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">Detalhes</h3>
+            </div>
+            <div class="box-content padded">
+                
+                    <table class="table table-bordered table-striped responsive">
+                        @Html.HiddenFor(c => c.assunto)
+                        @Html.HiddenFor(c => c.celular)
+                        @Html.HiddenFor(c => c.cidade)
+                        @Html.HiddenFor(c => c.dataCadastro)
+                        @Html.HiddenFor(c => c.email)
+                        @Html.HiddenFor(c => c.estado)
+                        @Html.HiddenFor(c => c.excluido)
+                        @Html.HiddenFor(c => c.id)
+                        @Html.HiddenFor(c => c.mensagem)
+                        @Html.HiddenFor(c => c.nome)
+                        @Html.HiddenFor(c => c.telefone)
+                        <tbody>
+                            <tr>
+                                <td>Nome</td>
+                                <td>@Html.DisplayFor(model => model.nome)</td>
+                            </tr>
+                            <tr>
+                                <td>E-mail</td>
+                                <td>@Html.DisplayFor(model => model.email)</td>
+                            </tr>
+                           
+                            <tr>
+                                <td>Mensagem</td>
+                                <td>@Html.DisplayFor(model => model.mensagem)</td>
+                            </tr>
+                            <tr>
+                                <td>Resposta</td>
+                                <td>@Html.TextAreaFor(model => model.resposta, new { style = "width: 479px; height: 154px;" })</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                    <div class="box-footer">
+                        <input type="submit" value="Salvar" class="btn btn-success" />
+                        <a href="@Url.Action("Index","FaleConosco")" class="btn btn-info">Voltar</a>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#resposta").wysihtml5();
+        });
+    </script>
+}
+    
+

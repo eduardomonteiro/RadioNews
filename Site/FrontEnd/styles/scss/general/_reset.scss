@@ -1,0 +1,228 @@
+html {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow-x: hidden;
+  -ms-text-size-adjust: 100%; /* 2 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+body, div, span, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, address, img, ul, li, fieldset, form, label, legend, table, tbody, thead, tr, th, td, article, aside, figure, footer, header, nav, section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: $font;
+  color: $cortext;
+  vertical-align: baseline;
+}
+* {box-sizing: border-box;}
+a[href^="tel"]{
+    color:inherit;
+    text-decoration:none;
+}
+html, body {overflow-x: hidden;}
+input, button {font-family: $font;}
+article, aside, dialog, figure, footer, header, hgroup, nav, section, div {
+  display: block;
+}
+a {color: $vermelho;}
+button, input[type="submit"], input[type="text"], input[type="checkbox"], input[type="radio"]{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+  -khtml-appearance: none;
+  appearance: none; 
+  outline: none;
+}
+select.input-form {
+  background-image: url(../images/arrowacordion.png);
+  background-repeat: no-repeat;
+  background-position: 95% center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+  -khtml-appearance: none;
+  appearance: none; 
+  outline: none;
+}
+input[type="submit"], button {
+  cursor: pointer;
+  border: 0;
+  outline: none;
+}
+li, a, input {outline: none}
+body {
+  line-height: 1;
+  font-size: 10px;
+}
+ol,ul, li {
+  list-style: none;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+table, th, td {
+  vertical-align: middle;
+}
+
+blockquote before, blockquote after, q before, q after {
+  content: '';
+}
+
+a img {
+  border: none;
+}
+a {
+  text-decoration: none;
+}
+.clearfix {
+  &:after {
+    clear: both;
+    display: block;
+    content: ''
+  }
+}
+
+.error {
+  color: #9a0000 !important;
+}
+::-webkit-input-placeholder {
+   color: #1f1a17;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: #1f1a17;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #1f1a17;  
+}
+
+:-ms-input-placeholder {  
+   color: #1f1a17;  
+}
+
+.pull-right {
+  float: right !important;
+}
+
+.pull-left {
+  float: left !important;
+}
+
+.pace {
+  -webkit-pointer-events: none;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.pace-inactive {
+  display: none;
+}
+
+.pace .pace-progress {
+  background: white;
+  position: fixed;
+  z-index: 80000000000;
+  top: 0;
+  right: 100%;
+  width: 100%;
+  height: 5px;
+}
+
+.pace .pace-progress-inner {
+  display: block;
+  position: absolute;
+  right: 0px;
+  width: 100px;
+  height: 100%;
+  z-index: 55555;
+  opacity: 1.0;
+  -webkit-transform: rotate(3deg) translate(0px, -4px);
+  -moz-transform: rotate(3deg) translate(0px, -4px);
+  -ms-transform: rotate(3deg) translate(0px, -4px);
+  -o-transform: rotate(3deg) translate(0px, -4px);
+  transform: rotate(3deg) translate(0px, -4px);
+}
+
+.pace .pace-activity {
+  display: block;
+  position: fixed;
+  z-index: 80000000;
+  top: 15px;
+  right: 15px;
+  width: 14px;
+  height: 14px;
+  border: solid 2px transparent;
+  border-top-color: #651e1e;
+  border-left-color: #651e1e;
+  border-radius: 10px;
+  -webkit-animation: pace-spinner 400ms linear infinite;
+  -moz-animation: pace-spinner 400ms linear infinite;
+  -ms-animation: pace-spinner 400ms linear infinite;
+  -o-animation: pace-spinner 400ms linear infinite;
+  animation: pace-spinner 400ms linear infinite;
+}
+
+@-webkit-keyframes pace-spinner {
+  0% { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@-moz-keyframes pace-spinner {
+  0% { -moz-transform: rotate(0deg); transform: rotate(0deg); }
+  100% { -moz-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@-o-keyframes pace-spinner {
+  0% { -o-transform: rotate(0deg); transform: rotate(0deg); }
+  100% { -o-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@-ms-keyframes pace-spinner {
+  0% { -ms-transform: rotate(0deg); transform: rotate(0deg); }
+  100% { -ms-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@keyframes pace-spinner {
+  0% { transform: rotate(0deg); transform: rotate(0deg); }
+  100% { transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 2px;
+  position: relative;
+  right:  -10px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #181818;
+  border: 0px none #ffffff;
+  cursor: pointer;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3c3c3c;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #000000;
+}
+::-webkit-scrollbar-track {
+  background: #e3e3e3;
+  border: 0px none #ffffff;
+  border-radius: 42px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #bcb8b8;
+}
+::-webkit-scrollbar-track:active {
+  background: #bcb8b8;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}

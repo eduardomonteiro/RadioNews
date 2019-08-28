@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Recurso não encontrado";
+}
+
+@section SEO{}
+
+<div class="wrapper-general center">
+    <header class="nav-intern clearfix">
+        <nav class="breadcumb">
+            <a href="@Url.Action("Index", "Home")">Home</a>
+            <span>Error</span>
+        </nav>
+    </header>
+    <div style="text-align: center; padding: 80px 60px; font-size: 15px; background: #fbfbfb">
+        <h1 class="title-big"><i class="fa fa-exclamation-triangle" style="font-size: 50px;"></i> DESCULPE!</h1>
+        <br />
+        <p class="title-medium">Desculpe essa página não pode ser encontrada. <br /> Verifique sua conexão e tente novamente.</p>
+        <br />
+        <br />
+        <a href="@Url.Action("Index", "Home")" class="bt-red">
+            <i class="fa fa-home"></i>
+            Voltar a home
+        </a>
+    </div>
+</div> 

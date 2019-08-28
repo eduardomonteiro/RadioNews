@@ -1,0 +1,53 @@
+﻿@model Administrativo.Models.Especiais
+
+@{
+    ViewBag.Title = "Especiais";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Visualizar detalhes de Especiais";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">Detalhes</h3>
+            </div>
+            <div class="box-content padded">
+                <table class="table table-bordered table-striped responsive">
+                    <tbody>
+                        <tr>
+                            <td style="width:200px;">@Html.DisplayNameFor(model => model.Id)</td>
+                            <td>@Html.DisplayFor(model => model.Id)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Titulo)</td>
+                            <td>@Html.DisplayFor(model => model.Titulo)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Chave)</td>
+                            <td>@Html.DisplayFor(model => model.Chave)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Ativo)</td>
+                            <td>@(Model.Ativo?"Sim":"Não")</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.DataCadastro)</td>
+                            <td>@Html.DisplayFor(model => model.DataCadastro)</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="box-footer">
+                <a href="@Url.Action("Edit","Especiais", new { id = Model.Id })" class="btn btn-warning">Editar</a>
+                <a href="@Url.Action("Index","Especiais")" class="btn btn-info">Voltar</a>
+            </div>
+        </div>
+    </div>
+</div>
+

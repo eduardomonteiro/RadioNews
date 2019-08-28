@@ -1,0 +1,53 @@
+﻿@model Administrativo.Models.Respostas
+
+@{
+    ViewBag.Title = "Alterar Resposta";
+    ViewBag.SmallDescription = "Alterar resposta aqui.";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="box box-success">
+    <div class="box-header">
+        <h3 class="box-title">Alterar</h3>
+    </div>
+    <!-- /.box-header -->
+    @using (Html.BeginForm())
+            {
+        <div class="box-body">
+
+            <table class="table ">
+                <tr>
+                    <th style="width:5%">
+                        Correta
+                    </th>
+                    <th>
+                        Resposta
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            @Html.HiddenFor(model => model.votos)
+                            <input type="checkbox" name="correta" @(Model.certa == true ? "checked" : "") style="margin-left:30%;" value="@Model.id" />
+
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            @Html.HiddenFor(model => model.votos)
+
+                            <input class="text-box single-line valid" name="resposta" maxlength="60" type="text" value="@Model.resposta">
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+        <div class="box-footer">
+            <input type="submit" value="Salvar" class="btn btn-success" />
+            <a class="btn btn-info" href="@Url.Action("Edit","Enquete",new { id= Model.idEnquete})">Voltar</a>
+        </div>
+    }
+</div>

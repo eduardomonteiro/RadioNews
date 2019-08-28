@@ -1,0 +1,184 @@
+﻿@model Administrativo.Models.Editoriais
+
+@{
+    ViewBag.Title = "Editar Editoriais";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Altere as informações de Editoriais";
+}
+
+<div class="content">
+    <div class="row">
+        <div class="box box-warning">
+            <div class="box-header">
+                <h3 class="box-title">Editar Editoriais</h3>
+            </div>
+            @using (Html.BeginForm("Edit", "Editoriais", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="box-body">
+                    @Html.HiddenFor(model => model.id)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.nome)
+
+                        @Html.TextBoxFor(model => model.nome, new { @maxlength = 100, @class = "text-box" })
+                        @Html.ValidationMessageFor(model => model.nome)
+                    </div>
+
+                    <div class="form-group">
+                        <label>É uma editoria Especial?</label>
+                        @Html.BooleanFieldFor(model => model.especial, Model.especial, new { @class = "form-control", style = "width: 120px;" })
+                        @Html.ValidationMessageFor(model => model.especial)
+                    </div>
+
+                    <div class="form-group">
+                        <label>É uma editoria de Esportes?</label>
+                        @Html.BooleanFieldFor(model => model.esportes, Model.esportes, new { @class = "form-control", style = "width: 120px;" })
+                        @Html.ValidationMessageFor(model => model.esportes)
+                    </div>
+
+                    <div class="form-group">
+                        <label>É um Canal?</label>
+                        @Html.BooleanFieldFor(model => model.canal, Model.canal, new { @class = "form-control", style = "width: 120px;" })
+                        @Html.ValidationMessageFor(model => model.canal)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ativo)
+                        @Html.BooleanFieldFor(model => model.ativo, Model.ativo, new { @class = "form-control", style = "width: 120px;" })
+                        @Html.ValidationMessageFor(model => model.ativo)
+                    </div>
+
+                    <div class="div-modelo" style="@(Model.especial ? "" : "display:none;")">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Descricao)
+                            @Html.TextBoxFor(model => model.Descricao, new { @maxlength = 512, @class = "text-box" })
+                            @Html.ValidationMessageFor(model => model.Descricao)
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Foto - <em>Resolução mínima recomendada (365x240)</em></label>
+
+                                    @Html.HiddenFor(model => model.FotoCapa)
+                                    <input type="file" name="fotoUpload" id="fotoUpload" onchange="javascript: $('#foto').val($(this).val().split('\\').pop());" accept="image/*" />
+                                    <label id="lblFotoExistente"></label>
+                                    @Html.ValidationMessageFor(model => model.FotoCapa)
+
+                                    <input type="hidden" id="fotoExistente" name="fotoExistente" />
+
+                                    @if (!string.IsNullOrEmpty(Model.FotoCapa))
+                                    {
+                                        <div><a class="text-blue btn-remove-foto" href="#"><strong>Remover Foto</strong></a></div>
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                @if (!string.IsNullOrEmpty(Model.FotoCapa))
+                                {
+
+                                    <a class="btn btn-block btn-primary" id="btn-imagem" data-toggle="modal" data-target="#imagem-foto" style="width: 120px;">Imagem Atual</a>
+
+                                }
+                                else
+                                {
+                                    <p class="text-yellow">Sem Imagem.</p>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Modelo</label>
+                            @Html.DropDownList("modeloEspecial", null, "Selecione...", new { @class = "chosen-select" })
+                        </div>
+                    </div>
+
+                    </div>
+                <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a href="@Url.Action("Index", "Editoriais")" class="btn btn-info">Voltar</a>
+
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="imagem-foto" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Imagem Atual</h4>
+            </div>
+            <div class="modal-body">
+                @if (!string.IsNullOrEmpty(Model.FotoCapa))
+                {
+                    if (Model.FotoCapa.Contains("Conteudo"))
+                    {
+                        <img src="~/@Model.FotoCapa" width="500" />
+                    }
+                    else
+                    {
+                        <img src="@Url.Content(string.Format(ViewBag.pathOriginal,Model.id) + Model.FotoCapa)" width="500" />
+                    }
+                }
+            </div>
+
+            <div class="modal-footer clearfix">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="fa fa-times"></i>Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+<script>
+    $(document).ready(function () {
+        $(".iframe").colorbox({ iframe: true, width: "80%", height: "80%" })
+
+        $(".chosen-select").chosen({ width: "100%" });
+
+        $("#especial").on('change', function () {
+            var value = $(this).val();
+            console.log(value);
+            if (value == "true") {
+                $(".div-modelo").show();
+            }
+            else {
+                $(".div-modelo").hide();
+            }
+        });
+
+        $(".btn-remove-foto").on('click', function () {
+            swal({
+                title: 'Exclusão',
+                text: "Deseja mesmo excluir a imagem desta editoria?",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#DD6B55',
+                confirmButtonText: 'Sim',
+                cancelButtonText: 'Não',
+            }).then(function () {
+                $("#foto").val("");
+                $("#btn-imagem").hide();
+            }, function (dismiss) {
+                if (dismiss === 'cancel') {
+
+                }
+            })
+        });
+
+        function getvalue(valor) {
+            document.getElementById('fotoExistente').value = valor;
+            $("#lblFotoExistente").html(valor);
+            $.colorbox.close();
+        }
+    });
+</script>
+}

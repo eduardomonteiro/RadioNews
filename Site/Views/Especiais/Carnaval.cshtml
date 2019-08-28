@@ -1,0 +1,214 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@using Site.Helpers
+@model Site.ViewModels.ModeloEspecialCarnavalViewModel
+
+@section SEO{
+    <meta name="DC.title" content="Especial - Carnaval - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:title" content="Especial - Carnaval - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="@Url.Content("~/images/ico-facebook.jpg")" />
+    <meta property="og:url" content="@HttpContext.Current.Request.Url.AbsoluteUri" />
+    <title>Especial - Carnaval - Rádio CompanyName | A Rádio de Minas</title>
+}
+
+
+<div class="wrapper-general">
+    <div class="center">
+        <header class="nav-intern clearfix">
+            <div class="buttons">
+                <a class="bt-back" href="javascript:window.history.go(-1)"> <i class="fa fa-angle-left"></i> Voltar</a>
+                Texto: <button class="more bt-resize">+</button> <button class="bt-resize minus">-</button>
+            </div>
+            <nav class="breadcumb">
+                <a href="@Url.Action("Index","Home")">Home</a>
+                <a href="#">Especiais</a>
+                <span>Carnaval 2017</span>
+            </nav>
+        </header>
+    </div>
+    <main class="banner-carnaval">
+        <h1 class="title">Carnaval <strong>2017</strong></h1>
+        @if (Model.NoticiasDestaques != null && Model.NoticiasDestaques.Count > 0)
+        {
+            <ul class="list" id="banner-carnaval">
+
+                @foreach (var item in Model.NoticiasDestaques)
+                {
+                    <li style="background-image: url( @Utils.fullUrlImage("744x500", item.id))">
+                        <a href="@Url.Action("Detalhes", "Noticias", new { chave = item.url })" class="legend">
+                            <span class="tag">@item.subtitulo</span>
+                            <h2>@item.titulo</h2>
+                        </a>
+                    </li>
+                }
+
+
+            </ul>
+        }
+    </main>
+
+    <div class="center">
+
+        <section class="featured-noticies mini" id="normal">
+
+            @if (Model.Noticias != null && Model.Noticias.Count > 0)
+            {
+                foreach (var item in Model.Noticias)
+                {
+                    <article>
+                        @if (!string.IsNullOrEmpty(item.foto))
+                        {
+                            <figure style="background-image: url( @Utils.fullUrlImage("365x240", item.id))" class="pic"></figure>
+                        }
+
+
+                        <a href="@Url.Action("Detalhes","Noticias", new { chave = item.url })">
+                            <div class="content">
+                                <h4 class="cat">@item.Categorias.FirstOrDefault().Titulo</h4>
+                                <h3 class="title">@item.titulo</h3>
+                            </div>
+                        </a>
+                    </article>
+                }
+
+            }
+
+
+        </section>
+
+        <div class="t-center">
+            <a class="button-green" href="@Url.Action("Index","Editorias", new { chave = "carnaval-2017" })">Ver mais</a>
+        </div>
+
+        @if (Model.Banner != null)
+        {
+            if (!string.IsNullOrEmpty(Model.Banner.Link))
+            {
+                <a href="@Model.Banner.Link" target="_blank" onclick="clickBanner(@Model.Banner.Id)">
+                    <img class="banner-act promotional-banner" 
+                    data-cliente="@Model.Banner.Anunciante" 
+                    data-comercial="@Model.Banner.AreaBanner.FirstOrDefault().Descricao" 
+                    data-dimensao="@Model.Banner.AreaBanner.FirstOrDefault().Tamanho"     
+                    src="/admin/Conteudo/Banners/@Model.Banner.AreaBanner.FirstOrDefault().Tamanho/@Model.Banner.Arquivo" alt="@Model.Banner.Titulo" data-banner-id="@Model.Banner.Id">
+                </a>
+            }
+            else
+            {
+                <img class="banner-act" src="/admin/Conteudo/Banners/@Model.Banner.AreaBanner.FirstOrDefault().Tamanho/@Model.Banner.Arquivo" alt="@Model.Banner.Titulo" data-banner-id="@Model.Banner.Id">
+            }
+
+        }
+
+        <section class="blocos">
+            <h2 class="header-biger">Confira a programação dos blocos</h2>
+
+            @using (Html.BeginForm("Carnaval", "Especiais", FormMethod.Post, new { @class = "row-grid filters clearfix", @style = "border: 0; margin-bottom: 20px" }))
+            {
+                <div class="grid-2">
+                    <p class="title-bottom">Selecione o bloco</p>
+                </div>
+                <div class="grid-3">
+
+                    @Html.DropDownList("bloco", null, "Todos os blocos ...", new { @class = "chosen-select input-form" })
+
+                </div>
+                <div class="grid-1">
+                    <button type="submit" style="margin-top: 0" id="post-search" title="Buscar" class="search-filter green fa fa-search"></button>
+                </div>
+
+            }
+
+
+
+
+            @if (Model.paginacao != null && Model.paginacao.Count > 0)
+            {
+                <ul class="row-grid clearfix mb">
+                    @foreach (var item in Model.paginacao)
+                    {
+                        <li class="grid-3">
+
+                            @if (!string.IsNullOrEmpty(item.Imagem))
+                            {
+                                <img src="/Admin/Conteudo/blocos/@item.Id/260x173/@item.Imagem" class="pic-radius" alt="@item.Nome">
+                            }
+
+                            <div class="date-event">
+                                <span>@item.Data.Day</span>@item.Data.ToString("MMM")
+                            </div>
+
+                            <span class="name-line">@item.Nome</span>
+                            <a href="#lightbox" class="side-info bt-orange" data-id="@item.Id">Saiba Mais</a>
+                            <span class="location-name"><i class="fa fa-map-marker"></i> Local: @item.Local</span>
+                        </li>
+                    }
+
+                </ul>
+            }
+
+
+            <footer class="pagination-bottom orange">
+                <ul class="pag">
+                    @if (Model.paginacao.PageCount > 1)
+                    {
+                        @Html.PagedListPager(Model.paginacao, page => Url.Action("Carnaval", new
+                   {
+                       page,
+                       bloco = Request.Params["bloco"]
+                   }),
+                           new PagedListRenderOptions { LinkToNextPageFormat = "Próximo", LinkToPreviousPageFormat = "Anterior" })
+                    }
+                </ul>
+            </footer>
+
+
+
+        </section>
+    </div>
+</div>
+
+<div class="boxs-modal" id="lightbox" style="display: none">
+    <div class="content">
+        <div id="conteudoBloco">
+            @*@{
+                    Html.RenderPartial("VerMaisBloco");
+                }*@
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $(".side-info").on("click", function () {
+                var id = $(this).attr("data-id");
+                verDetalhes(id);
+            });
+
+            $(".chosen-select").chosen({ width: "100%" });
+        });
+
+        function verDetalhes(id) {
+            var obj = {
+                id: id
+            };
+            $.ajax(
+            {
+                url: '/Especiais/VerMaisBloco/',
+                type: "POST",
+                contentType: 'application/json',
+                data: JSON.stringify(obj),
+                cache: false,
+                async: true,
+                success: function (data) {
+                    $('#conteudoBloco').html(data);
+                }
+            });
+        }
+    </script>
+
+} 

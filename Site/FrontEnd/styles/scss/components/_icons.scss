@@ -1,0 +1,134 @@
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: 18px;
+  vertical-align: middle;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.fa-twitter:before {
+  content: "\f099";
+}
+.fa-share-alt:before {
+  content: "\f1e0";
+}
+.fa-facebook-f:before,
+.fa-facebook:before {
+  content: "\f09a";
+}
+.fa-facebook-official:before {
+  content: "\f230";
+}
+.fa-pinterest-p:before {
+  content: "\f231";
+}
+.fa-whatsapp:before {
+  content: "\f232";
+}
+.fa-search:before {
+  content: "\f002";
+}
+
+.fa-instagram:before {
+  content: "\f16d";
+}
+.fa-flickr:before {
+  content: "\f16e";
+}
+.fa-sign-out:before {
+  content: "\f08b";
+}
+
+.fa-user:before {
+  content: "\f007";
+}
+.fa-angle-left:before {
+  content: "\f104";
+}
+.fa-angle-right:before {
+  content: "\f105";
+}
+.fa-angle-up:before {
+  content: "\f106";
+}
+.fa-angle-down:before {
+  content: "\f107";
+}
+
+.fa-caret-square-o-down:before {
+  content: "\f150";
+}
+
+.fa-clock-o:before {
+  content: "\f017";
+}
+.fa-calendar-check-o:before {
+  content: "\f274";
+}
+.fa-map-marker:before {
+  content: "\f041";
+}
+.fa-microphone:before {
+  content: "\f130";
+}
+
+.fa-play-circle:before {
+  content: "\f144";
+}
+
+.fa-pause-circle:before {
+  content: "\f28b";
+}
+.fa-pause-circle-o:before {
+  content: "\f28c";
+}
+.fa-stop-circle:before {
+  content: "\f28d";
+}
+.fa-stop-circle-o:before {
+  content: "\f28e";
+}
+
+.fa-plus:before {
+  content: "\f067";
+}
+
+.fa-minus:before {
+  content: "\f068";
+}
+
+.fa-google-plus-circle:before,
+.fa-google-plus-official:before {
+  content: "\f2b3";
+}
+.fa-fa:before,
+.fa-font-awesome:before {
+  content: "\f2b4";
+}
+
+.fa-exclamation-triangle:before {
+  content: "\f071";
+}
+
+.fa-mobile-phone:before,
+.fa-mobile:before {
+  content: "\f10b";
+}
+
+.fa-envelope:before {
+  content: "\f0e0";
+}
+
+
+.fa-home:before {
+  content: "\f015";
+}
+
+/* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
+   readers do not read off random characters that represent icons */
+
+
+
+
+

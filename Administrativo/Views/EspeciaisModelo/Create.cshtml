@@ -1,0 +1,183 @@
+﻿@model Administrativo.Models.Noticias
+@{
+    ViewBag.Title = "Cadastrar - " + ViewBag.EspecialNome;
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Insere um post no sistema";
+}
+
+<div class="content">
+    <div class="row">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Cadastrar</h3>
+            </div>
+            @using (Html.BeginForm("Create", "EspeciaisModelo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="box-body">
+
+                    <div class="form-group">
+                        @Html.Label("Categoria")
+                        @Html.DropDownList("CategoriaId", (SelectList)ViewBag.CategoriaId, new { @class = "chosen-select" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.titulo)
+
+                        @Html.TextBoxFor(model => model.titulo, new { @maxlength = 100, @class = "text-box" })
+                        @Html.ValidationMessageFor(model => model.titulo)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.chamada)
+
+                        @Html.TextAreaFor(model => model.chamada, new { @class = "text-box", style = "height: 100px;", @maxlength = 400 })
+                        @Html.ValidationMessageFor(model => model.chamada)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.texto)
+
+                        @Html.TextAreaFor(model => model.texto)
+                        @Html.ValidationMessageFor(model => model.texto)
+                    </div>
+
+                    @if (ViewBag.TemSecao != null && !(bool)ViewBag.TemSecao)
+                    {
+                        <div class="form-group">
+                            Data
+                            <input type="datetime" id="data" name="data" class="form-control" value="@DateTime.Now.Date.ToShortDateString()" />
+                            @Html.ValidationMessageFor(model => model.data)
+                        </div>
+
+                        <div class="form-group">
+                            Hora
+                            @Html.EditorFor(model => model.hora, new { @class = "form-control", style = "width: 120px;" })
+                            @Html.ValidationMessageFor(model => model.hora)
+                        </div>
+
+                        <div class="form-group">
+                            Local
+                            @Html.TextBoxFor(model => model.local, new { @class = "form-control", style = "width: 120px;", @maxlength = 100 })
+                            @Html.ValidationMessageFor(model => model.local)
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Link")
+                            @Html.TextBoxFor(model => model.link, new { @class = "form-control", style = "width: 120px;", @maxlength = 100 })
+                            @Html.ValidationMessageFor(model => model.link)
+                        </div>
+                    }
+                    else if (ViewBag.TemSecao != null && (bool)ViewBag.TemSecao)
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.audio)
+
+                            <input type="file" name="audio" id="audio" />
+                            @Html.ValidationMessageFor(model => model.audio)
+                        </div>
+
+
+
+                    }
+
+                    <h4 class="page-header"></h4>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Foto - <em>Resolução mínima recomendada (744x500)</em></label>
+
+                                <input type="file" name="foto" id="foto"  accept="image/*" />
+                                <label id="lblFotoExistente"></label>
+                                @Html.ValidationMessageFor(model => model.foto)
+
+                                <input type="hidden" id="fotoExistente" name="fotoExistente" />
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.fotoDescricao)
+
+                                @Html.TextBoxFor(model => model.fotoDescricao, new { @maxlength = 100, @class = "text-box" })
+                                @Html.ValidationMessageFor(model => model.fotoDescricao)
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="callout callout-info">
+                                <h4>Ou escolha uma imagem já enviada </h4>
+                                <a class="btn btn-primary iframe" href="@Url.Action("Index","Elfinder")"><i class="fa fa-search-plus"></i>&nbsp;Procurar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.fotoCredito)
+                        @Html.TextBoxFor(model => model.fotoCredito, new { @maxlength = 100, @class = "text-box" })
+                        @Html.ValidationMessageFor(model => model.fotoCredito)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.porAutor)
+                        @Html.TextBoxFor(model => model.porAutor, new { @maxlength = 100, @class = "text-box" })
+                        @Html.ValidationMessageFor(model => model.porAutor)
+                    </div>
+
+
+                @if(ViewBag.EditorialId!= null && (ViewBag.EditorialId.ToString() == "8" || ViewBag.EditorialId.ToString() == "6") )
+                {
+                    <div class="form-group">
+                        <label>Destaque?</label>
+                        @Html.BooleanFieldFor(model => model.destaqueEditoria, false, new { @class = "form-control", style = "width: 120px;" })
+                        @Html.ValidationMessageFor(model => model.destaqueEditoria)
+                    </div>
+                }
+
+
+                    <div class="form-group">
+                        <label>Ativo?</label>
+                        @Html.BooleanFieldFor(model => model.liberado, true, new { @class = "form-control", style = "width: 120px;" })
+                        @Html.ValidationMessageFor(model => model.liberado)
+                    </div>
+
+                    <input type="hidden" name="EditorialId" value="@ViewBag.EditorialId" />
+
+                </div>
+                <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a href="@Url.Action("Index", "EspeciaisModelo", new { EspecialId =  ViewBag.EditorialId })" class="btn btn-info">Voltar</a>
+
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".iframe").colorbox({ iframe: true, width: "80%", height: "80%" })
+            $('#chamada').wysihtml5();
+            $(".chosen-select").chosen({ width: "100%" });
+            $('#data').daterangepicker({ format: 'DD/MM/YYYY', singleDatePicker: true });
+            var editor = CKEDITOR.replace('texto',
+                {
+                    height: "200px"
+                });
+
+            $("#hora").inputmask("99:99");
+
+        });
+
+        function getvalue(valor) {
+            document.getElementById('fotoExistente').value = valor;
+            $("#lblFotoExistente").html(valor);
+            $.colorbox.close();
+        }
+    </script>
+}

@@ -1,0 +1,712 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewBag.Title - Radio CompanyName | Administrativo</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    @Styles.Render("~/Content/css-application")
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        @Scripts.Render("~/bundles/ie9")
+        <![endif]-->
+    @Scripts.Render("~/bundles/jquery")
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/images/touch-icon-iphone.png" />
+    <link rel="apple-touch-icon" sizes="72x72q" href="/images/touch-icon-ipad.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/touch-icon-iphone-retina.png" />
+
+</head>
+
+<body class="skin-blue">
+
+
+    <header class="header">
+        <a href="@Url.Action("", "Home")" style="background-color:#bf1b0d " class="logo">
+            <img src="@Url.Content("~/images/logo-CompanyName.png")" class="" />
+        </a>
+        <nav class="navbar navbar-static-top" role="navigation">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Alternar menu</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+
+            <div class="navbar-right">
+                <ul class="nav navbar-nav">
+
+                    @if (User.IsInRole("Administrador") || User.IsInRole("Fale Conosco"))
+                    {
+                        <li class="dropdown messages-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-envelope"></i>
+                                @if (ViewBag.QuantMensagens > 0)
+                                {
+                                    <span class="label label-success">@ViewBag.QuantMensagens</span>
+                                }
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">Você tem @ViewBag.QuantMensagens @(ViewBag.QuantMensagens > 1 ? "mensagens" : "mensagem")</li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: auto;">
+                                        <ul class="menu" style="overflow: hidden; width: 100%; height: auto;">
+                                            @if ((ViewBag.Mensagem as List<Administrativo.Models.FaleConosco>) != null)
+                                            {
+
+
+                                                foreach (var item in (ViewBag.Mensagem as List<Administrativo.Models.FaleConosco>))
+                                                {
+                                                    <li>
+                                                        <!-- start message -->
+                                                        <a href="@Url.Action("Details","FaleConosco", new { id = item.id  })">
+                                                            <h4>
+                                                                @item.assunto
+                                                                <small><i class="fa fa-calendar"></i> @String.Format("{0:dd/MM/yyyy}", item.dataCadastro)</small>
+                                                            </h4>
+                                                            <p>@item.mensagem</p>
+                                                        </a>
+                                                    </li><!-- end message -->
+                                                }
+                                            }
+
+                                        </ul><div class="slimScrollBar" style="width: 3px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 0px; z-index: 99; right: 1px; background: rgb(0, 0, 0);"></div><div class="slimScrollRail" style="width: 3px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 0px; opacity: 0.2; z-index: 90; right: 1px; background: rgb(51, 51, 51);"></div>
+                                    </div>
+
+                                </li>
+                                <li class="footer"><a href="@Url.Action("Index", "FaleConosco")">Todas as mensagens</a></li>
+                            </ul>
+                        </li>
+                    }
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="glyphicon glyphicon-user"></i>
+                                <span>@User.Identity.Name <i class="caret"></i></span>
+                            </a>
+                            <ul class="dropdown-menu" style="list-style:none;">
+                                <!-- Menu Footer-->
+                                <li class="user-footer" style="list-style:none;">
+                                    <div class="pull-left">
+                                        <a href="@Url.Action("Manage", "Account")" class="btn btn-default btn-flat">Alterar senha</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            <a href="javascript:document.getElementById('logoutForm').submit()" class="btn btn-default btn-flat">Sair</a>
+                                        }
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+
+
+                </ul>
+            </div>
+
+        </nav>
+    </header>
+
+    <div class="wrapper row-offcanvas row-offcanvas-left">
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="left-side sidebar-offcanvas">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel -->
+                <br />
+
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+
+                        <li class="@(Administrativo.Commons.Utils.GetActive("Home"))">
+                            <a href="@Url.Action("Index", "Home")">
+                                <i class="fa fa-home"></i>Home
+                            </a>
+                        </li>
+                    }
+
+                    @if (User.IsInRole("Administrador") || User.IsInRole("Equipes") || User.IsInRole("Programacao") || User.IsInRole("Apresentadores") || User.IsInRole("Bastidores") || User.IsInRole("MidiaKit"))
+                    {
+                        <li class="treeview @(Administrativo.Commons.Utils.GetActive("Equipes,Bastidor,Programacao,Apresentadores,MidiaKit"))">
+                            <a>
+                                <i class="fa fa-microphone"></i>
+                                <span>A Rádio</span>
+                                <i class="fa pull-right fa-angle-left"></i>
+                            </a>
+                            <ul class="treeview-menu" style="display: none;">
+
+                                @if (User.IsInRole("Administrador") || User.IsInRole("Apresentadores"))
+                                {
+                                    <li class="@(Administrativo.Commons.Utils.GetActive("Apresentadores"))">
+                                        <a href="@Url.Action("Index", "Apresentadores")">
+                                            <i class="fa fa-male"></i>Apresentadores/Convidados
+                                        </a>
+                                    </li>
+                                }
+                                @if (User.IsInRole("Administrador") || User.IsInRole("Bastidores"))
+                                {
+                                    <li class="@(Administrativo.Commons.Utils.GetActive("Bastidor"))">
+                                        <a href="@Url.Action("Index", "Bastidor")">
+                                            <i class="fa fa-cubes"></i>Bastidores da Redação
+                                        </a>
+                                    </li>
+                                }
+                                @*@if (User.IsInRole("Administrador") || User.IsInRole("Equipes"))
+                                    {
+                                        <li class="@(Administrativo.Commons.Utils.GetActive("Equipes"))">
+                                            <a href="@Url.Action("Index", "Equipes")">
+                                                <i class="fa fa-users"></i> Equipe Rádio CompanyName
+                                            </a>
+                                        </li>
+                                    }*@
+
+                                @if (User.IsInRole("Administrador") || User.IsInRole("Programacao"))
+                                {
+                                    <li class="@(Administrativo.Commons.Utils.GetActive("Programacao"))">
+                                        <a href="@Url.Action("Index", "Programacao")">
+                                            <i class="fa fa-video-camera"></i> Programas / Programação
+                                        </a>
+                                    </li>
+
+                                }
+
+                                @if (User.IsInRole("Administrador") || User.IsInRole("MidiaKit"))
+                                {
+                                    <li class="@(Administrativo.Commons.Utils.GetActive("MidiaKit"))">
+                                        <a href="@Url.Action("Index", "MidiaKit")">
+                                            <i class="fa fa-camera"></i> Midia Kit
+                                        </a>
+                                    </li>
+
+                                }
+
+
+                                @*@if (User.IsInRole("Administrador") || User.IsInRole("Horoscopo"))
+                                    {
+                                        <li class="@(Administrativo.Commons.Utils.GetActive("Horoscopo"))">
+                                            <a href="@Url.Action("Index", "Horoscopo")">
+                                                <i class="fa fa-asterisk"></i> Horóscopo
+                                            </a>
+                                        </li>
+
+                                    }*@
+
+
+
+                            </ul>
+                        </li>
+                    }
+
+
+                    @if (User.IsInRole("Administrador") || User.IsInRole("Banners"))
+                    {
+                        <li class="@(Administrativo.Commons.Utils.GetActive("Banner"))">
+                            <a href="@Url.Action("Index", "Banner")">
+                                <i class="fa fa-newspaper-o"></i> Banners (Publicidade)
+                            </a>
+                        </li>
+                    }
+                    @*@if (User.IsInRole("Administrador") || User.IsInRole("Bastidores"))
+                        {
+                        <li class="@(Administrativo.Commons.Utils.GetActive("Bastidor"))">
+                        <a href="@Url.Action("Index", "Bastidor")">
+                        <i class="fa fa-cubes"></i>Bastidores
+                        </a>
+                        </li>
+                        }*@
+
+
+
+                    @if (User.IsInRole("Administrador") || User.IsInRole("Colunistas"))
+                    {
+                        <li class="treeview @(Administrativo.Commons.Utils.GetActive("Colunistas,Materias"))">
+                            <a>
+                                <i class="fa fa-quote-right"></i>
+                                <span>Colunistas</span>
+                                <i class="fa pull-right fa-angle-left"></i>
+                            </a>
+
+                            <ul class="treeview-menu" style="display: none;">
+
+                                <li class="@(Administrativo.Commons.Utils.GetActive("Colunistas"))">
+                                    <a href="@Url.Action("Index", "Colunistas")">
+                                        <i class="fa fa-angle-double-right"></i> Lista de Colunistas
+                                    </a>
+                                </li>
+                                <li class="@(Administrativo.Commons.Utils.GetActive("Materias"))">
+                                    <a href="@Url.Action("Index", "Materias")">
+                                        <i class="fa fa-angle-double-right"></i> Lista de Matérias
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    }
+
+                    @if (User.IsInRole("Administrador") || User.IsInRole("Fale Conosco") || User.IsInRole("Denuncia dos Ouvintes") || User.IsInRole("Trabalhe Conosco"))
+                    {
+                        <li class="treeview @(Administrativo.Commons.Utils.GetActive("FaleConosco,Ouvintes,TrabalheConosco"))">
+                            <a>
+                                <i class="fa  fa-tty"></i>
+                                <span>Contatos</span>
+                                <i class="fa pull-right fa-angle-left"></i>
+                            </a>
+                            <ul class="treeview-menu" style="display: none;">
+                                @if (User.IsInRole("Administrador") || User.IsInRole("Fale Conosco"))
+                                {
+                                    <li class="@(Administrativo.Commons.Utils.GetActive("FaleConosco"))">
+                                        <a href="@Url.Action("Index", "FaleConosco")">
+                                            <i class="fa fa-angle-double-right"></i> Fale Conosco
+                                            @if (ViewBag.QuantMensagens > 0)
+                                            {
+                                                <span class="label pull-right label-success">@ViewBag.QuantMensagens</span>
+                                            }
+                                        </a>
+                                    </li>
+                                }
+                                @if (User.IsInRole("Administrador") || User.IsInRole("Denuncia dos Ouvintes"))
+                                {
+                                    <li class="@(Administrativo.Commons.Utils.GetActive("Ouvintes"))">
+                                        <a href="@Url.Action("Index", "Ouvintes")">
+                                            <i class="fa fa-angle-double-right"></i> Denúncias dos Ouvintes
+                                        </a>
+                                    </li>
+                                }
+
+                                @*@if (User.IsInRole("Administrador") || User.IsInRole("Trabalhe Conosco"))
+                                    {
+                                    <li class="@(Administrativo.Commons.Utils.GetActive("TrabalheConosco"))">
+                                    <a href="@Url.Action("Index", "TrabalheConosco")">
+                                    <i class="fa fa-angle-double-right"></i> Trabalhe Conosco
+                                    </a>
+                                    </li>
+                                    }*@
+                            </ul>
+                        </li>
+
+                    }
+
+                    @if (User.IsInRole("Administrador") || User.IsInRole("Editorias") || User.IsInRole("Editorial Noticias"))
+                    {
+                        <li class="treeview @(Administrativo.Commons.Utils.GetActive("Editoriais,EditorialNoticias,Categorias,NoticiaEditorial"))">
+                            <a>
+                                <i class="fa fa-newspaper-o"></i>
+                                <span>Editorias</span>
+                                <i class="fa pull-right fa-angle-left"></i>
+                            </a>
+                            <ul class="treeview-menu" style="display: none;">
+
+                                @if (User.IsInRole("Administrador") || User.IsInRole("Editorias"))
+                                {
+                                    <li class="@(Administrativo.Commons.Utils.GetActive("Editoriais"))">
+                                        <a href="@Url.Action("Index", "Editoriais")">
+                                            <i class="fa fa-angle-double-right"></i> Lista de Editorias
+                                        </a>
+                                    </li>
+                                }
+                                @*@foreach (var editoria in (ViewBag.EditoriasMenu as List<Administrativo.Models.Editoriais>))
+                                    {
+                                    <li class="@(Administrativo.Commons.Utils.GetActive("EditorialNoticias","Index"))">
+                                    <a href="@Url.Action("Index", "EditorialNoticias", new { editorial = editoria.chave })">
+                                    <i class="fa fa-angle-double-right"></i> @editoria.nome
+                                    </a>
+                                    </li>
+                                    }*@
+                                @if (User.IsInRole("Administrador") || User.IsInRole("Editorial Noticias"))
+                                {
+                                    <li class="@(Administrativo.Commons.Utils.GetActive("NoticiaEditorial"))">
+                                        <a href="@Url.Action("Index", "NoticiaEditorial")">
+                                            <i class="fa fa-angle-double-right"></i> Lista de Notícias
+                                        </a>
+                                    </li>
+                                }
+
+                            </ul>
+                        </li>
+                    }
+
+                    @if (User.IsInRole("Administrador") || User.IsInRole("Especiais"))
+                    {
+                        <li class="treeview @(Administrativo.Commons.Utils.GetActive("Especiais"))">
+                            <a>
+                                <i class="fa fa-video-camera"></i>
+                                <span>Reportagens Especiais</span>
+                                <i class="fa pull-right fa-angle-left"></i>
+                            </a>
+                            <ul class="treeview-menu" style="display: none;">
+                                @if (ViewBag.EspeciaisECanais != null)
+                                {
+                                    foreach (var item in ViewBag.EspeciaisECanais)
+                                    {
+                                        if (item.especial)
+                                        {
+                                            <li class="@(Administrativo.Commons.Utils.GetActive("Especiais"))">
+                                                <a href="@Url.Action("Index", "EditorialNoticias", new { editorial = item.chave })">
+                                                    <i class="fa fa-angle-double-right"></i> @item.nome
+                                                </a>
+                                            </li>
+                                        }
+                                    }
+                                }
+
+                            </ul>
+                        </li>
+                    }
+
+                    @if (User.IsInRole("Administrador") || User.IsInRole("Especiais"))
+                    {
+                        <li class="treeview @(Administrativo.Commons.Utils.GetActive("Canais"))">
+                            <a>
+                                <i class="fa fa-star"></i>
+                                <span>Canais</span>
+                                <i class="fa pull-right fa-angle-left"></i>
+                            </a>
+                            <ul class="treeview-menu" style="display: none;">
+
+                                <li class="@(Administrativo.Commons.Utils.GetActive("Canais"))">
+                                    <a href="@Url.Action("Index", "EspecialParlamentoAberto", new { EspecialId = 5 })">
+                                        <i class="fa fa-angle-double-right"></i> Parlamento Aberto
+                                    </a>
+                                </li>
+
+                                <li class="@(Administrativo.Commons.Utils.GetActive("Canais"))">
+                                    <a href="@Url.Action("Index", "NoticiaEditorial", new { editorial = "bh-fiscaliza"})">
+                                        <i class="fa fa-angle-double-right"></i> BH Fiscaliza
+                                    </a>
+                                </li>
+
+                                @if (ViewBag.EspeciaisECanais != null)
+                                {
+                                    foreach (var item in ViewBag.EspeciaisECanais)
+                                    {
+                                        if (item.canal && item.id != 5 && item.id != 7)
+                                        {
+                                            <li class="@(Administrativo.Commons.Utils.GetActive("Especiais"))">
+                                                <a href="@Url.Action("Index", "EspeciaisModelo", new { EspecialId = item.id })">
+                                                    <i class="fa fa-angle-double-right"></i> @item.nome
+                                                </a>
+                                            </li>
+                                        }
+                                    }
+                                }
+
+                            </ul>
+                        </li>
+                    }
+
+                    @if (User.IsInRole("Administrador") || User.IsInRole("Esportes") || User.IsInRole("Noticias Esportes") || User.IsInRole("Times"))
+                    {
+                        <li class="treeview @(Administrativo.Commons.Utils.GetActive("Esportes,Elencos,Times,NoticiaEsportes"))">
+                            <a>
+                                <i class="fa fa-soccer-ball-o"></i>
+                                <span>Esportes</span>
+                                <i class="fa pull-right fa-angle-left"></i>
+                            </a>
+                            <ul class="treeview-menu" style="display: none;">
+                                @if (User.IsInRole("Administrador") || User.IsInRole("Esportes"))
+                                {
+                                    <li class="@(Administrativo.Commons.Utils.GetActive("Esportes"))">
+                                        <a href="@Url.Action("Index", "Esportes")">
+                                            <i class="fa fa-angle-double-right"></i>Campeonatos
+                                        </a>
+                                    </li>
+                                }
+
+                                @if (User.IsInRole("Administrador") || User.IsInRole("Times"))
+                                {
+                                    <li class="@(Administrativo.Commons.Utils.GetActive("Times"))">
+                                        <a href="@Url.Action("Index", "Times")">
+                                            <i class="fa fa-angle-double-right"></i> Times
+                                        </a>
+                                    </li>
+                                }
+
+                                @if (User.IsInRole("Administrador") || User.IsInRole("Noticias Esportes"))
+                                {
+                                    <li class="@(Administrativo.Commons.Utils.GetActive("NoticiaEsportes"))">
+                                        <a href="@Url.Action("Index", "NoticiaEsportes")">
+                                            <i class="fa fa-angle-double-right"></i> Notícias Esportes
+                                        </a>
+                                    </li>
+                                }
+
+                            </ul>
+                        </li>
+                    }
+
+                    @if (User.IsInRole("Administrador") || User.IsInRole("Comentarios"))
+                    {
+                        <li class="@(Administrativo.Commons.Utils.GetActive("Comentarios"))">
+                            <a href="@Url.Action("Index", "Comentarios")">
+                                <i class="fa fa-comments"></i> Comentários
+                            </a>
+                        </li>
+                    }
+
+                    @if (User.IsInRole("Administrador") || User.IsInRole("LiveStreamings"))
+                    {
+                        <li class="@(Administrativo.Commons.Utils.GetActive("LiveStreamings"))">
+                            <a href="@Url.Action("Index", "LiveStreamings")">
+                                <i class="fa fa-youtube-play"></i> Live Streamings
+                            </a>
+                        </li>
+                    }
+
+                    @if (User.IsInRole("Administrador") || User.IsInRole("Enquetes"))
+                    {
+                        <li class="@(Administrativo.Commons.Utils.GetActive("Enquete"))">
+                            <a href="@Url.Action("Index", "Enquete")">
+                                <i class="fa fa-question-circle"></i> Enquetes
+                            </a>
+                        </li>
+                    }
+
+                    @*@if (User.IsInRole("Administrador") || User.IsInRole("Equipe"))
+                        {
+                        <li class="@(Administrativo.Commons.Utils.GetActive("Equipes"))">
+                        <a href="@Url.Action("Index", "Equipes")">
+                        <i class="fa fa-users"></i> Equipe Rádio CompanyName
+                        </a>
+                        </li>
+                        }*@
+                    @*@if (User.IsInRole("Administrador") || User.IsInRole("Equipe Esportiva"))
+                        {
+                        <li class="@(Administrativo.Commons.Utils.GetActive("EquipeEditorial"))">
+                        <a href="@Url.Action("Index", "EquipeEditorial", new { editorial = 1 })">
+                        <i class="fa fa-soccer-ball-o"></i> Equipe Esportiva
+                        </a>
+                        </li>
+                        }*@
+                    @if (User.IsInRole("Administrador") || User.IsInRole("Galerias"))
+                    {
+                        <li class="@(Administrativo.Commons.Utils.GetActive("Galeria"))">
+                            <a href="@Url.Action("Index", "Galeria")">
+                                <i class="fa fa-image"></i>Galerias
+                            </a>
+                        </li>
+                    }
+
+                    @if (User.IsInRole("Administrador") || User.IsInRole("GruposPush"))
+                    {
+                        <li class="@(Administrativo.Commons.Utils.GetActive("GruposPush"))">
+                            <a href="@Url.Action("Index", "GruposPush")">
+                                <i class="fa fa-mobile-phone"></i>Grupos Push
+                            </a>
+                        </li>
+                    }
+
+                    @*<li class="@(Administrativo.Commons.Utils.GetActive("Premio"))">
+                        <a href="@Url.Action("Index", "Premio")">
+
+                        <i class="fa fa-trophy"></i>Prêmios
+                        </a>
+                        </li>*@
+
+                    @*@if (User.IsInRole("Administrador") || User.IsInRole("Programação"))
+                        {
+                        <li class="@(Administrativo.Commons.Utils.GetActive("Programacao"))">
+                        <a href="@Url.Action("Index", "Programacao")">
+                        <i class="fa fa-video-camera"></i> Programas / Programação
+                        </a>
+                        </li>
+                        }*@
+
+                    @*@if (User.IsInRole("Administrador") || User.IsInRole("Seu Caminho"))
+                        {
+                        <li class="treeview @(Administrativo.Commons.Utils.GetActive("Transporte,SeuCaminho"))">
+                        <a>
+                        <i class="fa fa-road"></i>
+                        <span>Seu Caminho</span>
+                        <i class="fa pull-right fa-angle-left"></i>
+                        </a>
+                        <ul class="treeview-menu" style="display: none;">
+                        <li class="@(Administrativo.Commons.Utils.GetActive("Transporte","Index"))">
+                        <a href="@Url.Action("Index", "Transporte")">
+                        <i class="fa fa-angle-double-right"></i> Transporte e Rotas
+                        </a>
+                        </li>
+                        <li class="@(Administrativo.Commons.Utils.GetActive("SeuCaminho","Index"))">
+                        <a href="@Url.Action("Index", "SeuCaminho")">
+                        <i class="fa fa-angle-double-right"></i> Notícias
+                        </a>
+                        </li>
+
+
+                        </ul>
+                        </li>
+                        }*@
+
+
+                    @*@if (User.IsInRole("Administrador") || User.IsInRole("Tags"))
+                        {
+                        <li class="@(Administrativo.Commons.Utils.GetActive("Tags"))">
+                        <a href="@Url.Action("Index", "Tags")">
+                        <i class="fa fa-tags"></i> Tags
+                        </a>
+                        </li>
+                        }*@
+
+                    @if (User.IsInRole("Administrador") || User.IsInRole("CompanyNameNoPonto"))
+                    {
+                        <li class="treeview @(Administrativo.Commons.Utils.GetActive("Eventos,Acontecimentos"))">
+                            <a>
+                                <i class="fa fa-dot-circle-o"></i>
+                                <span>CompanyName no ponto</span>
+                                <i class="fa pull-right fa-angle-left"></i>
+                            </a>
+                            <ul class="treeview-menu" style="display: none;">
+
+                                <li class="@(Administrativo.Commons.Utils.GetActive("Eventos"))">
+                                    <a href="@Url.Action("Index", "Eventos")">
+                                        <i class="fa fa-angle-double-right"></i>Lista de Eventos
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    }
+                    @if (User.IsInRole("Administrador") || User.IsInRole("Audios"))
+                    {
+                        <li class="treeview @(Administrativo.Commons.Utils.GetActive("Audios,CategoriaAudios,ColecaoAudios"))">
+                            <a>
+                                <i class="fa fa-music"></i>
+                                <span>Audios</span>
+                                <i class="fa pull-right fa-angle-left"></i>
+                            </a>
+                            <ul class="treeview-menu" style="display: none;">
+
+                                <li class="@(Administrativo.Commons.Utils.GetActive("Audios"))">
+                                    <a href="@Url.Action("Index", "Audios")">
+                                        <i class="fa fa-angle-double-right"></i>Lista de Audios
+                                    </a>
+                                </li>
+                                <li class="@(Administrativo.Commons.Utils.GetActive("CategoriaAudios"))">
+                                    <a href="@Url.Action("Index", "CategoriaAudios")">
+                                        <i class="fa fa-angle-double-right"></i>Lista de Categorias
+                                    </a>
+                                </li>
+                                <li class="@(Administrativo.Commons.Utils.GetActive("ColecaoAudios"))">
+                                    <a href="@Url.Action("Index", "ColecaoAudios")">
+                                        <i class="fa fa-angle-double-right"></i>Lista de Coleções
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    }
+
+                    @if (User.IsInRole("Administrador") || User.IsInRole("Paineis Digitais"))
+                    {
+                        <li class="treeview @(Administrativo.Commons.Utils.GetActive("PAD"))">
+                            <a>
+                                <i class="fa fa-desktop"></i>
+                                <span>Painéis Digitais</span>
+                                <i class="fa pull-right fa-angle-left"></i>
+                            </a>
+                            <ul class="treeview-menu" style="display: none;">
+
+                                <li class="@(Administrativo.Commons.Utils.GetActive("PAD"))">
+                                    <a href="@Url.Action("Index", "TimesPaineis")">
+                                        <i class="fa fa-angle-double-right"></i> Times
+                                    </a>
+                                </li>
+
+                                <li class="@(Administrativo.Commons.Utils.GetActive("PAD"))">
+                                    <a href="@Url.Action("Index", "ApoioPaineis")">
+                                        <i class="fa fa-angle-double-right"></i> Apoio
+                                    </a>
+                                </li>
+
+                                <li class="@(Administrativo.Commons.Utils.GetActive("PAD"))">
+                                    <a href="@Url.Action("Index", "EGolPaineis")">
+                                        <i class="fa fa-angle-double-right"></i> É Gol
+                                    </a>
+                                </li>
+
+                                <li class="@(Administrativo.Commons.Utils.GetActive("PAD"))">
+                                    <a href="@Url.Action("Index", "NoticiasPaineis")">
+                                        <i class="fa fa-angle-double-right"></i> Notícias
+                                    </a>
+                                </li>
+
+                                <li class="@(Administrativo.Commons.Utils.GetActive("PAD"))">
+                                    <a href="@Url.Action("Index", "RedesSociaisPaineis")">
+                                        <i class="fa fa-angle-double-right"></i> Redes Sociais
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    }
+
+                    @if (User.IsInRole("Administrador") || User.IsInRole("Usuários"))
+                    {
+                        <li class="@(Administrativo.Commons.Utils.GetActive("Usuarios"))">
+                            <a href="@Url.Action("Index", "Usuarios")">
+                                <i class="fa fa-user"></i>Usuários
+                            </a>
+                        </li>
+                    }
+
+
+
+                    @if (User.IsInRole("Administrador") || User.IsInRole("Logs"))
+                    {
+                        <li class="@(Administrativo.Commons.Utils.GetActive("Logs"))">
+                            <a href="@Url.Action("Index", "Logs")">
+                                <i class="fa fa-list-alt"></i>Logs de alterações
+                            </a>
+                        </li>
+                    }
+
+
+                </ul>
+
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+
+        <aside class="right-side">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    @if (!string.IsNullOrEmpty(ViewBag.Icon))
+                    {
+                        <i class="@ViewBag.Icon"></i>
+                    }
+                    @ViewBag.Title
+                    <small>@ViewBag.SmallDescription</small>
+                </h1>
+
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                @RenderBody()
+            </section>
+            <!-- /.content -->
+        </aside>
+        <!-- /.right-side -->
+    </div>
+
+    <div id="modal-confirm"></div>
+
+    @Scripts.Render("~/bundles/scripts-application")
+    @Scripts.Render("~/bundles/scripts-plugins")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

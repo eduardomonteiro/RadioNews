@@ -1,0 +1,33 @@
+﻿@model Administrativo.Models.FaleConosco
+
+@{
+    ViewBag.Title = "Detalhes da Mensagem";
+    ViewBag.Icon = "fa fa-envelope";
+    ViewBag.SmallDescription = "Visualizar detalhes da mensagem";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">Detalhes</h3>
+            </div>
+            <div class="box-content padded">
+               @Html.Partial("_Details")
+           </div>
+
+		   <div class="box-footer">
+
+               @if(string.IsNullOrEmpty(Model.resposta))
+               {
+                 <a href="@Url.Action("Responder","FaleConosco", new { id = Model.id })" class="btn btn-warning">Editar</a>
+               }
+                <a href="@Url.Action("Index","FaleConosco")" class="btn btn-info">Voltar</a>       
+            </div>
+
+        </div>
+     </div>
+    </div>
+<p>
+

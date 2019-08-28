@@ -1,0 +1,44 @@
+﻿@model Administrativo.Models.Audios
+
+<table class="table table-bordered table-striped responsive">
+    <tbody>
+        <tr>
+            <td style="width:200px;">@Html.DisplayNameFor(model => model.Id)</td>
+            <td>@Html.DisplayFor(model => model.Id)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Legenda)</td>
+            <td>@Html.DisplayFor(model => model.Legenda)</td>
+        </tr>
+
+        @if (!string.IsNullOrEmpty(Model.Url))
+        {
+            <tr>
+                <td>Audio</td>
+                <td>
+                    <audio controls>
+                        @*<source src="horse.ogg" type="audio/ogg">*@
+                        <source src="@Url.Content("~/conteudo/audios/" + Model.Id + "/" + Model.Url)" type="audio/mpeg">
+                        Atualize seu navegador para ouvir.
+                    </audio>
+                </td>
+            </tr>
+            <tr>
+                <td>Link de Compartilhamento<small>(<i>Cole no Facebook para Compartilhar o Áudio</i>)</small></td>
+                <td>http://www.CompanyName.com.br/audio?tipo=audio&id=@Model.Id</td>
+            </tr>
+        }
+
+        <tr>
+            <td>Coleção</td>
+            <td>@Html.DisplayFor(model => model.ColecoesAudios.Titulo)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.DataCadastro)</td>
+            <td>@Html.DisplayFor(model => model.DataCadastro)</td>
+        </tr>
+
+    </tbody>
+</table>

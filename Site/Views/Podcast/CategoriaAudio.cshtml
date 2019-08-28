@@ -1,0 +1,185 @@
+﻿@using Site.Helpers
+@using System.Linq
+@using PagedList;
+@using PagedList.Mvc
+@model Site.ViewModels.CategoriaAudiosViewModel
+
+@section SEO{
+    <meta name="DC.title" content="Central de Áudio - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:title" content="Central de Áudio - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="@Url.Content("~/images/ico-facebook.jpg")" />
+    <meta property="og:url" content="@HttpContext.Current.Request.Url.AbsoluteUri" />
+    <title>Central de Áudio - Rádio CompanyName | A Rádio de Minas</title>
+}
+
+<div class="wrapper-general center">
+    <header class="nav-intern clearfix">
+        <div class="buttons">
+            <a class="bt-back" href="javascript:window.history.go(-1)"> <i class="fa fa-angle-left"></i> Voltar</a>
+            Texto: <button class="more bt-resize">+</button> <button class="bt-resize minus">-</button>
+        </div>
+        <nav class="breadcumb">
+            <a href="@Url.Action("Index","Home")">Home</a>
+            <a href="@Url.Action("Index")">Central de Audios</a>
+            <span>@Model.Descricao</span>
+        </nav>
+    </header>
+    <div class="row-grid clearfix">
+        <div class="grid-9 main-grid">
+            <h1 class="title-page">@Model.Descricao</h1>
+
+
+            <section class="content-margin border">
+                <header class="filters">
+                    @using (Html.BeginForm("CategoriaAudio", "Podcast", new { @id = Model.Id, @slug = Utils.GenerateSlug(Model.Descricao) }, FormMethod.Get, new { @class = "row-grid clearfix" }))
+                    {
+                        <div class="grid-7">
+                            <label for="palavrachave">Palavra Chave</label>
+                            <input type="text" class="input-form" name="palavrachave" id="palavrachave" value="@Request.Params["palavrachave"]">
+                        </div>
+                        <div class="grid-2">
+                            <label for="datainicio">De</label>
+                            <input type="date" class="input-form dates" id="datainicio" name="datainicio" value="@Request.Params["datainicio"]">
+                        </div>
+                        <div class="grid-2">
+                            <label for="datafinal">Até</label>
+                            <input type="date" class="input-form dates" id="datafinal" name="datafinal" value="@Request.Params["datafinal"]">
+                        </div>
+                        <div class="grid-1">
+                            <button type="submit" id="post-search" title="Buscar" class="search-filter fa fa-search"></button>
+                        </div>
+                    }
+                </header>
+
+                @if (Model.Colecoes != null && Model.Colecoes.Count() > 0)
+                {
+                    <ul class="mini-articles row-grid clearfix">
+                        @foreach (var item in Model.Colecoes.Where(x => x.Audios.Any()).ToList())
+                        {
+                            var counter=0;
+                            <li>
+                                <article>
+                                    <div class="info">
+
+                                        @if (item.Audios != null && item.Audios.Count() > 0)
+                                        {
+                                            if ((bool)ViewBag.Horoscopo)
+                                            {
+                                                <h4 class="tag-area">Previsões do dia</h4>
+                                            }
+                                            <h3 class="tag-area"><small>@item.Audios.ToList()[counter].DataCadastro.ToShortDateString()</small></h3>
+                                            <h3 class="title-normal">@Html.Raw(item.Titulo)</h3>
+                                        }
+                                    </div>
+                                    <div class="podcast-box">
+
+                                        <select id="audios" class="audioscolecao">
+                                            @*<option data-url="@item.Audios.FirstOrDefault().Url" data-id="@item.Audios.FirstOrDefault().Id">@item.Audios.FirstOrDefault().Legenda</option>*@
+                                            @foreach (var audio in item.Audios)
+                                            {
+                                                <option data-url="@audio.Url" data-id="@audio.Id" data-colecao="@item.Id">@audio.Legenda</option>
+                                            }
+                                        </select>
+
+                                        <div class="podcast-item flex">
+                                            <button class="fa button fa-play-circle"></button>
+                                            <div class="player-audio clearfix">
+                                                <div class="playbar"><div class="progress"></div></div>
+                                                <audio preload="none" class="tagAudio @item.Id">
+                                                    <source class="audioSource @item.Id" src="~/Admin/conteudo/audios/@item.Audios.FirstOrDefault().Id/@item.Audios.FirstOrDefault().Url" type="audio/mpeg">
+                                                </audio>
+                                            </div>
+                                            <div class="timer-play">
+                                                <span class="rolling">00:00</span>
+                                                <span class="full-time">00:00</span>
+                                            </div>
+                                            <div style="margin: 0 0 0 5px">
+                                                <a href="~/Admin/conteudo/audios/@item.Audios.FirstOrDefault().Id/@item.Audios.FirstOrDefault().Url" target="_blank" style="padding:0; margin:0;"  class="downAudio @item.Id">
+                                                    <img src="~/images/download.png" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            </li>
+                            counter++;
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <div class="block-text">
+                        <h3>Não foram encontrados resultados.</h3>
+                    </div>
+                }
+
+                <footer class="pagination-bottom">
+
+                    <ul class="pag">
+                        @if (Model.Colecoes.PageCount > 1)
+                        {
+                            @Html.PagedListPager(Model.Colecoes, page => Url.Action("CategoriaAudio", "Podcast", new
+                       {
+                           id = Model.Id,
+                           slug = Utils.GenerateSlug(Model.Descricao),
+                           page = page,
+                           palavrachave = Request.Params["palavrachave"],
+                           datainicio = Request.Params["datainicio"],
+                           datafinal = Request.Params["datafinal"]
+                       }),
+                           new PagedListRenderOptions
+                           {
+                               LinkToNextPageFormat = "Próximo",
+                               LinkToPreviousPageFormat = "Anterior",
+                               MaximumPageNumbersToDisplay = 5,
+                               DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                               DisplayLinkToFirstPage = PagedListDisplayMode.Never
+                           })
+                        }
+                    </ul>
+
+                </footer>
+
+            </section>
+        </div>
+
+        @Html.Action("Sidebar", "Home")
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+
+        $('.audioscolecao').change(function () {
+
+            var selecionado = $(this).find(":selected");
+
+            var audioSource = $($(this).closest(".podcast-box")).find("source.audioSource");
+
+            var id = selecionado.data("id");
+            var url = selecionado.data("url");
+            var colecaoId = selecionado.data("colecao");
+
+            var audio = $('.tagAudio.' + colecaoId);
+
+            //audio.paused;
+            //audio.currentTime = 0
+
+            console.log('id: ' + id + ' url: ' + url + ' colecaoid: ' + colecaoId);
+
+            $('.audioSource.' + colecaoId).attr("src", "/Admin/conteudo/audios/" + id + "/" + url);
+            $('.downAudio.' + colecaoId).attr("href", "/Admin/conteudo/audios/" + id + "/" + url);
+
+            audio[0].pause();
+            audio[0].load();//suspends and restores all audio element
+
+            //audio[0].play(); changed based on Sprachprofi's comment below
+            audio[0].oncanplaythrough = audio[0].play();
+        });
+
+
+    </script>
+
+}

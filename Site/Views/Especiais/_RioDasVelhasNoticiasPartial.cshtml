@@ -1,0 +1,23 @@
+﻿@using PagedList
+@using Site.Helpers
+@model IPagedList<Site.ViewModels.NoticiaEspecialViewModel>
+
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var item in Model)
+    {
+        <article style="width:31% !important">
+            @if (!string.IsNullOrEmpty(item.foto))
+            {
+                <figure style="background-image: url( @Utils.fullUrlImage("365x240", item.Id,365,240))" class="pic"></figure>
+            }
+
+            <a href="@Url.Action("Detalhes","Noticias", new { chave = item.Url })">
+                <div class="content">
+                    <h3 class="title">@item.titulo</h3>
+                </div>
+            </a>
+        </article>
+    }
+
+}

@@ -1,0 +1,175 @@
+﻿@{
+    ViewBag.Title = "Teste";
+}
+
+<style>
+    .ls-cropper-wrapper {
+        background-color: #f7f7f7;
+        border: 1px solid #eee;
+        box-shadow: inset 0 0 3px #f7f7f7;
+        height: auto;
+        width: 100%;
+        overflow: hidden;
+    }
+
+        .ls-cropper-wrapper img {
+            width: 100%;
+        }
+
+    .ls-cropper-preview {
+        margin-bottom: 15px;
+    }
+
+    .preview {
+        float: left;
+        margin-right: 15px;
+        margin-bottom: 15px;
+        overflow: hidden;
+        background: #f7f7f7;
+    }
+
+    .preview-lg {
+        width: 290px;
+        height: 160px;
+        max-width: 100%;
+    }
+
+    .preview-md {
+        width: 145px;
+        height: 90px;
+        max-width: 100%;
+    }
+
+    .preview-sm {
+        width: 72.5px;
+        height: 45px;
+        max-width: 100%;
+    }
+
+    .preview-xs {
+        width: 36.25px;
+        height: 22.5px;
+        max-width: 100%;
+    }
+
+    .ls-cropper-data {
+        padding-right: 15px;
+    }
+
+        .ls-cropper-data .input-group {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .ls-cropper-data .input-group-addon {
+            min-width: 65px;
+        }
+
+    .ls-cropper-button {
+        margin-bottom: 15px;
+    }
+
+        .ls-cropper-button > .btn {
+            margin-right: 15px;
+        }
+
+    .ls-cropper-input .input-group {
+        margin-bottom: 15px;
+    }
+
+        .ls-cropper-input .input-group .btn {
+            width: 140px;
+        }
+
+    .cropper-button {
+        margin-top: 15px;
+    }
+
+    .media-gap {
+        margin-top: 30px;
+    }
+</style>
+
+<div class="row">
+    <!-- Image Cropper Start -->
+    <div class="col-md-8">
+        <!--Image Cropper Wrap Start-->
+        <h4 class="ls-header">Image:</h4>
+        <!--Image Crops Start-->
+        <div class="ls-cropper-wrapper">
+            <img class="cropper" src="~/images/dummy-1280x800.jpg" alt="image">
+        </div>
+        <!--Image Crops Finish-->
+        <!--Image Cropper Action Start-->
+        <div class="cropper-button">
+            <button id="reset" type="button" class="btn btn-warning">Reset</button>
+            <button id="release" type="button" class="btn ls-light-green-btn">Release</button>
+            <!--<button id="destroy" type="button" class="btn ls-red-btn">Destroy</button>-->
+        </div>
+        <!--Image Cropper Action Finish-->
+        <!--Image Cropper Wrap Finish-->
+    </div>
+    <div class="col-md-4">
+        <h4 class="ls-header">Preview:</h4>
+        <!--Image Crop Preview Start-->
+        <div class="ls-cropper-preview clearfix">
+            <div class="preview preview-lg"></div>
+            <div class="preview preview-md"></div>
+            <div class="preview preview-sm"></div>
+            <div class="preview preview-xs"></div>
+        </div>
+        <!--Image Crop Preview Finish-->
+        <hr>
+        <h4 class="ls-header">Data:</h4>
+        <!--Image Cropper Ration wrap Start-->
+        <div class="ls-cropper-data">
+            <div class="input-group">
+                <span class="input-group-addon">X</span>
+                <input class="form-control" id="dataX" type="text" placeholder="x">
+
+                <span class="input-group-addon">Y</span>
+                <input class="form-control" id="dataY" type="text" placeholder="y">
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-addon">Width</span>
+                <input class="form-control" id="dataW" type="text" placeholder="width">
+
+                <span class="input-group-addon">Height</span>
+                <input class="form-control" id="dataH" type="text" placeholder="height">
+            </div>
+        </div>
+        <!--Image Cropper Ration wrap Finish-->
+
+        <div class="input-group">
+            <input class="form-control" id="imgSrc" type="text" value="~/images/dummy-1280x800.jpg">
+            <span class="input-group-btn">
+                <button class="btn btn-primary" id="setImgSrc" type="button">Set Image Src</button>
+            </span>
+        </div>
+    </div>
+    <!-- Image Cropper Finish -->
+</div>
+
+<link href="~/Content/AdminLTE/cropper.css" rel="stylesheet" />
+<link href="~/Content/AdminLTE/drag_drop_image.css" rel="stylesheet" />
+@section scripts{
+
+    <script type="text/javascript" src="~/Content/AdminLTE/imageCrop/modernizr.custom.js"></script>
+    <script type="text/javascript" src="~/Content/AdminLTE/imageCrop/cropper.js"></script>
+
+
+    <script type="text/javascript" src="~/Content/AdminLTE/imageCrop/imageCrop.js"></script>
+    <script id="imageTemplate" type="text/x-jquery-tmpl">
+        <div class="imageholder">
+            <figure>
+                <img src="${filePath}" alt="${fileName}" />
+                <figcaption>
+                    ${fileName} <br />
+                    <span>Original Size: ${fileOriSize} KB</span><br />
+                    <span>Upload Size: ${fileUploadSize} KB</span>
+                </figcaption>
+            </figure>
+        </div>
+    </script>
+}

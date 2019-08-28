@@ -1,0 +1,34 @@
+﻿@model Administrativo.Models.Especiais_Secoes
+
+@{
+    ViewBag.Title = "Deletar Seções de um Especial";
+	ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Deleta uma seção de um Especial do sistema.";
+	
+}
+
+
+
+<div class="box box-danger">
+    <div class="box-header">
+        <i class="fa fa-trash-o"></i>
+        <h3 class="box-title">Deletar</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <div class="callout callout-danger">
+            <h4>Atenção</h4>
+            <p>Deseja realmente deletar este registro?</p>
+            @using (Html.BeginForm())
+            {
+                <button class="btn btn-danger">Sim</button>
+                <a href="@Url.Action("Index", "EspeciaisSecoes")" class="btn btn-success">Não</a>
+                    
+            }
+
+        </div>
+        <div class="box-content padded">
+            
+        </div>
+    </div>
+</div>

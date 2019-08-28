@@ -1,0 +1,26 @@
+﻿@model Administrativo.ViewModel.LiveStreamViewModel
+
+<div class="box-body">
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Legenda)
+
+        @Html.EditorFor(model => model.Legenda)
+        @Html.ValidationMessageFor(model => model.Legenda)
+    </div>
+
+    <div class="form-group col-md-6">
+        @Html.LabelFor(model => model.CodigoTransmissao)
+
+        @Html.EditorFor(model => model.CodigoTransmissao)
+        @Html.ValidationMessageFor(model => model.CodigoTransmissao)
+    </div>
+
+    <div class="col-md-6">
+        <div class="callout callout-warning">
+            <h4>Exemplo: </h4>
+            <p>https://www.youtube.com/watch?v=tCXaSncssMw</p>
+        </div>0
+    </div>
+
+</div>

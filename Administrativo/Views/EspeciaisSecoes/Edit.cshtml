@@ -1,0 +1,61 @@
+﻿@model Administrativo.Models.Especiais_Secoes
+
+@{
+    ViewBag.Title = "Editar Especial - " + ViewBag.EspecialNome;
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Visualizar detalhes de Especiais";
+}
+
+<div class="content">
+    <div class="row">
+        <div class="box box-warning">
+            <div class="box-header">
+                <h3 class="box-title">Editar Seções de Especiais</h3>
+            </div>
+            @using (Html.BeginForm("Edit", "EspeciaisSecoes", FormMethod.Post))
+            {
+                <div class="box-body">
+                    @Html.HiddenFor(model => model.Id)
+
+                    <div class="form-group" style="display:none;">
+                        @Html.LabelFor(model => model.EditoriaId, "Editoriais")
+
+                        @Html.DropDownList("EditoriaId", String.Empty)
+                        @Html.ValidationMessageFor(model => model.EditoriaId)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Titulo)
+
+                        @Html.EditorFor(model => model.Titulo)
+                        @Html.ValidationMessageFor(model => model.Titulo)
+                    </div>
+
+                    @*<div class="form-group">
+                            @Html.LabelFor(model => model.Ativo)
+
+                            @Html.EditorFor(model => model.Ativo)
+                            @Html.ValidationMessageFor(model => model.Ativo)
+                        </div>*@
+
+                    <div class="form-group">
+                        <label>Ativo?</label>
+                        @Html.BooleanFieldFor(model => model.Ativo, true, new { @class = "form-control", style = "width: 120px;" })
+                        @Html.ValidationMessageFor(model => model.Ativo)
+                    </div>
+
+                </div>
+                <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a href="@Url.Action("Index", "EspeciaisSecoes", new { })" class="btn btn-info">Voltar</a>
+
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

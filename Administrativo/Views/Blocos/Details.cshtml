@@ -1,0 +1,99 @@
+﻿@model Administrativo.Models.Blocos
+
+@{
+    ViewBag.Title = "Blocos";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Visualizar detalhes de Blocos";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">Detalhes</h3>
+            </div>
+            <div class="box-content padded">
+                <table class="table table-bordered table-striped responsive">
+                    <tbody>
+                        <tr>
+                            <td style="width:200px;">@Html.DisplayNameFor(model => model.Id)</td>
+                            <td>@Html.DisplayFor(model => model.Id)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Nome)</td>
+                            <td>@Html.DisplayFor(model => model.Nome)</td>
+                        </tr>
+
+                        @if (!string.IsNullOrEmpty(Model.Imagem))
+                        {
+                            <tr>
+                                <td>@Html.DisplayNameFor(model => model.Imagem)</td>
+                                <td><a class="btn btn-block btn-primary" data-toggle="modal" data-target="#imagem-foto" style="width: 120px;">Imagem Atual</a></td>
+                            </tr>
+                        }
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Local)</td>
+                            <td>@Html.DisplayFor(model => model.Local)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Data)</td>
+                            <td>@Html.DisplayFor(model => model.Data)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Descricao)</td>
+                            <td>@Html.Raw(Model.Descricao)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Ativo)</td>
+                            <td>@(Model.Ativo ? "Sim" : "Não")</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.DataCadastro)</td>
+                            <td>@Html.DisplayFor(model => model.DataCadastro)</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="box-footer">
+                <a href="@Url.Action("Edit","Blocos", new { id = Model.Id })" class="btn btn-warning">Editar</a>
+                <a href="@Url.Action("Index","Blocos")" class="btn btn-info">Voltar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="imagem-foto" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Imagem Atual</h4>
+            </div>
+            <div class="modal-body">
+                @if (!string.IsNullOrEmpty(Model.Imagem))
+                {
+                    if (Model.Imagem.Contains("Conteudo"))
+                    {
+                        <img src="~/@Model.Imagem" width="500" />
+                    }
+                    else
+                    {
+                        <img src="@Url.Content(string.Format(ViewBag.pathOriginal,Model.Id) + Model.Imagem)" width="500" />
+                    }
+                }
+
+            </div>
+            <div class="modal-footer clearfix">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="fa fa-times"></i>Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

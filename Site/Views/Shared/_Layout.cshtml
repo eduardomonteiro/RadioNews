@@ -1,0 +1,169 @@
+﻿@using Site.Helpers
+<!doctype html>
+<html xml:lang="pt-br" lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="author" content="Rádio CompanyName - A Rádio de Minas " />
+    <meta name="description" content="" />
+    <meta name="resource-type" content="document" />
+    <meta name="content-language" content="pt-br" />
+    <meta name="revisit" content="1 day" />
+    <meta name="ICBM" content="-20.8341668,-45.51577" />
+    <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+
+    @RenderSection("SEO", required: false)
+    <meta property="fb:app_id" content="215909845518383" />
+    <!-- Google Tag Manager Produção -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-T6B7RPX');
+    </script>
+    <!-- End Google Tag Manager -->
+    <!-- Google Tag Manager Homologação -->
+    @*<script>
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window, document, 'script', 'dataLayer', 'GTM-WHP3FTK');
+        </script>*@
+    <!-- End Google Tag Manager -->
+	
+    <!-- Navegg -->
+    <script id="navegg" type="text/javascript" src="https://tag.navdmp.com/tm46204.js"></script>
+    <!-- End Navegg -->
+
+    <link rel="shortcut icon" href="~/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="~/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="~/images/touch-icon-iphone.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="~/images/touch-icon-ipad.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="~/images/touch-icon-iphone-retina.png" />
+
+
+    @Styles.Render("~/Content/css-application")
+    @Scripts.Render("~/bundles/jquery")
+
+    <style>
+        @@media (max-width:799px) {
+            .margem-topo {
+                height: 130px;
+            }
+        }
+        @@media (min-width:800px) {
+            .margem-topo {
+                height: 320px;
+            }
+        }
+    </style>
+    <!--[if lt IE 9]>
+        <script src="~/scripts/html5shiv.js"></script>
+    <![endif]-->
+
+
+    @RenderSection("css", required: false)
+</head>
+
+<body class="home-page">
+    <div id="margem-topo" class="margem-topo"></div>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-12157365-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.8&appId=545713468800917";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <!-- Google Analitycs     -->
+    <!-- Google Tag Manager (noscript) Produção -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T6B7RPX"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <!-- Google Tag Manager (noscript) Homologação -->
+    @*<noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WHP3FTK"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>*@
+    <!-- End Google Tag Manager (noscript) -->
+    @*<script>
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-86304380-1', 'auto');
+                ga('send', 'pageview');
+        </script>*@
+
+    <header class="main-header" role="banner">
+
+        @{Html.RenderAction("Header", "Layout");}
+
+        @{Html.RenderAction("Menu", "Layout");}
+
+        @{Html.RenderAction("MenuEspeciais", "Layout");}
+
+    </header>
+
+
+    @RenderBody()
+
+    @{Html.RenderAction("RedesSociais", "Layout");}
+
+    @{Html.RenderAction("Footer", "Layout");}
+
+</body>
+</html>
+
+@Scripts.Render("~/bundles/scripts")
+@RenderSection("scripts", required: false)
+@RenderSection("script_seubolso", required: false)
+
+<script>
+    //var overiFrame = -1;
+    //$('.banner-iframe iframe').hover(function () {
+    //    overiFrame = $(this).closest('.banner').attr('bannerid');
+    //}, function () {
+    //    overiFrame = -1;
+    //});
+    //$(window).blur(function () {
+    //    if (overiFrame !== -1)
+    //        $('.banner-iframe').click();
+    //    setTimeout(function () { window.focus(); }, 0);
+    //});
+
+    $(document).ready(function () {
+        streaming('@Url.Action("LiveAtual", "LiveStreaming")')
+        busca('@ViewContext.RouteData.Values["busca"]');
+        previsaoTempo('@Url.Action("Previsao", "Tempo")');
+        layout();
+    });
+</script>

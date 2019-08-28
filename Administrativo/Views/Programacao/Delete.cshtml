@@ -1,0 +1,35 @@
+﻿@model Administrativo.Models.Programacao
+
+@{
+    ViewBag.Title = "Deletar Programa";
+    ViewBag.Icon = "fa fa-list-alt";
+    ViewBag.SmallDescription = "Deleta um Programa do sistema.";
+	
+}
+
+
+
+<div class="box box-danger">
+    <div class="box-header">
+        <i class="fa fa-trash-o"></i>
+        <h3 class="box-title">Deletar</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <div class="callout callout-danger">
+            <h4>Atenção</h4>
+            <p>Deseja realmente deletar este registro?</p>
+            @using (Html.BeginForm())
+            {
+                <button class="btn btn-danger">Sim</button>
+                <a href="@Url.Action("Index", "Programacao")" class="btn btn-success">Não</a>
+                    
+            }
+
+        </div>
+        <div class="box-content padded">
+            @Html.Partial("DetailsPartial")
+        </div>
+    </div>
+
+</div>

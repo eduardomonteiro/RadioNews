@@ -1,0 +1,347 @@
+.bt-submit {
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	color: $vermelho;
+	background: transparent;
+	&:hover {
+		background: black;
+		color: white;
+	}
+}
+
+.buttons-share {
+	color: $preto;
+	border: 1px solid $preto;
+	width: 40px;
+	height: 40px;
+	margin: 0 2px;
+	line-height: 40px !important;
+	text-align: center;
+	border-radius: $radius;
+	transition: all 0.2s ease;
+	&:hover {
+		border-color: white;
+		background: $vermelho;
+		color: white;
+	}
+}
+.bt-menu {
+	cursor: pointer;
+	font-weight: 300;
+	text-transform: uppercase;
+	font-size: 14px;
+	background: url(../images/bar-menu.png) no-repeat left center transparent;
+	padding-left: 35px;
+	position: relative;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	&:hover {
+		opacity: 0.7;
+	}
+	@include breakpoint(mobile) {
+		font-size: 0px;
+		height: 21px;
+	}
+}
+
+.loading-post {
+	font-size: 13px;
+	text-transform: uppercase;
+	color: black;
+	background: #e0e0e0;
+	padding: 15px;
+	border-radius: 20px;
+	display: inline-block;
+	.loading {
+		display: inline-block;
+		margin-left: 5px;
+		span {
+			width: 8px;
+			height: 8px;
+			border-radius: 100%;
+			margin: 0 2px;
+			display: inline-block;
+			background: #181818;
+			animation: loading_dots 2s linear infinite;
+			&:first-child {
+				background: #b8b8b8;
+				animation-delay: 0.2s;				
+			}
+			&:nth-child(2) {
+				background: #686868;
+				animation-delay: 0.4s;
+			}
+			&:last-child {
+				background: #181818;
+				animation-delay: 0.6s;
+			}
+		}
+	}
+}
+
+@keyframes loading_dots
+	{
+	0% {
+	  background: #b8b8b8;
+	}
+	50% {
+	  background: #181818;
+	}
+	100% {
+	  background: #b8b8b8;
+	}
+}
+.bt-red {
+	border-radius: $radius;
+	background: $vermelho;
+	text-transform: uppercase;
+	color: white;
+	display: inline-block;
+	text-decoration: none;
+	border: 0;
+	text-align: center;
+	outline: none;
+	font-size: 14px;
+	padding: 10px 15px;
+	min-height: 39px;
+	line-height: 20px;
+	transition: background 0.4s ease;
+	&:hover {
+		background: $vermelhoescuro;
+	}
+	@include breakpoint(mobile) {
+		font-size: 11px;
+		margin-bottom: 15px;
+	}
+	&.black {
+		background: $preto;
+		&:hover {
+			background: #363636;
+		}
+	}
+	&.total {
+		width: 100%;
+	}
+	&.large {
+		padding: 10px 10%;
+		margin-left: 5%;
+		@include breakpoint(desktop) {
+			margin-left: 0;
+			width: 100%;
+			margin-top: 15px;
+		}
+	}
+}
+
+.bt-line {
+	display: block;
+	width: 100%;
+	border: 0;
+	text-transform: uppercase;
+	font-size: 14px;
+	padding-top: 15px;
+	margin-top: 25px;
+	color: #140000;
+	background: transparent;
+	text-align: left;
+	border-top: 1px solid #d4d4d4;
+	&:hover {
+		color: $vermelho;
+	}
+}
+
+.bt-resize {
+	font-size: 20px;
+	color: $preto;
+	cursor: pointer;
+	border: 1px solid $preto;
+	background: white;
+	border-radius: 100%;
+	width: 25px;
+	font-weight: bold;
+	height: 25px;
+	margin: 0 2px;
+	line-height: 20px;
+	&:hover {
+		background: $preto;
+		color: white;
+		border: 1px solid $preto;
+	}
+}
+
+.bt-large {
+	width: 100%;
+	display: block;
+	text-align: center;
+	margin: 15px 0;
+}
+
+.search-filter {
+	height: 40px;
+	width: 100%;
+	background: $vermelho;
+	color: white;
+	border-radius: $radius;
+	font-weight: 300;
+	border: 0;
+	transition: background 0.4s ease;
+	&:hover {
+		background: $vermelhoescuro;
+	}
+	&.green {
+		background: #91c84e;
+		&:hover {
+			background: #608d2a;
+		}
+	}
+}
+.bt-add {
+	border: 2px solid $vermelho;
+	background: white;
+	color: $vermelho;
+	width: 40px;
+	height: 40px;
+	vertical-align: middle;
+	display: inline-block;
+	border-radius: $radius;
+	font-size: 28px;
+	line-height: 38px;
+	text-align: center;
+	margin-left: 4%;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	&:hover {
+		background: $vermelho;
+		color: white;
+	}
+	@include breakpoint(mobile) {
+		margin-top: 10px;
+		width: 100%;
+		margin-left: 0;
+	}
+} 
+.box-share {
+	position: relative;
+	display: inline-block;
+	padding: 10px;
+	border-radius: 5px 5px 0 0;
+	&.ok {
+		.title {
+			color: #d6b7b7;
+		}
+		background: $vermelhoescuro;
+		nav {
+			display: block;
+		}
+	}
+	nav {
+	    position: absolute;
+	    top: 100%;
+	    background: #f6f6f6;
+	    right: 0;
+	    background: $vermelho;
+	    width: 100%;
+	    z-index: 5;
+	    padding: 20px 15px;
+	    display: none;
+	    border-radius: 0 0 5px 5px;
+	    a {
+	    	display: block;
+	    	text-transform: uppercase;
+	    	border-bottom: 1px solid #ccc;
+	    	padding-bottom: 10px;
+	    	font-size: 12px;
+	    	color: white;
+	    	margin-bottom: 15px;
+	    	opacity: 0.7;
+	    	&:hover {
+	    		opacity: 1;
+	    	}
+	    	&:last-child {
+	    		border: 0;
+	    		margin-bottom: 0;
+	    		padding-bottom: 0;
+	    	}
+	    	.fa {
+	    		margin-right: 5px;
+	    	}
+	    }
+
+	}
+	> .title {
+		font-size: 14px;
+		text-transform: uppercase;
+		color: #929292;
+		font-weight: 600;
+		padding: 10px 0;
+		cursor: pointer;
+		&:hover {
+			opacity: 0.7;
+		}
+		.fa {
+			margin-right: 5px;
+			font-weight: 400;
+		}
+	}
+}
+
+.label-location {
+	display: inline-block;
+	color: white;
+	text-transform: uppercase;
+	background: $preto;
+	padding: 10px 30px;
+	font-size: 14px;
+	border-radius: $radius;
+	margin-bottom: 15px;
+	position: relative;
+	z-index: 3;
+	top: -25px;
+	transition: background 0.3s ease;
+	margin-bottom: -15px;
+	&:hover {
+		background: $vermelho;
+	}
+}
+
+.button-green {
+	background: #91c84e;
+	cursor: pointer;
+	text-transform: uppercase;
+	font-size: 1.4em;
+	font-weight: 300;
+	line-height: 1.2em;
+	padding: 10px 30px;
+	border-radius: $radius;
+	color: white;
+	margin-top: 15px;
+	transition: all 0.4s linear;
+	border: 2px solid transparent;
+	&:hover {
+		border: 2px solid #91c84e;
+		color: #91c84e;
+		background: transparent;
+	}
+}
+
+.bt-orange {
+	border: 2px solid #faa634;
+	display: block;
+	clear: both;
+	width: 100px;
+	height: 40px;
+	font-size: 12px;
+	color: #faa634;
+	border-radius: $radius;
+	text-align: center;
+	line-height: 35px;
+	text-transform: uppercase;
+	transition: all 0.3s linear;
+	margin: 0px 0 15px;
+	&:hover {
+		background: #faa634;
+		color: white;
+		border-color: white;
+	}
+}

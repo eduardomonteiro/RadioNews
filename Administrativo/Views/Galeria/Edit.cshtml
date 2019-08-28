@@ -1,0 +1,371 @@
+﻿@model Administrativo.Models.Galeria
+
+@{
+    ViewBag.Title = "Editar Galeria";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Altere as informações de Galeria";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+       
+}
+
+<div class="content">
+    <div class="row">
+        @using (Html.BeginForm())
+        {
+        <div class="box box-warning">
+            <div class="box-header">
+                <h3 class="box-title">Editar Galeria</h3>
+            </div>
+            
+            
+                <div class="box-body">
+                    @Html.HiddenFor(model => model.id)
+                    @Html.HiddenFor(model => model.excluido)
+                    @Html.HiddenFor(model => model.dataCadastro)
+                    @Html.HiddenFor(model => model.texto)
+                    @Html.HiddenFor(model => model.Fixa)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.titulo)
+                    </div>
+                    <div class="form-group">
+                        @Html.EditorFor(model => model.titulo)
+                        @Html.ValidationMessageFor(model => model.titulo)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.chamada)
+                    </div>
+                    <div class="form-group">
+                        @Html.EditorFor(model => model.chamada)
+                        @Html.ValidationMessageFor(model => model.chamada)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ativo)
+
+                        @Html.CheckBoxFor(model => model.ativo)
+                        @Html.ValidationMessageFor(model => model.ativo)
+                    </div>
+
+
+                    @*<div class="form-group">
+        @Html.LabelFor(model => model.texto)
+    </div>
+    <div class="form-group">
+        @Html.TextAreaFor(model => model.texto, new { @class = "text-box", style = "height: 250px;" })
+        @Html.ValidationMessageFor(model => model.texto)
+    </div>*@
+
+                </div>
+                <div class="box-footer">
+                    <input type="submit" value="Salvar Galeria" class="btn btn-success" />
+                    <a href="@Url.Action("Index", "Galeria")" class="btn btn-info">Voltar</a>
+
+                </div>
+        </div>
+        }
+
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Upload Imagens <small>Resolução mínima recomendada (840x630)</small></h3>
+            </div>
+            <div class="box-body">
+                <form id="fileupload" action="@Url.Action("UploadFiles", "Fotos")" method="POST" enctype="multipart/form-data">
+
+                    <input type="hidden" id="galeria_id" name="galeria_id" value="@Model.id" />
+
+                    <!-- Redirect browsers with JavaScript disabled to the origin page -->
+                    <noscript>
+                        <input type="hidden" name="redirect" value="http://blueimp.github.io/jQuery-File-Upload/">
+                    </noscript>
+                    <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+                    <div class="row fileupload-buttonbar">
+                        <div class="col-lg-7">
+                            <!-- The fileinput-button span is used to style the file input field as button -->
+                            <span class="btn btn-success fileinput-button">
+                                <i class="glyphicon glyphicon-plus"></i>
+                                <span>Adicionar Fotos...</span>
+                                <input type="file" name="files[]" multiple>
+                            </span>
+                            <button type="submit" class="btn btn-primary start">
+                                <i class="glyphicon glyphicon-upload"></i>
+                                <span>Iniciar Upload Geral</span>
+                            </button>
+                            <button type="reset" class="btn btn-warning cancel">
+                                <i class="glyphicon glyphicon-ban-circle"></i>
+                                <span>Cancelar Upload Geral</span>
+                            </button>
+                            <button type="button" class="btn btn-danger delete deleteAll">
+                                <i class="glyphicon glyphicon-trash"></i>
+                                <span>Deletar Todas</span>
+                            </button>
+                            <!-- The global file processing state -->
+                            <span class="fileupload-process"></span>
+                        </div>
+                        <!-- The global progress state -->
+                        <div class="col-lg-5 fileupload-progress fade">
+                            <!-- The global progress bar -->
+                            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar progress-bar-success" style="width: 0%;"></div>
+                            </div>
+                            <!-- The extended global progress state -->
+                            <div class="progress-extended">&nbsp;</div>
+                        </div>
+                    </div>
+                    <!-- The table listing the files available for upload/download -->
+                    <table role="presentation" class="table table-striped" id="tableImages">
+                        <tbody class="files">
+                            @foreach (var foto in ViewBag.fotos)
+                            {
+                                <tr class="template-download fade in">
+                                    <td>
+                                        <span class="preview">
+                                            <a href="/admin/conteudo/galeria/@Model.id/@foto.midia" title="@foto.midia" download="@foto.midia">
+                                                <img src="/admin/conteudo/galeria/@Model.id/min/@foto.midia" /></a>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <p class="name">
+                                            <a href="/admin/conteudo/galeria/@foto.id/@foto.midia" title="@foto.midia" download="@foto.midia" >@foto.midia</a>
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <span>@foto.legenda</span>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger delete" data-type="DELETE" data-url="/Admin/Fotos/Delete/@foto.id">
+                                            <i class="glyphicon glyphicon-trash"></i>
+                                            <span>Deletar esta Foto</span>
+                                        </button>
+
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+
+
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Upload Videos</h3>
+            </div>
+            <form action="@Url.Action("SalvaFotos", "Fotos")" method="POST" enctype="multipart/form-data">
+                <div class="box-body">
+                    <input type="hidden" id="galeria_id" name="galeria_id" value="@Model.id" />
+                    <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+                    <div class="row fileupload-buttonbar">
+                        <div class="col-lg-7">
+                            <!-- The fileinput-button span is used to style the file input field as button -->
+                            <span class="btn btn-success fileinput-button" id="AddVidio">
+                                <i class="glyphicon glyphicon-plus"></i>
+                                <span>Adicionar Video...</span>
+                            </span>
+                            <!-- The global file processing state -->
+                        </div>
+                        <!-- The global progress state -->
+                        <div class="col-lg-5 fileupload-progress fade">
+                            <!-- The global progress bar -->
+                            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar progress-bar-success" style="width: 0%;"></div>
+                            </div>
+                            <!-- The extended global progress state -->
+                            <div class="progress-extended">&nbsp;</div>
+                        </div>
+                    </div>
+                    <!-- The table listing the files available for upload/download -->
+                    <table role="presentation" class="table table-striped" id="tableVidios">
+                        <tbody class="files">
+                            @foreach (var video in ViewBag.videos)
+                            {
+                                <tr class="template-download fade in">
+                                    <td colspan="2">
+                                        <span class="preview">
+                                            @video.midia
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>@video.legenda</span>
+                                    </td>
+                                    <td>
+                                        <div class="btn btn-danger delete x" id="@video.id">
+                                            <i class="glyphicon glyphicon-trash"></i>
+                                            <span>Deletar</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="box-footer">
+                    <input type="submit" value="Salvar Videos" onclick="if ($('#codVid').val() + '' == '' || $('#codVid').val() + '' == 'undefined') { return false }" class="btn btn-success" />
+                </div>
+            </form>
+        
+    </div>
+</div>
+
+@section Scripts {
+    @Styles.Render("~/Content/file-upload")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/file-upload")
+}
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+      /*  var editor = CKEDITOR.replace('texto',
+                {
+                    height: "200px"
+                });
+                */
+        $('#chamada').wysihtml5();
+        $('#chamada').css('height', '80');
+
+     //   $("#idGaleria").val(@ViewContext.RouteData.Values["Id"]);
+        
+    });
+
+
+    $(function () {
+        $("#AddVidio").click(function () {
+
+            var input = '<tr>';
+            input += '<td>';
+            input += '<label>Codigo do vídeo</label>';
+            input += '</td>';
+            input += '<td>';
+            input += '<input type="text" id="codVid" name="codVid" class="form-control"/>';
+            input += '</td>';
+            input += '<td>';
+            input += '<label>Legenda do vídeo</label>';
+            input += '</td>';
+            input += '<td>';
+            input += '<input type="text" id="legenda" name="legenda" class="form-control"/>';
+            input += '</td>';
+            input += '<td>';
+            input += '<div class="btn btn-danger delete" onclick="$(this).parent().parent().remove()"><i class="fa fa-close"></i><span></span></div>';
+            input += '</td>';
+            input += '<tr>';
+
+            $("#tableVidios").append(input);
+            return false;
+        });
+
+        $(".btn.btn-danger.delete.x").on('click', function () {
+            btn = $(this);
+            $.ajax({
+                type: "delete",
+                dataType: "json",
+                url: "@Url.Action("Delete","Fotos")",
+                data: { id: btn.attr("id") },
+                success: function () {
+                    $(btn).parent().parent().fadeOut();
+                }
+            });
+        });
+
+            $(".deleteAll").on('click', function () {
+
+                var idGaleria = $("#id").val();
+
+                $.ajax({
+                    type: "delete",
+                    dataType: "json",
+                    url: "@Url.Action("DeleteAll","Fotos")",
+                    data: { id: idGaleria },
+                    success: function () {
+                        $("#tableImages > tbody  > tr").each(function () {
+                            $(this).fadeOut();
+                        })
+                        //$(btn).parent().parent().fadeOut();
+
+                    }
+
+            });
+
+        })
+    });
+</script>
+
+<!-- The template to display files available for upload -->
+<script id="template-upload" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-upload fade">
+        <td>
+            <span class="preview"></span>
+        </td>
+        <td>
+            <p class="name">{%=file.name%}</p>
+            <strong class="error text-danger"></strong>
+        </td>
+        <td class="legenda"><label>Legenda: <input name="legenda" maxlength="180"  tabindex="{%=i%}" required ></label></td>
+        <td>
+            <p class="size">Processing...</p>
+            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar progress-bar-success" style="width:0%;"></div></div>
+        </td>
+        <td>
+            {% if (!i && !o.options.autoUpload) { %}
+                <button class="btn btn-primary start" disabled>
+                    <i class="glyphicon glyphicon-upload"></i>
+                    <span>Inciar upload desta foto</span>
+                </button>
+            {% } %}
+            {% if (!i) { %}
+                <button class="btn btn-warning cancel">
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    <span>Cancelar</span>
+                </button>
+            {% } %}
+        </td>
+    </tr>
+{% } %}
+</script>
+
+<!-- The template to display files available for download -->
+<script id="template-download" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-download fade">
+        <td>
+            <span class="preview">
+                {% if (file.thumbnail_url) { %}
+                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnail_url%}"></a>
+                {% } %}
+            </span>
+        </td>
+        <td>
+            <p class="name">
+                {% if (file.url) { %}
+                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnail_url?'data-gallery':''%}>{%=file.name%}</a>
+                {% } else { %}
+                    <span>{%=file.name%}</span>
+                {% } %}
+            </p>
+            {% if (file.error) { %}
+                <div><span class="label label-danger">Error</span> {%=file.error%}</div>
+            {% } %}
+        </td>
+        <td>
+            <span class="size">{%=o.formatFileSize(file.size)%}</span>
+        </td>
+        <td>
+            {% if (file.delete_url) { %}
+                <button class="btn btn-danger delete" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
+                    <i class="glyphicon glyphicon-trash"></i>
+                    <span>Deletar esta Foto</span>
+                </button>
+            {% } else { %}
+                <button class="btn btn-warning cancel">
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    <span>Cancelar</span>
+                </button>
+            {% } %}
+        </td>
+    </tr>
+{% } %}
+</script>

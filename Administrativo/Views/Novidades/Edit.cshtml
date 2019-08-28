@@ -1,0 +1,140 @@
+﻿@model Administrativo.Models.MateriaNovidades
+
+
+@{
+    ViewBag.Title = "Editar Novidades";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Altere as informações de Novidades";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+
+
+<div class="content">
+    <div class="row">
+        <div class="box box-warning">
+            <div class="box-header">
+                <h3 class="box-title">Editar Novidades</h3>
+            </div>
+            @using (Html.BeginForm("Edit", "Novidades", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="box-body">
+
+                    @Html.HiddenFor(model => model.id)
+                    @Html.HiddenFor(model => model.dataCadastro)
+
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.idMateria, "Materia")
+
+
+
+                        <select class="form-control" readonly="readonly" name="idMateria" id="idMateria">
+                            <option value="@ViewBag.Materia.id">@ViewBag.Materia.titulo"</option>
+                        </select>
+
+                        @Html.ValidationMessageFor(model => model.idMateria)
+                    </div>
+
+
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.status)
+
+
+
+                        @Html.EditorFor(model => model.status)
+
+                        @Html.ValidationMessageFor(model => model.status)
+                    </div>
+
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.novidades)
+
+
+
+                        @Html.EditorFor(model => model.novidades)
+
+                        @Html.ValidationMessageFor(model => model.novidades)
+                    </div>
+
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.dataPrograma)
+
+
+                        <input type="datetime" id="dataPrograma" name="dataPrograma" class="form-control" value="@Model.dataPrograma" />
+                        @Html.ValidationMessageFor(model => model.dataPrograma)
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.audio)
+
+
+
+                                <input type="file" name="audioNovo" id="audioNovo" onchange="javascript: $('#audio').val($(this).val().split('\\').pop());" />
+                                <input type="hidden" id="audio" name="audio" value="@Model.audio" />
+                                <label class="field-validation-error" id="erroMP3">Somente arquivos mp3</label>
+                                @Html.ValidationMessageFor(model => model.audio)
+                            </div>
+                            <div class="col-md-5">
+                                @if (!string.IsNullOrEmpty(Model.audio))
+                                {
+                                    @Html.Label("audio atual:")<b><i>&nbsp;@Model.audio</i></b>
+                                    <br />
+                                    <audio controls>
+
+                                        <source src="@Url.Content("~/Conteudo/materias/" + Model.idMateria + "/audios/" + Model.audio)" type="audio/mpeg">
+                                    </audio>
+                                }
+                                else
+                                {
+                                    <br />
+                                    <p class="text-yellow">Sem audio.</p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a href="@Url.Action("Details", "Causas", new { id = ViewBag.Materia.id })" class="btn btn-info">Voltar</a>
+
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $('#erroMP3').hide();
+        });
+
+        $('#audioNovo').on('change', function () {
+            console.log($(this).val());
+            if ($(this).val().indexOf('mp3', $(this).length) < 0) {
+                $(this).val('');
+                $('#erroMP3').show();
+            } else {
+                $('#erroMP3').hide();
+            };
+        });
+    </script>
+}
+
+
+

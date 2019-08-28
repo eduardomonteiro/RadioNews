@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<standings id="295">
+	<table type="N" group="1">
+<team name="Palmeiras" id="PAL" uid="47" area="1" obs="0" pos="1" pts="77" pld="37" w="23" d="8" l="6" gf="60" ga="31" gd="29" per="69" />
+<team name="Flamengo" id="FLA" uid="41" area="1" obs="0" pos="2" pts="70" pld="37" w="20" d="10" l="7" gf="52" ga="35" gd="17" per="63" />
+<team name="Santos" id="SAN" uid="49" area="1" obs="0" pos="3" pts="68" pld="37" w="21" d="5" l="11" gf="58" ga="35" gd="23" per="61" />
+<team name="Atlético-MG" id="CAM" uid="33" area="2" obs="0" pos="4" pts="62" pld="37" w="17" d="11" l="9" gf="61" ga="50" gd="11" per="55" />
+<team name="Atlético-PR" id="CAP" uid="34" area="2" obs="0" pos="5" pts="56" pld="37" w="17" d="5" l="15" gf="38" ga="32" gd="6" per="50" />
+<team name="Botafogo" id="BOT" uid="37" area="2" obs="0" pos="6" pts="56" pld="37" w="16" d="8" l="13" gf="42" ga="39" gd="3" per="50" />
+<team name="Corinthians" id="COR" uid="38" area="3" obs="0" pos="7" pts="55" pld="37" w="15" d="10" l="12" gf="46" ga="39" gd="7" per="49" />
+<team name="Grêmio" id="GRE" uid="44" area="3" obs="0" pos="8" pts="53" pld="37" w="14" d="11" l="12" gf="41" ga="43" gd="-2" per="47" />
+<team name="Chapecoense" id="CHA" uid="93" area="3" obs="0" pos="9" pts="52" pld="37" w="13" d="13" l="11" gf="49" ga="53" gd="-4" per="46" />
+<team name="Ponte Preta" id="PON" uid="68" area="3" obs="0" pos="10" pts="50" pld="37" w="14" d="8" l="15" gf="46" ga="52" gd="-6" per="45" />
+<team name="São Paulo" id="SPL" uid="50" area="3" obs="0" pos="11" pts="49" pld="37" w="13" d="10" l="14" gf="39" ga="36" gd="3" per="44" />
+<team name="Fluminense" id="FLU" uid="42" area="3" obs="0" pos="12" pts="49" pld="37" w="13" d="10" l="14" gf="44" ga="44" gd="0" per="44" />
+<team name="Cruzeiro" id="CRU" uid="40" area="0" obs="0" pos="13" pts="48" pld="37" w="13" d="9" l="15" gf="45" ga="47" gd="-2" per="43" />
+<team name="Coritiba" id="CFC" uid="39" area="0" obs="0" pos="14" pts="46" pld="37" w="11" d="13" l="13" gf="41" ga="40" gd="1" per="41" />
+<team name="Vitória" id="VIT" uid="52" area="0" obs="0" pos="15" pts="45" pld="37" w="12" d="9" l="16" gf="50" ga="51" gd="-1" per="40" />
+<team name="Sport" id="SPO" uid="51" area="0" obs="0" pos="16" pts="44" pld="37" w="12" d="8" l="17" gf="47" ga="55" gd="-8" per="39" />
+<team name="Internacional" id="INT" uid="45" area="9" obs="0" pos="17" pts="42" pld="37" w="11" d="9" l="17" gf="34" ga="40" gd="-6" per="37" />
+<team name="Figueirense" id="FIG" uid="62" area="9" obs="0" pos="18" pts="37" pld="37" w="8" d="13" l="16" gf="30" ga="48" gd="-18" per="33" />
+<team name="Santa Cruz" id="STC" uid="113" area="9" obs="0" pos="19" pts="31" pld="37" w="8" d="7" l="22" gf="45" ga="64" gd="-19" per="27" />
+<team name="América-MG" id="AME" uid="53" area="9" obs="0" pos="20" pts="28" pld="37" w="7" d="7" l="23" gf="23" ga="57" gd="-34" per="25" />
+
+	</table>
+</standings>

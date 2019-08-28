@@ -1,0 +1,46 @@
+﻿@using Site.Helpers
+@model List<Site.Models.Noticias>
+@{
+    Layout = null;
+}
+
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var item in Model)
+    {
+        <li class="post-update" data-id="@item.id" data-date="@item.dataAtualizacao.Day">
+            <div class="timer">@item.dataAtualizacao.ToString("HH:mm")</div>
+            <article class="container">
+
+                @if (!string.IsNullOrEmpty(item.foto))
+                {
+                    <figure>
+                        <img src="@Utils.fullUrlImage("260x173", item.id)" alt="@item.titulo">
+                    </figure>
+
+                }
+
+                <div class="info">
+                    <h3 class="title-medium">@item.texto</h3>
+                </div>
+
+            </article>
+        </li>
+
+    }
+
+}
+else
+{
+    <p></p>
+}
+
+
+
+
+
+
+
+
+
+

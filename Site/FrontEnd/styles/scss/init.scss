@@ -1,0 +1,25 @@
+// Variaveis de reutilização
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,600,400italic,600italic,700,700italic,800,800italic');
+$total: 1130;
+$vermelho: #ad1111;
+$vermelhoescuro: #640000;
+$cinza: #e7e7e7;
+$cinzaescuro: #d6d8d8;
+$cortext: #181818;
+$preto: #1f1a17;
+$radius: 5px;
+$font: 'Roboto', sans-serif;
+@import 'config/_mixins';
+.center {
+	max-width: $total + px;
+	margin: 0 auto;
+	position: relative;
+	@include breakpoint(desktop) {
+		padding-left: 2% !important;
+		padding-right: 2% !important;
+	}
+}
+
+@import 'general/_reset';
+@import 'layout/_main.scss';
+@import 'components/*.scss';

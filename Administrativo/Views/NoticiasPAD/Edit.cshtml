@@ -1,0 +1,190 @@
+﻿@model Administrativo.Models.NoticiasPADs
+
+@{
+    ViewBag.Title = "Editar Notícia - Painéis Digitais";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Altere as informações da Notícia para aparecer nos Painéis Digitais";
+}
+
+<div class="content">
+    <div class="row">
+        <div class="box box-warning">
+            <div class="box-header">
+                <h3 class="box-title">Editar Notícia - Painéis Digitais</h3>
+            </div>
+            @using (Html.BeginForm("Edit", "NoticiasPaineis", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="box-body">
+                    @Html.HiddenFor(model => model.Id)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Titulo)
+
+                        <input type="text" id="Titulo" name="Titulo" class="text-box" maxlength="85" value="@Model.Titulo" />
+                        @Html.ValidationMessageFor(model => model.Titulo)
+                    </div>
+
+                    @*<div class="form-group">
+                        @Html.LabelFor(model => model.Chamada)
+
+                        <input type="text" id="Chamada" name="Chamada" class="text-box" maxlength="100" value="@Model.Chamada" />
+                        @Html.ValidationMessageFor(model => model.Chamada)
+                    </div>*@
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Categoria)
+
+                        <input type="text" id="Categoria" name="Categoria" class="text-box" maxlength="15" value="@Model.Categoria" readonly />
+                        @Html.ValidationMessageFor(model => model.Categoria)
+                    </div>
+
+                    <div class="form-group">
+                        <label>Apoiador</label>
+                        @Html.DropDownList("ApoioId", null, "Selecione...", new { @class = "form-control" })
+                        @Html.ValidationMessage("ApoioId")
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Foto - <em>Resolução mínima recomendada ()</em></label>
+
+                                @Html.HiddenFor(model => model.Foto)
+                                <input type="file" name="fotoUpload" id="fotoUpload" onchange="javascript: $('#foto').val($(this).val().split('\\').pop());" accept="image/*" />
+                                <label id="lblFotoExistente"></label>
+                                @Html.ValidationMessageFor(model => model.Foto)
+
+                                <input type="hidden" id="fotoExistente" name="fotoExistente" />
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            @if (!string.IsNullOrEmpty(Model.Foto))
+                            {
+
+                                <a class="btn btn-block btn-primary" id="btn-imagem" data-toggle="modal" data-target="#imagem-foto" style="width: 120px;">Imagem Atual</a>
+
+                            }
+                            else
+                            {
+                                <p class="text-yellow">Sem Imagem.</p>
+                            }
+                        </div>
+                        <div class="col-md-2">
+                            <input type="button" id="btnCrop" class="btn btn-block btn-primary" data-target="#modal" data-toggle="modal" value="Editar Foto" style="display:none;width:120px" />
+                        </div>
+                    </div>
+
+
+                </div>
+                    <div class="box-footer">
+                        <input type="submit" value="Salvar" class="btn btn-success" />
+                        <a href="@Url.Action("Index", "NoticiasPaineis")" class="btn btn-info">Voltar</a>
+
+                        <input type="hidden" id="cropX" name="cropX" value="0" />
+                        <input type="hidden" id="cropY" name="cropY" value="0" />
+                        <input type="hidden" id="cropWidth" name="cropWidth" value="0" />
+                        <input type="hidden" id="cropHeight" name="cropHeight" value="0" />
+                    </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal" aria-labelledby="modalLabel" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Crop the image</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    @if (!string.IsNullOrEmpty(Model.Foto))
+                    {
+                        <img id="Foto1" class="img-responsive" src="@Url.Content("~/Conteudo/NoticiasPAD/" + Model.Id + "/" + Model.Foto)" alt="Picture">
+                    }
+                    else
+                    {
+                        <img id="Foto1" class="img-responsive" alt="Picture">
+                    }
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="imagem-foto" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Imagem Atual</h4>
+            </div>
+            <div class="modal-body">
+                @if (!string.IsNullOrEmpty(Model.Foto))
+                {
+                    <img src="~/Conteudo/NoticiasPAD/@Model.Id/@Model.Foto" width="500" />
+                }
+
+            </div>
+            <div class="modal-footer clearfix">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="fa fa-times"></i>Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript" src="~/Content/JCrop/js/jquery.Jcrop.min.js"></script>
+    <script>
+            $(function () {
+                $("#fotoUpload").change(function () {
+                    $('#btnCrop').show();
+                    showPicture(this);
+                });
+                function showPicture(input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            $('#Foto1').attr('src', e.target.result);
+                            $('#btnCrop').show();
+                        }
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+
+                var $image = $('#Foto1');
+                var aspect = 3.11;
+
+                function setCoordsAndImgSize(e) {
+                    var propX = ((e.x / $image.width()) * $image[0].width);
+                    var propY = ((e.y / $image.height()) * $image[0].height);
+                    var propW = ((e.w / $image.width()) * $image[0].width);
+                    var propH = ((e.h / $image.height()) * $image[0].height);
+
+                    $("#cropX").attr('value', Math.round(propX));
+                    $("#cropY").attr('value', Math.round(propY));
+                    $("#cropWidth").attr('value', Math.round(propW));
+                    $("#cropHeight").attr('value', Math.round(propH));
+                }
+
+                $('#modal').on('shown.bs.modal', function () {
+                    $image.Jcrop({
+                        aspectRatio: aspect,
+                        onChange: setCoordsAndImgSize
+                    });
+                }).on('hidden.bs.modal', function () {
+
+                });
+            });
+    </script>
+}

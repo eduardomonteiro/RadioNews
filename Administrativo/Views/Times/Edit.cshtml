@@ -1,0 +1,154 @@
+﻿@model Administrativo.Models.Times
+
+
+@{
+    ViewBag.Title = "Editar Blocos";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Altere as informações de Blocos";
+}
+
+<div class="content">
+    <div class="row">
+        <div class="box box-warning">
+            <div class="box-header">
+                <h3 class="box-title">Editar Blocos</h3>
+            </div>
+            @using (Html.BeginForm("Edit", "Times", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="box-body">
+                    @Html.HiddenFor(model => model.Id)
+                    @Html.HiddenFor(m=>m.Chave)
+
+                    <div class="form-group">
+                        <label for="EditoriaId">Ligado a Editoria de Notícias</label>
+                        @Html.DropDownList("EditoriaId", null, "Selecione...", new { @class = "chosen-select" })
+                        @Html.ValidationMessage("EditoriaId")
+                    </div>
+
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Nome)
+
+                        @Html.TextBoxFor(model => model.Nome, new { @maxlength = 100, @class = "text-box" })
+                        @Html.ValidationMessageFor(model => model.Nome)
+                    </div>
+
+                    <h4 class="page-header"></h4>
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+
+                                <label>Escudo do Time  <em></em></label>
+
+                                @Html.TextBoxFor(model => model.Escudo, new { style = "display: none;" })
+                                <input type="file" name="EscudoUpload" id="EscudoUpload" onchange="javascript: $('#EscudoUpload').val($(this).val().split('\\').pop());" accept="image/*"/>
+                                <label id="lblFotoExistente"></label>
+                                @Html.ValidationMessageFor(model => model.Escudo)
+
+
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            @if (!string.IsNullOrEmpty(Model.Escudo))
+                            {
+
+                                <a class="btn btn-block btn-primary" data-toggle="modal" data-target="#imagem-foto" style="width: 120px;">Imagem Atual</a>
+
+                            }
+                            else
+                            {
+                                <p class="text-yellow">Sem Imagem.</p>
+                            }
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Informacoes)
+
+                        @Html.TextAreaFor(model => model.Informacoes)
+                        @Html.ValidationMessageFor(model => model.Informacoes)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Titulos)
+
+                        @Html.TextAreaFor(model => model.Titulos, new { @class = "text-box", style = "height: 100px;" })
+                        @Html.ValidationMessageFor(model => model.Titulos)
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Cor)
+                        <input type="color" name="Cor" id="Cor" value="@Model.Cor" />
+                        @Html.ValidationMessageFor(model => model.Cor)
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Ativo?</label>
+                        @Html.BooleanFieldFor(model => model.Ativo, true, new { @class = "form-control", style = "width: 120px;" })
+                        @Html.ValidationMessageFor(model => model.Ativo)
+                    </div>
+
+                </div>
+                    <div class="box-footer">
+                        <input type="submit" value="Salvar" class="btn btn-success" />
+                        <a href="@Url.Action("Index", "Times")" class="btn btn-info">Voltar</a>
+
+                    </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="imagem-foto" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Imagem Atual</h4>
+            </div>
+            <div class="modal-body">
+                @if (!string.IsNullOrEmpty(Model.Escudo))
+                {
+                    if (Model.Escudo.Contains("Conteudo"))
+                    {
+                        <img src="~/@Model.Escudo" width="48" />
+                    }
+                    else
+                    {
+                        <img src="@Url.Content(string.Format(ViewBag.pathOriginal,Model.Id) + Model.Escudo)" width="48" />
+                    }
+                }
+
+            </div>
+            <div class="modal-footer clearfix">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="fa fa-times"></i>Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            
+            $(".chosen-select").chosen({ width: "100%" });
+            
+            var editor = CKEDITOR.replace('Informacoes',
+               {
+                   height: "200px"
+               });
+            $('#Titulos').wysihtml5();
+        });
+
+
+    </script>
+}

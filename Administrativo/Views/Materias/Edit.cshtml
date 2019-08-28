@@ -1,0 +1,386 @@
+﻿@model Administrativo.Models.Noticias
+
+@{
+    ViewBag.Title = "Editar Matérias";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Altera as informações de uma matéria";
+}
+<style>
+    .cke_dialog_ui_file {
+        height: inherit !important;
+    }
+
+    .cke_dialog_ui_input_file {
+        height: inherit !important;
+    }
+</style>
+<div class="content">
+    <div class="row">
+        <div class="box box-warning">
+            <div class="box-header">
+                <h3 class="box-title">Editar Matérias</h3>
+            </div>
+            @using (Html.BeginForm("Edit", "Materias", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="box-body">
+                    @Html.HiddenFor(model => model.id)
+                    @Html.HiddenFor(model => model.dataCadastro)
+
+                    <div style="display:none">
+                        @Html.CheckBoxFor(model => model.transito, new { @checked = "checked", style = "display:none;" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.idColunista, "Colunista")
+
+                        @Html.DropDownList("idColunista", null, "Selecione...", new { @class = "chosen-select" })
+
+                        @Html.ValidationMessageFor(model => model.idColunista)
+                    </div>
+
+                    <div class="form-group">
+                        Editoria
+
+                        @Html.DropDownList("idEditoria", null, "Selecione...", new { @class = "chosen-select" })
+                        @Html.ValidationMessage("idEditoria")
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.Label("Título")
+
+                        @Html.TextBoxFor(model => model.titulo, new { @maxlength = 100, @class = "text-box" })
+                        @Html.ValidationMessageFor(model => model.titulo)
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.Label("Subtítulo")
+
+                        @Html.TextAreaFor(model => model.chamada, new { @class = "text-box", style = "height: 100px;", @maxlength = 800 })
+                        @Html.ValidationMessageFor(model => model.chamada)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.texto)
+
+                        @Html.TextAreaFor(model => model.texto)
+                        @Html.ValidationMessageFor(model => model.texto)
+                    </div>
+
+                    <div class="form-group div-hora">
+                        <label>Programar matéria</label>
+                        @Html.EditorFor(model => model.dataAtualizacao, new { @class = "form-control datepicker" })
+                        @Html.ValidationMessageFor(model => model.dataAtualizacao)
+                    </div>
+
+
+                    <h4 class="page-header"></h4>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+
+                                <label>Foto - <em>Resolução mínima recomendada (744x500)</em></label>
+
+                                @Html.TextBoxFor(model => model.foto, new { style = "display: none;" })
+                                <input type="file" name="fotoUpload" id="fotoUpload" onchange="javascript: $('#foto').val($(this).val().split('\\').pop());" />
+                                <label id="lblFotoExistente"></label>
+                                @Html.ValidationMessageFor(model => model.foto)
+
+                                <input type="hidden" id="fotoExistente" name="fotoExistente" />
+                                @if (!string.IsNullOrEmpty(Model.foto))
+                                {
+                                    <div><a class="text-blue btn-remove-foto" href="#"><strong>Remover Foto</strong></a></div>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            @if (!string.IsNullOrEmpty(Model.foto))
+                            {
+
+                                <a class="btn btn-block btn-primary" id="btn-imagem" data-toggle="modal" data-target="#imagem-foto" style="width: 120px;">Imagem Atual</a>
+
+                            }
+                            else
+                            {
+                                <p class="text-yellow">Sem Imagem.</p>
+                            }
+                        </div>
+                        <div class="col-md-5">
+                            <div class="callout callout-info">
+                                <h4>Ou escolha uma imagem já enviada </h4>
+                                <a class="btn btn-primary iframe" href="@Url.Action("Index","Elfinder")"><i class="fa fa-search-plus"></i>&nbsp;Procurar</a>
+                            </div>
+                        </div>
+
+                        @*<div class="col-md-8">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.fotoDescricao)
+
+                                    @Html.EditorFor(model => model.fotoDescricao)
+                                    @Html.ValidationMessageFor(model => model.fotoDescricao)
+                                </div>
+
+                            </div>*@
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                @Html.LabelFor(model => model.audio)
+
+                                @Html.TextBoxFor(model => model.audio, new { style = "display: none;" })
+                                <input type="file" name="audioUpload" id="audioUpload" onchange="javascript: $('#audio').val($(this).val().split('\\').pop());" />
+                                @Html.ValidationMessageFor(model => model.audio)
+                            </div>
+
+                            <div class="col-md-8">
+                                @if (!string.IsNullOrEmpty(Model.audio))
+                                {
+
+                                    <audio controls>
+                                        @*<source src="horse.ogg" type="audio/ogg">*@
+                                        <source src="@Url.Content("~/conteudo/noticias/"+Model.id+"/audio/"+Model.audio)" type="audio/mpeg">
+                                        Atualize seu navegador para ouvir.
+                                    </audio>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    @*<h4 class="page-header"></h4>
+                        <h4 class="page-header">
+                            Fotos e Vídeos
+                            <small>Selecione uma galeria já cadastrada e/ou um vídeo do YouTube.</small>
+                        </h4>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.idGaleria, "Galeria")
+
+                            @Html.DropDownList("idGaleria", null, "Selecione...", new { @class = "chosen-select" })
+
+                            @Html.ValidationMessageFor(model => model.idGaleria)
+                        </div>*@
+
+
+
+                    <div class="form-group">
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.videoYoutube)
+
+                                @Html.TextBoxFor(model => model.videoYoutube, new { @maxlength = 200, @class = "text-box" })
+                                @Html.ValidationMessageFor(model => model.videoYoutube)
+                            </div>
+                            <div class="col-md-6">
+                                <div class="callout callout-warning">
+                                    <h4>Exemplo: </h4>
+                                    <p>https://www.youtube.com/watch?v=tCXaSncssMw</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="preview" style="display:none;">
+                        <h3>Preview</h3>
+                        <div id="playerYoutube"></div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Tags) / Assuntos
+                        <input name="ListaTags" id="ListaTags" value="@ViewBag.tagsNoticia" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ativo?</label>
+                        @Html.BooleanFieldFor(model => model.liberado, Model.liberado, new { @class = "form-control", style = "width: 120px;" })
+                        @Html.ValidationMessageFor(model => model.liberado)
+                    </div>
+
+                    <div class="box-footer">
+                        <input type="submit" value="Salvar" class="btn btn-success" />
+                        <a href="@Url.Action("Index", "Materias")" class="btn btn-info">Voltar</a>
+
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="imagem-foto" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Imagem Atual</h4>
+            </div>
+            <div class="modal-body">
+                @if (!string.IsNullOrEmpty(Model.foto))
+                {
+                    if (Model.foto.Contains("Conteudo"))
+                    {
+                        <img src="~/@Model.foto" width="500" />
+                    }
+                    else
+                    {
+                        <img src="@Url.Content(string.Format(ViewBag.pathOriginal,Model.id) + Model.foto)" width="500" />
+                    }
+                }
+
+            </div>
+            <div class="modal-footer clearfix">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="fa fa-times"></i>Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @*@Scripts.Render("https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places");*@
+<script src="~/Scripts/ValidadorJqueryPT-BR-DataHora.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".iframe").colorbox({ iframe: true, width: "80%", height: "80%" })
+
+            CKEDITOR.config.protectedSource.push(/<script.*platform.twitter.com.*>.*<\/script>/g);
+            CKEDITOR.config.protectedSource.push(/<script.*platform.instagram.com.*>.*<\/script>/g);
+
+            var editor = CKEDITOR.replace('texto',
+                {
+                    height: "200px",
+                    filebrowserUploadUrl : '/Admin/NoticiaEditorial/UploadImage'
+                });
+
+            $('#chamada').wysihtml5();
+
+            var sampleTags = @Html.Raw(Json.Encode(ViewBag.AutoCompleteTags));
+
+            $('#ListaTags').tagit({
+                availableTags: sampleTags
+            });
+
+            $("#horario").inputmask("99:99");
+            $(".chosen-select").chosen({ width: "100%" });
+            //youtube.init();
+
+
+            $("#videoYoutube").blur(function () {
+
+                var urlYoutube = $(this).val();
+
+                var video_id = urlYoutube.split('v=')[1];
+                var ampersandPosition = video_id.indexOf('&');
+                if (ampersandPosition != -1) {
+                    video_id = video_id.substring(0, ampersandPosition);
+                }
+
+                $(".preview").show();
+                alterVideo(video_id);
+
+            });
+
+
+            @if(!string.IsNullOrEmpty(Model.videoYoutube))
+            {
+                <text>
+            $(".preview").show();
+            </text>
+            }
+
+
+            $(".btn-remove-foto").on('click',function(){
+                swal({
+                    title: 'Exclusão',
+                    text: "Deseja mesmo excluir a imagem deste post?",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#DD6B55',
+                    confirmButtonText: 'Sim',
+                    cancelButtonText: 'Não',     
+                }).then(function () {
+                    $("#foto").val("");
+                    $("#btn-imagem").hide();
+                }, function (dismiss) {
+                    if (dismiss === 'cancel') {
+                       
+                    }
+                })
+            });
+        });
+
+        function getvalue(valor) {
+            document.getElementById('fotoExistente').value = valor;
+            $("#lblFotoExistente").html(valor);
+            $.colorbox.close();
+        }
+
+        var tag = document.createElement('script');
+
+        tag.src = "http://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('playerYoutube', {
+                height: '300',
+                width: '450',
+                videoId: getIdYoutube('@Model.videoYoutube'),
+                events: {
+                    'onStateChange': onPlayerStateChange
+                },
+                playerVars: {
+                    rel: 0,
+                    wmode: "opaque"
+                }
+            });
+        }
+
+        function onPlayerStateChange(evt) {
+            if (evt.data == 0) {
+                $('#video_popup').removeClass('hide_pop');
+                $('#video_popup').addClass('display_pop');
+            }
+            else if (evt.data == -1) {
+                $('#video_popup').removeClass('display_pop');
+                $('#video_popup').addClass('hide_pop');
+            }
+            else {
+                $('#video_popup').removeClass('display_pop');
+                $('#video_popup').addClass('hide_pop');
+            }
+        }
+
+
+        function alterVideo(id_video) {
+            player.loadVideoById({ 'videoId': '' + id_video + '', 'startSeconds': 0 });
+        }
+
+        function getIdYoutube(url) {
+            var urlYoutube = url;
+
+            var video_id = urlYoutube.split('v=')[1];
+            var ampersandPosition = video_id.indexOf('&');
+            if (ampersandPosition != -1) {
+                video_id = video_id.substring(0, ampersandPosition);
+            }
+            return video_id;
+        }
+
+    </script>
+}

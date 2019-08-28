@@ -1,0 +1,124 @@
+﻿@model Administrativo.Models.Editoriais_Equipe
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<table class="table table-bordered table-striped responsive">
+    <tbody>
+        <tr>
+            <td style="width:200px;">@Html.DisplayNameFor(model => model.id)</td>
+            <td>@Html.DisplayFor(model => model.id)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Editoriais.nome)</td>
+            <td>@Html.DisplayFor(model => model.Editoriais.nome)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.nome)</td>
+            <td>@Html.DisplayFor(model => model.nome)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.texto)</td>
+            <td>@Html.Raw(Model.texto)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.funcao)</td>
+            <td>@Html.DisplayFor(model => model.funcao)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.imagem)</td>
+            <td>
+                @if (!string.IsNullOrEmpty(Model.imagem))
+                {
+
+                    <a class="btn btn-block btn-primary" data-toggle="modal" data-target="#fotoModal" style="width: 120px; padding: 3px;">Foto Atual</a>
+
+                }
+                else
+                {
+                    <p class="text-yellow">Sem Foto.</p>
+                }
+            </td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.imagemVertical)</td>
+            <td>
+                @if (!string.IsNullOrEmpty(Model.imagemVertical))
+                {
+
+                    <a class="btn btn-block btn-primary" data-toggle="modal" data-target="#fotoVerticalModal" style="width: 120px; padding: 3px;">Foto Atual</a>
+
+                }
+                else
+                {
+                    <p class="text-yellow">Sem Foto.</p>
+                }
+            </td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.instagram)</td>
+            <td>@Html.DisplayFor(model => model.instagram)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.facebook)</td>
+            <td>@Html.DisplayFor(model => model.facebook)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.twitter)</td>
+            <td>@Html.DisplayFor(model => model.twitter)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.DataCadastro)</td>
+            <td>@Html.DisplayFor(model => model.DataCadastro)</td>
+        </tr>
+
+    </tbody>
+</table>
+
+<div class="modal fade" id="fotoModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Imagem Atual</h4>
+
+            </div>
+            <div class="modal-body">
+                <img src="@Url.Content(ViewBag.caminhoFoto + Model.imagem)" />
+            </div>
+            <div class="modal-footer clearfix">
+
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="fa fa-times"></i>Fechar
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="fotoVerticalModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Imagem Atual</h4>
+            </div>
+            <div class="modal-body">
+                <img src="@Url.Content(ViewBag.caminhoFotoVertical + Model.imagemVertical)" />
+            </div>
+            <div class="modal-footer clearfix">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="fa fa-times"></i>Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

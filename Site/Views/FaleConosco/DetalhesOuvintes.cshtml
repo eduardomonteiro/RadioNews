@@ -1,0 +1,114 @@
+﻿@using System.Text.RegularExpressions
+@using Site.Helpers
+@model Site.Models.Ouvintes
+@{
+    var url = Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host + (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port);
+}
+@section SEO{
+    <meta name="DC.title" content="Ouvintes no ar - @Model.nome - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:title" content="Ouvintes no ar - @Model.nome-  Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="@(Utils.TruncateText(Model.comentario,135,true))" />
+    <meta property="og:image" content="@Url.Content("~/images/ico-facebook.jpg")" />
+    <meta property="og:url" content="@HttpContext.Current.Request.Url.AbsoluteUri" />
+    <title>Ouvintes no Ar - @Model.nome -  Rádio CompanyName | A Rádio de Minas</title>
+}
+
+<div class="wrapper-general center">
+    <header class="nav-intern clearfix">
+        <div class="buttons">
+            <a class="bt-back" href="javascript:window.history.go(-1)"> <i class="fa fa-angle-left"></i> Voltar</a>
+            Texto: <button class="more bt-resize">+</button> <button class="bt-resize minus">-</button>
+        </div>
+        <nav class="breadcumb">
+            <a href="@Url.Action("Index","Home")">Home</a>
+            <a href="@Url.Action("Ouvintes","Editorias")">Ouvintes no ar</a>
+            <span>Denúncia enviada por @Model.nome </span>
+        </nav>
+    </header>
+    <div class="row-grid clearfix">
+        <div class="grid-9 main-grid">
+            <header class="clearfix">
+                <h1 class="title-page pull-left">Ouvintes no ar</h1>
+
+                <div class="box-share pull-right">
+                    <span class="title">
+                        <i class="fa fa-share-alt"></i>Compartilhar
+                    </span>
+                    <nav>
+                        <a href="#" class="icon-facebook" onclick="openwindow('https://www.facebook.com/sharer/sharer.php?u=@HttpContext.Current.Request.Url.AbsoluteUri&display=popup&ref=plugin');">
+                            <i class="fa fa-facebook"></i> Facebook
+                        </a>
+
+                        <a href="#" class="icon-twitter-squared" onclick="openwindow('https://twitter.com/intent/tweet?text=@Regex.Replace(Model.assunto, @"<[^>]+>|&nbsp;", "").Trim()&url=@HttpContext.Current.Request.Url.AbsoluteUri');">
+                            <i class="fa fa-twitter"></i>Twitter
+                        </a>
+                    </nav>
+                </div>
+
+            </header>
+             
+            <h3 class="description-noticie"></h3>
+            <div class="divisor-new clearfix">
+                <span class="info-publication">
+                    @if (!string.IsNullOrEmpty(Model.nome))
+                    {
+                        <span>Por</span> <strong>@Model.nome ,</strong>
+                    }
+                    @Model.data.ToShortDateString() às  @Model.horario
+                </span>
+
+            </div>
+
+            <div class="block-text clearfix">
+                <p class="title-sector">Dados Pessoais</p>
+                <p><strong>Nome: </strong>@Model.nome<br />
+                <strong>Email: </strong><a href="mailto:@Model.email">@Model.email</a><br />
+                <strong>Telefone: </strong>@Model.telefone</p>
+
+                <p class="title-sector">Localização da Denúncia</p>
+                <p><strong>Região: </strong>@Model.Regioes.titulo<br />
+                <strong>Bairro: </strong>@Model.bairro<br />
+                <strong>Endereço: </strong>@Model.endereco</p>
+
+                <p class="title-sector">Dados da denúncia</p>
+                <p><strong>Data: </strong>@Model.data.ToShortDateString()<br />
+                <strong>Hora: </strong>@Model.horario <br/>
+                <strong>Assunto: </strong>@Model.assunto</p>
+
+                <p><strong>Informações:</strong></p>
+                <p>@Html.Raw(Model.comentario)</p> 
+
+            </div>
+
+
+            @if (Model.OuvintesArquivos != null && Model.OuvintesArquivos.Count > 0)
+            {
+                <h3 class="mini-function"><strong>Arquivos anexados</strong> </h3>
+
+                foreach (var item in Model.OuvintesArquivos)
+                {
+                    <p class="description-noticie"><a href="/admin/conteudo/ouvintes/arquivos/@item.Arquivo" target="_blank">@item.Arquivo</a></p>
+                }
+
+            }
+
+            @*<footer class="coments-wrapper">
+                <div class="fb-comments" data-href="@HttpContext.Current.Request.Url.AbsoluteUri" data-width="100%" data-numposts="4"></div>
+            </footer>*@
+        </div>
+
+        @{Html.RenderAction("Sidebar", "Home");}
+    </div>
+</div>
+
+@section scripts{
+
+    <script language="JavaScript1.2">
+        function openwindow(url) {
+            window.open(url,
+                "mywindow", "location=no,status=no,scrollbars=no,width=400,height=300");
+        }
+    </script>
+
+}

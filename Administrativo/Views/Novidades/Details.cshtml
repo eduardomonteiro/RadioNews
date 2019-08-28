@@ -1,0 +1,77 @@
+﻿@model Administrativo.Models.MateriaNovidades
+
+@{
+    ViewBag.Title = "Novidades";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Visualizar detalhes de Novidades";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">Detalhes</h3>
+            </div>
+            <div class="box-content padded">
+<<<<<<< Updated upstream
+                @Html.Partial("DetailsPartial")
+=======
+                <table class="table table-bordered table-striped responsive">
+                    <tbody>
+                        <tr>
+                            <td style="width:200px;">@Html.DisplayNameFor(model => model.id)</td>
+                            <td>@Html.DisplayFor(model => model.id)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Materia.titulo)</td>
+                            <td>@Html.DisplayFor(model => model.Materia.titulo)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.status)</td>
+                            <td>@Html.DisplayFor(model => model.status)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.dataPrograma)</td>
+                            <td>@Html.DisplayFor(model => model.dataPrograma)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.novidades)</td>
+                            <td>@Html.DisplayFor(model => model.novidades)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.audio)</td>
+                            <td>@if (!string.IsNullOrEmpty(Model.audio))
+                            {
+                                @Html.Label("audio atual:")<b><i>&nbsp;@Model.audio</i></b>
+                                <br />
+                                <audio controls>
+
+                                    <source src="@Url.Content("~/Conteudo/materias/" + Model.idMateria + "/audios/" + Model.audio)" type="audio/mpeg">
+                                </audio>
+                            }</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.dataCadastro)</td>
+                            <td>@Html.DisplayFor(model => model.dataCadastro)</td>
+                        </tr>
+                    </tbody>
+                </table>
+>>>>>>> Stashed changes
+            </div>
+            <div class="box-footer">
+                <a href="@Url.Action("Edit","Novidades", new { id = Model.id })" class="btn btn-warning">Editar</a>
+                <a href="@Url.Action("Details", "Causas", new { id = Model.idMateria })" class="btn btn-info">Voltar</a>
+            </div>
+        </div>
+    </div>
+</div>
+

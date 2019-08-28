@@ -1,0 +1,32 @@
+﻿@model List<Site.ViewModels.EditoriasLayoutViewModel>
+
+
+<div class="navigation-bottom">
+    <button class="button" id="nav-bottom">
+        <i class="fa fa-caret-square-o-down"></i>
+        <span>Especiais</span>
+    </button>
+
+    <nav class="center">
+        <span>Reportagens Especiais:</span>
+        @*<a href="@Url.Action("ReportagensEspeciais", "Especiais")">Reportagens Especiais</a>*@
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (var item in Model)
+            {
+                if (item.chave.Contains("bh") || item.chave.Contains("parlamento") || item.chave.Contains("pampulha") || item.chave.Contains("carnaval") || item.chave.Contains("veiculos") || item.chave.Contains("ingressos"))
+                {
+                    <a href="@Url.Action(item.Action, "Especiais")">@item.nome</a>
+                }
+                else
+                {
+                    <a href="@Url.Action(item.Action, "Especiais", new { chave = item.chave })">@item.nome</a>
+                }
+            }
+        }
+    </nav>
+</div>
+
+
+
+

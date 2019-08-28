@@ -1,0 +1,128 @@
+﻿@model Administrativo.Models.Banners
+
+@{
+    ViewBag.Title = "Banner";
+    ViewBag.Icon = "fa fa-newspaper-o";
+    ViewBag.SmallDescription = "Visualizar detalhes de Banner";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">Detalhes</h3>
+            </div>
+            <div class="box-content padded">
+                <table class="table table-bordered table-striped responsive">
+                    <tbody>
+
+                        <tr>
+                            <td style="width:200px;">@Html.DisplayNameFor(model => model.Id)</td>
+                            <td>@Html.DisplayFor(model => model.Id)</td>
+                        </tr>
+
+
+                        @*<tr>
+                                <td>@Html.DisplayNameFor(model => model.Titulo)</td>
+                                <td>@Html.DisplayFor(model => model.Titulo)</td>
+                            </tr>*@
+
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Arquivo)</td>
+                            <td><a class="btn btn-block btn-primary" data-toggle="modal" data-target="#imagem-arquivo" style="width: 120px;">Imagem Atual</a></td>
+                        </tr>
+
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Anunciante)</td>
+                            <td>@Html.DisplayFor(model => model.Anunciante)</td>
+                        </tr>
+
+                        @if (!string.IsNullOrEmpty(Model.Link))
+                        {
+                            <tr>
+                                <td>@Html.DisplayNameFor(model => model.Link)</td>
+                                <td>@Html.DisplayFor(model => model.Link)</td>
+                            </tr>
+                        }
+
+                        <tr>
+                            <td>Tipo de arquivo</td>
+                            <td>@(Model.TipoArquivo == true ? "Flash" : "Imagem")</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Liberado)</td>
+                            <td>@(Model.Liberado == true ? "Sim" : "Não")</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Exibicoes)</td>
+                            <td>@Model.BannersVisualizacoesCliques.Where(x => x.Visualizacao).Count()</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Cliques)</td>
+                            <td>@Model.BannersVisualizacoesCliques.Where(x => x.Clique).Count()</td>
+                        </tr>
+
+                        <tr>
+                            <td>Data de cadastro</td>
+                            <td>@Html.DisplayFor(model => model.DataCadastro)</td>
+                        </tr>
+
+                        <tr>
+                            <td>Areas</td>
+                            <td>
+                                @foreach (var i in Model.AreaBanner)
+                            {
+                                @Html.Raw(i.Titulo + "<br/>")
+                            }
+                        </td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+        <div class="box-footer">
+            <a href="@Url.Action("Edit","Banner", new { id = Model.Id })" class="btn btn-warning">Editar</a>
+            <a href="@Url.Action("DashBoard","Banner", new { id = Model.Id })" class="btn btn-success">Dashboard</a>
+            <a href="@Url.Action("Index","Banner")" class="btn btn-info">Voltar</a>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="modal fade" id="imagem-arquivo" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Imagem Atual</h4>
+            </div>
+            <div class="modal-body">
+                <h3>Imagem 1</h3>
+                <img src="@Url.Content("~/Conteudo/Banners/" + ViewBag.Tamanho + "/" + Model.Arquivo)" width="550" @(string.IsNullOrEmpty(Model.Arquivo2) ? "" : "height=65") />
+                @if (!string.IsNullOrEmpty(Model.Arquivo2))
+                {
+                    <br />
+                    <h3>Imagem 2</h3>
+                    <img src="@Url.Content("~/Conteudo/Banners/" + ViewBag.Tamanho2 + "/" + Model.Arquivo2)" width="550" />
+                }
+            </div>
+            <div class="modal-footer clearfix">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="fa fa-times"></i>Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

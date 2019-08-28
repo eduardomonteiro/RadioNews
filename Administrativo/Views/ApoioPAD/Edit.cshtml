@@ -1,0 +1,92 @@
+﻿@model Administrativo.Models.ApoioPADs
+
+@{
+    ViewBag.Title = "Editar Apoiador - Painéis Digitais";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Altere as informações do Apoiador para aparecer nos Painéis Digitais";
+}
+
+<div class="content">
+    <div class="row">
+        <div class="box box-warning">
+            <div class="box-header">
+                <h3 class="box-title">Editar Apoiador - Painéis Digitais</h3>
+            </div>
+            @using (Html.BeginForm("Edit", "ApoioPaineis", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="box-body">
+                    @Html.HiddenFor(model => model.Id)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Nome)
+
+                        @Html.EditorFor(model => model.Nome)
+                        @Html.ValidationMessageFor(model => model.Nome)
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Logo - <em>A Largura será mantida em 150px!</em></label>
+
+                                @Html.HiddenFor(model => model.Logo)
+                                <input type="file" name="fotoUpload" id="fotoUpload" onchange="javascript: $('#foto').val($(this).val().split('\\').pop());" accept="image/*" />
+                                <label id="lblFotoExistente"></label>
+                                @Html.ValidationMessageFor(model => model.Logo)
+
+                                <input type="hidden" id="fotoExistente" name="fotoExistente" />
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            @if (!string.IsNullOrEmpty(Model.Logo))
+                            {
+
+                                <a class="btn btn-block btn-primary" id="btn-imagem" data-toggle="modal" data-target="#imagem-foto" style="width: 120px;">Imagem Atual</a>
+
+                            }
+                            else
+                            {
+                                <p class="text-yellow">Sem Imagem.</p>
+                            }
+                        </div>
+                    </div>
+
+
+                </div>
+                    <div class="box-footer">
+                        <input type="submit" value="Salvar" class="btn btn-success" />
+                        <a href="@Url.Action("Index", "ApoioPaineis")" class="btn btn-info">Voltar</a>
+
+                    </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="imagem-foto" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Imagem Atual</h4>
+            </div>
+            <div class="modal-body">
+                @if (!string.IsNullOrEmpty(Model.Logo))
+                {
+                    <img src="~/Conteudo/ApoioPAD/@Model.Id/@Model.Logo" width="500" />
+                }
+
+            </div>
+            <div class="modal-footer clearfix">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="fa fa-times"></i>Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

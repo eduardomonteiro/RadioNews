@@ -1,0 +1,78 @@
+﻿@model Administrativo.Models.Ouvintes
+
+<table class="table table-bordered table-striped responsive">
+    <tbody>
+        <tr>
+            <td style="width:200px;">@Html.DisplayNameFor(model => model.id)</td>
+            <td>@Html.DisplayFor(model => model.id)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.nome)</td>
+            <td>@Html.DisplayFor(model => model.nome)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.email)</td>
+            <td>@Html.DisplayFor(model => model.email)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.regiaoId)</td>
+            <td>@Html.DisplayFor(model => model.Regioes.titulo)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.cidade_id)</td>
+            <td>@Html.DisplayFor(model => model.cidade.nome)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.endereco)</td>
+            <td>@Html.DisplayFor(model => model.endereco)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.assunto)</td>
+            <td>@Html.DisplayFor(model => model.assunto)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.horario)</td>
+            <td>@Html.DisplayFor(model => model.horario)</td>
+        </tr>
+
+        <tr>
+            <td>Data </td>
+            <td>@Model.data.ToShortDateString() às @Model.horario</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.telefone)</td>
+            <td>@Html.DisplayFor(model => model.telefone)</td>
+        </tr>
+
+        @if (Model.OuvintesArquivos.Count > 0)
+        {
+            foreach (var item in Model.OuvintesArquivos)
+            {
+                <tr>
+                    <td>Arquivo</td>
+                    <td><a class="btn btn-block btn-primary" href="@Url.Action("Download", new { id = item.id })" style="width: 70%; padding: 3px;">Download - @item.Arquivo</a></td>
+                </tr>
+            }
+        }
+
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.comentario)</td>
+            <td>@Html.DisplayFor(model => model.comentario)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.DataCadastro)</td>
+            <td>@Html.DisplayFor(model => model.DataCadastro)</td>
+        </tr>
+
+
+
+
+    </tbody>
+</table>

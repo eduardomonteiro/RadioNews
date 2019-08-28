@@ -1,0 +1,151 @@
+﻿@using PagedList
+@using PagedList.Mvc
+
+@model IPagedList<Site.Models.Noticias>
+
+@section SEO{
+    <meta name="DC.title" content="Esportes - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:title" content="Esportes - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="@Url.Content(" ~/images/ico-facebook.jpg")" />
+    <meta property="og:url" content="@HttpContext.Current.Request.Url.AbsoluteUri" />
+    <title>Esportes - Rádio CompanyName | A Rádio de Minas</title>
+}
+<style>
+    .rodada {
+        left: 0;
+        right: 0;
+        margin: auto;
+        background: #fff;
+        text-align: center;
+        height: 30px;
+        top: calc(50% - 15px);
+        font-size: 14px;
+        color: #ad1111;
+        text-transform: uppercase;
+        width: 100%;
+        line-height: 30px;
+        margin-bottom: 20px;
+    }
+</style>
+<div class="wrapper-general center" style="padding-top: 244.667px;">
+    <header class="nav-intern clearfix">
+        <div class="buttons">
+            <a class="bt-back" href="javascript:window.history.go(-1)"> <i class="fa fa-angle-left"></i> Voltar</a>
+            Texto: <button class="more bt-resize">+</button> <button class="bt-resize minus">-</button>
+        </div>
+        <nav class="breadcumb">
+            <a href="@Url.Action("Index","Home")">Home</a>
+            <a href="@Url.Action("Index","Editorias", new { chave = "esporte" })">Esportes</a>
+            <span>@Site.Services.Cache.SulAmericana.Titulo</span>
+        </nav>
+    </header>
+
+
+    <h1 class="title-page">@Site.Services.Cache.SulAmericana.Titulo</h1>
+    @foreach (var fase in Site.Services.Cache.SulAmericana.Fases)
+    {
+        <div class="fase" style="display:none;" atual="@(fase.Rodadas.Any(rodada => rodada.Atual))">
+            <div class="arrowrodada">
+                <div class="fa fa-angle-left"></div>
+                <h2 class="title-card">@fase.Nome</h2>
+                <div class="fa fa-angle-right"></div>
+            </div>
+            <div class="grupocopadobrasil">
+                @foreach (var rodada in fase.Rodadas)
+                {
+                    <div class="rodada">@rodada.Titulo</div>
+                    foreach (var jogo in rodada.Jogos)
+                    {
+                        <div class="item clearfix">
+
+                            <div class="partida">
+                                <div class="equipes">
+                                    <div class="equip-m">
+                                        <p>@(jogo.Mandante != null && !string.IsNullOrWhiteSpace(jogo.Mandante.Logo.Replace(".gif", "")) ? jogo.Mandante.Id : "Não informado")</p>
+                                        <img src="/tabelafacil/escudos/@(jogo.Mandante != null && !string.IsNullOrWhiteSpace(jogo.Mandante.Logo.Replace(".gif", ""))   ? jogo.Mandante.Logo : "escudo.gif")" alt="@(jogo.Mandante != null && !string.IsNullOrWhiteSpace(jogo.Mandante.Logo.Replace(".gif", ""))   ? jogo.Mandante.Id : "Não informado")">
+                                    </div>
+                                    <strong class="value">@jogo.PlacarMandante X @jogo.PlacarVisitante</strong>
+                                    <div class="equip-v clearfix">
+                                        <img src="/tabelafacil/escudos/@(jogo.Visitante != null && jogo.Visitante != null && !string.IsNullOrWhiteSpace(jogo.Visitante.Logo.Replace(".gif", ""))    ? jogo.Visitante.Logo : "escudo.gif")" alt="@(jogo.Visitante != null && jogo.Visitante != null && !string.IsNullOrWhiteSpace(jogo.Visitante.Logo.Replace(".gif", ""))    ? jogo.Visitante.Id : "Não informado")">
+                                        <p>@(jogo.Visitante != null && !string.IsNullOrWhiteSpace(jogo.Visitante.Logo.Replace(".gif", "")) ? jogo.Visitante.Id : "Não informado")</p>
+                                    </div>
+                                </div>
+                                <small class="info"><strong>@jogo.Data.ToShortDateString() às @(jogo.Data.ToShortTimeString())h</strong> - @jogo.Local</small>
+                            </div>
+                        </div>
+
+                    }
+
+                }
+            </div>
+        </div>
+    }
+
+    <div class="clearfix"></div>
+    <div class="row-grid clearfix">
+        <div class="grid-9 main-grid">
+            @{Html.RenderPartial("_Noticias", Model);}
+        </div>
+        <aside class="grid-3 sidebar" id="sidebar" role="complementary">
+            <div class="cards-side">
+                <h2 class="title-card">Artilharia</h2>
+                <ul class="list-goals">
+                    @if (Site.Services.Cache.SulAmericana.Artilharia.Any())
+                    {
+                        foreach (var item in Site.Services.Cache.SulAmericana.Artilharia)
+                        {
+                            <li>
+                                <span class="number">@item.Gols</span>
+                                <p class="name">@item.Nome</p>
+                                <strong class="club">@(item.Clube == null ? "não informado" : item.Clube.Nome)</strong>
+                            </li>
+                        }
+                    }
+                    else
+                    {
+                        @Html.Raw("<p>Nenhum artilheiro até o momento.</p>")
+                    }
+
+                </ul>
+            </div>
+        </aside>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            var atualFase = $('.fase[atual="atual"]');
+
+            if (atualFase == undefined) {
+                atualFase = $('.fase').first();
+            }
+
+            $('.fase').hide();
+            $(atualFase).show();
+
+            var atual = $(atualFase).index(".fase");
+
+            $('.fase .arrowrodada .fa').click(function () {
+                var l = $('.fase').length;
+                if ($(this).is('.fa-angle-right')) {
+                    if (atual == l - 1) {
+                        atual = 0;
+                    } else {
+                        atual++;
+                    }
+                } else {
+                    if (atual == 0) {
+                        atual = l - 1;
+                    } else {
+                        atual--;
+                    }
+                }
+                $(this).parent().parent().hide();
+                $('.fase').eq(atual).show();
+            });
+        });
+    </script>
+}

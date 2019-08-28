@@ -1,0 +1,52 @@
+﻿
+@section SEO{
+    <meta name="DC.title" content="Envie sua Denúncia - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:title" content="Envie sua Denúncia - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="@Url.Content("~/images/ico-facebook.jpg")" />
+    <meta property="og:url" content="@HttpContext.Current.Request.Url.AbsoluteUri" />
+    <title>Denúncia Enviada - Rádio CompanyName | A Rádio de Minas</title>
+}
+
+<div class="wrapper-general center">
+    <header class="nav-intern clearfix">
+        <div class="buttons">
+            <a class="bt-back" href="javascript:window.history.go(-1)"> <i class="fa fa-angle-left"></i> Voltar</a>
+            Texto: <button class="more bt-resize">+</button> <button class="bt-resize minus">-</button>
+        </div>
+        <nav class="breadcumb">
+            <a href="@Url.Action("Index","Home")">Home</a>
+            <span>Enviar Denúncia</span>
+        </nav>
+    </header>
+    <h1 class="title-page">Enviar Denúncia</h1>
+    <div class="block-text">
+        <p>Denúncia enviada com sucesso! </p>
+    </div>
+
+</div>
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            mensagem();
+        });
+        
+        function mensagem() {
+            swal({
+                title: "Sucesso",
+                text: "Seu formulário foi enviado com sucesso! Obrigado!",
+                type: "success",
+                showCancelButton: false,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "OK",
+                closeOnConfirm: false
+            },
+            function (isConfirm) {
+               
+                location.href = "/FaleConosco/Denuncia";
+            });
+        }
+    </script>
+
+}

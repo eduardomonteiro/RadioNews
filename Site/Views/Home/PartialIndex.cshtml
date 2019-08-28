@@ -1,0 +1,364 @@
+﻿@using Site.Helpers
+@using Site.Enums
+@using Site.ViewModels
+@model HomeViewModel
+
+@if (Model.BannersPrincipal != null)
+{
+    <div class="random-banners">
+        <div class="banner-principal random-content home-banner-principal" style="display:none;">
+            <a href="@(!string.IsNullOrEmpty(Model.BannersPrincipal.Link) ? Model.BannersPrincipal.Link : "#")" target="_blank" onclick="clickBanner(@Model.BannersPrincipal.Id)">
+                <img class="random-banner banner-principal promotional-banner"
+                     data-cliente="@Model.BannersPrincipal.Anunciante"
+                     data-comercial="@Model.BannersPrincipal.AreaBannerDescricao"
+                     data-dimensao="@Model.BannersPrincipal.AreaBannerTamanho" src="/Admin/Conteudo/Banners/@Model.BannersPrincipal.AreaBannerTamanho/@Model.BannersPrincipal.Arquivos" alt="@Model.BannersPrincipal.Titulo" data-banner-id="@Model.BannersPrincipal.Id" />
+            </a>
+        </div>
+    </div>
+}
+@if (Model.BannerMobilePrincipal != null)
+{
+    <div class="random-banners mobile-banner mobile-banner-principal" style="display:none;">
+        <div class="random-content">
+            <a href="@(!string.IsNullOrEmpty(Model.BannerMobilePrincipal.Link)? Model.BannerMobilePrincipal.Link:"#")" target="_blank" onclick="clickBanner(@Model.BannerMobilePrincipal.Id)">
+                <img style="display: block; margin: 25px auto" class="random-banner"
+                     data-cliente="@Model.BannerMobilePrincipal.Anunciante"
+                     data-comercial="@Model.BannerMobilePrincipal.AreaBannerDescricao"
+                     data-dimensao="@Model.BannerMobilePrincipal.AreaBannerTamanho" src="/Admin/Conteudo/Banners/@Model.BannerMobilePrincipal.AreaBannerTamanho/@Model.BannerMobilePrincipal.Arquivos" alt="@Model.BannerMobilePrincipal.Titulo" data-banner-id="@Model.BannerMobilePrincipal.Id" />
+            </a>
+        </div>
+    </div>
+}
+
+
+<!--destaques -->
+<div class="content-news" id="destaques-home">
+    <!-- noticia especial-->
+    @if (Model.DestaqueEspecial != null)
+            {
+        <div class="noticie-hero">
+
+            @if (Model.DestaqueEspecial.TipoDestaque == TipoDestaque.Urgente1130)
+                {
+                <main class="featured-noticies mini" id="normal" style="margin-bottom: 20px;">
+                    <article style="width: 100%;">
+                        <a href="@Url.Action("Detalhes", "Noticias", new { chave = Model.DestaqueEspecial.Url })">
+                            <figure style="background-image: url(@Utils.fullUrlImage("original", Model.DestaqueEspecial.Id, 1130, 240))" alt="@Html.Raw(Model.DestaqueEspecial.FotoCredito)" title="@Html.Raw(Model.DestaqueEspecial.FotoCredito)" class="pic"></figure>
+
+                            <div class="content">
+                                <h4 class="cat">@Model.DestaqueEspecial.Titulo</h4>
+                                <h3 class="title">@Html.Raw(Model.DestaqueEspecial.TituloCapa)</h3>
+                            </div>
+                        </a>
+                    </article>
+                </main>
+            }
+            else if (Model.DestaqueEspecial.TipoDestaque == TipoDestaque.Urgente360)
+            {
+                <article class="hero-news-top">
+                    <a href="@Url.Action("Detalhes", "Noticias", new { chave = Model.DestaqueEspecial.Url })">
+                        <div>
+                            @if (!string.IsNullOrEmpty(Model.DestaqueEspecial.Foto))
+                            {
+                                <figure src="/Admin/Conteudo/noticias/@Model.DestaqueEspecial.Id/744x500/@Model.DestaqueEspecial.Foto" alt="@Html.Raw(Model.DestaqueEspecial.FotoCredito)" title="@Html.Raw(Model.DestaqueEspecial.FotoCredito)" class="pic"></figure>
+                            }
+
+                            <div>
+                                <h2 class="title-big">
+                                    @Model.DestaqueEspecial.Titulo
+                                </h2>
+                                <p class="description-noticie">
+                                    @Html.Raw(Model.DestaqueEspecial.TituloCapa)
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+            }
+
+            <main class="featured-noticies mini" id="normal">
+                @foreach (var destaque in Model.Destaques)
+                {
+                    <article>
+                        <a href="@Url.Action("Detalhes", "Noticias", new { chave = destaque.Url })">
+                            <figure style="background-image: url(@Utils.fullUrlImage("744x500", destaque.Id, 744, 500))" alt="@Html.Raw(destaque.FotoCredito)" title="@Html.Raw(destaque.FotoCredito)" class="pic"></figure>
+                            <div class="content">
+                                <h4 class="cat">@destaque.Titulo</h4>
+                                <h3 class="title">@Html.Raw(destaque.TituloCapa)</h3>
+                            </div>
+                        </a>
+                    </article>
+                }
+            </main>
+        </div>
+    }
+    else if (Model.Destaques != null && Model.Destaques.Any())
+    {
+        <section class="featured-noticies" role="main" id="normal">
+            <article class="hero">
+                <a href="@Url.Action("Detalhes","Noticias", new { chave=Model.Destaques[0].Url })">
+                    <figure style="background-image: url(@Utils.fullUrlImage("744x500", Model.Destaques[0].Id,744,500))" alt="@Html.Raw(Model.Destaques[0].FotoCredito)" title="@Html.Raw(Model.Destaques[0].FotoCredito)" class="pic"></figure>
+                    <div class="content">
+                        <h4 class="cat">@Model.Destaques[0].Titulo</h4>
+                        <h3 class="title">@Html.Raw(Model.Destaques[0].TituloCapa)</h3>
+                    </div>
+                </a>
+            </article>
+
+            <article>
+                <a href="@Url.Action("Detalhes","Noticias", new { chave=Model.Destaques[1].Url })">
+                    <figure style="background-image: url(@Utils.fullUrlImage("744x500", Model.Destaques[1].Id,365))" alt="@Html.Raw(Model.Destaques[1].FotoCredito)" title="@Html.Raw(Model.Destaques[1].FotoCredito)" class="pic"></figure>
+                    <div class="content">
+                        <h4 class="cat">@Model.Destaques[1].Titulo</h4>
+                        <h3 class="title">@Html.Raw(Model.Destaques[1].TituloCapa)</h3>
+                    </div>
+                </a>
+            </article>
+
+            <article>
+                <a href="@Url.Action("Detalhes","Noticias", new { chave=Model.Destaques[2].Url })">
+                    <figure style="background-image: url(@Utils.fullUrlImage("744x500", Model.Destaques[2].Id,365))" alt="@Html.Raw(Model.Destaques[2].FotoCredito)" title="@Html.Raw(Model.Destaques[2].FotoCredito)" class="pic"></figure>
+                    <div class="content">
+                        <h4 class="cat">@Model.Destaques[2].Titulo</h4>
+                        <h3 class="title">@Html.Raw(Model.Destaques[2].TituloCapa)</h3>
+                    </div>
+                </a>
+            </article>
+        </section>
+    }
+</div>
+
+<!-- Banner 1-->
+@if (Model.Banner1 != null)
+{
+    <div class="random-banners home-banner" style="display:none;">
+        <div class="random-content">
+            <a href="@(!string.IsNullOrEmpty(Model.Banner1.Link)? Model.Banner1.Link:"#")" target="_blank" onclick="clickBanner(@Model.Banner1.Id)">
+                <img class="random-banner"
+                     data-cliente="@Model.Banner1.Anunciante"
+                     data-comercial="@Model.Banner1.AreaBannerDescricao"
+                     data-dimensao="@Model.Banner1.AreaBannerTamanho" src="/Admin/Conteudo/Banners/@Model.Banner1.AreaBannerTamanho/@Model.Banner1.Arquivos" alt="@Model.Banner1.Titulo" data-banner-id="@Model.Banner1.Id" />
+            </a>
+        </div>
+    </div>
+}
+
+@if (Model.BannerMobile != null)
+{
+    <div class="random-banners mobile-banner" style="display:none;">
+        <div class="random-content">
+            <a href="@(!string.IsNullOrEmpty(Model.BannerMobile.Link)? Model.BannerMobile.Link:"#")" target="_blank" onclick="clickBanner(@Model.BannerMobile.Id)">
+                <img class="random-banner"
+                     data-cliente="@Model.BannerMobile.Anunciante"
+                     data-comercial="@Model.BannerMobile.AreaBannerDescricao"
+                     data-dimensao="@Model.BannerMobile.AreaBannerTamanho" src="/Admin/Conteudo/Banners/@Model.BannerMobile.AreaBannerTamanho/@Model.BannerMobile.Arquivos" alt="@Model.BannerMobile.Titulo" data-banner-id="@Model.BannerMobile.Id" />
+            </a>
+        </div>
+    </div>
+}
+
+<br />
+
+<!-- Esportes-->
+<section class="wrapper-information clearfix" style="border-bottom: 2px solid #e0e0e0 !important;">
+    <header class="clearfix">
+        <h2 class="title-area">Esportes</h2>
+        <a href="@Url.Action("Index","Editorias", new { chave="esporte" })" class="bt-red">Ver mais</a>
+    </header>
+
+    <div class="row-grid">
+
+        @if (Model.EditoriaEsportes != null && Model.EditoriaEsportes.Count > 3)
+            {
+            <div class="grid-9">
+                <ul class="row-grid news-box">
+                    @foreach (var item in Model.EditoriaEsportes.Take(3))
+                    {
+                        <li class="grid-4">
+                            <article>
+                                <a href="@Url.Action("Detalhes", "Noticias", new { chave = item.Url })">
+
+                                    @if (!string.IsNullOrEmpty(item.Foto))
+                                    {
+                                        <figure style="background-image: url(@Utils.fullUrlImage("260x173", item.Id, 260));" title="@Html.Raw(item.FotoCredito)" alt="@Html.Raw(item.FotoCredito)"></figure>
+                                    }
+
+                                    <h4 class="tag-area">@item.Titulo</h4>
+                                    <h3 class="title-medium">@item.TituloCapa</h3>
+                                </a>
+                            </article>
+                        </li>
+                    }
+
+                </ul>
+                @if (Model.EditoriaEsportes.Count > 3)
+                {
+                    <ul class="mini-articles clearfix">
+                        @foreach (var item in Model.EditoriaEsportes.Skip(3).Take(3))
+                        {
+                            <li>
+                                <article>
+                                    <a href="@Url.Action("Detalhes", "Noticias", new {chave = item.Url})">
+                                        <h4 class="tag-area">@item.Titulo</h4>
+                                        <h3 class="title-normal">@item.TituloCapa</h3>
+                                    </a>
+                                </article>
+                            </li>
+                        }
+
+                    </ul>
+                }
+            </div>
+        }
+        <!-- box proximos jogos-->
+        <div class="grid-3 players">
+            <div class="card-players" style="border-top-color: rgb(51, 131, 91);">
+                <header>
+                    <ul class="equips">
+                        <li class="active" id="america">
+                            <img src="/images/thumb_america-mineiro.png" alt="América" title="América">
+                        </li>
+                        <li id="atletico">
+                            <img src="/images/thumb_galo-logo.png" alt="Atlético" title="Atlético">
+                        </li>
+                        <li id="cruzeiro">
+                            <img src="/images/thumb_cruzeiro-logo-01.png" alt="Cruzeiro" title="Cruzeiro">
+                        </li>
+                        <li id="brasil">
+                            <img src="/images/thumb_brasil-logo-brasil.png" alt="Seleção Brasileira" title="Seleção Brasileira">
+                        </li>
+                    </ul>
+                </header>
+                @if (Site.Services.Cache.ProximoAmerica != null)
+                {
+                    <div class="tabs" data-tab="america" style="display: block">
+                        <div class="content">
+                            <h5 style="color: rgb(51, 131, 91);">Próximo Jogo</h5>
+                            <ul>
+                                <li>
+                                    <img src="/tabelafacil/escudos/@Site.Services.Cache.ProximoAmerica.Mandante.Logo" alt="@Site.Services.Cache.ProximoAmerica.Mandante.Nome" title="@Site.Services.Cache.ProximoAmerica.Mandante.Nome">
+                                    <span>@Site.Services.Cache.ProximoAmerica.Mandante.Nome</span>
+                                </li>
+                                <li>
+                                    <img src="/tabelafacil/escudos/@Site.Services.Cache.ProximoAmerica.Visitante.Logo" alt="@Site.Services.Cache.ProximoAmerica.Visitante.Nome" title="@Site.Services.Cache.ProximoAmerica.Visitante.Nome">
+                                    <span>@Site.Services.Cache.ProximoAmerica.Visitante.Nome</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <footer style="background: rgb(51, 131, 91);">
+                            <h4>@Site.Services.Cache.ProximoAmerica.Campeonato</h4>
+                            <p>@Site.Services.Cache.ProximoAmerica.Data.ToLongDateString() às @(Site.Services.Cache.ProximoAmerica.Data.ToShortTimeString())h @Site.Services.Cache.ProximoAmerica.Local</p>
+                        </footer>
+                    </div>
+                }
+                else
+                {
+                    <div class="tabs" data-tab="america">
+                        <div class="content">
+                            <h5>Próximo Jogo</h5>
+                            <p style="padding:30px;">Ainda não definido.</p>
+                        </div>
+                    </div>
+                }
+                @if (Site.Services.Cache.ProximoAtletico != null)
+                {
+                    <div class="tabs" data-tab="atletico">
+                        <div class="content">
+                            <h5>Próximo Jogo</h5>
+                            <ul>
+                                <li>
+                                    <img src="/tabelafacil/escudos/@Site.Services.Cache.ProximoAtletico.Mandante.Logo" alt="@Site.Services.Cache.ProximoAtletico.Mandante.Nome" title="@Site.Services.Cache.ProximoAtletico.Mandante.Nome">
+                                    <span>@Site.Services.Cache.ProximoAtletico.Mandante.Nome</span>
+                                </li>
+                                <li>
+                                    <img src="/tabelafacil/escudos/@Site.Services.Cache.ProximoAtletico.Visitante.Logo" alt="@Site.Services.Cache.ProximoAtletico.Visitante.Nome" title="@Site.Services.Cache.ProximoAtletico.Visitante.Nome">
+                                    <span>@Site.Services.Cache.ProximoAtletico.Visitante.Nome</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <footer>
+                            <h4>@Site.Services.Cache.ProximoAtletico.Campeonato</h4>
+                            <p>@Site.Services.Cache.ProximoAtletico.Data.ToLongDateString() às @(Site.Services.Cache.ProximoAtletico.Data.ToShortTimeString())h @Site.Services.Cache.ProximoAtletico.Local</p>
+                        </footer>
+                    </div>
+                }
+                else
+                {
+                    <div class="tabs" data-tab="atletico" style="display: block">
+                        <div class="content">
+                            <h5>Próximo Jogo</h5>
+
+                            <p style="padding:30px;">Ainda não definido.</p>
+
+                        </div>
+
+                    </div>
+                }
+                @if (Site.Services.Cache.ProximoBrasil != null)
+                {
+                    <div class="tabs" data-tab="brasil">
+                        <div class="content">
+                            <h5>Próximo Jogo</h5>
+                            <ul>
+                                <li>
+                                    <img src="/tabelafacil/escudos/@Site.Services.Cache.ProximoBrasil.Mandante.Logo" alt="@Site.Services.Cache.ProximoBrasil.Mandante.Nome" title="@Site.Services.Cache.ProximoBrasil.Mandante.Nome">
+                                    <span>@Site.Services.Cache.ProximoBrasil.Mandante.Nome</span>
+                                </li>
+                                <li>
+                                    <img src="/tabelafacil/escudos/@Site.Services.Cache.ProximoBrasil.Visitante.Logo" alt="@Site.Services.Cache.ProximoBrasil.Visitante.Nome" title="@Site.Services.Cache.ProximoBrasil.Visitante.Nome">
+                                    <span>@Site.Services.Cache.ProximoBrasil.Visitante.Nome</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <footer>
+                            <h4>@Site.Services.Cache.ProximoBrasil.Campeonato</h4>
+                            <p>@Site.Services.Cache.ProximoBrasil.Data.ToLongDateString() às @(Site.Services.Cache.ProximoBrasil.Data.ToShortTimeString())h @Site.Services.Cache.ProximoBrasil.Local</p>
+                        </footer>
+                    </div>
+                }
+                else
+                {
+                    <div class="tabs" data-tab="brasil">
+                        <div class="content">
+                            <h5>Próximo Jogo</h5>
+                            <p style="padding:30px;">Ainda não definido.</p>
+                        </div>
+                    </div>
+                }
+
+                @if (Site.Services.Cache.ProximoCruzeiro != null)
+                {
+                    <div class="tabs" data-tab="cruzeiro">
+                        <div class="content">
+                            <h5>Próximo Jogo</h5>
+                            <ul>
+                                <li>
+                                    <img src="/tabelafacil/escudos/@Site.Services.Cache.ProximoCruzeiro.Mandante.Logo" alt="@Site.Services.Cache.ProximoCruzeiro.Mandante.Nome" title="@Site.Services.Cache.ProximoCruzeiro.Mandante.Nome">
+                                    <span>@Site.Services.Cache.ProximoCruzeiro.Mandante.Nome</span>
+                                </li>
+                                <li>
+                                    <img src="/tabelafacil/escudos/@(Site.Services.Cache.ProximoCruzeiro.Visitante == null ? "escudo.gif" : Site.Services.Cache.ProximoCruzeiro.Visitante.Logo)" alt="@(Site.Services.Cache.ProximoCruzeiro.Visitante == null ? "" : Site.Services.Cache.ProximoCruzeiro.Visitante.Nome)" title="@(Site.Services.Cache.ProximoCruzeiro.Visitante == null ? "" : Site.Services.Cache.ProximoCruzeiro.Visitante.Nome)">
+                                    <span>@(Site.Services.Cache.ProximoCruzeiro.Visitante == null ? "" : Site.Services.Cache.ProximoCruzeiro.Visitante.Nome)</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <footer>
+                            <h4>@Site.Services.Cache.ProximoCruzeiro.Campeonato</h4>
+                            <p>@Site.Services.Cache.ProximoCruzeiro.Data.ToLongDateString() às @(Site.Services.Cache.ProximoCruzeiro.Data.ToShortTimeString())h @Site.Services.Cache.ProximoCruzeiro.Local</p>
+                        </footer>
+                    </div>
+                }
+                else
+                {
+                    <div class="tabs" data-tab="cruzeiro">
+                        <div class="content">
+                            <h5>Próximo Jogo</h5>
+                            <p style="padding:30px;">Ainda não definido.</p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+</section>

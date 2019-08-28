@@ -1,0 +1,405 @@
+﻿@using Site.Helpers
+@using Site.Enums
+@using Site.ViewModels
+@model HomeViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@section SEO{
+    <meta name="DC.title" content="Rádio CompanyName 610 am - 95,7 fm" />
+    <meta property="og:title" content="Rádio CompanyName 610 am - 95,7 fm" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="@Url.Content("~/images/ico-facebook.jpg")" />
+    <meta property="og:url" content="http://www.CompanyName.com.br" />
+    <title>Rádio CompanyName | A Rádio de Minas</title>
+}
+
+<style>
+	.mask-floater-2016 {display:none!important;}
+    .mask-floater-2016{position: fixed;width: 100%;height: 100%;top: 0;left: 0;background: rgba(0,0,0,.8);display: none;z-index:99999;}
+    .mask-floater-2016 .wrap{position: absolute;height: 70%;top: 15%;left: 50%;}
+    .mask-floater-2016 .wrap img{width: 100%;}
+    .mask-floater-2016 .close{width: 40px;height: 40px;background: #fff;color: #333;text-align: center;line-height: 40px;font-size: 20px;cursor: pointer;position: absolute;right: -40px;top: 0;font-family: Helvetica, Trebuchet MS, Arial, sans-serif;}
+
+    div#Stage {
+        cursor: pointer;
+	}
+    embed {margin-top:-50px;}
+    @@media (max-width:900px) {
+	    .mask-floater-2016 {display:none!important;}
+    }
+</style>
+
+   <div class="mask-floater-2016" style="display:none;">
+      <div class="wrap">
+         <div class="close">x</div>
+         <embed src="http://www.CompanyName.com.br/Content/floater-home-do-portal/floater-home-do-portal-v2.html" height="550px"  width="800px">
+      </div>
+   </div>
+
+<div class="wrapper-general center">
+    <div id="destaques-esportes">
+        @Html.Partial("PartialIndex")
+    </div>
+    <div class="row-grid clearfix">
+        <div class="grid-9">
+
+            <!-- cidade -->
+            @if (Model.EditoriaCidade != null && Model.EditoriaCidade.Count > 0)
+            {
+                <section class="wrapper-information" id="cidade">
+                    <header class="clearfix">
+                        <h2 class="title-area">Cidades</h2>
+                        <a href="@Url.Action("Index", "Editorias", new { chave="cidades" })" class="bt-red">Ver mais</a>
+                    </header>
+
+                    @if (Model.EditoriaCidade.Count > 0)
+                    {
+                        <ul class="row-grid news-box">
+                            @foreach (var item in Model.EditoriaCidade.Take(3))
+                            {
+                                <li class="grid-4">
+                                    <article>
+                                        <a href="@Url.Action("Detalhes", "Noticias", new {chave = item.Url})">
+
+                                            @if (!string.IsNullOrEmpty(item.Foto))
+                                            {
+                                                <figure style="background-image: url(@Utils.fullUrlImage("260x173", item.Id, 260));" title="@Html.Raw(item.FotoCredito)" alt="@Html.Raw(item.FotoCredito)"></figure>
+                                            }
+
+                                            <h4 class="tag-area">@item.Titulo</h4>
+                                            <h3 class="title-medium">@item.TituloCapa</h3>
+                                        </a>
+                                    </article>
+                                </li>
+                            }
+
+                        </ul>
+
+                        if (Model.EditoriaCidade.Count > 3)
+                        {
+                            <ul class="mini-articles clearfix">
+                                @foreach (var item in Model.EditoriaCidade.Skip(3).Take(3))
+                                {
+                                    <li>
+                                        <article>
+                                            <a href="@Url.Action("Detalhes", "Noticias", new {chave = item.Url})">
+                                                <h4 class="tag-area">@item.Titulo</h4>
+                                                <h3 class="title-normal">@item.TituloCapa</h3>
+                                            </a>
+                                        </article>
+                                    </li>
+                                }
+
+                            </ul>
+                        }
+                    }
+
+                </section>
+            }
+
+            @if (Model.EditoriaPolitica != null && Model.EditoriaPolitica.Count > 0)
+            {
+            <!-- politica -->
+                <section class="wrapper-information" id="politica">
+                    <header class="clearfix">
+                        <h2 class="title-area">Política</h2>
+                        <a href="@Url.Action("Index","Editorias", new { chave="politica" })" class="bt-red">Ver mais</a>
+                    </header>
+
+                    @if (Model.EditoriaPolitica.Count > 0)
+                    {
+                        <ul class="row-grid news-box">
+                            @foreach (var item in Model.EditoriaPolitica.Take(3))
+                            {
+                                <li class="grid-4">
+                                    <article>
+                                        <a href="@Url.Action("Detalhes","Noticias", new { chave=item.Url })">
+
+                                            @if (!string.IsNullOrEmpty(item.Foto))
+                                            {
+                                                <figure style="background-image: url(@Utils.fullUrlImage("260x173", item.Id,260));" title="@Html.Raw(item.FotoCredito)" alt="@Html.Raw(item.FotoCredito)"></figure>
+                                            }
+
+                                            <h4 class="tag-area">@item.Titulo</h4>
+                                            <h3 class="title-medium">@item.TituloCapa</h3>
+                                        </a>
+                                    </article>
+                                </li>
+                            }
+
+                        </ul>
+
+                        if (Model.EditoriaPolitica.Count > 3)
+                        {
+                            <ul class="mini-articles clearfix">
+                                @foreach (var item in Model.EditoriaPolitica.Skip(3).Take(3))
+                                {
+                                    <li>
+                                        <article>
+                                            <a href="@Url.Action("Detalhes","Noticias", new { chave=item.Url })">
+                                                <h4 class="tag-area">@item.Titulo</h4>
+                                                <h3 class="title-normal">@item.TituloCapa</h3>
+                                            </a>
+                                        </article>
+                                    </li>
+                                }
+
+                            </ul>
+                        }
+
+                    }
+
+                </section>
+
+            }
+
+            @if (Model.Noticias != null && Model.Noticias.Count > 0)
+            {
+                  <!-- noticias-->
+                <section class="wrapper-information" id="noticias">
+                    <header class="clearfix">
+                        <h2 class="title-area">Mais Notícias</h2>
+                        <a href="@Url.Action("Index","Editorias", new { chave="noticias" })" class="bt-red">Ver mais</a>
+                    </header>
+
+                    @if (Model.Noticias.Count > 0)
+                    {
+                        <ul class="row-grid news-box">
+                            @foreach (var item in Model.Noticias.Take(3))
+                            {
+                                <li class="grid-4">
+                                    <article>
+                                        <a href="@Url.Action("Detalhes","Noticias", new { chave = item.Url })">
+
+                                            @if (!string.IsNullOrEmpty(item.Foto))
+                                            {
+                                                <figure style="background-image: url(@Utils.fullUrlImage("260x173", item.Id,260));" title="@Html.Raw(item.FotoCredito)" alt="@Html.Raw(item.FotoCredito)"></figure>
+                                            }
+                                            <h4 class="tag-area">@item.Titulo</h4>
+                                            <h3 class="title-medium">@item.TituloCapa</h3>
+                                        </a>
+                                    </article>
+                                </li>
+
+                            }
+                        </ul>
+                    }
+
+
+                    @if (Model.Noticias.Count > 3)
+                    {
+                        <ul class="mini-articles clearfix">
+                            @foreach (var item in Model.Noticias.Skip(3).Take(6))
+                            {
+                                <li>
+                                    <article>
+                                        <a href="@Url.Action("Detalhes", "Noticias", new { chave = item.Url})">
+
+                                            <h4 class="tag-area">@(!string.IsNullOrEmpty(item.Titulo) ? item.Titulo : item.Subtitulo)</h4>
+
+                                            <h3 class="title-normal">@item.TituloCapa</h3>
+                                        </a>
+                                    </article>
+                                </li>
+                            }
+
+                        </ul>
+                    }
+
+                </section>
+            }
+
+            @if (Model.EditoriaEntretenimento != null && Model.EditoriaEntretenimento.Count > 0)
+            {
+            <!-- entretenimento-->
+                <section class="wrapper-information" id="entretenimento">
+                    <header class="clearfix">
+                        <h2 class="title-area">Entretenimento</h2>
+                        <a href="@Url.Action("Index","Editorias", new { chave="entretenimento" })" class="bt-red">Ver mais</a>
+                    </header>
+
+                    @if (Model.EditoriaEntretenimento.Count > 0)
+                    {
+                        <ul class="row-grid news-box">
+
+                            @foreach (var item in Model.EditoriaEntretenimento.Take(3))
+                            {
+                                <li class="grid-4">
+                                    <article>
+                                        <a href="@Url.Action("Detalhes","Noticias", new { chave=item.Url })">
+
+                                            @if (!string.IsNullOrEmpty(item.Foto))
+                                            {
+                                                <figure style="background-image: url(@Utils.fullUrlImage("260x173", item.Id,260));" title="@Html.Raw(item.FotoCredito)" alt="@Html.Raw(item.FotoCredito)"></figure>
+                                            }
+
+                                            <h4 class="tag-area">@item.Titulo</h4>
+                                            <h3 class="title-medium">@item.TituloCapa</h3>
+                                        </a>
+                                    </article>
+                                </li>
+                            }
+
+                        </ul>
+                    }
+
+                    @if (Model.EditoriaEntretenimento.Count > 0)
+                    {
+                        <ul class="mini-articles clearfix">
+                            @foreach (var item in Model.EditoriaEntretenimento.Skip(3).Take(3))
+                            {
+                                <li>
+                                    <article>
+                                        <a href="@Url.Action("Detalhes","Noticias", new { chave=item.Url })">
+                                            <h4 class="tag-area">@item.Titulo</h4>
+                                            <h3 class="title-normal">@item.TituloCapa</h3>
+                                        </a>
+                                    </article>
+                                </li>
+                            }
+
+                        </ul>
+
+                    }
+
+                    <!-- banner 2-->
+                    @if (Model.Banner2 != null)
+                    {
+                        <div class="random-banners">
+
+                            <div class="random-content">
+                                <a href="@(!string.IsNullOrEmpty(Model.Banner2.Link)? Model.Banner2.Link:" #")" target="_blank" onclick="clickBanner(@Model.Banner2.Id)">
+                                    <img style="margin-bottom: 0; width: 100%" class="random-banner promotional-banner"
+                                         data-cliente="@Model.Banner2.Anunciante"
+                                         data-comercial="@Model.Banner2.AreaBannerDescricao"
+                                         data-dimensao="@Model.Banner2.AreaBannerTamanho" data-banner-id="@Model.Banner2.Id" src="/admin/Conteudo/Banners/@Model.Banner2.AreaBannerTamanho/@Model.Banner2.Arquivos" alt="@Model.Banner2.Titulo">
+                                </a>
+                            </div>
+                        </div>
+                    }
+                </section>
+            }
+
+            <!-- podcast-->
+            @if (Model.Podcast != null && Model.Podcast.Count > 0)
+            {
+                <section class="wrapper-information content-margin border" id="podcast">
+                    <header class="clearfix">
+                        <h2 class="title-area">Central de Áudios</h2>
+                        @*<a href="@Url.Action("Index","Podcast")" class="bt-red">Ver mais</a>*@
+                    </header>
+
+
+                    <ul class="mini-articles clearfix">
+
+                        @foreach (var item in Model.Podcast)
+                        {
+                            <li>
+                                <article>
+                                    <div class="info">
+                                        <h4 class="tag-area">@item.Editoriais.FirstOrDefault().Nome - <small>@item.DataCadastro.ToShortDateString()</small></h4>
+                                        <h3 class="title-normal">@Html.Raw(item.Chamada)</h3>
+                                    </div>
+                                    <div class="podcast-box">
+                                        <select name="" id="">
+                                            <option data-url="@item.Audio" data-id="@item.Id" data-colecao="@item.Id">@item.Titulo</option>
+                                        </select>
+
+                                        <div class="podcast-item flex">
+                                            <button class="fa button fa-play-circle"></button>
+                                            <div class="player-audio clearfix">
+                                                <div class="playbar"><div class="progress"></div></div>
+                                                <audio preload="none">
+                                                    <source src="/Admin/conteudo/noticias/@item.Id/audio/@item.Audio" type="audio/mpeg">
+                                                </audio>
+                                            </div>
+                                            <div class="timer-play">
+                                                <span class="rolling">00:00</span>
+                                                <span class="full-time">00:00</span>
+                                            </div>
+                                            <div style="margin: 0 0 0 5px">
+                                                <a href="/Admin/conteudo/noticias/@item.Id/audio/@item.Audio" target="_blank" style="padding:0; margin:0;">
+                                                    <img src="~/images/download.png" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </article>
+                            </li>
+                        }
+
+                    </ul>
+
+
+                </section>
+            }
+
+
+        </div>
+
+        @{Html.RenderAction("SidebarHome", "Home");}
+
+    </div>
+</div>
+
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                url: 'http://localhost/Home/PartialIndex/',
+                type: "GET",
+                success: function (data) {
+                    $("#destaques-esportes").html(data);
+                    if (screen.width <= 768) {
+                        $('.mobile-banner-principal').show();
+                        $('.mobile-banner-principal img').addClass('promotional-banner');
+                        $('.mobile-banner').show();
+                        $('.mobile-banner img').addClass('promotional-banner');
+                    } else {
+                        $('.home-banner-principal').show();
+                        $('.home-banner-principal img').addClass('promotional-banner');
+                        $('.home-banner').show();
+                        $('.home-banner img').addClass('promotional-banner');
+                    }
+                    ProxJogos();
+                }
+            });
+            $.ajax({
+                url: "http://api.promasters.net.br/cotacao/v1/valores",
+                type: "GET",
+                success: function (data) {
+                    $("#valorEuro").html("R$ " + data.valores.EUR.valor);
+                    $("#valorDolar").html("R$ " + data.valores.USD.valor);
+                }
+            });
+            if (screen.width <= 768) {
+                $('.mobile-banner-principal').show();
+                $('.mobile-banner-principal img').addClass('promotional-banner');
+                $('.mobile-banner').show();
+                $('.mobile-banner img').addClass('promotional-banner');
+            } else {
+                $('.home-banner-principal').show();
+                $('.home-banner-principal img').addClass('promotional-banner');
+                $('.home-banner').show();
+                $('.home-banner img').addClass('promotional-banner');
+            }
+        });
+
+
+        function OnSuccess(response) {
+            swal('Sucesso', 'Sua participação foi registrada! Obrigado!', 'success');
+            $("#step-1").hide();
+            $("#step-2").show();
+            $(".btn-votar").hide();
+        }
+
+        function OnFailure(response) {
+            swal('Erro', 'Ocorreu um erro tente novamente!', 'error');
+        }
+    </script>
+}

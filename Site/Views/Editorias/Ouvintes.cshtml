@@ -1,0 +1,181 @@
+﻿@using System.Text.RegularExpressions
+@using PagedList
+@using PagedList.Mvc
+@using Site.Helpers
+@model IPagedList<Site.Models.Ouvintes>
+
+@section SEO{
+    <meta name="DC.title" content="Ouvintes no ar -  Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:title" content="Ouvintes no ar -  Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="@Url.Content("~/images/ico-facebook.jpg")" />
+    <meta property="og:url" content="@HttpContext.Current.Request.Url.AbsoluteUri" />
+    <title>Ouvintes no ar - Rádio CompanyName | A Rádio de Minas</title>
+}
+
+<div class="wrapper-general center">
+    <header class="nav-intern clearfix">
+        <div class="buttons">
+            <a class="bt-back" href="javascript:window.history.go(-1)"> <i class="fa fa-angle-left"></i> Voltar</a>
+            Texto: <button class="more bt-resize">+</button> <button class="bt-resize minus">-</button>
+        </div>
+        <nav class="breadcumb">
+            <a href="@Url.Action("Index","Home")">Home</a>
+            <a href="#">Ouvintes no ar</a>
+        </nav>
+    </header>
+    <div class="row-grid clearfix">
+        <div class="grid-9 main-grid">
+            <h1 class="title-page">Ouvintes no Ar</h1>
+            <div class="block-text">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod. bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo.Lorem ipsum dolor sit amet, consectetur. adipiscing elit. </p>
+            </div>
+            <a href="@Url.Action("Denuncia","FaleConosco")" class="bt-red">Enviar denúncia</a>
+            <section>
+
+                <header class="filters" style="border-top: 1px solid #e0e0e0; margin-top: 60px">
+
+                    @using (Html.BeginForm("Ouvintes", "Editorias", FormMethod.Post, new { @class = "row-grid clearfix" }))
+                    {
+                        <div class="grid-7">
+                            <label for="palavrachave">Palavra Chave</label>
+                            <input type="text" class="input-form" name="palavraChave" id="palavraChave" value="@Request.Params["palavrachave"]">
+                        </div>
+
+                        @*<div class="grid-2">
+                            <label for="categoria">Categoria</label>
+                            @Html.DropDownList("categoria", null, "Selecione...", new { @class = "input-form", @id = "categoria", @name = "categoria" })
+                        </div>*@
+                        <div class="grid-2">
+                            <label for="datainicio">De</label>
+                            <input type="date" class="input-form dates" id="datainicio" value="@Request.Params["dataInicio"]" name="dataInicio">
+                        </div>
+                        <div class="grid-2">
+                            <label for="datafinal">Até</label>
+                            <input type="date" class="input-form dates" id="datafinal" value="@Request.Params["dataFinal"]" name="dataFinal">
+                        </div>
+                            <div class="grid-1">
+                                <button type="submit" id="post-search" title="Buscar" class="search-filter fa fa-search"></button>
+                            </div>
+                    }
+
+
+                </header>
+
+                <h1 class="title-page">Denúncias</h1>
+
+                @if (Model != null && Model.PageCount > 0)
+                {
+                    <ul class="news-line">
+                        @foreach (var item in Model)
+                        {
+                            var urlCompartilha = HttpContext.Current.Request.Url.Authority + Url.Action("DetalhesOuvintes", "FaleConosco", new { id = item.id, slug = Utils.Friendly(item.nome + '-' + item.assunto) });
+                            <li>
+                                <article class="container">
+
+                                    @*@if (!string.IsNullOrEmpty(item.foto))
+                                        {
+                                            <figure>
+                                                <a href="@Url.Action("Detalhes", "Noticias", new { chave = item.url })">
+                                                    <img src="@Utils.fullUrlImage("260x173", item.id)" alt="@item.titulo">
+                                                </a>
+                                            </figure>
+
+                                        }*@
+
+                                    <div class="info">
+                                        <div class="clearfix header-content">
+
+                                            <span class="info-publication">
+                                                Por <strong>@item.nome</strong>, @item.data.ToShortDateString()  às  @item.horario
+                                            </span>
+                                            <br />
+                                            <span class="info-publication">
+                                                Região: <strong>@item.Regioes.titulo</strong><br />
+                                                Bairro: <strong>@item.bairro</strong>
+                                            </span>
+
+                                            <div class="box-share">
+                                                <span class="title">
+                                                    <i class="fa fa-share-alt"></i>Compartilhar
+                                                </span>
+                                                <nav>
+                                                    <a href="#" class="icon-facebook" onclick="openwindow('https://www.facebook.com/sharer/sharer.php?u=@urlCompartilha&display=popup&ref=plugin');">
+                                                        <i class="fa fa-facebook"></i> Facebook
+                                                    </a>
+
+                                                    <a href="#" class="icon-twitter-squared" onclick="openwindow('https://twitter.com/intent/tweet?text=@Regex.Replace(item.assunto, @"<[^>]+>|&nbsp;", "").Trim()&url=@urlCompartilha');">
+                                                        <i class="fa fa-twitter"></i>Twitter
+                                                    </a>
+                                                </nav>
+                                            </div>
+                                        </div>
+
+                                        <a href="@Url.Action("DetalhesOuvintes", "FaleConosco", new { id = item.id, slug =  Utils.Friendly(item.nome+'-'+item.assunto)})">
+                                            <span class="tag-area">@item.assunto</span>
+                                            <h3 class="title-medium">@Utils.TruncateText(item.comentario, 80, true)</h3>
+                                        </a>
+
+                                    </div>
+                                </article>
+                            </li>
+                        }
+
+
+
+                    </ul>
+
+                    <footer class="pagination-bottom">
+
+                        <ul class="pag">
+                            @if (Model.PageCount > 1)
+                            {
+                                @Html.PagedListPager(Model, page => Url.Action("Index", new
+                           {
+                               page,
+                               palavrachave = Request.Params["palavrachave"],
+                               datainicio = Request.Params["datainicio"],
+                               datafinal = Request.Params["datafinal"]
+                           }),
+                           new PagedListRenderOptions
+                           {
+                               LinkToNextPageFormat = "Próximo",
+                               LinkToPreviousPageFormat = "Anterior",
+                               MaximumPageNumbersToDisplay = 5,
+                               DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                               DisplayLinkToFirstPage = PagedListDisplayMode.Never
+
+                           })
+                            }
+                        </ul>
+
+                    </footer>
+                }
+                else
+                {
+                    <div class="block-text">
+                        <h3>Não foram encontrados resultados.</h3>
+                    </div>
+                }
+
+            </section>
+        </div>
+
+        @{Html.RenderAction("Sidebar", "Home");}
+
+
+    </div>
+</div>
+
+@section scripts{
+    <script language="JavaScript1.2">
+        function openwindow(url) {
+            window.open(url,
+                "mywindow", "location=no,status=no,scrollbars=no,width=400,height=300");
+        }
+    </script>
+
+}
+
+

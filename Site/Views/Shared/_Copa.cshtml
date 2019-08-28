@@ -1,0 +1,19 @@
+﻿@{
+    var faltam = new DateTime(2018, 6, 14) - DateTime.Now;
+    var dia = faltam.Days.ToString("000");
+    var horas = faltam.Hours.ToString("00");
+    var minutos = faltam.Minutes.ToString("00");
+}
+<div class="container-copa">
+    <div class="contador-copa">
+        <div class="bg-copa"></div>
+        <div class="container-textos">
+            <p class="tit-faltam">FALTAM</p>
+            <p class="cnt-regressiva">@dia @horas @minutos</p>
+            <p class="cnt-dias">DIAS HRS MIN</p>
+        </div>
+    </div>
+    <div class="container-footer-copa">
+        <img src="~/Content/footer-copa.png" alt="Rádio CompanyName" />
+    </div>
+</div>

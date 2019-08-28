@@ -1,0 +1,78 @@
+﻿@model Administrativo.Models.Elencos
+
+@{
+    ViewBag.Title = "Elenco do Time - " + Model.Times.Nome;
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Visualizar detalhes do Elenco";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">Detalhes</h3>
+            </div>
+            <div class="box-content padded">
+                <table class="table table-bordered table-striped responsive">
+                    <tbody>
+
+                        @if (!string.IsNullOrEmpty(Model.Times.Escudo))
+                        {
+                            <tr>
+                                <td colspan="2"><img src="@Url.Content("~/Conteudo/times/"+Model.Times.Id+"/48x48/"+Model.Times.Escudo)" width="48" /></td>
+
+                            </tr>
+                        }
+
+                        <tr>
+                            <td style="width:200px;">@Html.DisplayNameFor(model => model.Id)</td>
+                            <td>@Html.DisplayFor(model => model.Id)</td>
+                        </tr>
+
+
+                        <tr>
+                            <td>Time</td>
+                            <td>@Model.Times.Nome</td>
+                        </tr>
+
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Nome)</td>
+                            <td>@Html.DisplayFor(model => model.Nome)</td>
+                        </tr>
+
+                        @if (!string.IsNullOrEmpty(Model.Foto))
+                        {
+                            <tr>
+                                <td>@Html.DisplayNameFor(model => model.Foto)</td>
+                                <td><img src="@Url.Content("~/Conteudo/times/"+Model.Times.Id+"/elenco/130x100/"+Model.Foto)" /></td>
+                            </tr>
+
+                        }
+                        
+
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Posicao)</td>
+                            <td>@Html.DisplayFor(model => model.Posicao)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Ativo)</td>
+                            <td>@(Model.Ativo ? "Sim" : "Não")</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.DataCadastro)</td>
+                            <td>@Html.DisplayFor(model => model.DataCadastro)</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="box-footer">
+                <a href="@Url.Action("Edit","Elencos", new { id = Model.Id })" class="btn btn-warning">Editar</a>
+                <a href="@Url.Action("Index","Elencos", new { timeId = Model.Times.Id })" class="btn btn-info">Voltar</a>
+            </div>
+        </div>
+    </div>
+</div>

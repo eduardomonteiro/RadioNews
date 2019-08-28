@@ -1,0 +1,15 @@
+﻿@model Administrativo.Models.LocalPasswordModel
+@{
+    ViewBag.Title = "Alterar senha";
+    ViewBag.Icon = "fa fa-user";
+    ViewBag.SmallDescription = "Você está logado como \"" + @User.Identity.Name+ "\"";
+}
+
+@if (ViewBag.HasLocalPassword)
+{
+    @Html.Partial("_ChangePasswordPartial")
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

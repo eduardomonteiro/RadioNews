@@ -1,0 +1,468 @@
+﻿@model Administrativo.Models.Programacao
+@{
+    ViewBag.Title = "Cadastrar Programa";
+    ViewBag.Icon = "fa fa-list-alt";
+    ViewBag.SmallDescription = "Insere um programa no sistema";
+}
+
+<div class="content">
+    <div class="row">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Cadastrar Programacao</h3>
+            </div>
+            @using (Html.BeginForm("Create", "Programacao", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="box-body">
+                    @Html.Hidden("EditoriaId", (int)ViewBag.EditoriaIdProg)
+                    @*<div class="form-group">
+                        Editoria
+
+                        @Html.DropDownList("EditoriaId", null, "Selecione...", new { @class = "chosen-select" })
+                        @Html.ValidationMessage("EditoriaId")
+                    </div>*@
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.nome)
+                        @Html.TextBoxFor(model => model.nome, new { @maxlength = 100, @class = "text-box" })
+                        @Html.ValidationMessageFor(model => model.nome)
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Periodicidade</label>
+                        <select name="periodo" id="periodo" class="chosen-select">
+                            <option value="">Escolha...</option>
+                            <option value="0">Diariamente</option>
+                            <option value="1">Dia da Semana</option>
+                            <option value="2">Indeterminado</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => model.periodo)
+                    </div>
+
+                    <div class="form-group div-horario-dias" style="display:none;">
+                        <label>Dia do Programa</label>
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <label><input type="checkbox" value="box-segunda" id="diaSemana" name="diadaSemana" /> Segunda-Feira</label>
+                            </div>
+                            <div class="col-lg-2">
+                                <label><input type="checkbox" value="box-terca" id="diaSemana" name="diadaSemana" /> Terça-Feira</label>
+                            </div>
+                            <div class="col-lg-2">
+                                <label><input type="checkbox" value="box-quarta" id="diaSemana" name="diadaSemana" /> Quarta-Feira</label>
+                            </div>
+                            <div class="col-lg-2">
+                                <label><input type="checkbox" value="box-quinta" id="diaSemana" name="diadaSemana" /> Quinta-Feira</label>
+                            </div>
+                            <div class="col-lg-2">
+                                <label><input type="checkbox" value="box-sexta" id="diaSemana" name="diadaSemana" /> Sexta-Feira</label>
+                            </div>
+                            <div class="col-lg-2">
+                                <label><input type="checkbox" value="box-sabado" id="diaSemana" name="diadaSemana" /> Sabado</label>
+                            </div>
+                            <div class="col-lg-2">
+                                <label><input type="checkbox" value="box-domingo" id="diaSemana" name="diadaSemana" /> Domingo</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group div-horario-dias" style="display:none;">
+                        @Html.Label("Horários")
+                        <div class="row">
+                            @*SEGUNDA*@
+                            <div class="col-lg-3" id="box-segunda">
+                                <div class="box box-primary">
+                                    <div class="box-header">
+                                        <i class="fa fa-calendar"></i>
+                                        <h3 class="box-title">Segunda-Feira</h3>
+                                    </div>
+                                    <div class="box-body">
+                                        <ul class="todo-list segunda" data-grupo="segunda">
+                                            <li>
+                                                <div class="input-group input-group-sm">
+                                                    <input type="time" class="form-control horario" name="horario" id="horario" />
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-danger btn-flat" onclick="$(this).parent().parent().parent().remove()" type="button"><i class="fa fa-close"></i></button>
+                                                    </span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="box-footer clearfix no-border">
+                                        <button class="btn btn-default pull-right" data-dia="segunda" onclick="return false"><i class="fa fa-plus"></i> Adicionar item  </button>
+                                    </div>
+                                </div>
+                            </div>
+                            @*TERÇA*@
+                            <div class="col-lg-3" id="box-terca">
+                                <div class="box box-primary">
+                                    <div class="box-header">
+                                        <i class="fa fa-calendar"></i>
+                                        <h3 class="box-title">Terça-Feira</h3>
+                                    </div>
+                                    <div class="box-body">
+                                        <ul class="todo-list terca" data-grupo="terca">
+                                            <li>
+                                                <div class="input-group input-group-sm">
+                                                    <input type="time" class="form-control horario" name="horario" id="horario" />
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-danger btn-flat" onclick="$(this).parent().parent().parent().remove()" type="button"><i class="fa fa-close"></i></button>
+                                                    </span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="box-footer clearfix no-border">
+                                        <button class="btn btn-default pull-right" data-dia="terca" onclick="return false"><i class="fa fa-plus"></i> Adicionar item</button>
+                                    </div>
+                                </div>
+                            </div>
+                            @*QUARTA*@
+                            <div class="col-lg-3" id="box-quarta">
+                                <div class="box box-primary">
+                                    <div class="box-header">
+                                        <i class="fa fa-calendar"></i>
+                                        <h3 class="box-title">Quarta-Feira</h3>
+                                    </div>
+                                    <div class="box-body">
+                                        <ul class="todo-list quarta" data-grupo="quarta">
+                                            <li>
+                                                <div class="input-group input-group-sm">
+                                                    <input type="time" class="form-control horario" name="horario" id="horario" />
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-danger btn-flat" onclick="$(this).parent().parent().parent().remove()" type="button"><i class="fa fa-close"></i></button>
+                                                    </span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="box-footer clearfix no-border">
+                                        <button class="btn btn-default pull-right" data-dia="quarta" onclick="return false"><i class="fa fa-plus"></i> Adicionar item</button>
+                                    </div>
+                                </div>
+                            </div>
+                            @*QUINTA*@
+                            <div class="col-lg-3" id="box-quinta">
+                                <div class="box box-primary">
+                                    <div class="box-header">
+                                        <i class="fa fa-calendar"></i>
+                                        <h3 class="box-title">Quinta-Feira</h3>
+                                    </div>
+                                    <div class="box-body">
+                                        <ul class="todo-list quinta" data-grupo="quinta">
+                                            <li>
+                                                <div class="input-group input-group-sm">
+                                                    <input type="time" class="form-control horario" name="horario" id="horario" />
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-danger btn-flat" onclick="$(this).parent().parent().parent().remove()" type="button"><i class="fa fa-close"></i></button>
+                                                    </span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="box-footer clearfix no-border">
+                                        <button class="btn btn-default pull-right" data-dia="quinta" onclick="return false"><i class="fa fa-plus"></i> Adicionar item</button>
+                                    </div>
+                                </div>
+                            </div>
+                            @*SEXTA*@
+                            <div class="col-lg-3" id="box-sexta">
+                                <div class="box box-primary">
+                                    <div class="box-header">
+                                        <i class="fa fa-calendar"></i>
+                                        <h3 class="box-title">Sexta-Feira</h3>
+                                    </div>
+                                    <div class="box-body">
+                                        <ul class="todo-list sexta" data-grupo="sexta">
+                                            <li>
+                                                <div class="input-group input-group-sm">
+                                                    <input type="time" class="form-control horario" name="horario" id="horario" />
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-danger btn-flat" onclick="$(this).parent().parent().parent().remove()" type="button"><i class="fa fa-close"></i></button>
+                                                    </span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="box-footer clearfix no-border">
+                                        <button class="btn btn-default pull-right" data-dia="sexta" onclick="return false"><i class="fa fa-plus"></i> Adicionar item</button>
+                                    </div>
+                                </div>
+                            </div>
+                            @*SABADO*@
+                            <div class="col-lg-3" id="box-sabado">
+                                <div class="box box-primary">
+                                    <div class="box-header">
+                                        <i class="fa fa-calendar"></i>
+                                        <h3 class="box-title">Sabado</h3>
+                                    </div>
+                                    <div class="box-body">
+                                        <ul class="todo-list sabado" data-grupo="sabado">
+                                            <li>
+                                                <div class="input-group input-group-sm">
+                                                    <input type="time" class="form-control horario" name="horario" id="horario" />
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-danger btn-flat" onclick="$(this).parent().parent().parent().remove()" type="button"><i class="fa fa-close"></i></button>
+                                                    </span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="box-footer clearfix no-border">
+                                        <button class="btn btn-default pull-right" data-dia="sabado" onclick="return false"><i class="fa fa-plus"></i> Adicionar item</button>
+                                    </div>
+                                </div>
+                            </div>
+                            @*DOMINGO*@
+                            <div class="col-lg-3" id="box-domingo">
+                                <div class="box box-primary">
+                                    <div class="box-header">
+                                        <i class="fa fa-calendar"></i>
+                                        <h3 class="box-title">Domingo</h3>
+                                    </div>
+                                    <div class="box-body">
+                                        <ul class="todo-list domingo" data-grupo="domingo">
+                                            <li>
+                                                <div class="input-group input-group-sm">
+                                                    <input type="time" class="form-control horario" name="horario" id="horario" />
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-danger btn-flat" onclick="$(this).parent().parent().parent().remove()" type="button"><i class="fa fa-close"></i></button>
+                                                    </span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="box-footer clearfix no-border">
+                                        <button class="btn btn-default pull-right" data-dia="domingo" onclick="return false"><i class="fa fa-plus"></i> Adicionar item</button>
+                                    </div>
+                                </div>
+                            </div>
+                            @Html.Hidden("horariosTotal")
+                        </div>
+                    </div>
+                    <p class="field-validation-error" id="erroo" style="display:none;">Por favor escolha pelo menos um horário.</p>
+                    @*<div class="form-group">
+                            @Html.LabelFor(model => model.chamada)
+                            @Html.TextAreaFor(model => model.chamada, new { @class = "text-box", style = "height: 80px;" })
+                            @Html.ValidationMessageFor(model => model.chamada)
+                        </div>*@
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.texto)
+                        @Html.TextAreaFor(model => model.texto, new { @class = "text-box", style = "height: 200px;" })
+                        @Html.ValidationMessageFor(model => model.texto)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Apresentadores)
+                        @Html.ListBox("ApresentadoresId", (MultiSelectList)ViewBag.ApresentadoresId, new { @class = "chosen-select" })
+                    </div>
+
+                    <div class="form-group">
+                        <label>Participantes/Convidados</label>
+                        @Html.ListBox("ParticipantesId", (MultiSelectList)ViewBag.ParticipantesId, new { @class = "chosen-select" })
+                    </div>
+
+
+                    <div class="box-footer">
+                        <input type="submit" value="Salvar" class="btn btn-success" />
+                        <a href="@Url.Action("Index", "Programacao")" class="btn btn-info">Voltar</a>
+                    </div>
+                </div>
+            }
+
+
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".chosen-select").chosen({ width: "100%" });
+            var editor = CKEDITOR.replace('texto',
+                {
+                    height: "200px"
+                });
+        //    $(".form-control.horario").inputmask("99:99");
+            $(".col-lg-3").hide();
+
+            $("ins").on("click", function () {
+
+                if ($(this).parent().hasClass("checked")) {
+                    $("#" + $(this).parent().children("input").val()).show();
+                } else {
+                    $("#" + $(this).parent().children("input").val() + " input").val("");
+                    $("#" + $(this).parent().children("input").val()).hide();
+                };
+            });
+
+            $("#periodo").change(function () {
+                var value = $(this).val();
+
+                if (value == "1" || value == "0") {
+                    $(".div-horario-dias").show();
+
+                    if (value == "0") {
+                        $("#box-segunda,#box-terca,#box-quarta,#box-quinta,#box-sexta,#box-sabado,#box-domingo").show();
+                        $(".icheckbox_minimal").addClass('checked');
+                    }
+                    else {
+                        $("#box-segunda,#box-terca,#box-quarta,#box-quinta,#box-sexta,#box-sabado,#box-domingo").hide();
+                        $(".icheckbox_minimal").removeClass('checked');
+                    }
+                }
+                else {
+                    $(".div-horario-dias").hide();
+                }
+            });
+        });
+
+        //botão adicionar
+        $(".btn.btn-default.pull-right").on('click', function () {
+
+            $(".form-control.horario").inputmask("");
+
+            var input = '<li>';
+            input += '<div class="input-group input-group-sm">';
+            input += '<input type="time" class="form-control horario" name="horario" id="horario"/>';
+            input += '<span class="input-group-btn">';
+            input += '<button class="btn btn-danger btn-flat" onclick="$(this).parent().parent().parent().remove()" type="button"><i class="fa fa-close"></i></button>';
+            input += '</span>';
+            input += '</div>';
+            input += '</li>';
+
+            var dia = $(this).attr("data-dia");
+
+            $(".todo-list." + dia).append(input);
+         //   $(".form-control.horario").inputmask("99:99");
+        });
+
+        //quando clicar na label
+        $(".col-lg-2 label").on('click', function () {
+            if ($("#" + $(this).children().children().val()).attr("style") == "display: none;") {
+                $("#" + $(this).children().children().val()).show();
+            } else {
+                $("#" + $(this).children().children().val() + " input").val("");
+                $("#" + $(this).children().children().val()).hide();
+            }
+        });
+
+        //quando for salvar
+        $(".btn.btn-success").on('click', function () {
+
+            val = "";
+            valseg = "";
+            valterc = "";
+            valquar = "";
+            valquin = "";
+            valsex = "";
+            valsab = "";
+            valdom = "";
+
+
+            //Valores de cada dia
+            $("[data-grupo='segunda'] input").each(function () {
+                if ($("[data-grupo='segunda'] input").val() != "") {
+                    if (valseg == "") {
+                        valseg = valseg + $(this).val();
+                    } else {
+                        valseg = valseg + "," + $(this).val();
+                    }
+
+                }
+            });
+
+            val = valseg + "/";
+
+            $("[data-grupo='terca'] input").each(function () {
+                if ($("[data-grupo='terca'] input").val() != "") {
+                    if (valterc == "") {
+                        valterc = valterc + $(this).val();
+                    } else {
+                        valterc = valterc + "," + $(this).val();
+                    }
+
+                }
+            });
+
+            val = val + valterc + "/";
+
+            $("[data-grupo='quarta'] input").each(function () {
+                if ($("[data-grupo='quarta'] input").val() != "") {
+                    if (valquar == "") {
+                        valquar = valquar + $(this).val();
+                    } else {
+                        valquar = valquar + "," + $(this).val();
+                    }
+
+                }
+            });
+
+            val = val + valquar + "/";
+
+            $("[data-grupo='quinta'] input").each(function () {
+                if ($("[data-grupo='quinta'] input").val() != "") {
+                    if (valquin == "") {
+                        valquin = valquin + $(this).val();
+                    } else {
+                        valquin = valquin + "," + $(this).val();
+                    }
+
+                }
+            });
+
+            val = val + valquin + "/";
+
+            $("[data-grupo='sexta'] input").each(function () {
+                if ($("[data-grupo='sexta'] input").val() != "") {
+                    if (valsex == "") {
+                        valsex = valsex + $(this).val();
+                    } else {
+                        valsex = valsex + "," + $(this).val();
+                    }
+
+                }
+            });
+
+            val = val + valsex + "/";
+
+            $("[data-grupo='sabado'] input").each(function () {
+                if ($("[data-grupo='sabado'] input").val() != "") {
+                    if (valsab == "") {
+                        valsab = valsab + $(this).val();
+                    } else {
+                        valsab = valsab + "," + $(this).val();
+                    }
+
+                }
+            });
+
+            val = val + valsab + "/";
+
+            $("[data-grupo='domingo'] input").each(function () {
+                if ($("[data-grupo='domingo'] input").val() != "") {
+                    if (valdom == "") {
+                        valdom = valdom + $(this).val();
+                    } else {
+                        valdom = valdom + "," + $(this).val();
+                    }
+
+                }
+            });
+
+            val = val + valdom;
+
+            $("#horariosTotal").val(val);
+
+            if ($("#horariosTotal").val() == "//////") {
+                //   $("#erroo").show();
+                //    return false;
+            } else {
+                //  return true;
+            }
+
+        });
+
+    </script>
+}

@@ -1,0 +1,108 @@
+﻿@using Administrativo.Models
+@model Comentarios
+
+@{
+    ViewBag.Title = "Comentário";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Visualizar os detalhes do comentário";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">Detalhes</h3>
+            </div>
+            <div class="box-content padded">
+                <table class="table table-bordered table-striped responsive">
+                    <tbody>
+                        <tr>
+                            <td style="width:200px;">@Html.DisplayNameFor(model => model.Id)</td>
+                            <td>@Html.DisplayFor(model => model.Id)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Nome)</td>
+                            <td>@Html.DisplayFor(model => model.Nome)</td>
+                        </tr>
+
+                        @if (!string.IsNullOrWhiteSpace(Model.CPF))
+                        {
+                            <tr>
+                                <td>@Html.DisplayNameFor(model => model.CPF)</td>
+                                <td>@Html.DisplayFor(model => model.CPF)</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <td>@Html.DisplayNameFor(model => model.UrlFacebook)</td>
+                                <td><a target="_blank" href="@Model.UrlFacebook">Perfil Facebook</a></td>
+                            </tr>
+                        }
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Texto)</td>
+                            <td>@Html.DisplayFor(model => model.Texto)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Area)</td>
+                            <td>@Html.DisplayFor(model => model.Area)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.DataCadastro)</td>
+                            <td>@Html.DisplayFor(model => model.DataCadastro)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.IPAcesso)</td>
+                            <td>@Html.DisplayFor(model => model.IPAcesso)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="box-footer">
+                <button onclick="bloquearComentario(@Model.Id)" class="btn btn-warning">@(Model.Bloqueado ? "Liberar" : "Bloquear")</button>
+                <a href="@Url.Action("Index","Comentarios")" class="btn btn-info">Voltar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts
+{
+    <script>
+
+        function bloquearComentario(idComentario) {
+            $.ajax({
+                url: "@Url.Action("Bloquear", "Comentarios")",
+                data: { id: idComentario },
+                type: "post",
+                dataType: "json",
+                success: function () {
+                    //toggleBloqueio(idComentario);
+                    window.location.reload();
+                }
+            });
+        }
+
+        function toggleBloqueio(id) {
+            var cadeado = $("#" + id).find(".cadeado");
+            var status = $("#" + id).find(".status");
+
+            if ($(status).html().trim() == "Bloqueado") {
+                $(status).html("Liberado");
+                $(cadeado).removeClass("fa-unlock");
+                $(cadeado).addClass("fa-lock");
+            } else {
+                $(status).html("Bloqueado");
+                $(cadeado).removeClass("fa-lock");
+                $(cadeado).addClass("fa-unlock");
+            }
+        }
+
+    </script>
+}

@@ -1,0 +1,104 @@
+﻿<div class="float-seubolso" id="float-seubolso" style="display: none;">
+    <div class="wrap-fs">
+        <div class="fs-header">
+            <p class="title">Seu Bolso</p>
+            <p>Informe sua renda e seus gastos para saber qual a sua situação financeira.</p>
+        </div>
+        <div class="fs-content row-grid clearfix">
+            <div class="stage-1">
+                <div class="grid-7">
+                    <form>
+                        <div class="row-grid clearfix">
+                            <fieldset class="grid-6">
+                                <label for="rm-fixa">Renda Mensal Fixa:</label>
+                                <input type="text" id="rm-fixa" data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," value="R$ 0,00" required>
+                            </fieldset>
+                            <fieldset class="grid-6">
+                                <label for="rm-variavel">Renda Mensal Variável:</label>
+                                <input type="text" id="rm-variavel" data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," value="R$ 0,00">
+                            </fieldset>
+                        </div>
+                        <div class="border"></div>
+                        <div class="row-grid clearfix" id="lista-de-valores">
+                            <fieldset class="grid-6">
+                                <label for="tp-gasto">Tipo de gasto:</label>
+                                <select name="" id="tp-gasto">
+                                    <option value="">Selecione a Categoria</option>
+                                    <option data-cor="amarelo" data-rgb="#f7c849" value="Salão de Beleza">Beleza</option>
+                                    <option data-cor="verde" data-rgb="#54b567" value="Casa">Casa</option>
+                                    <option data-cor="azul" data-rgb="#338fbf" value="Alimentacao">Alimentação</option>
+                                    <option data-cor="roxo" data-rgb="#9933bf" value="Transporte">Transporte</option>
+                                    <option data-cor="laranja" data-rgb="#ec7424" value="Lazer">Lazer</option>
+                                </select>
+                            </fieldset>
+                            <fieldset class="grid-3">
+                                <label for="vl-gasto">Valor Gasto:</label>
+                                <input type="text" id="vl-gasto" data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," required value="R$ 0,00">
+                            </fieldset>
+
+                            <fieldset class="grid-3">
+                                <label for="">&nbsp;</label>
+                                <button id="add-item-renda">adicionar</button>
+                            </fieldset>
+                        </div>
+                        <div class="row-grid clearfix">
+                            <div class="grid-12">
+                                <div class="content-scroll">
+                                    <div class="list-itens-renda ">
+
+                                    </div>
+                                </div>
+                                <button class="redbutton" id="comparareconomias">Comparar minhas economias com outros usuários</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="grid-5">
+                    <div class="content-chart">
+                        <canvas id="myChart" height="250"></canvas>
+                        <p>Total de gastos no mês <strong id="seubolso-total-gastos">R$ 0,00</strong></p>
+                    </div>
+                </div>
+            </div>
+            <div class="stage-2" style="display: none;">
+                <div class="grid-12">
+                    <div class="content-pontuacao">
+                        <div class="header-cp">
+                            <p class="title">Sua pontuação está <strong id="seubolso-pontuacao"></strong></p>
+                            <p>
+                                Você tem uma renda mensal de: <strong id="seubolso-renda-mensal">R$ 0,00</strong><br>
+                                Seus gastos somam: <strong id="seubolso-soma-gastos">R$ 0,00</strong>
+                            </p>
+                        </div>
+                        <div class="cp-saldo">
+                            <p>
+                                Saldo<br>
+                            </p>
+                            <p class="txt-saldo"><span id="seubolso-saldo">R$ 0,00</span></p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="grid-12">
+                    <div class="content-pontuacao-grafico clearfix">
+                        <div class="wrap-grafico-base">
+                            <p>250 - </p>
+                            <p>200 - </p>
+                            <p>150 -</p>
+                            <p>100 -</p>
+                            <p>50 -</p>
+                            <p>0 -</p>
+                        </div>
+                        <div class="list-grafico">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

@@ -1,0 +1,104 @@
+﻿@using System.Text.RegularExpressions
+@using Site.Helpers
+@using PagedList
+@model IPagedList<Site.Models.Noticias>
+<section>
+    <h2 class="title-card">@ViewBag.NoticiasDoCampeonato</h2>
+    <header class="filters">
+        @using (Html.BeginForm(null, null, FormMethod.Get, new { @Class = "row-grid clearfix" }))
+        {
+            <div class="grid-4">
+                <label for="palavrachave">Palavra Chave</label>
+                <input type="text" class="input-form" name="busca" id="palavrachave" value="@ViewBag.Busca">
+            </div>
+            <div class="grid-3">
+                <label for="categoria">Categoria</label>
+
+                @Html.DropDownList("categoria", null, "Selecione...", new { @class = "input-form", @id = "categoria", @name = "categoria" })
+
+            </div>
+            <div class="grid-2">
+                <label for="datainicio">De</label>
+                <input type="date" name="dataInicio" class="input-form dates" id="datainicio" value="@ViewBag.DataInicio">
+            </div>
+            <div class="grid-2">
+                <label for="datafinal">Até</label>
+                <input type="date" name="dataFim" class="input-form dates" id="datafinal" value="@ViewBag.DataFim">
+            </div>
+            <input type="hidden" name="editoria" value="@ViewBag.Editoria" id="editoria" />
+            <div class="grid-1">
+                <button type="submit" id="post-search" title="Buscar" class="search-filter fa fa-search"></button>
+            </div>
+
+        }
+    </header>
+
+    <input type="hidden" id="page" value="@((int)ViewBag.Page + 1)" />
+
+    <ul class="news-line">
+        @if (Model.Count > 0)
+        {
+            foreach (var item in Model)
+            {
+                var urlCompartilha = HttpContext.Current.Request.Url.Authority + Url.Action("Detalhes", "Noticias", new { chave = item.url });
+                <li>
+                    <article class="container">
+
+                        @if (!string.IsNullOrEmpty(item.foto))
+                        {
+                            <figure>
+                                <a href="@Url.Action("Detalhes", "Noticias", new { chave = item.url })">
+                                    <img src="@Utils.fullUrlImage("365x240", item.id,365)" alt="@item.titulo">
+                                </a>
+                            </figure>
+
+                        }
+
+                        <div class="info">
+                            <div class="clearfix header-content">
+
+                                <span class="info-publication">
+                                    Por <strong>@item.porAutor</strong>, @item.dataCadastro.ToShortDateString()  às  @item.dataCadastro.ToShortTimeString()
+                                </span>
+
+                                <div class="box-share">
+                                    <span class="title">
+                                        <i class="fa fa-share-alt"></i>Compartilhar
+                                    </span>
+                                    <nav>
+                                        <a href="#" class="icon-facebook" onclick="openwindow('https://www.facebook.com/sharer/sharer.php?u=@urlCompartilha&display=popup&ref=plugin');">
+                                            <i class="fa fa-facebook"></i> Facebook
+                                        </a>
+
+                                        <a href="#" class="icon-twitter-squared" onclick="openwindow('https://twitter.com/intent/tweet?text=@Regex.Replace(item.chamada, @"<[^>]+>|&nbsp;", "").Trim()&url=@urlCompartilha');">
+                                            <i class="fa fa-twitter"></i>Twitter
+                                        </a>
+                                    </nav>
+                                </div>
+                            </div>
+
+                            <a href="@Url.Action("Detalhes", "Noticias", new { chave = item.url })">
+                                <span class="tag-area">@item.titulo</span>
+                                <h3 class="title-medium">@Html.Raw(item.chamada)</h3>
+                            </a>
+                        </div>
+                    </article>
+                </li>
+            }
+        }
+        else
+        {
+            <div class="block-text">
+                <h3>Não foram encontrados resultados.</h3>
+            </div>
+        }
+
+
+    </ul>
+    @if (Model.Count > 0)
+    {
+        <footer class="footer-buttons">
+            <button class="bt-red" id="carregarMais">Carregar Mais</button>
+        </footer>
+    }
+</section>

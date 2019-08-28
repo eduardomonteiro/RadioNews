@@ -1,0 +1,48 @@
+﻿@using Administrativo.Models
+@model CategoriasAudios
+
+@{
+    ViewBag.Title = "Criar Categoria";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Insira as informações da Categoria";
+}
+
+<div class="content">
+    <div class="row">
+        <div class="box box-warning">
+            <div class="box-header">
+                <h3 class="box-title">Criar Categoria</h3>
+            </div>
+            @using (Html.BeginForm("Create", "CategoriaAudios", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="box-body">
+                    @Html.Action("Form", Model)
+
+                </div>
+                <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a href="@Url.Action("Index", "CategoriaAudios")" class="btn btn-info">Voltar</a>
+
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+
+            $(".chosen-select").chosen({ width: "100%" });
+
+            var editor = CKEDITOR.replace('Informacoes',
+                {
+                    height: "200px"
+                });
+            $('#Titulos').wysihtml5();
+        });
+
+
+    </script>
+}

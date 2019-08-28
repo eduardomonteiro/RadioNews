@@ -1,0 +1,139 @@
+﻿@model Administrativo.Models.Elencos
+
+@{
+    ViewBag.Title = "Editar Jogador do Elenco";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Altere as informações de Jogador do Elenco";
+}
+
+<div class="content">
+    <div class="row">
+        <div class="box box-warning">
+            <div class="box-header">
+                <h3 class="box-title">Editar Jogador</h3>
+            </div>
+            @using (Html.BeginForm("Edit", "Elencos", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="box-body">
+                    @Html.HiddenFor(model => model.Id)
+
+                    <div class="form-group">
+                        <label for="TimeId">Time</label>
+                        @Html.DropDownList("TimeId", null, "Selecione...", new { @class = "chosen-select" })
+                        @Html.ValidationMessage("TimeId")
+                    </div>
+
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Nome)
+
+                        @Html.EditorFor(model => model.Nome)
+                        @Html.ValidationMessageFor(model => model.Nome)
+                    </div>
+
+                    <h4 class="page-header"></h4>
+
+                    @*<div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+
+                                <label>Foto</label>
+
+                                @Html.TextBoxFor(model => model.Foto, new { style = "display: none;" })
+                                <input type="file" name="FotoUpload" id="FotoUpload" onchange="javascript: $('#FotoUpload').val($(this).val().split('\\').pop());" />
+                                @Html.ValidationMessageFor(model => model.Foto)
+
+
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            @if (!string.IsNullOrEmpty(Model.Foto))
+                            {
+
+                                <a class="btn btn-block btn-primary" data-toggle="modal" data-target="#imagem-foto" style="width: 120px;">Imagem Atual</a>
+
+                            }
+                            else
+                            {
+                                <p class="text-yellow">Sem Imagem.</p>
+                            }
+                        </div>
+
+                    </div>*@
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Posicao)
+                        <select name="Posicao" id="Posicao" class="chosen-select">
+                            <option value="">Selecione</option>
+                            <option value="Goleiro">Goleiro</option>
+                            <option value="Defensor">Defensor</option>
+                            <option value="Meia">Meia</option>
+                            <option value="Atacante">Atacante</option>
+
+                        </select>
+                        @Html.ValidationMessageFor(model => model.Posicao)
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Ativo?</label>
+                        @Html.BooleanFieldFor(model => model.Ativo, true, new { @class = "form-control", style = "width: 120px;" })
+                        @Html.ValidationMessageFor(model => model.Ativo)
+                    </div>
+
+                </div>
+                    <div class="box-footer">
+                        <input type="submit" value="Salvar" class="btn btn-success" />
+                        <a href="@Url.Action("Index", "Elencos", new { timeId = Model.TimeId })" class="btn btn-info">Voltar</a>
+
+                    </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="imagem-foto" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Imagem Atual</h4>
+            </div>
+            <div class="modal-body">
+                @if (!string.IsNullOrEmpty(Model.Foto))
+                {
+                    if (Model.Foto.Contains("Conteudo"))
+                    {
+                        <img src="~/@Model.Foto" width="48" />
+                    }
+                    else
+                    {
+                        <img src="@Url.Content(string.Format(ViewBag.pathOriginal,Model.Id) + Model.Foto)" width="48" />
+                    }
+                }
+
+            </div>
+            <div class="modal-footer clearfix">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="fa fa-times"></i>Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $("#Posicao").val('@Model.Posicao');
+            $(".chosen-select").chosen({ width: "100%" });
+            
+        
+        });
+
+
+    </script>
+}

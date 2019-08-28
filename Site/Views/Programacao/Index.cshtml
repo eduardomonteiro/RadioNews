@@ -1,0 +1,105 @@
+﻿@model List<Site.Models.Horario_programacao>
+
+@section SEO{
+    <meta name="DC.title" content="Programação - Rádio CompanyName  | A Rádio de Minas" />
+    <meta property="og:title" content="Programação - Rádio CompanyName  | A Rádio de Minas" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="@Url.Content("~/images/ico-facebook.jpg")" />
+    <meta property="og:url" content="@HttpContext.Current.Request.Url.AbsoluteUri" />
+    <title>Programação - Rádio CompanyName | A Rádio de Minas</title>
+}
+
+<div class="wrapper-general center">
+    <header class="nav-intern clearfix">
+        <div class="buttons">
+            <a class="bt-back" href="javascript:window.history.go(-1)"> <i class="fa fa-angle-left"></i> Voltar</a>
+            Texto: <button class="more bt-resize">+</button> <button class="bt-resize minus">-</button>
+        </div>
+        <nav class="breadcumb">
+            <a href="@Url.Action("Index","Home")">Home</a>
+            <span>Programação</span>
+        </nav>
+    </header>
+    <h1 class="title-page">Programação</h1>
+    <nav class="navs-upper">
+
+        @if (ViewContext.RouteData.Values["dia"] != null)
+        {
+            <a href="@Url.Action("Index","Programacao",new { dia = "segunda"})" class="@(ViewContext.RouteData.Values["dia"].ToString()=="segunda"?"active":"")">Segunda</a>
+            <a href="@Url.Action("Index","Programacao",new { dia = "terca"})" class="@(ViewContext.RouteData.Values["dia"].ToString()=="terca"?"active":"")">Terça</a>
+            <a href="@Url.Action("Index","Programacao",new { dia = "quarta"})" class="@(ViewContext.RouteData.Values["dia"].ToString()=="quarta"?"active":"")">Quarta</a>
+            <a href="@Url.Action("Index","Programacao",new { dia = "quinta"})" class="@(ViewContext.RouteData.Values["dia"].ToString()=="quinta"?"active":"")">Quinta</a>
+            <a href="@Url.Action("Index","Programacao",new { dia = "sexta"})" class="@(ViewContext.RouteData.Values["dia"].ToString()=="sexta"?"active":"")">Sexta</a>
+            <a href="@Url.Action("Index","Programacao",new { dia = "sabado"})" class="@(ViewContext.RouteData.Values["dia"].ToString()=="sabado"?"active":"")">Sábado</a>
+            <a href="@Url.Action("Index","Programacao",new { dia = "domingo"})" class="@(ViewContext.RouteData.Values["dia"].ToString()=="domingo"?"active":"")">Domingo</a>
+            <a href="@Url.Action("Index","Programacao",new { dia = "diferenciada"})" class="@(ViewContext.RouteData.Values["dia"].ToString()=="diferenciada"?"active":"")">Programacao Diferenciada</a>
+        }
+        else
+        {
+            <a href="@Url.Action("Index","Programacao",new { dia = "segunda"})" class="active">Segunda</a>
+            <a href="@Url.Action("Index","Programacao",new { dia = "terca"})">Terça</a>
+            <a href="@Url.Action("Index","Programacao",new { dia = "quarta"})">Quarta</a>
+            <a href="@Url.Action("Index","Programacao",new { dia = "quinta"})">Quinta</a>
+            <a href="@Url.Action("Index","Programacao",new { dia = "sexta"})">Sexta</a>
+            <a href="@Url.Action("Index","Programacao",new { dia = "sabado"})">Sábado</a>
+            <a href="@Url.Action("Index","Programacao",new { dia = "domingo"})">Domingo</a>
+            <a href="@Url.Action("Index","Programacao",new { dia = "diferenciada"})">Programacao Diferenciada</a>
+        }
+
+
+
+
+    </nav>
+    @if (Model != null && Model.Count> 0)
+    {
+        <ul class="acordion">
+
+            @foreach (var item in Model)
+            {
+                <li>
+                    <header class="header clearfix">
+                        @if (!string.IsNullOrEmpty(item.horario))
+                        {
+                            <span class="hour">@((item.horario.AsDateTime().Hour < 10 ? "0" + item.horario.AsDateTime().Hour.ToString() : item.horario.AsDateTime().Hour.ToString()) + ":" + (item.horario.AsDateTime().Minute < 10 ? "0" + item.horario.AsDateTime().Minute.ToString() : item.horario.AsDateTime().Minute.ToString()))</span>
+                        }
+                        
+                        <div class="box">
+                            <h2>@item.Programacao.nome</h2>
+                            <small class="tags">
+                                <i class="fa fa-clock-o"></i> @(item.Programacao.periodo == 0?"Diariamente":item.Programacao.periodo==1?"Por dia":"Indeterminado") | 
+                                <i class="fa fa-microphone" aria-hidden="true"></i>
+                                 @item.Programacao.Apresentadores.FirstOrDefault().nome
+                            </small>
+                        </div>
+                    </header>
+                    <div class="content block-text">
+                        @Html.Raw(item.Programacao.texto)
+
+                        <ul class="peoples clearfix">
+                            @if (item.Programacao.Apresentadores.Count > 0)
+                            {
+                                foreach (var prog in item.Programacao.Apresentadores)
+                                {
+                                    <li>
+                                        <img src="/admin/conteudo/apresentadores/lista/@prog.fotoExterna" alt="@prog.nome">
+
+                                        <h3>@prog.nome</h3>
+                                        <small>@(prog.participanteConvidado.Value?"Convidado":"Âncora")</small>
+                                    </li>
+                                }
+                            }
+                        </ul>
+
+
+                    </div>
+                </li>
+            }
+
+        </ul>
+    }
+    else
+    {
+        <div><p class="title-sector">Sem programação para este dia</p></div>
+    }
+</div>

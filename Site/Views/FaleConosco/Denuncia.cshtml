@@ -1,0 +1,190 @@
+﻿@using Recaptcha.Web.Mvc;
+@model Site.Models.Ouvintes
+
+@section SEO{
+    <meta name="DC.title" content="Envie sua Denúncia - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:title" content="Envie sua Denúncia - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="@Url.Content("~/images/ico-facebook.jpg")" />
+    <meta property="og:url" content="@HttpContext.Current.Request.Url.AbsoluteUri" />
+    <title>Envie sua Denúncia - Rádio CompanyName | A Rádio de Minas</title>
+}
+
+<div class="wrapper-general center">
+    <header class="nav-intern clearfix">
+        <div class="buttons">
+            <a class="bt-back" href="javascript:window.history.go(-1)"> <i class="fa fa-angle-left"></i> Voltar</a>
+            Texto: <button class="more bt-resize">+</button> <button class="bt-resize minus">-</button>
+        </div>
+        <nav class="breadcumb">
+            <a href="@Url.Action("Index","Home")">Home</a>
+            <span>Enviar Denúncia</span>
+        </nav>
+    </header>
+    <h1 class="title-page">Enviar Denúncia</h1>
+    <div class="block-text">
+        <p>Ser cidad&atilde;o tamb&eacute;m &eacute; fiscalizar. Se voc&ecirc; quer denunciar algum problema da sua cidade ou registrou algum fato importante em v&iacute;deo ou foto, envie todas as informa&ccedil;&otilde;es para nossa reda&ccedil;&atilde;o. Basta preencher os dados abaixo e o seu relato ser&aacute; encaminhado aos jornalistas da CompanyName. Ajude a tornar onde voc&ecirc; mora num lugar melhor.</p>
+    </div>
+    @using (Html.BeginForm("Denuncia", "FaleConosco", FormMethod.Post, new { enctype = "multipart/form-data", @id = "enviar-denuncia" }))
+    {
+        @Html.ValidationSummary()
+
+        <fieldset class="content-margin">
+            <div class="container-border clearfix">
+                <div class="boxs-half">
+                    <legend class="medium-red">Dados Pessoais</legend>
+                    <div class="row-grid">
+                        <div class="grid-12">
+                            <label for="nome">Nome*</label>
+                            <input required type="text" class="input-form" id="nome" name="nome">
+                            @Html.ValidationMessageFor(m => m.nome)
+                        </div>
+                        <div class="grid-6">
+                            <label for="email">Email*</label>
+                            <input required type="email" class="input-form" id="email" pattern="[a-z0-9._%+-]+&#64;[a-z0-9.-]+\.[a-z]{2,4}$" name="email">
+                            @Html.ValidationMessageFor(m => m.email)
+                        </div>
+                        <div class="grid-6">
+                            <label for="telefone">Telefone*</label>
+                            <input required type="text" class="input-form" id="telefone" name="telefone">
+                            @Html.ValidationMessageFor(m => m.telefone)
+                        </div>
+                    </div>
+                </div>
+                <div class="boxs-half">
+                    <legend class="medium-red">Localização</legend>
+                    <div class="row-grid">
+                        @*<div class="grid-6">
+                            <label for="regiao">Região*</label>
+                            @Html.DropDownList("regiaoId", null, "Selecione...", new { @class = "input-form", @id = "regiaoId", @name = "regiaoId", @required= "required" })
+                            @Html.ValidationMessageFor(m => m.regiaoId)
+                        </div>*@
+                        <div class="grid-6">
+                            <label for="cidade">Cidade*</label>
+                            @Html.DropDownList("cidade_id", null, "Selecione...", new { @class = "input-form", @id = "cidade_id", @name = "cidade_id", @required = "required" })
+                            @Html.ValidationMessageFor(m => m.cidade_id)
+                        </div>
+
+                        <div class="grid-6">
+                            <label for="bairro">Bairro*</label>
+                            <input type="text" placeholder="" id="bairro" class="input-form" name="bairro" required>
+                            @Html.ValidationMessageFor(m => m.bairro)
+                        </div>
+                        <div class="grid-12">
+                            <label for="endereco">Endereço</label>
+                            <input type="text" placeholder="" id="endereco" class="input-form" name="endereco" required>
+                            @Html.ValidationMessageFor(m => m.endereco)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-border">
+                <legend class="medium-red">Dados da Denúncia</legend>
+                <div class="clearfix">
+                    <div class="boxs-half">
+                        <div class="row-grid">
+                            <div class="grid-6">
+                                <label for="datainicio">Data*</label>
+                                <input required type="date" class="input-form" id="data" name="data">
+                                @Html.ValidationMessageFor(m => m.data)
+                            </div>
+                            <div class="grid-6">
+                                <label for="hora">Hora*</label>
+                                <input required type="time" class="input-form" id="horario" name="horario">
+                                @Html.ValidationMessageFor(m => m.horario)
+                            </div>
+                            <div class="grid-12">
+                                <label for="telefone">Assunto*</label>
+                                <input type="text" placeholder="" id="assunto" class="input-form" required name="assunto">
+                                @Html.ValidationMessageFor(m => m.assunto)
+                            </div>
+                            <div class="grid-12">
+                                <label for="descricao">Descrição*</label>
+                                <textarea id="descricao" class="input-form" name="comentario" required></textarea>
+                                @Html.ValidationMessageFor(m => m.comentario)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="boxs-half">
+                        <label for="arquivo">Arquivo</label>
+                        <div id="section-upload">
+                            <div class="boxs-upload">
+                                <div class="file-row">
+                                    <span></span>
+                                    <input type="file" class="file input-form" name="arquivo">
+                                </div>
+                                <div class="bt-add">+</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="clearfix">
+                <div class="boxs-half">
+                    <label for="autorizo">
+                        <input class="check" type="checkbox" id="autorizo" required>
+                        Autorizo a reprodução das informações cadastradas acima e a utilização do meu nome nos créditos. Leia os termos de uso.
+                    </label>
+                </div>
+                <div class="boxs-half" style="text-align: right">
+                    <div class="capthca-box">
+                        @Html.Recaptcha()
+                    </div>
+                    <input type="submit" value="Enviar" id="post-enviar" class="bt-red large">
+                    <div class="div-loading" style="display:none">
+                        <img src="~/images/loading-circle.gif" />
+                    </div>
+                </div>
+            </footer>
+        </fieldset>
+    }
+
+</div>
+
+
+@section scripts{
+    <script type="text/javascript">
+        /*
+        function OnError(response) {
+            console.log(response);
+            swal('Erro', 'Ocorreu um erro interno! Tente novamente mais tarde', 'error');
+            $(".div-loading").hide();
+            $(".bt-red").show();
+
+        }
+
+        function OnOk(response) {
+            console.log(response);
+            $(".div-loading").hide();
+            $(".bt-red").show();
+
+
+            switch (response.result) {
+                case "success":
+                    swal('Sucesso', 'Seu formulário foi enviado com sucesso! Obrigado!', 'success');
+                    $("#form-contact").find('input:text, select, textarea').val('');
+                    break;
+                case "captcha_branco":
+                    swal('Erro', 'O Captcha não pode ser deixado em branco', 'error');
+                    break;
+                case "captcha_error":
+                    swal('Erro', 'O Captcha não foi validado! Confira o preenchimento!', 'error');
+                    break;
+                case "invalid":
+                    swal('Erro', 'Campos inválidos! Verifique e envie novamente!', 'error');
+                    break;
+                default:
+                    swal('Erro', 'Ocorreu um erro interno! Tente novamente mais tarde', 'error');
+                    break;
+            }
+
+        }
+        function BeforeSend(content) {
+            $(".bt-red").hide();
+            $(".div-loading").show();
+        }
+        */
+    </script>
+
+}

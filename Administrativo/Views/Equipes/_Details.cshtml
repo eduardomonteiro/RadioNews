@@ -1,0 +1,92 @@
+﻿@model Administrativo.Models.Equipe
+
+<table class="table table-bordered table-striped responsive">
+    <tbody>
+        <tr>
+            <td style="width:200px;">@Html.DisplayNameFor(model => model.id)</td>
+            <td>@Html.DisplayFor(model => model.id)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.nome)</td>
+            <td>@Html.DisplayFor(model => model.nome)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.funcao)</td>
+            <td>@Html.DisplayFor(model => model.funcao)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.email)</td>
+            <td>@Html.DisplayFor(model => model.email)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.telefone)</td>
+            <td>@Html.DisplayFor(model => model.telefone)</td>
+        </tr>
+
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.texto)</td>
+            <td>@Html.Raw(Model.texto)</td>
+        </tr>
+
+       
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.imagem)</td>
+            <td>
+                @if (!string.IsNullOrEmpty(Model.imagem))
+                {
+
+                    <a class="btn btn-block btn-primary" data-toggle="modal" data-target="#foto-interna" style="width: 120px;">Imagem Atual</a>
+
+                }
+                else
+                {
+                    <p class="text-yellow">Sem Miniatura.</p>
+                }
+        </td>
+    </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.facebook)</td>
+            <td>@Html.Raw(Model.facebook)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.twitter)</td>
+            <td>@Html.Raw(Model.twitter)</td>
+        </tr>
+
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.DataCadastro)</td>
+        <td>@Html.DisplayFor(model => model.DataCadastro)</td>
+    </tr>
+
+</tbody>
+</table>
+
+
+<div class="modal fade" id="foto-interna" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Imagem Atual</h4>
+
+            </div>
+            <div class="modal-body">
+                <img src="@Url.Content("~/Conteudo/Equipe/165x165/" + Model.imagem)" width="140" height="140" />
+            </div>
+            <div class="modal-footer clearfix">
+
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="fa fa-times"></i>Fechar
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>

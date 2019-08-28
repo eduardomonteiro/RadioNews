@@ -1,0 +1,11 @@
+﻿@model Site.Models.Blocos
+
+@if (Model != null)
+{
+    <h2 class="title-big" id="informacoes">Informações Gerais</h2>
+    <div class="block-text">
+        @Html.Raw(Model.Descricao)
+    </div>
+
+
+}

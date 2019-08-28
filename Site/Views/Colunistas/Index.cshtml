@@ -1,0 +1,52 @@
+﻿@using Recaptcha.Web.Mvc;
+@model List<Site.Models.Colunista>
+
+@section SEO{
+    <meta name="DC.title" content="Colunistas - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:title" content="Colunistas - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="@Url.Content("~/images/ico-facebook.jpg")" />
+    <meta property="og:url" content="@HttpContext.Current.Request.Url.AbsoluteUri" />
+    <title>Colunistas - Rádio CompanyName | A Rádio de Minas</title>
+}
+
+
+<div class="wrapper-general center">
+    <header class="nav-intern clearfix">
+        <div class="buttons">
+            <a class="bt-back" href="javascript:window.history.go(-1)"> <i class="fa fa-angle-left"></i> Voltar</a>
+            Texto: <button class="more bt-resize">+</button> <button class="bt-resize minus">-</button>
+        </div>
+        <nav class="breadcumb">
+            <a href="@Url.Action("Index","Home")">Home</a>
+            <a href="#">A Rádio</a>
+            <span>Colunistas</span>
+        </nav>
+    </header>
+
+    <h1 class="title-page">Colunistas</h1>
+    @if (Model != null && Model.Count > 0)
+    {
+        <ul class="list-columnists clearfix">
+            @foreach (var item in Model)
+            {
+                <li>
+                    <a href="@Url.Action("Detalhes","Colunistas", new { colunistaSlug = item.chave })">
+
+                        @if (!string.IsNullOrEmpty(item.foto))
+                        {
+                            <img src="/admin/Conteudo/Colunistas/Foto/@item.foto" alt="@item.nome">
+                        }
+                        
+                        <span>@item.nome</span>
+                    </a>
+                </li>
+            }
+            
+        </ul>
+    }
+
+
+
+</div>

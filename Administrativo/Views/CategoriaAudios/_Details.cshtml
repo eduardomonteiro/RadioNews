@@ -1,0 +1,22 @@
+﻿@using Administrativo.Models
+@model CategoriasAudios
+
+<table class="table table-bordered table-striped responsive">
+    <tbody>
+        <tr>
+            <td style="width:200px;">@Html.DisplayNameFor(model => model.Id)</td>
+            <td>@Html.DisplayFor(model => model.Id)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Descricao)</td>
+            <td>@Html.DisplayFor(model => model.Descricao)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.DataCadastro)</td>
+            <td>@Html.DisplayFor(model => model.DataCadastro)</td>
+        </tr>
+
+    </tbody>
+</table>

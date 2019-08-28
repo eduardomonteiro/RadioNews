@@ -1,0 +1,35 @@
+﻿@model Site.ViewModels.AudioPageViewModel
+
+@{
+    Layout = null;
+    ViewBag.Title = "Index";
+}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="DC.title" content="@Model.Titulo" />
+    <meta property="og:title" content="@Model.Titulo" />
+    <meta property="og:type" content="@Model.Tipo" />
+    <meta property="og:image" content="http://www.CompanyName.com.br/images/logo-branco-old.png" />
+    <meta property="og:audio" content="@HttpContext.Current.Request.Url.AbsoluteUri" />
+    <meta property="og:url" content="@HttpContext.Current.Request.Url.AbsoluteUri" />
+    <meta property="og:site_name" content="@Model.NomeSite" />
+    <meta property="og:description" content="" />
+    <meta property="fb:app_id" content="@Model.AppId" />
+    <title>Rádio CompanyName | A Rádio de Minas</title>
+    @Styles.Render("~/Content/css-player")
+</head>
+<body>
+    <div class="container-radio-mp3">
+        <img src="~/images/player/logo-CompanyName.png" alt="" />
+        <div class="bg-player">
+            <audio controls="" autoplay="" style="width: 300px; display: block; margin-left: 10px;">
+                <source src="@Model.Url" type="audio/mpeg" class="audio-mobile">
+                Seu navegador não suporta o elemento de áudio.
+            </audio>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/player")
+</body>
+</html>
+

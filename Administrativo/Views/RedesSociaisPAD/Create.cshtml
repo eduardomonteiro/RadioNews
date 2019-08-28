@@ -1,0 +1,102 @@
+﻿@model Administrativo.Models.RedesSociaisPADs
+
+@{
+    ViewBag.Title = "Cadastrar Postagem - Painéis Digitais";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Insere uma Postagem de Rede Social nos Painéis Digitais";
+}
+
+<div class="content">
+    <div class="row">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Cadastrar Notícia - Painéis Digitais</h3>
+            </div>
+            @using (Html.BeginForm("Create", "RedesSociaisPaineis", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="box-body">
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Hashtag)
+
+                        <input type="text" id="Hashtag" name="Hashtag" class="text-box" maxlength="30" value="@(Model.Hashtag != null ? Model.Hashtag.Substring(0,30) : "")" />
+                        @Html.ValidationMessageFor(model => model.Hashtag)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Chamada)
+
+                        <input type="text" id="Chamada" name="Chamada" class="text-box" maxlength="50" value="@(Model.Chamada != null ? Model.Chamada.Substring(0,50) : "")" />
+                        @Html.ValidationMessageFor(model => model.Chamada)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.HiddenFor(model => model.TipoRede)
+                        @(Model.TipoRede == 1 ? "Facebook" : "Twitter")
+                    </div>
+
+                    <div class="form-group">
+                        <label>Apoiador</label>
+                        @Html.DropDownList("ApoioId", null, "Selecione...", new { @class = "form-control" })
+                        @Html.ValidationMessage("ApoioId")
+                    </div>
+
+                    <div class="form-group">
+                        @if (!string.IsNullOrEmpty(Model.Foto))
+                        {
+                            @Html.HiddenFor(model => model.Foto)
+                            <a class="btn btn-block btn-primary" id="btn-imagem" data-toggle="modal" data-target="#imagem-foto" style="width: 120px;">Imagem Atual</a>
+
+                        }
+                        else
+                        {
+                            <p class="text-yellow">Sem Imagem.</p>
+                        }
+                    </div>
+
+                </div>
+                <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a href="javascript:history.back()" class="btn btn-info">Voltar</a>
+
+                </div>  }
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="imagem-foto" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Imagem Atual</h4>
+            </div>
+            <div class="modal-body">
+                @if (!string.IsNullOrEmpty(Model.Foto))
+                {
+                    <img src="@Model.Foto" width="500" />
+                }
+
+            </div>
+            <div class="modal-footer clearfix">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="fa fa-times"></i>Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $('#chamada').wysihtml5();
+        $('#chamada').css('height', '80');
+
+        $(".chosen-select").chosen({ width: "100%" });
+    </script>
+}
+
+

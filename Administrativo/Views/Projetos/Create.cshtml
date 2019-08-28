@@ -1,0 +1,153 @@
+﻿@model Administrativo.Models.Noticias
+
+@{
+    ViewBag.Title = "Cadastrar um projeto";
+    ViewBag.Icon = "fa fa-globe";
+    ViewBag.SmallDescription = "Insere um projeto no sistema";
+}
+
+
+
+<div class="content">
+    <div class="row">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Cadastrar Projeto</h3>
+            </div>
+            @using (Html.BeginForm("Create", "Projetos", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="box-body">
+
+                    @Html.ValidationSummary()
+                    <div style="display:none">
+                        @Html.CheckBoxFor(model => model.projeto, new { @checked = "checked", style = "display:none;" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.titulo)
+
+                        @Html.EditorFor(model => model.titulo)
+                        @Html.ValidationMessageFor(model => model.titulo)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.texto)
+
+                        @Html.TextAreaFor(model => model.texto)
+                        @Html.ValidationMessageFor(model => model.texto)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.chamada)
+
+                        @Html.TextAreaFor(model => model.chamada, new { @class = "text-box", style = "height: 100px;" })
+                        @Html.ValidationMessageFor(model => model.chamada)
+                    </div>
+
+                    <h4 class="page-header"></h4>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.foto)
+
+                                <input type="file" name="foto" id="foto" />
+                                @Html.ValidationMessageFor(model => model.foto)
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.fotoDescricao)
+
+                                @Html.EditorFor(model => model.fotoDescricao)
+                                @Html.ValidationMessageFor(model => model.fotoDescricao)
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.audio)
+
+                        <input type="file" name="audio" id="audio" />
+                        @Html.ValidationMessageFor(model => model.audio)
+                    </div>
+                    <h4 class="page-header"></h4>
+                    
+
+                    <h4 class="page-header"></h4>
+                    <h4 class="page-header">
+                        Fotos e Vídeos
+                        <small>Selecione uma galeria já cadastrada e/ou um vídeo do YouTube.</small>
+                    </h4>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.idGaleria, "Galeria")
+
+                        @Html.DropDownList("idGaleria", null, "Selecione...", new { @class = "chosen-select" })
+
+                        @Html.ValidationMessageFor(model => model.idGaleria)
+                    </div>
+
+
+
+                    <div class="form-group">
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.videoYoutube)
+
+                                @Html.EditorFor(model => model.videoYoutube)
+                                @Html.ValidationMessageFor(model => model.videoYoutube)
+                            </div>
+                            <div class="col-md-6">
+                                <div class="callout callout-warning">
+                                    <h4>Exemplo: (usar apenas o que está em negrito)</h4>
+                                    <p>https://www.youtube.com/watch?v=<strong>2Tkz7wNGr-A</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                   
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Tags)
+                        @Html.ListBox("TagsIds", (MultiSelectList)ViewBag.MultiSelectTags, new { @class = "chosen-select" })
+
+                    </div>
+
+                </div>
+                <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a href="@Url.Action("Index")" class="btn btn-info">Voltar</a>
+
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places");
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var editor = CKEDITOR.replace('texto',
+                {
+                    height: "200px"
+                });
+
+            $('#chamada').wysihtml5();
+
+            $("#horario").inputmask("99:99");
+            $(".chosen-select").chosen({ width: "100%" });
+            youtube.init();
+            mapaNoticias.init();
+        });
+
+
+    </script>
+}

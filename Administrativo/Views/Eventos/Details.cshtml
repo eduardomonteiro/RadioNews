@@ -1,0 +1,32 @@
+﻿@model Administrativo.Models.Eventos
+
+@{
+    ViewBag.Title = "Eventos";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Visualizar detalhes de Eventos";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">Detalhes</h3>
+            </div>
+            <div class="box-content padded">
+                @Html.Partial("_Details")
+            </div>
+            <div class="box-footer">
+
+
+
+                <a href="@Url.Action("Edit", "Eventos", new { id = Model.Id })" class="btn btn-warning">Editar</a>
+                <a href="@Url.Action("Index", "Eventos")" class="btn btn-info">Voltar</a>
+                <a href="@Url.Action("Index", "Acontecimentos", new { evento = Model.Id })" class="btn btn-success">Ir para Acontecimentos</a>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+

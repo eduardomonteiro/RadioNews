@@ -1,0 +1,370 @@
+﻿<#@ template language="C#" HostSpecific="True" #>
+<#@ output extension=".cshtml" #>
+<#@ assembly name="System.ComponentModel.DataAnnotations" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Data.Entity" #>
+<#@ assembly name="System.Data.Linq" #>
+<#@ assembly name="CustomAttributes" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.ComponentModel.DataAnnotations" #>
+<#@ import namespace="System.Data.Linq.Mapping" #>
+<#@ import namespace="System.Data.Objects.DataClasses" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Reflection" #>
+<#@ import namespace="Microsoft.VisualStudio.Web.Mvc.Scaffolding.BuiltIn" #>
+<#@ import namespace="CustomAttributes" #>
+<#
+MvcTextTemplateHost mvcHost = MvcTemplateHost;
+#>
+@using PagedList
+@using PagedList.Mvc
+@model IPagedList<#= "<" + mvcHost.ViewDataTypeName + ">" #>
+
+
+<#
+// The following chained if-statement outputs the file header code and markup for a partial view, a content page, or a regular view.
+if(mvcHost.IsPartialView) {
+#>
+
+<#
+} else if(mvcHost.IsContentPage) {
+#>
+
+@{
+		ViewBag.Title = "Listagem de <#= mvcHost.ControllerRootName #>";
+		ViewBag.Icon = "fa ";
+		ViewBag.SmallDescription = "Lista de todos os <#= mvcHost.ControllerRootName #> cadastrados no sistema";
+<#
+if (!String.IsNullOrEmpty(mvcHost.MasterPageFile)) {
+#>
+    Layout = "<#= mvcHost.MasterPageFile#>";
+<#
+}
+#>
+}
+<#
+} else {
+#>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title><#= mvcHost.ViewName #></title>
+</head>
+<body>
+<#
+    PushIndent("    ");
+}
+#>
+<div class="row">
+    <div class="col-md-12">
+		  <div class="box box-info">
+            <div class="box-header">
+				<h3 class="box-title">Lista</h3>
+                <div class="pull-right">
+                    <a style="margin:4px; color:white;" href="@Url.Action("Create")" class="btn btn-success pull-right"><i class="fa fa-plus-circle white"></i>&nbsp;Cadastrar</a>
+                </div>
+			</div>
+            <div class="box-body no-padding">
+				<div class="fc fc-ltr">
+					@using (Html.BeginForm())
+						{
+							<table class="fc-header" style="width: 35%;">
+								<tbody>
+									<tr style="height: 48px;">
+										<td class="fc-header-left" style="width: 10px;"></td>
+										<td class="fc-header-center">
+											@Html.TextBox("Search", null, new { @class = "text-box", placeholder = "Busca" })
+										</td>
+										<td class="fc-header-right">
+											<input type="submit" value="Enviar" class="btn bg-olive margin" style="margin: 0px;" />
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						}
+						<table class="table table-striped responsive table-hover dataTable">
+								<thead>
+								 <tr role="row">
+							<#
+							List<ModelProperty> properties = GetModelProperties(mvcHost.ViewDataType);
+							foreach (ModelProperty property in properties) {
+								if (property.ScaffoldInList) {
+							#>
+									<th<#=property.IsPrimaryKey ? " style=\"width:40px;\"" : ""#><#
+									if (property.Sortable){
+								
+									#> onclick="document.location='@Url.Action("Index", new { sortField = "<#= property.Name #>", order = @ViewBag.Order == "DESC" ? "ASC" : "DESC", page = ViewBag.Page, search = ViewBag.Search })'" class="@ViewBag.SortClass<#= property.Name #>"<#
+									}#>>
+										@Html.DisplayNameFor(model => model.First().<#= property.Name #>)
+									</th>
+							<#
+								}
+							
+							}
+							#>
+									<th style="width: 160px;">Ações</th>
+								</tr>
+								</thead>
+							<tbody>
+							@if (Model.TotalItemCount > 0)
+								{
+							foreach (var item in Model) {
+								<tr>
+							<#
+							int colunas = 0;
+							foreach (ModelProperty property in properties) {
+								if (property.ScaffoldInList) {
+							#>
+									<td>
+										@Html.DisplayFor(modelItem => <#= property.ItemValueExpression #>)
+									</td>
+							<#
+								colunas++;
+								}
+							}
+
+							string pkName = GetPrimaryKeyName(mvcHost.ViewDataType);
+							if (pkName != null) {
+							#>
+									<td>
+									<div class="btn-group">
+										<a href="@Url.Action("Edit", new { id = item.<#= pkName #> })" class="btn btn-warning btn-small"><i class="fa fa-edit"></i></a>
+										<a href="@Url.Action("Details", new { id = item.<#= pkName #> })" class="btn bg-olive btn-small"><i class="fa fa-search-plus"></i></a>
+										<a href="@Url.Action("Delete", new { id = item.<#= pkName #> })" class="btn btn-danger btn-small"><i class="fa fa-trash-o"></i></a>
+									</div>
+									</td>
+							<#
+							} else {
+							#>
+									<td>
+										@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+										@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+										@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+									</td>
+							<#
+							}
+							#>
+								</tr>
+							}
+							}
+								else
+								{ 
+									<tr>
+										<td colspan="<#=colunas+1#>" align="center">Nenhum registro encontrado.</td>
+									</tr>
+								}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="box-footer clearfix no-border">
+					@if (Model.PageCount > 1)
+					{ 
+						@Html.PagedListPager(Model, page => Url.Action("Index", new { page, search = ViewBag.Search, order = ViewBag.Order, SortField =  ViewBag.SortField}), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+					}
+			</div>
+		</div>
+	</div>
+</div>
+<#
+// The following code closes the asp:Content tag used in the case of a master page and the body and html tags in the case of a regular view page
+#>
+<#
+if(mvcHost.IsContentPage) {
+#>
+<#
+} else if(!mvcHost.IsPartialView && !mvcHost.IsContentPage) {
+    ClearIndent();
+#>
+</body>
+</html>
+<#
+}
+#>
+<#+
+// Describes the information about a property on the model
+class ModelProperty {
+    public string Name { get; set; }
+    public string AssociationName { get; set; }
+    public string ValueExpression { get; set; }
+    public string ModelValueExpression { get; set; }
+    public string ItemValueExpression { get; set; }
+    public Type UnderlyingType { get; set; }
+    public bool IsPrimaryKey { get; set; }
+    public bool IsForeignKey { get; set; }
+    public bool IsReadOnly { get; set; }
+    public bool Scaffold { get; set; }
+    public bool ScaffoldInList { get; set; }
+	public bool Sortable { get; set; }
+}
+
+// Change this list to include any non-primitive types you think should be eligible for display/edit
+static Type[] bindableNonPrimitiveTypes = new[] {
+    typeof(string),
+    typeof(decimal),
+    typeof(Guid),
+    typeof(DateTime),
+    typeof(DateTimeOffset),
+    typeof(TimeSpan),
+};
+
+// Call this to get the list of properties in the model. Change this to modify or add your
+// own default formatting for display values.
+List<ModelProperty> GetModelProperties(Type type) {
+    List<ModelProperty> results = GetEligibleProperties(type);
+    
+    foreach (ModelProperty prop in results) {
+        if (prop.UnderlyingType == typeof(double) || prop.UnderlyingType == typeof(decimal)) {
+            prop.ModelValueExpression = "String.Format(\"{0:F}\", " + prop.ModelValueExpression + ")";
+        }
+        else if (prop.UnderlyingType == typeof(DateTime)) {
+            prop.ModelValueExpression = "String.Format(\"{0:g}\", " + prop.ModelValueExpression + ")";
+        }
+    }
+
+    return results;
+}
+
+// Call this to determine if property has scaffolding enabled
+bool Scaffold(PropertyInfo property) {
+    foreach (object attribute in property.GetCustomAttributes(true)) {
+        var scaffoldColumn = attribute as ScaffoldColumnAttribute;
+        if (scaffoldColumn != null && !scaffoldColumn.Scaffold) {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool ScaffoldInList(PropertyInfo property) {
+foreach (object attribute in property.GetCustomAttributes(true)) {
+    var scaffoldInListColumn = attribute as ScaffoldInListAttribute;
+    if (scaffoldInListColumn != null && !scaffoldInListColumn.ScaffoldInList) {
+        return false;
+    }
+}
+return true;
+}
+
+bool Sortable(PropertyInfo property){
+	foreach (object attribute in property.GetCustomAttributes(true)) {
+        var sortColumn = attribute as SortableAttribute;
+		
+        if (sortColumn != null ) {
+            return false;
+        }
+    }
+    return true;
+}
+
+// Call this to determine if the property represents a primary key. Change the
+// code to change the definition of primary key.
+bool IsPrimaryKey(PropertyInfo property) {
+    if (string.Equals(property.Name, "id", StringComparison.OrdinalIgnoreCase)) {  // EF Code First convention
+        return true;
+    }
+
+    if (string.Equals(property.Name, property.DeclaringType.Name + "id", StringComparison.OrdinalIgnoreCase)) {  // EF Code First convention
+        return true;
+    }
+
+    foreach (object attribute in property.GetCustomAttributes(true)) {
+        if (attribute is KeyAttribute) {  // WCF RIA Services and EF Code First explicit
+            return true;
+        }
+        
+        var edmScalar = attribute as EdmScalarPropertyAttribute;
+        if (edmScalar != null && edmScalar.EntityKeyProperty) {  // EF traditional
+            return true;
+        }
+
+        var column = attribute as ColumnAttribute;
+        if (column != null && column.IsPrimaryKey) {  // LINQ to SQL
+            return true;
+        }
+    }
+    
+    return false;
+}
+
+// This will return the primary key property name, if and only if there is exactly
+// one primary key. Returns null if there is no PK, or the PK is composite.
+string GetPrimaryKeyName(Type type) {
+    IEnumerable<string> pkNames = GetPrimaryKeyNames(type);
+    return pkNames.Count() == 1 ? pkNames.First() : null;
+}
+
+// This will return all the primary key names. Will return an empty list if there are none.
+IEnumerable<string> GetPrimaryKeyNames(Type type) {
+    return GetEligibleProperties(type).Where(mp => mp.IsPrimaryKey).Select(mp => mp.Name);
+}
+
+// Call this to determine if the property represents a foreign key.
+bool IsForeignKey(PropertyInfo property) {
+    return MvcTemplateHost.RelatedProperties.ContainsKey(property.Name);
+}
+
+// A foreign key, e.g. CategoryID, will have a value expression of Category.CategoryID
+string GetValueExpressionSuffix(PropertyInfo property) {
+    RelatedModel propertyModel;
+    MvcTemplateHost.RelatedProperties.TryGetValue(property.Name, out propertyModel);
+
+    return propertyModel != null ? propertyModel.PropertyName + "." + propertyModel.DisplayPropertyName : property.Name;
+}
+
+// A foreign key, e.g. CategoryID, will have an association name of Category
+string GetAssociationName(PropertyInfo property) {
+    RelatedModel propertyModel;
+    MvcTemplateHost.RelatedProperties.TryGetValue(property.Name, out propertyModel);
+
+    return propertyModel != null ? propertyModel.PropertyName : property.Name;
+}
+
+// Helper
+List<ModelProperty> GetEligibleProperties(Type type) {
+    List<ModelProperty> results = new List<ModelProperty>();
+
+    foreach (PropertyInfo prop in type.GetProperties(BindingFlags.Public | BindingFlags.Instance)) {
+        Type underlyingType = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType;
+        if (prop.GetGetMethod() != null && prop.GetIndexParameters().Length == 0 && IsBindableType(underlyingType)) {
+            string valueExpression = GetValueExpressionSuffix(prop);
+
+            results.Add(new ModelProperty {
+                Name = prop.Name,
+                AssociationName = GetAssociationName(prop),
+                ValueExpression = valueExpression,
+                ModelValueExpression = "Model." + valueExpression,
+                ItemValueExpression = "item." + valueExpression,
+                UnderlyingType = underlyingType,
+                IsPrimaryKey = IsPrimaryKey(prop),
+                IsForeignKey = IsForeignKey(prop),
+                IsReadOnly = prop.GetSetMethod() == null,
+                Scaffold = Scaffold(prop),
+                ScaffoldInList = ScaffoldInList(prop),
+				Sortable = Sortable(prop)
+            });
+        }
+    }
+
+    return results;
+}
+
+// Helper
+bool IsBindableType(Type type) {
+    return type.IsPrimitive || bindableNonPrimitiveTypes.Contains(type);
+}
+
+MvcTextTemplateHost MvcTemplateHost {
+    get {
+        return (MvcTextTemplateHost)Host;
+    }
+}
+#>

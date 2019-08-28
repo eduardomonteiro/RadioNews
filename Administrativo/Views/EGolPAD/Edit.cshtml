@@ -1,0 +1,126 @@
+﻿@model Administrativo.Models.EGolPADs
+
+@{
+    ViewBag.Title = "Editar Gol - Painéis Digitais";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Altere as informações do Gol para aparecer nos Painéis Digitais";
+}
+
+<link href="~/Content/AdminLTE/iCheck/flat/red.css" rel="stylesheet">
+<style>
+    .tip-pad {
+        font-size: 12px;
+        color: #da251d;
+    }
+</style>
+
+<div class="content">
+    <div class="row">
+        <div class="box box-warning">
+            <div class="box-header">
+                <h3 class="box-title">Editar Gol - Painéis Digitais</h3>
+            </div>
+            @using (Html.BeginForm("Edit", "EGolPaineis", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="box-body">
+                    @Html.HiddenFor(model => model.Id)
+
+                    <div class="form-group">
+                        <label>Jogador - <em class="tip-pad">Nome do jogador que fez o gol. Se desejar coloque o número também.</em></label>
+
+                        <input type="text" id="Jogador" name="Jogador" class="text-box" maxlength="20" value="@Model.Jogador" />
+                        @Html.ValidationMessageFor(model => model.Jogador)
+                    </div>
+
+                    <div class="form-group">
+                        <label>HashTag</label>
+
+                        <input type="text" id="Hashtag" name="Hashtag" class="text-box" maxlength="15" value="@Model.HashTag" />
+                        @Html.ValidationMessageFor(model => model.HashTag)
+                    </div>
+
+                    <div class="row">
+                        @Html.HiddenFor(model => model.Placar)
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Mandante</label>
+                                @Html.DropDownList("MandanteId", null, "Selecione...", new { @class = "form-control" })
+                                @Html.ValidationMessage("MandanteId")
+                            </div>
+                            <div class="form-group">
+                                <label>Placar Mandante</label>
+                                <input type="number" class="text-box" id="golsMandante" name="golsMandante" maxlength="2" value="@ViewBag.GolsMandante" />
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Visitante</label>
+                                @Html.DropDownList("VisitanteId", null, "Selecione...", new { @class = "form-control" })
+                                @Html.ValidationMessage("VisitanteId")
+                            </div>
+                            <div class="form-group">
+                                <label>Placar Visitante</label>
+                                <input type="number" class="text-box" id="golsVisitante" name="golsVisitante" maxlength="2" value="@ViewBag.GolsVisitante" />
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            @Html.ValidationMessageFor(model => model.Placar)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Quem vez o gol? - <em class="tip-pad">Ele terá um destaque especial no banner.</em></label>
+                        <br />
+                        <input type="radio" id="GolMandante" name="GolMandante" value="true" @(Model.GolMandante ? "checked" : "") /> Mandante
+                        <input type="radio" id="GolMandante" name="GolMandante" value="false" @(Model.GolMandante ? "checked" : "") /> Visitante
+                    </div>
+
+                    <div class="form-group">
+                        <label>Hora do Gol</label>
+
+                        <input type="text" id="HoraDoGol" name="HoraDoGol" maxlength="15" class="text-box" placeholder="Ex.: 10' do 1º Tempo" value="@Model.HoraDoGol"/>
+                        @Html.ValidationMessageFor(model => model.HoraDoGol)
+                    </div>
+
+                    <div class="form-group">
+                        <label>Plano de Fundo</label>
+                        @Html.DropDownList("BgColor", null, "Selecione...", new { @class = "form-control" })
+                        @Html.ValidationMessage("BgColor")
+                    </div>
+
+                    <div class="form-group">
+                        <label>Apoiador</label>
+                        @Html.DropDownList("ApoioId", null, "Selecione...", new { @class = "form-control" })
+                        @Html.ValidationMessage("ApoioId")
+                    </div>
+
+                </div>
+                <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a href="@Url.Action("Index", "EGolPaineis")" class="btn btn-info">Voltar</a>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#golsMandante').change(function () {
+                $('#Placar')[0].value = $(this)[0].value + 'x' + $('#golsVisitante')[0].value;
+            });
+            $('#golsVisitante').change(function () {
+                $('#Placar')[0].value = $('#golsMandante')[0].value + 'x' + $(this)[0].value;
+            });
+
+            $('input').iCheck({
+                radioClass: 'iradio_flat-red'
+            });
+        });
+    </script>
+}

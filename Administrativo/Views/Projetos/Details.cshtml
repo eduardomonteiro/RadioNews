@@ -1,0 +1,56 @@
+﻿@model Administrativo.Models.Noticias
+
+@{
+    ViewBag.Title = "Projetos Especiais";
+    ViewBag.Icon = "fa fa-globe";
+    ViewBag.SmallDescription = "Visualizar detalhes de Projeto";
+}
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">Detalhes</h3>
+            </div>
+            <div class="box-content padded">
+                
+                @Html.Partial("DetailsPartial")
+
+            </div>
+            <div class="box-footer">
+
+
+
+                <a href="@Url.Action("Edit", new { Id = Model.id })" class="btn btn-warning">Editar</a>
+                <a href="@Url.Action("Index")" class="btn btn-info">Voltar</a>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts {
+@Scripts.Render("https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places");
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $(".slimscroll").slimscroll({
+                height: "350px",
+                alwaysVisible: false,
+                size: "5px"
+            }).css("width", "750px");
+            var markerMap = {
+                latitude: '@Model.latitude',
+                longitude: ' @Model.longitude',
+                draggable: false
+            };
+            mapaNoticias.init(markerMap);
+        });
+
+    </script>
+
+}

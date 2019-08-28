@@ -1,0 +1,144 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@using Site.Helpers
+@model Site.ViewModels.DetalhesEventoViewModel
+
+@section SEO {
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="author" content="eduardoDev - $$$$" />
+    <meta name="description" content="" />
+    <meta name="resource-type" content="document" />
+    <meta name="content-language" content="pt-br" />
+    <meta name="revisit" content="1 day" />
+    <meta name="ICBM" content="-20.8341668,-45.51577" />
+    <meta name="ROBOTS" content="INDEX, FOLLOW">
+    <meta name="DC.title" content="Promoções - Rádio Itaitiaia | A Rádio de Minas" />
+    <meta property="og:title" content="Promoções - Rádio Itaitiaia | A Rádio de Minas" />
+    <meta property="og:type" content="#" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="/images/ico-facebook.jpg" />
+    <meta property="og:url" content="" />
+
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css" />
+}
+
+<div class="wrapper-general center">
+    <header class="nav-intern clearfix">
+        <div class="buttons">
+            <a class="bt-back" href="@Url.Action("Index", "Eventos")"> <i class="fa fa-angle-left"></i> Voltar</a>
+            Texto: <button class="more bt-resize">+</button> <button class="bt-resize minus">-</button>
+        </div>
+        <nav class="breadcumb">
+            <a href="@Url.Action("Index", "Home")">Home</a>
+            <a href="@Url.Action("Index", "Eventos")">CompanyName no Ponto</a>
+            <span>@Model.Titulo</span>
+        </nav>
+    </header>
+    <div class="row-grid clearfix">
+        <div class="grid-9 main-grid">
+            <h1 class="title-page">CompanyName no Ponto</h1>
+            <h2 class="title-medio" style="margin-bottom: 25px">@Model.Titulo</h2>
+            <div class="block-text clearfix">
+                <img src="/admin/conteudo/eventos/foto/@Model.Imagem" class="pic-radius" />
+                @Html.Raw(Model.Texto)
+            </div>
+            <nav class="navs-upper border" id="realizados">
+                <a class="active">Realizados</a>
+            </nav>
+            <header class="filters" style="margin-top: 0; padding-top: 0">
+
+                @using (Html.BeginForm("Detalhes", "Eventos", FormMethod.Get, new { @class = "row-grid clearfix" }))
+                {
+                    <div class="grid-5">
+                        @Html.LabelFor(model => model.Encerrados.FirstOrDefault().Local)
+                        @Html.DropDownList("local", (List<SelectListItem>)ViewBag.Locais, "Selecione um local", new { @class = "input-form" })
+                    </div>
+                    <div class="grid-3">
+                        <label for="datainicio">De</label>
+                        @Html.TextBox("datainicio", string.Empty, new { @type = "date", @class = "input-form dates unstyled" })
+                    </div>
+                    <div class="grid-3">
+                        <label for="datafinal">Até</label>
+                        @Html.TextBox("datafinal", string.Empty, new { @type = "date", @class = "input-form dates unstyled" })
+                    </div>
+                    <div class="grid-1">
+                        <button type="submit" id="post-search" title="Buscar" class="search-filter fa fa-search"></button>
+                    </div>
+                }
+
+            </header>
+            <ul class="cards-events hover">
+                @if (Model.Encerrados != null && Model.Encerrados.Any())
+                {
+                    foreach (var acontecimento in Model.Encerrados.OrderByDescending(e => e.Data))
+                    {
+                        <li>
+                            <a href="@acontecimento.Url">
+                                <img src="@(acontecimento.Imagens != null ? acontecimento.Imagens.FirstOrDefault().Medium800Url : string.Empty)">
+                                <span class="tit-black">
+                                    <i class="fa fa-map-marker"></i> @acontecimento.Local
+                                </span>
+                                <br />
+                                <span class="tit-black">
+                                    <i class="fa fa-calendar-check-o"></i>
+                                    @acontecimento.Data.ToString("dd/MM/yyyy") | <i class="fa fa-clock-o"></i> @acontecimento.HoraInicio.Replace(":", "h") até @acontecimento.HoraFim.Replace(":", "h")
+                                </span>
+                                <span data-id="@acontecimento.Id" class="bt-red galeria">Confira as fotos</span>
+                            </a>
+                        </li>
+                    }
+                }
+                else
+                {
+                    <p class="description-noticie">Nenhum acontecimento realizado neste evento.</p>
+                }
+
+
+            </ul>
+
+            <footer class="pagination-bottom red">
+                <ul class="pag">
+                    @if (Model.Encerrados.PageCount > 1)
+                    {
+                        @Html.PagedListPager(Model.Encerrados, pagina => Url.Action("Detalhes", new
+                   {
+                       Model.Id,
+                       local = Request.Params["local"],
+                       dataInicio = Request.Params["dataInicio"],
+                       dataFinal = Request.Params["dataFinal"],
+                       pagina
+                   }),
+                           new PagedListRenderOptions { LinkToNextPageFormat = "Próximo", LinkToPreviousPageFormat = "Anterior" })
+                    }
+                </ul>
+            </footer>
+        </div>
+
+        @Html.Action("MenuProximos", new { @id = Model.Id })
+
+    </div>
+</div>
+
+@section scripts{
+    <script>
+
+        $('#calendario-acoes').slick({
+            infinite: false,
+            arrows: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            focusOnSelect: true,
+            prevArrow: $('#arrow-left'),
+            nextArrow: $('#arrow-right'),
+
+        });
+
+        $(".galeria").on("click", function () {
+            window.location = "/eventos/acontecimento/" + $(this).data("id");
+        });
+
+    </script>
+
+}

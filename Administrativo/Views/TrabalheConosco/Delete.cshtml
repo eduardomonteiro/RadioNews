@@ -1,0 +1,33 @@
+﻿@model Administrativo.Models.TrabalheConosco
+
+@{
+    ViewBag.Title = "TrabalheConosco";
+    ViewBag.SmallDescription = "Inserir ou remover descrição de TrabalheConosco aqui.";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="box box-danger">
+    <div class="box-header">
+        <i class="fa fa-trash-o"></i>
+        <h3 class="box-title">Deletar</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <div class="callout callout-danger">
+            <h4>Atenção</h4>
+            <p>Deseja realmente deletar este registro?</p>
+            @using (Html.BeginForm())
+            {
+                <button class="btn btn-danger">Sim</button>
+                <a href="@Url.Action("Index", "TrabalheConosco")" class="btn btn-success">Não</a>
+                    
+            }
+
+        </div>
+        <div class="box-content padded">
+            
+        </div>
+    </div>
+</div>

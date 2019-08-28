@@ -1,0 +1,123 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<Administrativo.ViewModel.LiveStreamViewModel>
+
+@{
+    ViewBag.Title = "Lista de Streams";
+    ViewBag.Icon = "fa fa-comment-o";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-12">
+    <div class="box box-danger">
+        <div class="box-header">
+            <h3 class="box-title">Lista de live streamings</h3>
+        </div>
+        <div class="box-body no-padding">
+            <div class="fc fc-ltr mailbox">
+                <div>
+                    <div class="col-md-6">
+                        @using (Html.BeginForm())
+                        {
+                            <table class="fc-header" style="width: 100%;">
+                                <tbody>
+                                    <tr style="height: 48px;">
+                                        <td class="fc-header-left" style="width: 10px;"></td>
+                                        <td class="fc-header-center">
+                                            @Html.TextBox("Search", null, new { @class = "text-box", placeholder = "Busca" })
+                                        </td>
+                                        <td class="fc-header-right">
+                                            <input type="submit" value="Enviar" class="btn bg-olive margin" style="margin: 0px;" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        }
+                    </div>
+                    <div class="col-md-6 pull-right">
+                        <a style="margin:4px; color:white;" href="@Url.Action("Criar")" class="btn btn-success pull-right"><i class="fa fa-plus-circle white"></i>&nbsp;Nova transmissão</a>
+                    </div>
+                </div>
+
+                <table class="table responsive dataTable table-mailbox">
+                    <thead>
+                        <tr role="row">
+                            <th onclick="document.location='@Url.Action("Index", new { sortField = "Id", order = @ViewBag.Order == "DESC" ? "ASC" : "DESC", page = ViewBag.Page, search = ViewBag.Search })'" class="@ViewBag.SortClassId">
+                                @Html.DisplayNameFor(model => model.First().Id)
+                            </th>
+                            @*<th onclick="document.location='@Url.Action("Index", new { sortField = "assunto", order = @ViewBag.Order == "DESC" ? "ASC" : "DESC", page = ViewBag.Page, search = ViewBag.Search })'" class="@ViewBag.SortClassassunto">
+                                    @Html.DisplayNameFor(model => model.First().assunto)
+                                </th>*@
+                            <th onclick="document.location='@Url.Action("Index", new { sortField = "Legenda", order = @ViewBag.Order == "DESC" ? "ASC" : "DESC", page = ViewBag.Page, search = ViewBag.Search })'" class="@ViewBag.SortClassLegenda">
+                                @Html.DisplayNameFor(model => model.First().Legenda)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().CodigoTransmissao)
+                            </th>
+                            <th onclick="document.location='@Url.Action("Index", new { sortField = "Ativo", order = @ViewBag.Order == "DESC" ? "ASC" : "DESC", page = ViewBag.Page, search = ViewBag.Search })'" class="@ViewBag.SortClassAtivo">
+                                @Html.DisplayNameFor(model => model.First().Ativo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().DataFinalizacao)
+                            </th>
+                            <th onclick="document.location='@Url.Action("Index", new { sortField = "DataCadastro", order = @ViewBag.Order == "DESC" ? "ASC" : "DESC", page = ViewBag.Page, search = ViewBag.Search })'" class="@ViewBag.SortClassDataCadastro">
+                                @Html.DisplayNameFor(model => model.First().DataCadastro)
+                            </th>
+                            <th style="width: 160px;">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.TotalItemCount > 0)
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr id="@item.Id">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Legenda)
+                                    </td>
+                                    <td>
+                                        @if (!string.IsNullOrEmpty(item.CodigoTransmissao))
+                                        {
+                                            <a href="http://www.youtube.com/watch?v=@item.CodigoTransmissao" target="_blank">Assista</a>
+                                        }
+                                    </td>
+                                    <td>
+                                        @(item.Ativo ? "Ativo" : "Inativo")
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DataFinalizacao)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DataCadastro)
+                                    </td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a href="@Url.Action("Detalhes", new { id = item.Id })" class="btn bg-olive btn-small"><i class="fa fa-search-plus"></i></a>
+                                            <a href="@Url.Action("Editar", new { id = item.Id })" class="btn btn-warning btn-small"><i class="fa fa-edit"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="12" align="center">Nenhum registro encontrado.</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <div class="box-footer clearfix no-border">
+            @if (Model.PageCount > 1)
+            {
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, search = ViewBag.Search, order = ViewBag.Order, SortField = ViewBag.SortField }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+            }
+
+        </div>
+    </div>
+</div>

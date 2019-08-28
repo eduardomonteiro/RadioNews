@@ -1,0 +1,58 @@
+﻿@model Site.ViewModels.ColunistaSideBarViewModel
+
+
+<aside class="grid-3 sidebar" id="sidebar" role="complementary">
+    <div class="cards-side" id="sobre">
+        <h1 class="title-card">Sobre @Model.Colunista.nome</h1>
+        <p class="text-side">@Html.Raw(Model.Colunista.descricao.Replace("<p>","").Replace("</p>",""))</p>
+    </div>
+
+
+    @using (Ajax.BeginForm("ColunistaNews", "Colunista", new AjaxOptions
+    {
+        OnSuccess = "OnColunistaSuccess",
+        OnFailure = "OnColunistaFailure"
+
+    }, new { id = "newsletter", @class = "cards-side" }))
+    {
+        @Html.AntiForgeryToken()
+        <h1 class="title-card">Newsletter</h1>
+        <p class="text-side">Receba as newsletter do Colunista.</p>
+        <input type="email" class="input-form" placeholder="Digite seu e-mail" name="Email" required pattern="[a-z0-9._%+-]+&#64;[a-z0-9.-]+\.[a-z]{2,4}$">
+        <input type="hidden" name="ColunistaId" value="@Model.Colunista.id" id="ColunistaId"  />
+        <input type="submit" value="Cadastrar" id="cadastrar-news" class="bt-red total">
+    }
+
+    @if (Model.ListaColunista != null && Model.ListaColunista.Count > 0)
+    {
+        <div class="cards-side" id="colunistas">
+            <h1 class="title-card">Colunistas</h1>
+            <div class="box-columnists">
+
+                <ul class="list">
+                   @foreach (var item in Model.ListaColunista)
+                   {
+                    <li>
+                        <a href="@Url.Action("Materia","Colunistas", new { chave=item.Url, colunistaSlug = item.Chave })" class="clearfix">
+                            <img src="/Admin/Conteudo/Colunistas/Foto/@item.Foto" alt="@item.Nome">
+                            <h2>@item.Nome</h2>
+
+                            @if (!string.IsNullOrWhiteSpace(item.Titulo))
+                            {
+                                <p>@item.Titulo</p>
+                            }
+
+                        </a>
+                    </li>
+                   }
+                    
+                </ul>
+                <ul class="dots"></ul>
+            </div>
+        </div>
+    }
+
+    @Html.Partial("_Copa")
+   
+</aside>
+

@@ -1,0 +1,166 @@
+﻿@model Administrativo.Models.MidiaKit
+
+@{
+    ViewBag.Title = "Editar MidiaKit";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Altere as informações de MidiaKit";
+}
+
+<div class="content">
+    <div class="row">
+        <div class="box box-warning">
+            <div class="box-header">
+                <h3 class="box-title">Editar MidiaKit</h3>
+            </div>
+            @using (Html.BeginForm("Edit", "MidiaKit", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="box-body">
+                    @Html.HiddenFor(model => model.Id)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Titulo)
+
+                        @Html.TextBoxFor(model => model.Titulo, new { @maxlength = 100, @class = "text-box" })
+                        @Html.ValidationMessageFor(model => model.Titulo)
+                    </div>
+
+                    @*@if(!string.IsNullOrEmpty(Model.Arquivo))
+                        {
+                            <label>Arquivo Atual - </label>
+                        }*@
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.Arquivo)
+
+                                @Html.HiddenFor(model => model.Arquivo)
+                                <input type="file" name="ArquivoF" id="ArquivoF" onchange="javascript: $('#Arquivo').val($(this).val().split('\\').pop());" />
+                                @Html.ValidationMessageFor(model => model.Arquivo)
+                            </div>
+                            <div class="col-md-5">
+                                @if (!string.IsNullOrEmpty(Model.Arquivo))
+                                {
+                                    <a href="@Url.Action("Download",new { filename = Model.Arquivo }) " class="btn btn-block btn-primary" style="width: 120px;">Arquivo atual</a>
+                                }
+                                else
+                                {
+                                    <p class="text-yellow">Sem Miniatura.</p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="form-group">
+                            @Html.LabelFor(model => model.Arquivo)
+                            @Html.TextBoxFor(model => model.Arquivo, new { style = "display: none;" })
+                            <input type="file" name="Arquivo" title="" id="Arquivo" onchange="javascript: $('#Arquivo').val($(this).val().split('\\').pop());" />
+                            @Html.ValidationMessageFor(model => model.Arquivo)
+                        </div>*@
+
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.Miniatura)
+
+                                @Html.HiddenFor(model => model.Miniatura)
+                                <input type="file" name="MiniaturaF" id="MiniaturaF" onchange="javascript: $('#Miniatura').val($(this).val().split('\\').pop());" />
+                                @Html.ValidationMessageFor(model => model.Miniatura)
+                            </div>
+                            <div class="col-md-5">
+                                @if (!string.IsNullOrEmpty(Model.Miniatura))
+                                {
+                                    <a class="btn btn-block btn-primary" data-toggle="modal" data-target="#foto-externa" style="width: 120px;">Imagem Atual</a>
+                                }
+                                else
+                                {
+                                    <p class="text-yellow">Sem Miniatura.</p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Ativo)
+
+                        @Html.BooleanFieldFor(model => model.Ativo, true, new { @class = "form-control", style = "width: 120px;" })
+                        @Html.ValidationMessageFor(model => model.Ativo)
+                    </div>
+
+
+                </div>
+                <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a href="@Url.Action("Index", "MidiaKit")" class="btn btn-info">Voltar</a>
+
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="foto-externa" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Imagem Atual</h4>
+
+            </div>
+            <div class="modal-body">
+                <img src="@Url.Content("~/conteudo/MidiaKit/miniaturas/"+ Model.Miniatura)" />
+            </div>
+            <div class="modal-footer clearfix">
+
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="fa fa-times"></i>Fechar
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#Arquivo").val('@Model.Arquivo');
+            $("#Miniatura").val('@Model.Miniatura');
+
+            $('input[name="ArquivoF"]').change(function () {
+                var valor = $(this).val().split('/').pop().split('\\').pop();
+
+                var value = valor, ext = value.split(".").pop();
+                var arrayPermitidos = ["jpg", "jpeg", "gif", "js", "zip", "png", "rar", "doc", "docx", "txt", "mp3 ", "pdf", "mpeg", "mp4", "ogg"];
+
+                if ($.inArray(ext.toLowerCase(), arrayPermitidos) == -1) {
+                    swal({ title: 'Erro', text: "Extensão inválida!<br> As extensões aceitas são :<br><br><strong> jpg,gif,png,zip,rar,doc,docx,txt,pdf,mp3,mp4,mpeg e ogg.</strong>", type: 'error', html: true });
+                    $(this).val('');
+                }
+
+            });
+
+
+
+            $('input[name="MiniaturaF"]').change(function () {
+                var valor = $(this).val().split('/').pop().split('\\').pop();
+
+                var value = valor, ext = value.split(".").pop();
+                var arrayPermitidos = ["jpg", "jpeg", "gif", "png"];
+
+                if ($.inArray(ext.toLowerCase(), arrayPermitidos) == -1) {
+                    swal({ title: 'Erro', text: "Extensão inválida!<br> As extensões aceitas são :<br><br><strong> jpg,gif,png.</strong>", type: 'error', html: true });
+                    $(this).val('');
+                }
+
+            });
+
+         
+
+        });
+    </script>
+
+}

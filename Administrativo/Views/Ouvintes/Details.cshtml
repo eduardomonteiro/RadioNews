@@ -1,0 +1,25 @@
+﻿@model Administrativo.Models.Ouvintes
+
+@{
+    ViewBag.Title = "Denúncia";
+    ViewBag.Icon = "fa fa-bell";
+    ViewBag.SmallDescription = "Visualizar detalhes da denúncia.";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">Detalhes</h3>
+            </div>
+            <div class="box-content padded">
+               @Html.Partial("_DetailsPartial")
+            </div>
+            <div class="box-footer">
+                @*<a href="@Url.Action("Edit","Ouvintes", new { id = Model.id })" class="btn btn-warning">Editar</a>*@
+                <a href="@Url.Action("Index","Ouvintes")" class="btn btn-info">Voltar</a>
+            </div>
+        </div>
+    </div>
+</div>
+

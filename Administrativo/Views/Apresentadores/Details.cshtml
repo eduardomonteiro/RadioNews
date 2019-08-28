@@ -1,0 +1,30 @@
+﻿@model Administrativo.Models.Apresentadores
+
+@{
+    ViewBag.Title = "Apresentadores";
+    ViewBag.Icon = "fa fa-male";
+    ViewBag.SmallDescription = "Visualizar detalhes de Apresentador";
+}
+
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">Detalhes</h3>
+            </div>
+            <div class="box-content padded">
+                @Html.Partial("DetailsPartial")
+                
+            </div>
+            <div class="box-footer">
+
+                <a href="@Url.Action("Edit","Apresentadores", new { id = Model.id })" class="btn btn-warning">Editar</a>
+                <a href="@Url.Action("Index","Apresentadores")" class="btn btn-info">Voltar</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+

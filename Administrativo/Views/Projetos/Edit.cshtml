@@ -1,0 +1,201 @@
+﻿@model Administrativo.Models.Noticias
+
+@{
+    ViewBag.Title = "Editar Projeto";
+    ViewBag.Icon = "fa fa-globe";
+    ViewBag.SmallDescription = "Altera as informações de um projeto.";
+}
+
+<div class="content">
+    <div class="row">
+        <div class="box box-warning">
+            <div class="box-header">
+                <h3 class="box-title">Editar EditorialNoticias</h3>
+            </div>
+            @using (Html.BeginForm("Edit", "Projetos", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="box-body">
+                    @Html.HiddenFor(model => model.id)
+                    @Html.HiddenFor(model => model.dataCadastro)
+                    
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.titulo)
+
+                        @Html.EditorFor(model => model.titulo)
+                        @Html.ValidationMessageFor(model => model.titulo)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.texto)
+
+                        @Html.TextAreaFor(model => model.texto)
+                        @Html.ValidationMessageFor(model => model.texto)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.chamada)
+
+                        @Html.TextAreaFor(model => model.chamada, new { @class = "text-box", style = "height: 100px;" })
+                        @Html.ValidationMessageFor(model => model.chamada)
+                    </div>
+
+                    <h4 class="page-header"></h4>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.foto)
+
+                                @Html.TextBoxFor(model => model.foto, new { style = "display: none;" })
+                                <input type="file" name="fotoUpload" id="fotoUpload" onchange="javascript: $('#foto').val($(this).val().split('\\').pop());" />
+                                @Html.ValidationMessageFor(model => model.foto)
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            @if (!string.IsNullOrEmpty(Model.foto))
+                            {
+
+                                <a class="btn btn-block btn-primary" data-toggle="modal" data-target="#imagem-foto" style="width: 120px;">Imagem Atual</a>
+
+                            }
+                            else
+                            {
+                                <p class="text-yellow">Sem Foto.</p>
+                            }
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.fotoDescricao)
+
+                                @Html.EditorFor(model => model.fotoDescricao)
+                                @Html.ValidationMessageFor(model => model.fotoDescricao)
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                @Html.LabelFor(model => model.audio)
+
+                                @Html.TextBoxFor(model => model.audio, new { style = "display: none;" })
+                                <input type="file" name="audioUpload" id="audioUpload" onchange="javascript: $('#audio').val($(this).val().split('\\').pop());" />
+                                @Html.ValidationMessageFor(model => model.audio)
+                            </div>
+
+                            <div class="col-md-8">
+                                @if (!string.IsNullOrEmpty(Model.audio))
+                                {
+
+                                    <audio controls>
+                                        @*<source src="horse.ogg" type="audio/ogg">*@
+                                        <source src="@Url.Content("~/conteudo/noticias/"+Model.id+"/audio/"+Model.audio)" type="audio/mpeg">
+                                        Atualize seu navegador para ouvir.
+                                    </audio>}
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 class="page-header"></h4>
+                    <h4 class="page-header">
+                        Fotos e Vídeos
+                        <small>Selecione uma galeria já cadastrada e/ou um vídeo do YouTube.</small>
+                    </h4>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.idGaleria, "Galeria")
+
+                        @Html.DropDownList("idGaleria", null, "Selecione...", new { @class = "chosen-select" })
+
+                        @Html.ValidationMessageFor(model => model.idGaleria)
+                    </div>
+
+
+
+                    <div class="form-group">
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.videoYoutube)
+
+                                @Html.EditorFor(model => model.videoYoutube)
+                                @Html.ValidationMessageFor(model => model.videoYoutube)
+                            </div>
+                            <div class="col-md-6">
+                                <div class="callout callout-warning">
+                                    <h4>Exemplo: (usar apenas o que está em negrito)</h4>
+                                    <p>https://www.youtube.com/watch?v=<strong>2Tkz7wNGr-A</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                  
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Tags)
+                        @Html.ListBox("TagsIds", (MultiSelectList)ViewBag.MultiSelectTags, new { @class = "chosen-select" })
+
+                    </div>
+
+                </div>
+                <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a href="@Url.Action("Index")" class="btn btn-info">Voltar</a>
+
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="imagem-foto" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Imagem Atual</h4>
+            </div>
+            <div class="modal-body">
+                <img src="@Url.Content(string.Format(ViewBag.pathOriginal,Model.id) + Model.foto)" width="700" />
+            </div>
+            <div class="modal-footer clearfix">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="fa fa-times"></i>Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places");
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var editor = CKEDITOR.replace('texto',
+                {
+                    height: "200px"
+                });
+
+            $('#chamada').wysihtml5();
+
+            $("#horario").inputmask("99:99");
+            $(".chosen-select").chosen({ width: "100%" });
+            youtube.init();
+            var markerMap = {
+                latitude: '@Model.latitude',
+                longitude: ' @Model.longitude',
+                draggable: true
+            };
+            mapaNoticias.init(markerMap);
+        });
+
+
+    </script>
+}

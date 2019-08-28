@@ -1,0 +1,47 @@
+﻿@model Administrativo.Models.ColecoesAudios
+
+@{
+    ViewBag.Title = "Criar Coleção";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Insira as informações da Coleção";
+}
+
+<div class="content">
+    <div class="row">
+        <div class="box box-warning">
+            <div class="box-header">
+                <h3 class="box-title">Criar Coleção</h3>
+            </div>
+            @using (Html.BeginForm("Create", "ColecaoAudios", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="box-body">
+                    @Html.Action("Form", Model)
+
+                </div>
+                <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a href="@Url.Action("Index", "ColecaoAudios")" class="btn btn-info">Voltar</a>
+
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+
+            $(".chosen-select").chosen({ width: "100%" });
+
+            var editor = CKEDITOR.replace('Informacoes',
+                {
+                    height: "200px"
+                });
+            $('#Titulos').wysihtml5();
+        });
+
+
+    </script>
+}

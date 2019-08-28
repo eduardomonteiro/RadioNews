@@ -1,0 +1,1 @@
+Web deployment task failed. (Connected to the remote computer ("138.97.105.149") using the specified process ("Web Management Service"), but could not verify the server’s certificate. If you trust the server, connect again and allow untrusted certificates.  Learn more at: http://go.microsoft.com/fwlink/?LinkId=221672#ERROR_CERTIFICATE_VALIDATION_FAILED.)

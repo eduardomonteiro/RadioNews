@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<standings id="301">
+<table type="G" group="1" name="Grupo A" short="A">
+<team name="Estados Unidos" id="USA" uid="16" area="1" obs="0" pos="1" pts="6" pld="3" w="2" d="0" l="1" gf="5" ga="2" gd="3" per="66" />
+<team name="Colômbia" id="COL" uid="448" area="1" obs="0" pos="2" pts="6" pld="3" w="2" d="0" l="1" gf="6" ga="4" gd="2" per="66" />
+<team name="Costa Rica" id="CRC" uid="75" area="0" obs="0" pos="3" pts="4" pld="3" w="1" d="1" l="1" gf="3" ga="6" gd="-3" per="44" />
+<team name="Paraguai" id="PAR" uid="28" area="0" obs="0" pos="4" pts="1" pld="3" w="0" d="1" l="2" gf="1" ga="3" gd="-2" per="11" />
+
+	</table>
+<table type="G" group="2" name="Grupo B" short="B">
+<team name="Peru" id="PER" uid="449" area="1" obs="0" pos="1" pts="7" pld="3" w="2" d="1" l="0" gf="4" ga="2" gd="2" per="77" />
+<team name="Equador" id="ECU" uid="77" area="1" obs="0" pos="2" pts="5" pld="3" w="1" d="2" l="0" gf="6" ga="2" gd="4" per="55" />
+<team name="Brasil" id="BRA" uid="1" area="0" obs="0" pos="3" pts="4" pld="3" w="1" d="1" l="1" gf="7" ga="2" gd="5" per="44" />
+<team name="Haiti" id="HAI" uid="579" area="0" obs="0" pos="4" pts="0" pld="3" w="0" d="0" l="3" gf="1" ga="12" gd="-11" per="0" />
+
+	</table>
+<table type="G" group="3" name="Grupo C" short="C">
+<team name="México" id="MEX" uid="24" area="1" obs="0" pos="1" pts="7" pld="3" w="2" d="1" l="0" gf="6" ga="2" gd="4" per="77" />
+<team name="Venezuela" id="VEN" uid="450" area="1" obs="0" pos="2" pts="7" pld="3" w="2" d="1" l="0" gf="3" ga="1" gd="2" per="77" />
+<team name="Uruguai" id="URU" uid="32" area="0" obs="0" pos="3" pts="3" pld="3" w="1" d="0" l="2" gf="4" ga="4" gd="0" per="33" />
+<team name="Jamaica" id="JAM" uid="596" area="0" obs="0" pos="4" pts="0" pld="3" w="0" d="0" l="3" gf="0" ga="6" gd="-6" per="0" />
+
+	</table>
+<table type="G" group="4" name="Grupo D" short="D">
+<team name="Argentina" id="ARG" uid="5" area="1" obs="0" pos="1" pts="9" pld="3" w="3" d="0" l="0" gf="10" ga="1" gd="9" per="100" />
+<team name="Chile" id="CHI" uid="8" area="1" obs="0" pos="2" pts="6" pld="3" w="2" d="0" l="1" gf="7" ga="5" gd="2" per="66" />
+<team name="Panamá" id="PAN" uid="634" area="0" obs="0" pos="3" pts="3" pld="3" w="1" d="0" l="2" gf="4" ga="10" gd="-6" per="33" />
+<team name="Bolívia" id="BOL" uid="447" area="0" obs="0" pos="4" pts="0" pld="3" w="0" d="0" l="3" gf="2" ga="7" gd="-5" per="0" />
+
+	</table>
+
+</standings>

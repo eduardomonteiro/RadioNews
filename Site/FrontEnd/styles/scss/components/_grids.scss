@@ -1,0 +1,146 @@
+$grid-gutter: 15px; // espaçamento entre as Colunistas
+$grid-columns: 12; // Quantidade de Colunistas
+$grid-max: 1130px; // Tamanho do container
+
+.row-grid {
+	margin: 0 (-$grid-gutter);
+	&.mb {
+		li {
+			margin-bottom: 40px;
+			@include breakpoint(mobile) {
+				margin-bottom: 20px;
+			}
+		}	
+	}
+	@include breakpoint(mobile) {
+		margin: 0 -10px;
+	}
+}
+
+[class*="grid-"] {
+	float: left;
+	padding: 0 $grid-gutter;
+	box-sizing: border-box;
+}
+  
+@for $i from 1 through $grid-columns {
+	.grid-#{$i} {
+		width: 100% / $grid-columns * $i;
+	}
+}
+
+.grid-3 {
+	@include breakpoint(desktop) {
+		width: 50%;
+		&.players {
+			width: 100%;
+		}
+	}
+}
+
+.grid-9 {
+	@include breakpoint(desktop) {
+		width: 100%;
+	}
+}
+
+
+.players {
+	@include breakpoint(tablet) {
+		width: 100%;
+	}
+}
+.grid-2, .grid-10, .grid-1 {
+	@include breakpoint(desktop) {
+		width: 50%;
+	}
+	@include breakpoint(tablet) {
+		width: 100%; 
+	}
+}
+.grid-4, .grid-8 {
+	@include breakpoint(mobile) {
+		width: 100%;
+	}
+}
+
+.sidebar{
+	&:after {
+		clear: both;
+		display: block;
+		content: '';
+	}
+	@include breakpoint(desktop) {
+		width: 100%;
+		margin-bottom: 15px;
+		column-count: 2;
+		.cards-side {
+			break-inside: avoid;
+		}
+	}
+	@include breakpoint(mobile) {
+		column-count: 1;
+		margin-top: 100px;
+		display: block;
+		margin: 0 auto;
+		border-top: 1px solid #ccc;
+		padding-top: 15px;
+		text-align: center;
+		.cards-side {
+			display: none;
+		}
+		.promotion-side {
+			width: 45%;
+			margin: 0 2%;
+		}
+	}
+}
+.main-grid, .promotional {
+	@include breakpoint(desktop) {
+		width: 100%;
+		margin-bottom: 15px;
+	}
+}
+.boxs-half {
+	float: left;
+	width: 48%;
+	&:nth-child(2n) {
+		float: right;
+	}
+	@include breakpoint(tablet) {
+		width: 100%;
+	}
+}
+
+.list-border {
+	margin-top: 70px;
+	li {
+		margin-bottom: 30px;
+		padding-bottom: 30px;
+		border-bottom: 1px solid #e0e0e0;
+		&:after {
+			clear: both;
+			content: '';
+			display: block;
+		}
+	}
+}
+
+.news-side {
+	li {
+		margin-bottom: 25px;
+		padding-top: 15px;
+		border-top: 1px solid #e0e0e0;
+		&:first-child {
+			margin-top: 0;
+			border: 0;
+			padding-top: 0;
+		}
+	}
+}
+
+.news-sidebar {
+	@include breakpoint(desktop) {
+		width: 100%;
+	}
+}

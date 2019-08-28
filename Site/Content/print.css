@@ -1,0 +1,8 @@
+@media print {
+	* {background:transparent !important;color:#000 !important;text-shadow:none !important;filter:none !important;-ms-filter:none !important;}
+	body {margin:0;padding:0;line-height: 1.4em;}
+	@page {margin: 0.5cm;}
+	.nav-intern, .top-bar, .medium-bar, .pull-right, .widgets-social, .bottom, .links, .box-audio, .podcast-item, aside {display: none!important;}
+	.grid-9 {width:100%;}
+	.wrapper-general {padding-top:10px!important;}
+}

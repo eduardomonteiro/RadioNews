@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<stages id="289">
+<stage id="1" name="1ª Fase" type="C">
+<round id="1" startdate="31/01/2016" enddate="09/02/2016" last="false" next="false" current="false" short="1ª">1ª Rodada</round>
+<round id="2" startdate="03/02/2016" enddate="10/02/2016" last="false" next="false" current="false" short="2ª">2ª Rodada</round>
+<round id="3" startdate="13/02/2016" enddate="02/03/2016" last="false" next="false" current="false" short="3ª">3ª Rodada</round>
+<round id="4" startdate="20/02/2016" enddate="21/02/2016" last="false" next="false" current="false" short="4ª">4ª Rodada</round>
+<round id="5" startdate="27/02/2016" enddate="28/02/2016" last="false" next="false" current="false" short="5ª">5ª Rodada</round>
+<round id="6" startdate="05/03/2016" enddate="06/03/2016" last="false" next="false" current="false" short="6ª">6ª Rodada</round>
+<round id="7" startdate="12/03/2016" enddate="15/03/2016" last="false" next="false" current="false" short="7ª">7ª Rodada</round>
+<round id="8" startdate="19/03/2016" enddate="20/03/2016" last="false" next="false" current="false" short="8ª">8ª Rodada</round>
+<round id="9" startdate="26/03/2016" enddate="27/03/2016" last="false" next="false" current="false" short="9ª">9ª Rodada</round>
+<round id="10" startdate="02/04/2016" enddate="03/04/2016" last="false" next="false" current="false" short="10ª">10ª Rodada</round>
+<round id="11" startdate="10/04/2016" enddate="10/04/2016" last="false" next="false" current="true" short="11ª">11ª Rodada</round>
+
+</stage>
+<stage id="2" name="Semifinal" type="K">
+<round id="12" startdate="16/04/2016" enddate="17/04/2016" last="false" next="false" current="false" short="Ida">Ida</round>
+<round id="13" startdate="23/04/2016" enddate="24/04/2016" last="false" next="false" current="false" short="Volta">Volta</round>
+
+</stage>
+<stage id="3" name="Final" type="K">
+<round id="14" startdate="01/05/2016" enddate="01/05/2016" last="false" next="false" current="false" short="Ida">Ida</round>
+<round id="15" startdate="08/05/2016" enddate="08/05/2016" last="true" next="false" current="false" short="Volta">Volta</round>
+
+</stage>
+
+</stages>

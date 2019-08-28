@@ -1,0 +1,71 @@
+﻿@model Administrativo.Models.Programacao
+
+@{
+    ViewBag.Title = "Programacao";
+    ViewBag.Icon = "fa fa-list-alt";
+    ViewBag.SmallDescription = "Visualizar detalhes do Programa.";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">Detalhes</h3>
+            </div>
+            <div class="box-content padded">
+                <table class="table table-bordered table-striped responsive">
+                    @Html.Partial("DetailsPartial")
+                </table>
+            </div>
+            <div class="box-footer">
+
+
+
+                <a href="@Url.Action("Edit","Programacao", new { id = Model.id })" class="btn btn-warning">Editar</a>
+                <a href="@Url.Action("Index","Programacao")" class="btn btn-info">Voltar</a>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div class="modal fade" id="imagem" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Imagem Atual</h4>
+            </div>
+            <div class="modal-body">
+                <img src="@Url.Content("~/Conteudo/Programas/Capa/" + Model.imagem)" width="550" />
+            </div>
+            <div class="modal-footer clearfix">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="fa fa-times"></i>Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+@*<div class="modal fade" id="logo" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Imagem Atual</h4>
+            </div>
+            <div class="modal-body">
+                <img src="@Url.Content("~/Conteudo/Programas/Logo/" + Model.logo)" width="550" />
+            </div>
+            <div class="modal-footer clearfix">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="fa fa-times"></i>Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>*@
+

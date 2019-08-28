@@ -1,0 +1,137 @@
+﻿@model Administrativo.Models.Secoes_Locais
+
+@{
+    ViewBag.Title = "Cadastrar Locais";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Insere um Local no sistema";
+}
+
+<div class="content">
+    <div class="row">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Cadastrar Locais</h3>
+            </div>
+            @using (Html.BeginForm("Create", "Locais", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="box-body">
+
+                    <div class="form-group">
+                        <label>Seção</label>
+
+                        @Html.DropDownList("SecaoId", null, "Selecione...", new { @class="chosen-select"})
+                        @Html.ValidationMessageFor(model => model.SecaoId)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Tipo)
+
+                        @Html.EditorFor(model => model.Tipo)
+                        @Html.ValidationMessageFor(model => model.Tipo)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Titulo)
+
+                        @Html.EditorFor(model => model.Titulo)
+                        @Html.ValidationMessageFor(model => model.Titulo)
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+
+                                <label>Foto - <em>Resolução mínima recomendada (744x500)</em></label>
+
+                                <input type="file" name="Imagem" id="Imagem" />
+                                <label id="lblFotoExistente"></label>
+                                @Html.ValidationMessageFor(model => model.Imagem)
+
+                                <input type="hidden" id="fotoExistente" name="fotoExistente" />
+
+                            </div>
+                        </div>
+                        @*<div class="col-md-6">
+                            <div class="callout callout-info">
+                                <h4>Ou escolha uma imagem já enviada </h4>
+                                <a class="btn btn-primary iframe" href="@Url.Action("Index","Elfinder")"><i class="fa fa-search-plus"></i>&nbsp;Procurar</a>
+                            </div>
+                        </div>*@
+                       
+                    </div>
+
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Descricao)
+
+                        @Html.TextAreaFor(model => model.Descricao)
+                        @Html.ValidationMessageFor(model => model.Descricao)
+                    </div>
+
+                    <h4 class="page-header">
+                        Localização
+                        <small>Selecione o local no mapa <em>(Digite o endereço abaixo e depois mova o marcador para o local desejado)</em>.</small>
+                    </h4>
+                    <div class="form-group">
+                        <div class="input-group addon-left">
+                            <a class="input-group-addon" href="javascript:;">
+                                <i class="icon-search"></i>
+                            </a>
+                            @Html.TextBox("Endereco", null, new { @placeholder = "Digite aqui o endereço de origem...", @class = "form-control" })
+                        </div>
+                        <div id="mapa" style="height: 350px;"></div>
+                        @Html.HiddenFor(model => model.Latitude)
+                        @Html.HiddenFor(model => model.Longitude)
+                        @Html.ValidationMessageFor(model => model.Latitude)
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ativo?</label>
+                        @Html.BooleanFieldFor(model => model.Ativo, true, new { @class = "form-control", style = "width: 120px;" })
+                        @Html.ValidationMessageFor(model => model.Ativo)
+                    </div>
+
+                </div>
+                <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a href="@Url.Action("Index", "Locais", new {EspecialId = ViewBag.EspecialId })" class="btn btn-info">Voltar</a>
+
+                </div>  
+            }
+        </div>
+    </div>
+</div>
+@Scripts.Render("https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyDFo_E_biRDpDBkTRIUhE-oceoyIjH8MbI")
+@section Scripts {
+    <script src="~/Scripts/mapa.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".iframe").colorbox({ iframe: true, width: "80%", height: "80%" })
+            $(".chosen-select").chosen({ width: "100%" });
+            $("#Latitude").val("-19.8910292");
+            $("#Longitude").val("-43.9918571");
+
+
+            var editor = CKEDITOR.replace('Descricao',
+               {
+                   height: "200px"
+               });
+
+            Mapas.init();
+
+        });
+
+        function getvalue(valor) {
+            document.getElementById('fotoExistente').value = valor;
+            $("#lblFotoExistente").html(valor);
+            $.colorbox.close();
+        }
+
+    </script>
+}

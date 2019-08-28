@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<scorers>
+<player name="Vargas" pos="1" goals="6" teamuid="8" teamname="Chile" teamid="CHI" />
+<player name="Messi" pos="2" goals="5" teamuid="5" teamname="Argentina" teamid="ARG" />
+<player name="Higuain" pos="3" goals="4" teamuid="5" teamname="Argentina" teamid="ARG" />
+<player name="Philippe Coutinho" pos="4" goals="3" teamuid="1" teamname="Brasil" teamid="BRA" />
+<player name="Sánchez" pos="4" goals="3" teamuid="8" teamname="Chile" teamid="CHI" />
+<player name="Valencia" pos="4" goals="3" teamuid="77" teamname="Equador" teamid="ECU" />
+<player name="Dempsey" pos="4" goals="3" teamuid="16" teamname="Estados Unidos" teamid="USA" />
+<player name="Lamela" pos="8" goals="2" teamuid="5" teamname="Argentina" teamid="ARG" />
+<player name="Lavezzi" pos="8" goals="2" teamuid="5" teamname="Argentina" teamid="ARG" />
+<player name="Renato Augusto" pos="8" goals="2" teamuid="1" teamname="Brasil" teamid="BRA" />
+<player name="Fuenzalida" pos="8" goals="2" teamuid="8" teamname="Chile" teamid="CHI" />
+<player name="Puch" pos="8" goals="2" teamuid="8" teamname="Chile" teamid="CHI" />
+<player name="Vidal" pos="8" goals="2" teamuid="8" teamname="Chile" teamid="CHI" />
+<player name="Bacca" pos="8" goals="2" teamuid="448" teamname="Colômbia" teamid="COL" />
+<player name="Rodríguez" pos="8" goals="2" teamuid="448" teamname="Colômbia" teamid="COL" />
+<player name="Blas Pérez" pos="8" goals="2" teamuid="634" teamname="Panamá" teamid="PAN" />
+<player name="Rondón" pos="8" goals="2" teamuid="450" teamname="Venezuela" teamid="VEN" />
+<player name="Aguero" pos="18" goals="1" teamuid="5" teamname="Argentina" teamid="ARG" />
+<player name="Banega" pos="18" goals="1" teamuid="5" teamname="Argentina" teamid="ARG" />
+<player name="Di María" pos="18" goals="1" teamuid="5" teamname="Argentina" teamid="ARG" />
+<player name="Otamendi" pos="18" goals="1" teamuid="5" teamname="Argentina" teamid="ARG" />
+<player name="Víctor Cuesta" pos="18" goals="1" teamuid="5" teamname="Argentina" teamid="ARG" />
+<player name="Campos" pos="18" goals="1" teamuid="447" teamname="Bolívia" teamid="BOL" />
+<player name="Juan Arce" pos="18" goals="1" teamuid="447" teamname="Bolívia" teamid="BOL" />
+<player name="Gabriel" pos="18" goals="1" teamuid="1" teamname="Brasil" teamid="BRA" />
+<player name="Lucas Lima" pos="18" goals="1" teamuid="1" teamname="Brasil" teamid="BRA" />
+<player name="Aránguiz" pos="18" goals="1" teamuid="8" teamname="Chile" teamid="CHI" />
+<player name="Fabra" pos="18" goals="1" teamuid="448" teamname="Colômbia" teamid="COL" />
+<player name="Moreno" pos="18" goals="1" teamuid="448" teamname="Colômbia" teamid="COL" />
+<player name="Zapata" pos="18" goals="1" teamuid="448" teamname="Colômbia" teamid="COL" />
+<player name="Borges" pos="18" goals="1" teamuid="75" teamname="Costa Rica" teamid="CRC" />
+<player name="Venegas" pos="18" goals="1" teamuid="75" teamname="Costa Rica" teamid="CRC" />
+<player name="Arroyo" pos="18" goals="1" teamuid="77" teamname="Equador" teamid="ECU" />
+<player name="Ayoví" pos="18" goals="1" teamuid="77" teamname="Equador" teamid="ECU" />
+<player name="Bolanos" pos="18" goals="1" teamuid="77" teamname="Equador" teamid="ECU" />
+<player name="Noboa" pos="18" goals="1" teamuid="77" teamname="Equador" teamid="ECU" />
+<player name="Jones" pos="18" goals="1" teamuid="16" teamname="Estados Unidos" teamid="USA" />
+<player name="Wood" pos="18" goals="1" teamuid="16" teamname="Estados Unidos" teamid="USA" />
+<player name="Zardes" pos="18" goals="1" teamuid="16" teamname="Estados Unidos" teamid="USA" />
+<player name="Zusi" pos="18" goals="1" teamuid="16" teamname="Estados Unidos" teamid="USA" />
+<player name="Marcelin" pos="18" goals="1" teamuid="579" teamname="Haiti" teamid="HAI" />
+<player name="Hernández" pos="18" goals="1" teamuid="24" teamname="México" teamid="MEX" />
+<player name="Herrera" pos="18" goals="1" teamuid="24" teamname="México" teamid="MEX" />
+<player name="Jesús Corona" pos="18" goals="1" teamuid="24" teamname="México" teamid="MEX" />
+<player name="Márquez" pos="18" goals="1" teamuid="24" teamname="México" teamid="MEX" />
+<player name="Oribe Peralta" pos="18" goals="1" teamuid="24" teamname="México" teamid="MEX" />
+<player name="Arroyo" pos="18" goals="1" teamuid="634" teamname="Panamá" teamid="PAN" />
+<player name="Camargo" pos="18" goals="1" teamuid="634" teamname="Panamá" teamid="PAN" />
+<player name="Victor Ayala" pos="18" goals="1" teamuid="28" teamname="Paraguai" teamid="PAR" />
+<player name="Cueva" pos="18" goals="1" teamuid="449" teamname="Peru" teamid="PER" />
+<player name="Flores" pos="18" goals="1" teamuid="449" teamname="Peru" teamid="PER" />
+<player name="Paolo Guerrero" pos="18" goals="1" teamuid="449" teamname="Peru" teamid="PER" />
+<player name="Ruidíaz" pos="18" goals="1" teamuid="449" teamname="Peru" teamid="PER" />
+<player name="Corujo" pos="18" goals="1" teamuid="32" teamname="Uruguai" teamid="URU" />
+<player name="Godín" pos="18" goals="1" teamuid="32" teamname="Uruguai" teamid="URU" />
+<player name="Hernández" pos="18" goals="1" teamuid="32" teamname="Uruguai" teamid="URU" />
+<player name="Martínez" pos="18" goals="1" teamuid="450" teamname="Venezuela" teamid="VEN" />
+<player name="Velázquez" pos="18" goals="1" teamuid="450" teamname="Venezuela" teamid="VEN" />
+
+</scorers>

@@ -1,0 +1,170 @@
+﻿@using Site.ViewModels
+@model LiveStreamPageViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+@section SEO{
+    <meta name="DC.title" content="Central da Live Streaming - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:title" content="Central da Live Streaming - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="@Url.Content("~/images/ico-facebook.jpg")" />
+    <meta property="og:url" content="@HttpContext.Current.Request.Url.AbsoluteUri" />
+    <title>Central da Live Streaming - Rádio CompanyName | A Rádio de Minas</title>
+}
+
+<div class="wrapper-general center">
+    <header class="nav-intern clearfix">
+        <div class="buttons">
+            <a class="bt-back" href="javascript:window.history.go(-1)"> <i class="fa fa-angle-left"></i> Voltar</a>
+        </div>
+        <nav class="breadcumb">
+            <a href="@Url.Action("Index","Home")">Home</a>
+            <span>Live</span>
+        </nav>
+    </header>
+    @if (Model.BannerTopo != null)
+    {
+        <a href="@Model.BannerTopo.Link" target="_blank">
+            <img
+                 data-cliente="@Model.BannerTopo.Anunciante" 
+                 data-comercial="@Model.BannerTopo.AreaBanner.FirstOrDefault().Descricao" 
+                 data-dimensao="@Model.BannerTopo.AreaBanner.FirstOrDefault().Tamanho"
+                 style="margin-top: 0" src="@Model.BannerTopo.Arquivos" class="promotional-banner">
+        </a>
+    }
+</div>
+<section class="live-streaming">
+    <div class="center" id="live-legenda">
+    </div>
+    <div class="wrapper-video">
+        <div class="center" id="live-video">
+        </div>
+    </div>
+</section>
+<div class="center">
+
+    @if (Model.BannerBaixo != null)
+    {
+        <a href="@Model.BannerBaixo.Link" target="_blank">
+            <img
+                 data-cliente="@Model.BannerBaixo.Anunciante" 
+                 data-comercial="@Model.BannerBaixo.AreaBanner.FirstOrDefault().Descricao" 
+                 data-dimensao="@Model.BannerBaixo.AreaBanner.FirstOrDefault().Tamanho"
+                    style="margin-top: 0" src="@Model.BannerBaixo.Arquivos" class="promotional-banner">
+        </a>
+    }
+    <section class="complementary-list">
+        @Html.Hidden("paginaAtual", 1)
+    </section>
+</div>
+
+@section scripts {
+    <script>
+
+        var pagina = $("input[name='paginaAtual']");
+
+        var montarVideoPassado = function (live)
+        {
+            var componente =
+                  "<li class='grid-4'>                                                                                                  "
+                + "        <a target='_blank' href='http://www.youtube.com/watch?v=" + live.CodigoTransmissao + "'>                     "
+                + "            <img src='https://i.ytimg.com/vi/" + live.CodigoTransmissao + "/hqdefault.jpg' alt='Titulo' class='pic'> "
+                + "            <span class='tag-area'>" + live.DataCadastro + "</span>                                                  "
+                + "            <h3 class='title-medium'>" + live.Legenda + "</h3>                                                       "
+                + "        </a>                                                                                                         "
+                + "</li>                                                                                                                ";
+
+            return componente;
+        }
+
+        var carregarVideos = function ()
+        {           
+
+            $.get("@Url.Action("NoticiasPassadas", "LiveStreaming")", { page: pagina.val() }).done(function (data) {
+
+                if (data) {
+                    var listaComplementar = $($(".complementary-list")[0]);
+
+                    if (pagina.val() == 1 && data.Lives.length == 0) { 
+
+                        var titulo = "<h2 class='title-area'>Nenhuma live passada</h2>";
+                        listaComplementar.append(titulo);
+
+                    } else { 
+                        $($(".pagination-bottom")[0]).remove();
+
+                        if (pagina.val() == 1) {
+                            var titulo = "<h2 class='title-area'>Live Streaming que já aconteceram</h2>";
+                            listaComplementar.append(titulo);
+                        }
+
+                        var listaVideos = "<ul id='list-videos' class='list row-grid clearfix'></ul>";
+                        listaComplementar.append(listaVideos);
+
+                        $(data.Lives).each(function () {
+                            $("#list-videos").append(montarVideoPassado(this));
+                        });
+
+                        if (data.ExibeCarregarMais) {
+                            var carregarMais = "  <footer class='pagination-bottom'>                     "
+                                             + "      <button class='bt-red'>Carregar Mais</button>      "
+                                             + "  </footer>                                              ";
+
+                            listaComplementar.append(carregarMais);
+                        }
+
+                        bindEvents();
+
+                        pagina.val(parseInt(pagina.val()) + 1);
+                    }
+                }
+            });
+        }
+
+        var bindEvents = function () {
+
+            $(".pagination-bottom").click(function () {
+
+                carregarVideos();
+            });
+
+        };
+
+        var carregarAoVivo = function ()
+        {
+            $.get("@Url.Action("LiveAtual", "LiveStreaming")").done(function (data) {
+
+                if (data && data.CodigoTransmissao) {
+
+                    //localStorage.setItem("live-" + data.CodigoTransmissao, true);
+
+                    $("#live-legenda").append("<h2 class='title-area'>" + data.Legenda + " - Ao vivo</h2>");
+                    $("#live-video").append("<iframe class='video' src='https://www.youtube.com/embed/" + data.CodigoTransmissao + "'></iframe>");
+
+                } else {
+
+                    $("#live-legenda").append("<h2 class='title-area'>Nenhuma live stream ao vivo no momento</h2>");
+                    $("#live-video").append("<iframe class='video' src='https://www.youtube.com/embed/'></iframe>");
+
+                }
+
+            });
+
+        }
+
+        $(document).ready(function () {
+
+            carregarVideos();
+            carregarAoVivo();
+
+        });
+
+        $(window).bind('live-notified', function () {
+            $($(".wrapper-stream-hero")[0]).remove();
+        });
+
+    </script>
+}
+

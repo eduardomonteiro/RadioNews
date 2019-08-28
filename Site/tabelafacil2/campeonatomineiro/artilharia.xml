@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<scorers>
+<player name="Robinho" pos="1" goals="9" teamuid="33" teamname="Atlético-MG" teamid="ATL" />
+<player name="Lucas Pratto" pos="2" goals="6" teamuid="33" teamname="Atlético-MG" teamid="ATL" />
+<player name="Mancini" pos="2" goals="6" teamuid="345" teamname="Villa Nova" teamid="VIL" />
+<player name="Osman Junior" pos="4" goals="5" teamuid="53" teamname="América-MG" teamid="AME" />
+<player name="Danilo Barcelos" pos="5" goals="4" teamuid="53" teamname="América-MG" teamid="AME" />
+<player name="Ewerton Maradona" pos="5" goals="4" teamuid="340" teamname="Caldense" teamid="CAL" />
+<player name="Rafamar" pos="5" goals="4" teamuid="340" teamname="Caldense" teamid="CAL" />
+<player name="Fabio Junior" pos="5" goals="4" teamuid="345" teamname="Villa Nova" teamid="VIL" />
+<player name="Victor Rangel" pos="9" goals="3" teamuid="53" teamname="América-MG" teamid="AME" />
+<player name="Clayton" pos="9" goals="3" teamuid="33" teamname="Atlético-MG" teamid="ATL" />
+<player name="Luan" pos="9" goals="3" teamuid="33" teamname="Atlético-MG" teamid="ATL" />
+<player name="Alisson" pos="9" goals="3" teamuid="40" teamname="Cruzeiro" teamid="CRU" />
+<player name="Rafael Silva" pos="9" goals="3" teamuid="40" teamname="Cruzeiro" teamid="CRU" />
+<player name="Daniel Amorim" pos="9" goals="3" teamuid="1331" teamname="Tombense" teamid="TMB" />
+<player name="Diogo Capela" pos="9" goals="3" teamuid="1489" teamname="Tricordiano" teamid="TRI" />
+<player name="Hiroshi" pos="9" goals="3" teamuid="344" teamname="Tupi" teamid="TUP" />
+<player name="Rubens" pos="9" goals="3" teamuid="344" teamname="Tupi" teamid="TUP" />
+<player name="Carlos Magno" pos="9" goals="3" teamuid="1412" teamname="U.R.T." teamid="URT" />
+<player name="Bryan" pos="19" goals="2" teamuid="53" teamname="América-MG" teamid="AME" />
+<player name="Júnior Urso" pos="19" goals="2" teamuid="33" teamname="Atlético-MG" teamid="ATL" />
+<player name="Leonardo Silva" pos="19" goals="2" teamuid="33" teamname="Atlético-MG" teamid="ATL" />
+<player name="Rafael Vitor" pos="19" goals="2" teamuid="99" teamname="Boa" teamid="BOA" />
+<player name="Sillas" pos="19" goals="2" teamuid="99" teamname="Boa" teamid="BOA" />
+<player name="Tiago Azulão" pos="19" goals="2" teamuid="340" teamname="Caldense" teamid="CAL" />
+<player name="Arrascaeta" pos="19" goals="2" teamuid="40" teamname="Cruzeiro" teamid="CRU" />
+<player name="Bruno Rodrigo" pos="19" goals="2" teamuid="40" teamname="Cruzeiro" teamid="CRU" />
+<player name="Douglas Coutinho" pos="19" goals="2" teamuid="40" teamname="Cruzeiro" teamid="CRU" />
+<player name="Felipe Cordeiro" pos="19" goals="2" teamuid="343" teamname="Guarani-MG" teamid="GUA" />
+<player name="Jonathan" pos="19" goals="2" teamuid="343" teamname="Guarani-MG" teamid="GUA" />
+<player name="Marcus Vinicius" pos="19" goals="2" teamuid="343" teamname="Guarani-MG" teamid="GUA" />
+<player name="Doriva" pos="19" goals="2" teamuid="1331" teamname="Tombense" teamid="TMB" />
+<player name="Paulo Otavio" pos="19" goals="2" teamuid="1331" teamname="Tombense" teamid="TMB" />
+<player name="Wangler" pos="19" goals="2" teamuid="1331" teamname="Tombense" teamid="TMB" />
+<player name="Juninho Arcanjo" pos="19" goals="2" teamuid="1489" teamname="Tricordiano" teamid="TRI" />
+<player name="Leandro Love" pos="19" goals="2" teamuid="1489" teamname="Tricordiano" teamid="TRI" />
+<player name="Michel" pos="19" goals="2" teamuid="344" teamname="Tupi" teamid="TUP" />
+<player name="Soares" pos="19" goals="2" teamuid="345" teamname="Villa Nova" teamid="VIL" />
+<player name="Adalberto" pos="38" goals="1" teamuid="53" teamname="América-MG" teamid="AME" />
+<player name="Bruno Savio" pos="38" goals="1" teamuid="53" teamname="América-MG" teamid="AME" />
+<player name="Rafael Bastos" pos="38" goals="1" teamuid="53" teamname="América-MG" teamid="AME" />
+<player name="Tiago Luis" pos="38" goals="1" teamuid="53" teamname="América-MG" teamid="AME" />
+<player name="Tony" pos="38" goals="1" teamuid="53" teamname="América-MG" teamid="AME" />
+<player name="Cazares" pos="38" goals="1" teamuid="33" teamname="Atlético-MG" teamid="ATL" />
+<player name="Dodô" pos="38" goals="1" teamuid="33" teamname="Atlético-MG" teamid="ATL" />
+<player name="Douglas Santos" pos="38" goals="1" teamuid="33" teamname="Atlético-MG" teamid="ATL" />
+<player name="Eduardo" pos="38" goals="1" teamuid="33" teamname="Atlético-MG" teamid="ATL" />
+<player name="Rafael Carioca" pos="38" goals="1" teamuid="33" teamname="Atlético-MG" teamid="ATL" />
+<player name="Daniel Cruz" pos="38" goals="1" teamuid="99" teamname="Boa" teamid="BOA" />
+<player name="Leonardo" pos="38" goals="1" teamuid="99" teamname="Boa" teamid="BOA" />
+<player name="Renato" pos="38" goals="1" teamuid="99" teamname="Boa" teamid="BOA" />
+<player name="Roberto Jacaré" pos="38" goals="1" teamuid="99" teamname="Boa" teamid="BOA" />
+<player name="Rodrigo Mucuri" pos="38" goals="1" teamuid="99" teamname="Boa" teamid="BOA" />
+<player name="Romario" pos="38" goals="1" teamuid="99" teamname="Boa" teamid="BOA" />
+<player name="Thaciano" pos="38" goals="1" teamuid="99" teamname="Boa" teamid="BOA" />
+<player name="Wallace" pos="38" goals="1" teamuid="99" teamname="Boa" teamid="BOA" />
+<player name="Marcelo Regis" pos="38" goals="1" teamuid="340" teamname="Caldense" teamid="CAL" />
+<player name="Marcinho" pos="38" goals="1" teamuid="340" teamname="Caldense" teamid="CAL" />
+<player name="Allano" pos="38" goals="1" teamuid="40" teamname="Cruzeiro" teamid="CRU" />
+<player name="Ariel Cabral" pos="38" goals="1" teamuid="40" teamname="Cruzeiro" teamid="CRU" />
+<player name="Elber" pos="38" goals="1" teamuid="40" teamname="Cruzeiro" teamid="CRU" />
+<player name="Manoel" pos="38" goals="1" teamuid="40" teamname="Cruzeiro" teamid="CRU" />
+<player name="Romero" pos="38" goals="1" teamuid="40" teamname="Cruzeiro" teamid="CRU" />
+<player name="Sánchez Mino" pos="38" goals="1" teamuid="40" teamname="Cruzeiro" teamid="CRU" />
+<player name="Carlos Renato" pos="38" goals="1" teamuid="343" teamname="Guarani-MG" teamid="GUA" />
+<player name="Junior Barros" pos="38" goals="1" teamuid="343" teamname="Guarani-MG" teamid="GUA" />
+<player name="Marcel" pos="38" goals="1" teamuid="343" teamname="Guarani-MG" teamid="GUA" />
+<player name="Renan Silva" pos="38" goals="1" teamuid="343" teamname="Guarani-MG" teamid="GUA" />
+<player name="Romario" pos="38" goals="1" teamuid="343" teamname="Guarani-MG" teamid="GUA" />
+<player name="Caio" pos="38" goals="1" teamuid="1331" teamname="Tombense" teamid="TMB" />
+<player name="Conrado" pos="38" goals="1" teamuid="1331" teamname="Tombense" teamid="TMB" />
+<player name="Gelson" pos="38" goals="1" teamuid="1331" teamname="Tombense" teamid="TMB" />
+<player name="Marcelo Macedo" pos="38" goals="1" teamuid="1331" teamname="Tombense" teamid="TMB" />
+<player name="Rodney" pos="38" goals="1" teamuid="1331" teamname="Tombense" teamid="TMB" />
+<player name="Arnold" pos="38" goals="1" teamuid="1489" teamname="Tricordiano" teamid="TRI" />
+<player name="Bruno Moreno" pos="38" goals="1" teamuid="1489" teamname="Tricordiano" teamid="TRI" />
+<player name="Léo Guerreiro" pos="38" goals="1" teamuid="1489" teamname="Tricordiano" teamid="TRI" />
+<player name="Marcinho" pos="38" goals="1" teamuid="1489" teamname="Tricordiano" teamid="TRI" />
+<player name="Marquinhos" pos="38" goals="1" teamuid="1489" teamname="Tricordiano" teamid="TRI" />
+<player name="Thiago" pos="38" goals="1" teamuid="344" teamname="Tupi" teamid="TUP" />
+<player name="Alex" pos="38" goals="1" teamuid="1412" teamname="U.R.T." teamid="URT" />
+<player name="Fabio" pos="38" goals="1" teamuid="1412" teamname="U.R.T." teamid="URT" />
+<player name="Jonathan Balotelli" pos="38" goals="1" teamuid="1412" teamname="U.R.T." teamid="URT" />
+<player name="Marco Antonio" pos="38" goals="1" teamuid="1412" teamname="U.R.T." teamid="URT" />
+<player name="Nádson" pos="38" goals="1" teamuid="1412" teamname="U.R.T." teamid="URT" />
+<player name="Rafael Magalhães" pos="38" goals="1" teamuid="1412" teamname="U.R.T." teamid="URT" />
+<player name="Ramos" pos="38" goals="1" teamuid="1412" teamname="U.R.T." teamid="URT" />
+<player name="Rodrigo Possebon" pos="38" goals="1" teamuid="1412" teamname="U.R.T." teamid="URT" />
+<player name="Caio Dantas" pos="38" goals="1" teamuid="1133" teamname="Uberlândia-MG" teamid="UBE" />
+<player name="Lenilson" pos="38" goals="1" teamuid="1133" teamname="Uberlândia-MG" teamid="UBE" />
+<player name="Magalhães" pos="38" goals="1" teamuid="1133" teamname="Uberlândia-MG" teamid="UBE" />
+<player name="Marco Tiago" pos="38" goals="1" teamuid="1133" teamname="Uberlândia-MG" teamid="UBE" />
+<player name="Mikael" pos="38" goals="1" teamuid="1133" teamname="Uberlândia-MG" teamid="UBE" />
+<player name="Wellington" pos="38" goals="1" teamuid="1133" teamname="Uberlândia-MG" teamid="UBE" />
+<player name="Wendel" pos="38" goals="1" teamuid="1133" teamname="Uberlândia-MG" teamid="UBE" />
+<player name="Gabriel Santos" pos="38" goals="1" teamuid="345" teamname="Villa Nova" teamid="VIL" />
+<player name="Roger Guerreiro" pos="38" goals="1" teamuid="345" teamname="Villa Nova" teamid="VIL" />
+
+</scorers>

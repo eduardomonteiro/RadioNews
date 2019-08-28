@@ -1,0 +1,33 @@
+﻿@model Administrativo.Models.Editoriais
+
+@{
+    ViewBag.Title = "Editoriais";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Visualizar detalhes de Editoriais";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">Detalhes</h3>
+            </div>
+            <div class="box-content padded">
+                @Html.Partial("_Details")
+            </div>
+            <div class="box-footer">
+
+
+
+                <a href="@Url.Action("Edit","Esportes", new { id = Model.id })" class="btn btn-warning">Editar</a>
+                <a href="@Url.Action("Index","Esportes")" class="btn btn-info">Voltar</a>
+                <a href="@Url.Action("Index", "EditorialNoticias", new { editorial = Model.chave })" class="btn btn-success">Ir para Notícias</a>
+                <a href="@Url.Action("Index", "Categorias", new { editorial = Model.id })" class="btn btn-info">Ir para Categorias</a>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+

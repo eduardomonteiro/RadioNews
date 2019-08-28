@@ -1,0 +1,39 @@
+﻿@model Administrativo.Models.Audios
+
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Legenda)
+
+    @Html.TextBoxFor(model => model.Legenda, new { @class = "text-box", @maxlength = 35 })
+    @Html.ValidationMessageFor(model => model.Legenda)
+</div>
+
+<div class="form-group">
+    Audio
+    @Html.HiddenFor(model=> model.Url)
+    <input type="file" name="audioFile" id="audio" accept=".mp3,.aac" />
+    @Html.ValidationMessageFor(model => model.Url)
+</div>
+@if (!string.IsNullOrEmpty(Model.Url))
+{
+    <div class="row audioSettings">
+        <div class="col-md-8">
+            <audio controls>
+                @*<source src="horse.ogg" type="audio/ogg">*@
+                <source src="@Url.Content("~/conteudo/audios/" + Model.Id + "/" + Model.Url)" type="audio/mpeg">
+                Atualize seu navegador para ouvir.
+            </audio>
+        </div>
+    </div>
+}
+<div class="form-group">
+    <label for="EditoriaId">Coleção</label>
+    @Html.DropDownListFor(model => model.ColecaoId, (List<SelectListItem>)ViewBag.Colecoes, "Selecione...", new { @class = "chosen-select" })
+    @Html.ValidationMessage("ColecaoId")
+</div>
+
+<div class="form-group">
+    <label>Ativo?</label>
+    @Html.BooleanFieldFor(model => model.Liberado, true, new { @class = "form-control", style = "width: 120px;" })
+    @Html.ValidationMessageFor(model => model.Liberado)
+</div>

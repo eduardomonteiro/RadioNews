@@ -1,0 +1,79 @@
+﻿@model Administrativo.Models.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/LayoutEmpty.cshtml";
+}
+<style type="text/css">
+    html, body {
+        overflow-x: hidden !important;
+        font-family: 'Source Sans Pro', sans-serif;
+        min-height: 100%;
+        background: rgba(249, 249, 249, 0);
+        -webkit-font-smoothing: antialiased;
+    }
+    .form-box .header {
+        background:#bf1b0d;
+        
+    }
+</style>
+
+<div class="form-box" id="login-box">
+    
+    <div class="header">
+        <img src="~/Images/logo-CompanyName.png" /><br />
+    Acesso Restrito
+    </div>
+    @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+    {
+       @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true,null,new { @class = "callout callout-danger summary-errors-login"} )
+        <div class="body bg-gray">
+            <div class="form-group">
+                <label>Login</label>
+                @Html.TextBoxFor(m => m.UserName, htmlAttributes: new { @placeholder = "Login", @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.UserName,null,htmlAttributes: new {@class = "text-red"})
+            </div>
+            <div class="form-group">
+                <label>Senha</label>
+                @Html.PasswordFor(m => m.Password, htmlAttributes: new { @placeholder = "Senha", @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Password,null,htmlAttributes: new {@class = "text-red"})
+            </div>
+            @*<div class="form-group">
+                @Html.CheckBoxFor(m => m.RememberMe, htmlAttributes: new { })
+                @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
+            </div>*@
+        </div>
+        <div class="footer">
+            <button type="submit" class="btn bg-red btn-block">Entrar</button>
+            @*<p><a href="#">I forgot my password</a></p>*@
+
+            @*<a href="register.html" class="text-center">Register a new membership</a>*@
+        </div>
+    }
+
+    @* <div class="margin text-center">
+                <span>Sign in using social networks</span>
+                <br/>
+                <button class="btn bg-light-blue btn-circle"><i class="fa fa-facebook"></i></button>
+                <button class="btn bg-aqua btn-circle"><i class="fa fa-twitter"></i></button>
+                <button class="btn bg-red btn-circle"><i class="fa fa-google-plus"></i></button>
+
+            </div>*@
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+<script src="~/Scripts/jquery.backstretch.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.backstretch([
+     "http://www.CompanyName.com.br/Admin/images/login-bg.jpg"
+        ], { duration: 3000, fade: 750 });
+    });
+    
+</script>
+}
+
+

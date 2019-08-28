@@ -1,0 +1,101 @@
+﻿@model Administrativo.Models.Apresentadores
+
+@{
+    ViewBag.Title = "Cadastrar Apresentadores/Convidados";
+    ViewBag.Icon = "fa fa-users";
+    ViewBag.SmallDescription = "Insere um apresentador ou convidado no sistema";
+}
+
+<div class="content">
+    <div class="row">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Cadastrar apresentadores ou convidados</h3>
+            </div>
+            @using (Html.BeginForm("Create", "Apresentadores", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="box-body">
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.nome)
+
+                        @Html.TextBoxFor(model => model.nome, new { @maxlength = 100, @class= "text-box" })
+                        @Html.ValidationMessageFor(model => model.nome)
+                    </div>
+
+                    @*<div class="form-group">
+                            @Html.LabelFor(model => model.fotoInterna)
+
+                            <input type="file" name="fotoInterna" id="fotoInterna" />
+                            @Html.ValidationMessageFor(model => model.fotoInterna)
+                        </div>*@
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.fotoExterna)
+
+                        <input type="file" name="fotoExterna" id="fotoExterna" />
+                        @Html.ValidationMessageFor(model => model.fotoExterna)
+                    </div>
+
+                    <div class="form-group">
+                        <label for="chamada">Função</label>
+
+                       @Html.TextBoxFor(model => model.chamada, new { @maxlength = 100, @class = "text-box" })
+                        @Html.ValidationMessageFor(model => model.chamada)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.texto)
+
+                        @Html.TextAreaFor(model => model.texto)
+                        @Html.ValidationMessageFor(model => model.texto)
+                    </div>
+
+                    @*<div class="form-group">
+                            @Html.LabelFor(model => model.twitter)
+
+                            @Html.EditorFor(model => model.twitter)
+                            @Html.ValidationMessageFor(model => model.twitter)
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.facebook)
+
+                            @Html.EditorFor(model => model.facebook)
+                            @Html.ValidationMessageFor(model => model.facebook)
+                        </div>*@
+
+                    <div class="form-group">
+                        <label>É participante ou convidado de algum programa?</label>
+
+                        @Html.BooleanFieldFor(model => model.participanteConvidado, false, new { @class = "form-control", style = "width: 120px;" })
+                        @Html.ValidationMessageFor(model => model.participanteConvidado)
+                    </div>
+
+                </div>
+                <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a href="@Url.Action("Index", "Apresentadores")" class="btn btn-info">Voltar</a>
+
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var editor = CKEDITOR.replace('texto',
+                {
+                    height: "200px"
+                });
+
+            $("#horario").inputmask("99:99");
+        });
+    </script>
+}

@@ -1,0 +1,331 @@
+body {
+	@include breakpoint(tablet) {
+		font-size: 9px;
+	}
+	@include breakpoint(mobile) {
+		font-size: 7px;
+	}
+}
+.t-center {
+	text-align: center !important;
+	.title-medium {
+		text-transform: uppercase;
+	}
+}
+.title-area {
+	font-size: 3em;
+	line-height: 1em;
+	color: $vermelho;
+	font-weight: 300;
+	text-transform: uppercase;
+	@include breakpoint(mobile) {
+		font-size: 2.2em;
+		margin-bottom: 8px;
+	}
+}
+.text-side {
+	font-size: 13.5px;
+	line-height: 20px;
+	margin: 10px 0;
+}
+.date-post {
+	text-transform: uppercase;
+	font-size: 1.5em;
+	color: #929292;
+	text-transform: uppercase;
+	font-weight: 300;
+	line-height: 1.4em;
+}
+
+.tag-area {
+	display: block;
+	font-size: 1.4em;
+	font-weight: bold;
+	color: #999999;
+	margin-bottom: 5px;
+	text-transform: uppercase;
+	line-height: 1.4em;
+	small {
+		font-weight: 300;
+	}
+	@include breakpoint(mobile) {
+		font-size: 1.3em;
+	}
+}
+
+.info-publication {
+	font-size: 14px;
+	color: black;
+	strong {
+		font-style: italic;
+	}
+}
+
+.title-medium {
+	font-size: 1.8em;
+	color: $preto;
+	line-height: 1.4em;
+	display: block;
+	&.big {
+		font-size: 2em;
+		line-height: 1.5em;
+	}
+	@include breakpoint(mobile) {
+		font-size: 1.4em;
+	}
+}
+.title-normal {
+	font-size: 1.6em;
+	@extend .title-medium;
+	@include breakpoint(tablet) {
+		font-size: 1.3em;
+	}
+}
+.title-mini {
+	font-size: 1.4em;
+	line-height: 1.4em;
+	@extend .title-medium;
+}
+.title-card {
+	font-size: 2em;
+	line-height: 1.2em;
+	@extend .title-area;
+}
+.title-bottom {
+	color: black;
+	font-weight: 400;
+	margin-bottom: 35px;
+	@extend .title-card;
+}
+
+.font-small {
+	font-size: 11px;
+	display: block;
+	margin-top: 25px;
+	color: #909090;
+}
+.upper {text-transform: uppercase;}
+
+.title-big {
+	font-size: 4em; color: $preto; line-height: 1.2em; font-weight: bold;
+	@include breakpoint(tablet) {
+		font-size: 2.8em;
+	}
+}
+.title-big a {color: $preto;}
+.description-noticie {
+	font-size: 2.1em; line-height: 1.4em; color: #757575; margin: 15px 0;
+	@include breakpoint(mobile) {
+		font-size: 1.6em;
+	}
+}
+
+.date-news {
+	font-size: 1.6em;
+	line-height: 1.2em;
+	color: #999999;
+	font-weight: bold;
+}
+
+.title-miniupper {
+	text-transform: uppercase;
+	color: black;
+	font-size: 14px;
+	margin-top: 20px;
+	display: block;
+	&:hover{
+		color: $vermelho;
+	}
+}
+
+.title-page {
+	font-size: 3.5em;
+	text-transform: uppercase;
+	font-weight: 300;
+	line-height: 1.25em;
+	margin-bottom: 30px;
+	color: $cortext;
+	@include breakpoint(mobile) {
+		font-size: 2.8em;
+	}
+	img {
+		vertical-align: middle;
+		margin-right: 5px;
+		margin-top: -10px;
+	}
+}
+
+.block-text {
+	color: $cortext;
+	font-size: 10px;
+	&.small {
+		p {
+			font-size: 1.4em;
+		}
+	}
+	p {
+		font-size: 1.5em;
+		line-height: 1.5em;
+		margin-bottom: 25px;
+	}
+	> h3 {
+		font-size: 16px;
+		font-weight: bold;
+		margin-bottom: 25px;
+		padding-top: 25px;
+	}
+}
+
+.title-sector {
+	font-size: 2.4em;
+	font-weight: 600;
+	line-height: 1.4em;
+	margin-bottom: 25px;
+	text-transform: uppercase;
+	color: $vermelho;
+	&.mini {
+		font-size: 1.6em;
+	}
+}
+
+.name-people {
+	font-size: 2.4em;
+	color: $preto;
+	line-height: 1.4em;
+	@include breakpoint(mobile) {
+		font-size: 1.6em;
+	}
+} 
+
+.medium-red {
+	font-size: 1.8em;
+	line-height: 1.2em;
+	color: $vermelho;
+	text-transform: uppercase;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+.mini-function {
+	font-size: 1.6em;
+	color: $vermelho;
+	text-transform: uppercase;
+	line-height: 1.2em;
+	margin: 2px 0;
+}
+
+.tit-function {
+	position: relative;
+	text-transform: uppercase;
+	color: $vermelho;
+	padding-bottom: 15px;
+	margin-bottom: 10px;
+	font-size: 1.6em;
+	line-height: 1.4em;
+	&:after {
+		display: block;
+		content: '';
+		width: 45px;
+		height: 2px;
+		background: $vermelho;
+		margin-top: 10px;
+	}
+}
+
+a .title-medium:hover, .cards-side a.title-mini:hover, a .title-big:hover {
+	color: $vermelho;
+}
+
+.tags-event {
+	font-size: 1.3em;
+	color: $vermelho;
+	text-transform: uppercase;
+	line-height: 1.4;
+	margin-bottom: 10px;
+	display: inline-block;
+	.fa {
+		margin: 0 5px;
+	}
+}
+
+.status-promotion {
+	text-transform: uppercase;
+	font-size: 2em;
+	font-weight: bold;
+	float: right;
+	line-height: 1.4em;
+	margin-top: 15px;
+	&.active {
+		color: #54a220;
+	}
+	&.off {
+		color: #ad1111;
+	}
+}
+
+.title-equips {
+	font-size: 2em;
+	text-transform: uppercase;
+	font-weight: 300;
+	margin-bottom: 20px;
+	@include breakpoint(mobile) {
+		font-size: 1.4em;
+	}
+	img {
+		vertical-align: middle;
+		margin-right: 5px;
+		@include breakpoint(mobile) {
+			display: none;
+		}
+	}
+	&.america {
+		color: $america;
+	}
+	&.atletico {
+		color: $atletico;
+	}
+	&.cruzeiro {
+		color: $cruzeiro;
+	}
+	&.brasil {
+		color: $brasil;
+	}
+}
+
+
+.link-logout {
+	position: relative;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 300;
+    cursor: pointer;
+    padding-top: 10px;
+    color: $preto;
+    display: block;
+    .fa {
+    	float: right;
+    }
+    &:hover {
+    	color: $vermelho;
+    }
+}
+
+.header-biger {
+	font-size: 3em;
+	line-height: 1.4em;
+	color: #faa634;
+	text-align: center;
+	padding-bottom: 25px;
+	margin-bottom: 25px;
+	font-weight: 300;
+	text-transform: uppercase;
+	border-bottom: 1px solid #e0e0e0;	
+}
+
+.location-name {
+	color: #faa634;
+	text-transform: uppercase;
+	font-weight: 300;
+	font-size: 1.3em;
+	line-height: 1.2em;
+}

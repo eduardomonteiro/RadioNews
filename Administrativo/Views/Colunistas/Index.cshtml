@@ -1,0 +1,174 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<Administrativo.Models.Colunista>
+
+@{
+    ViewBag.Title = "Cadastro de Colunistas";
+    ViewBag.Icon = "fa fa-quote-right";
+    ViewBag.SmallDescription = "Lista de todos os Colunistas cadastrados no sistema";
+}
+<div class="row">
+    <div class="col-md-12">
+
+        @if (Model.Count > 1)
+        {
+
+            <div class="fc fc-ltr">
+                <div class="alert alert-info alert-dismissable alert-arraste">
+                    <i class="fa fa-info"></i>
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <b>Dica!</b> Arraste os itens para alterar a ordem.
+                </div>
+            </div>
+
+            <div class="fc fc-ltr">
+                <div class="alert alert-dismissable alert-success" style="display:none;">
+                    <i class="fa fa-info"></i>
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <b>Sucesso!</b> A ordem foi atualizada com sucesso!
+                </div>
+            </div>
+
+        }
+
+        <div class="box box-info">
+            <div class="overlay" style="display: none;"></div>
+            <div class="loading-img" style="display: none;"></div>
+            <div class="box-header">
+                <h3 class="box-title">Lista</h3>
+                <div class="pull-right">
+                    <a style="margin:4px; color:white;" href="@Url.Action("Create")" class="btn btn-success pull-right"><i class="fa fa-plus-circle white"></i>&nbsp;Cadastrar</a>
+                </div>
+            </div>
+            <div class="box-body no-padding">
+                <div class="fc fc-ltr">
+                    @using (Html.BeginForm())
+                    {
+                        <table class="fc-header" style="width: 35%;">
+                            <tbody>
+                                <tr style="height: 48px;">
+                                    <td class="fc-header-left" style="width: 10px;"></td>
+                                    <td class="fc-header-center">
+                                        @Html.TextBox("Search", null, new { @class = "text-box", placeholder = "Busca" })
+                                    </td>
+                                    <td class="fc-header-right">
+                                        <input type="submit" value="Enviar" class="btn bg-olive margin" style="margin: 0px;" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    }
+                    <table class="table table-striped responsive table-hover dataTable">
+                        <thead>
+                            <tr role="row">
+                                <th style="width:20px;"></th>
+                                <th style="width:40px;">
+                                    @Html.DisplayNameFor(model => model.First().id)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.First().nome)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.First().dataCadastro)
+                                </th>
+                                <th style="width: 210px;">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody class="ui-sortable">
+                            @if (Model.TotalItemCount > 0)
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr id="@item.id">
+                                        <td>
+                                            <span class="handle">
+                                                <i class="fa fa-ellipsis-v"></i>
+                                                <i class="fa fa-ellipsis-v"></i>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.id)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.nome)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.dataCadastro)
+                                        </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a href="@Url.Action("Index", "Comentarios", new { colunistaId = item.id })" class="btn btn-info btn-small"><i class="fa fa-comments-o"></i></a>
+                                                <a href="@Url.Action("Edit", new { id = item.id })" class="btn btn-warning btn-small"><i class="fa fa-edit"></i></a>
+                                                <a href="@Url.Action("Details", new { id = item.id })" class="btn bg-olive btn-small"><i class="fa fa-search-plus"></i></a>
+                                                <a href="@Url.Action("Delete", new { id = item.id })" class="btn btn-danger btn-small"><i class="fa fa-trash-o"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="4" align="center">Nenhum registro encontrado.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="box-footer clearfix no-border">
+                @if (Model.PageCount > 1)
+                {
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, search = ViewBag.Search, order = ViewBag.Order, SortField = ViewBag.SortField }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+            $(".ui-sortable").sortable({
+                handle: ".handle",
+
+                zIndex: 999999,
+                update: function (event, ui) {
+                    var testes = $(this).sortable('toArray').map(function (item) {
+                        return parseInt(item, 10);
+                    });
+
+                    $(".loading-img").show();
+                    $(".overlay").show();
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("ReOrder")",
+                        traditional: true,
+                        data: { ids: testes },
+                        success: function (data) {
+                            console.log(data);
+                            if (data == "True") {
+                                $(".alert-success").show();
+                                $(".loading-img").hide();
+                                $(".overlay").hide();
+                                $(".alert-ordem").hide();
+                                window.setTimeout(function () {
+                                    $(".alert-success").fadeOut();
+                                }, 3000);
+
+                            }
+                        }
+                    });
+                }
+            }).disableSelection();;
+
+
+
+            $(".ui-sortable").disableSelection();
+        });
+    </script>
+}
+
+

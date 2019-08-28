@@ -1,0 +1,54 @@
+﻿@model Administrativo.Models.TimesPADs
+
+@{
+    ViewBag.Title = "Cadastrar Time - Painéis Digitais";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Insere um Time para ser usado nos Gols dos Painéis Digitais";
+}
+
+<div class="content">
+    <div class="row">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Cadastrar Time - Painéis Digitais</h3>
+            </div>
+            @using (Html.BeginForm("Create", "TimesPaineis", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="box-body">
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Nome)
+
+                        @Html.EditorFor(model => model.Nome)
+                        @Html.ValidationMessageFor(model => model.Nome)
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Logo - <em>Mantenha a proporção: (100x100)</em></label>
+
+                                <input type="file" name="logo" id="logo" accept="image/*" />
+                                @Html.ValidationMessageFor(model => model.Logo)
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a href="@Url.Action("Index", "TimesPaineis")" class="btn btn-info">Voltar</a>
+
+                </div>  }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

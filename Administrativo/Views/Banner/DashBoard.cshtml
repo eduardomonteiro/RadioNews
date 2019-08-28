@@ -1,0 +1,418 @@
+﻿@model Administrativo.ViewModel.DashboardViewModel
+@{
+    ViewBag.Title = "Banner";
+    ViewBag.Icon = "fa fa-area-chart";
+    ViewBag.SmallDescription = "Visualizar detalhes de Banner";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="content">
+    <div class="box box-info">
+        <div class="box-header">
+            <h3 class="box-title">Data</h3>
+            <div class="pull-right">
+                    <a style="margin:4px; color:white;" href="@Url.Action("Index")" class="btn btn-success pull-right"><i class="fa fa-angle-left white"></i>&nbsp;Voltar</a>
+                </div>
+        </div>
+        <div class="box-body no-padding">
+            @using (Html.BeginForm())
+            {
+                <table class="fc-header" style="width: 35%;">
+                    <tbody>
+                        <tr style="height: 108px;">
+                            <td class="fc-header-left" style="width: 10px;"></td>
+                            <td class="fc-header-center">
+                                <input class="text-box" id="data" name="data" placeholder="Data" type="text" value="@Request.Params["data"]" />
+                            </td>
+                            <td class="fc-header-right">
+                                <input type="submit" value="Filtrar" class="btn bg-olive margin" style="margin: 0px;" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            }
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-offset-2 col-lg-4 col-xs-6">
+
+                <div class="small-box bg-aqua">
+                    <div class="inner">
+                        <h3>
+                            @Model.qtdCliques
+                        </h3>
+                        <p>
+                            Cliques
+                        </p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-card"></i>
+                    </div>
+                    <a href="@Url.Action("Details", "Banner", new { Id = ViewBag.Id})" class="small-box-footer">
+                        Saiba mais <i class="fa fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-xs-6">
+
+                <div class="small-box bg-green">
+                    <div class="inner">
+                        <h3>
+                            @Model.qtdVisualizacoes
+                        </h3>
+                        <p>
+                            Visualizações
+                        </p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-stats-bars"></i>
+                    </div>
+                    <a href="@Url.Action("Details", "Banner", new { Id = ViewBag.Id})" class="small-box-footer">
+                        Saiba mais <i class="fa fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 connectedSortable ui-sortable">
+
+        </div>
+    </div>
+
+
+    @*<div class="row">
+
+        <section class="col-lg-6 connectedSortable ui-sortable">
+            <div class="box box-danger" id="loading-example">
+                <div class="box-header">
+
+                    <i class="fa fa-group"></i>
+
+                    <h3 class="box-title">Visualizações X Cliques ( Últimos meses )</h3>
+                </div>
+                <div class="box-body no-padding">
+                    <div class="row">
+                        <div class="col-sm-12" id="grafico-1">
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="col-lg-6 connectedSortable ui-sortable">
+            <div class="box box-success" id="loading-example">
+                <div class="box-header" style="cursor: move;">
+
+                    <i class="fa fa-cloud"></i>
+
+                    <h3 class="box-title">Visualizações X cliques (@Request.Params["data"])</h3>
+                </div>
+                <div class="box-body no-padding">
+                    <div class="row">
+                        <div class="col-sm-12" id="grafico-2">
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>*@
+
+</section>
+
+
+@section scripts{
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+
+    <script>
+        $(function () {
+            $('#data').daterangepicker({ format: 'DD/MM/YYYY' });
+
+            $('#grafico-1').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: ''
+                },
+                subtitle: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: [
+                        @if(Model.grafico1Visualizacoes.Count>0)
+                        {
+                            foreach(var item in Model.grafico1Visualizacoes)
+                            {
+                                <text>
+                                '@item.texto',
+                                </text>
+                            }
+                        }
+
+                    ],
+                    crosshair: true
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: ''
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' + '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: 'Visualizações',
+
+                    //data: [0, 71, 106, 129, 144, 176, 135, 148, 216, 194, 95, 54]
+
+                    data: [
+                        @if(Model.grafico1Visualizacoes.Count>0)
+                        {
+                            foreach(var item in Model.grafico1Visualizacoes)
+                            {
+                                <text>
+                                    @item.valor,
+                                </text>
+                            }
+                        }
+                    ]
+
+                }, {
+                    name: 'Cliques',
+                    data:[
+                    @if(Model.grafico1Visualizacoes.Count>0)
+                    {
+                        foreach(var item in Model.grafico1Visualizacoes)
+                        {
+                            if (Model.grafico1Cliques.Any(x => x.texto == item.texto))
+                            {
+                                var data = Model.grafico1Cliques.FirstOrDefault(x => x.texto == item.texto);
+
+                                  <text>
+                                    @data.valor, 
+                                 </text>
+
+                            }
+                            else
+                            {
+                                 <text>
+                                    0,
+                                 </text>
+                            }
+
+                        }
+                    }
+
+                    ]}]
+
+            });
+
+
+            // Build the chart
+            $('#grafico-2').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+                },
+                title: {
+                    text: 'Visualizações X Cliques'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: false
+                        },
+                        showInLegend: true
+                    }
+                },
+                series: [{
+                    name: 'porcentagem',
+                    colorByPoint: true,
+                    data: [
+
+                        @if(Model.grafico2.Count>0)
+                        {
+                                    foreach(var item in Model.grafico2)
+                                    {
+                                        if (item.texto == "Visualizacoes")
+                                        {
+                                   <text>
+                                            {
+                                                name: 'Visualizações',
+                                                y: @item.valor,
+                                                sliced: true,
+                                                selected: true
+                                            },
+                                    </text>
+                                        }
+                                        else
+                                        {
+                                    <text>
+                                            {
+                                                name: 'Cliques',
+                                                y: @item.valor
+                                              }
+                                    </text>
+                                        }
+                                    }
+                                }
+
+                    ]
+                }]
+            });
+        });
+
+    </script>
+
+
+    @*<script type="text/javascript">
+            $(document).ready(function () {
+
+                @if (TempData["MessageJS"] != null)
+                {
+                    <text>
+                alertify.success("@TempData["MessageJS"].ToString()");
+                </text>
+                }
+
+
+                // Build the chart
+                @if (Model.Grafico1.Count > 0)
+                {
+                         <text>
+
+                $('#grafico-1').highcharts({
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true
+                        }
+                    },
+                    series: [{
+                        name: 'Brands',
+                        colorByPoint: true,
+
+                        data: [
+                            @foreach (var item in Model.Grafico1)
+                                        {
+                                            <text>
+                                     {
+                                         name: '@Html.Raw(item.Text)',
+                                         y: @item.value
+                                         },
+
+                                </text>
+                                        }
+                        ]
+                    }]
+                });
+                </text>
+                }
+
+                @if (Model.Grafico1.Count > 0)
+                 {
+                    <text>
+                        $('#grafico-2').highcharts({
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                text: ''
+                            },
+                            subtitle: {
+                                text: ''
+                            },
+                            xAxis: {
+                                categories: [
+                                    ''
+
+                                ],
+                                crosshair: true
+                            },
+                            yAxis: {
+                                min: 0,
+                                title: {
+                                    text: ''
+                                }
+                            },
+                            tooltip: {
+                                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                    '<td style="padding:0"><b>{point.y:1f} </b></td></tr>',
+                                footerFormat: '</table>',
+                                shared: true,
+                                useHTML: true
+                            },
+                            plotOptions: {
+                                column: {
+                                    pointPadding: 0.2,
+                                    borderWidth: 0
+                                }
+                            },
+                            series: [
+                                @foreach(var item in Model.Grafico2)
+                                {
+                                    <text>
+                                        {
+                                            name: '@Html.Raw(item.Text)',
+                                            data: [@item.value]
+                                        },
+                                    </text>
+                                }
+
+                            ]
+                        });
+                    </text>
+                }
+
+            });
+        </script>*@
+
+
+}

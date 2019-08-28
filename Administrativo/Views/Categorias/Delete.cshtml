@@ -1,0 +1,32 @@
+﻿@model Administrativo.Models.Categorias
+
+@{
+    ViewBag.Title = "Deletar Categorias";
+	ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Deleta um Categorias do sistema.";
+	
+}
+
+<div class="box box-danger">
+    <div class="box-header">
+        <i class="fa fa-trash-o"></i>
+        <h3 class="box-title">Deletar</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <div class="callout callout-danger">
+            <h4>Atenção</h4>
+            <p>Deseja realmente deletar este registro?</p>
+            @using (Html.BeginForm(new { editorial = Model.EditoriaId }))
+            {
+                <button class="btn btn-danger">Sim</button>
+                <a href="@Url.Action("Index", "Categorias", new { editorial = Model.EditoriaId })" class="btn btn-success">Não</a>
+                    
+            }
+
+        </div>
+        <div class="box-content padded">
+            @Html.Partial("_Details")
+        </div>
+    </div>
+</div>

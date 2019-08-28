@@ -1,0 +1,272 @@
+﻿@model Administrativo.Models.Colunista
+
+@{
+    ViewBag.Title = "Editar Colunista";
+    ViewBag.Icon = "fa fa-quote-right";
+    ViewBag.SmallDescription = "Altere as informações de Colunista";
+}
+
+<link href="/Admin/Content/JCrop/css/jquery.jcrop.css" rel="stylesheet" />
+
+<div class="content">
+    <div class="row">
+        <div class="box box-warning">
+            <div class="box-header">
+                <h3 class="box-title">Editar Colunistas</h3>
+            </div>
+            @using (Html.BeginForm("Edit", "Colunistas", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="box-body">
+                    @Html.HiddenFor(model => model.id)
+                    @Html.HiddenFor(model => model.dataCadastro)
+                    @Html.HiddenFor(model => model.chave)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.nome)
+
+                        @Html.TextBoxFor(model => model.nome, new { @maxlength = 100, @class = "text-box" })
+                        @Html.ValidationMessageFor(model => model.nome)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.email)
+
+                        @Html.TextBoxFor(model => model.email, new { @maxlength = 150, @class = "text-box" })
+                        @Html.ValidationMessageFor(model => model.email)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.descricao)
+
+                        @Html.TextAreaFor(model => model.descricao, new { @class = "text-box", style = "height: 100px;" })
+                        @Html.ValidationMessageFor(model => model.descricao)
+                    </div>
+
+                   
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-8">
+                                @Html.LabelFor(model => model.foto, "Foto (Resolução recomendada : 190x132)")
+
+                                @Html.TextBoxFor(model => model.foto, new { style = "display: none;" })
+                                <input type="file" name="fotoUpload" id="fotoUpload" onchange="javascript: $('#foto').val($(this).val().split('\\').pop());" accept="image/*"  />
+                                @Html.ValidationMessageFor(model => model.foto)
+                            </div>
+                            <div class="col-md-2">
+                                @if (!string.IsNullOrEmpty(Model.foto))
+                                {
+                                    <a class="btn btn-block btn-primary" data-toggle="modal" data-target="#imagem-foto" style="width: 120px;">Imagem Atual</a>
+                                }
+                                else
+                                {
+                                    <p class="text-yellow">Sem Miniatura.</p>
+                                }
+                            </div>
+                            <div class="col-md-2">
+                                <input type="button" id="btnCrop" class="btn btn-block btn-primary" data-target="#modal" data-toggle="modal" value="Editar Foto" style="display:none;width:120px" />
+                            </div>
+                        </div>
+                    </div>
+
+                    @*<div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.fotoMini, "Miniatura (Resolução recomendada : 146x146)")
+
+                                @Html.TextBoxFor(model => model.fotoMini, new { style = "display: none;" })
+                                <input type="file" name="fotoMiniUpload" id="fotoMiniUpload" onchange="javascript: $('#fotoMini').val($(this).val().split('\\').pop());" />
+                                @Html.ValidationMessageFor(model => model.fotoMini)
+                            </div>
+                            <div class="col-md-5">
+                                @if (!string.IsNullOrEmpty(Model.fotoMini))
+                                {
+
+                                    <a class="btn btn-block btn-primary" data-toggle="modal" data-target="#imagem-foto-mini" style="width: 120px;">Imagem Atual</a>
+
+                                }
+                                else
+                                {
+                                    <p class="text-yellow">Sem Miniatura.</p>
+                                }
+                            </div>
+                        </div>
+                    </div>*@
+
+
+
+                    @*@if (ViewBag.UserName != null) {
+                            <div class="form-group">
+                                @Html.Label("Login")
+
+                                @Html.Editor("Username", new { @value= ViewBag.Username })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.Label("Senha atual")
+                                @Html.Password("oldPassword", "", new { @class = "form-control" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.Label("Senha Nova")
+                                @Html.Password("Password", "", new { @class = "form-control" })
+                                @Html.ValidationMessage("Senha")
+                            </div>
+                        }*@
+
+                    <div class="form-group">
+                        <label>Sexo</label>
+                        <select name="sexo" id="sexo" class="form-control" style="width:150px;">
+                            <option value="">Selecione</option>
+                            <option value="M">Masculino</option>
+                            <option value="F">Feminino</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => model.sexo)
+                    </div>
+
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.liberado)
+
+                        @Html.BooleanFieldFor(model => model.liberado, Model.liberado, new { @class = "form-control", style = "width: 120px;" })
+                        @Html.ValidationMessageFor(model => model.liberado)
+                    </div>
+
+                </div>
+                <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a href="@Url.Action("Index", "Colunistas")" class="btn btn-info">Voltar</a>
+
+                    <input type="hidden" id="cropX" name="cropX" value="0" />
+                    <input type="hidden" id="cropY" name="cropY" value="0" />
+                    <input type="hidden" id="cropWidth" name="cropWidth" value="0" />
+                    <input type="hidden" id="cropHeight" name="cropHeight" value="0" />
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="imagem-foto" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Imagem Atual</h4>
+            </div>
+            <div class="modal-body">
+                <img src="@Url.Content("~/Conteudo/Colunistas/Foto/" + Model.foto)" width="550" />
+            </div>
+            <div class="modal-footer clearfix">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="fa fa-times"></i>Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="imagem-foto-mini" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Imagem Atual</h4>
+            </div>
+            <div class="modal-body">
+                <img src="@Url.Content("~/Conteudo/Colunistas/90x90/" + Model.fotoMini)" width="90" />
+            </div>
+            <div class="modal-footer clearfix">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="fa fa-times"></i>Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal" aria-labelledby="modalLabel" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Crop the image</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    @if (!string.IsNullOrEmpty(Model.foto)) {
+                        <img id="Foto1" class="img-responsive" src="@Url.Content("~/Conteudo/Colunistas/Foto/" + Model.foto)" alt="Picture">
+                    } else {
+                        <img id="Foto1" class="img-responsive" alt="Picture">
+                    }
+                    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#sexo").val('@Model.sexo');
+            var editor = CKEDITOR.replace('descricao',
+                {
+                    height: "200px"
+                });
+
+            //$('#descricao').wysihtml5();
+        });
+    </script>
+    <script type="text/javascript" src="~/Content/JCrop/js/jquery.Jcrop.min.js"></script>
+<script>
+    $(function () {
+        $("#fotoUpload").change(function () {
+            $('#btnCrop').show();
+            showPicture(this);
+        });
+        function showPicture(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#Foto1').attr('src', e.target.result);
+                    $('#btnCrop').show();
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        var $image = $('#Foto1');
+        var aspect = 1.44;
+
+        function setCoordsAndImgSize(e) {
+            var propX = ((e.x / $image.width()) * $image[0].width);
+            var propY = ((e.y / $image.height()) * $image[0].height);
+            var propW = ((e.w / $image.width()) * $image[0].width);
+            var propH = ((e.h / $image.height()) * $image[0].height);
+
+            $("#cropX").attr('value', Math.round(propX));
+            $("#cropY").attr('value', Math.round(propY));
+            $("#cropWidth").attr('value', Math.round(propW));
+            $("#cropHeight").attr('value', Math.round(propH));
+        }
+
+        $('#modal').on('shown.bs.modal', function () {
+            $image.Jcrop({
+                aspectRatio: aspect,
+                onChange: setCoordsAndImgSize
+            });
+        }).on('hidden.bs.modal', function () {
+
+        });
+    });
+</script>
+}

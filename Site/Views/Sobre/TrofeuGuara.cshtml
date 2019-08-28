@@ -1,0 +1,733 @@
+﻿
+@{
+    ViewBag.Title = "TrofeuGuara";
+}
+
+@section SEO{
+    <meta name="DC.title" content="Quem Somos - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:title" content="Quem Somos - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="@Url.Content("~/images/ico-facebook.jpg")" />
+    <meta property="og:url" content="@HttpContext.Current.Request.Url.AbsoluteUri" />
+    <title>Troféu Guará - Rádio CompanyName | A Rádio de Minas</title>
+}
+ <style>
+    @@media (max-width: 520px){
+      .block-text img {
+        width: 100%;
+      }
+    }
+  </style>
+
+
+<div class="wrapper-general center">
+    <header class="nav-intern clearfix">
+        <div class="buttons">
+            <a class="bt-back" href="javascript:window.history.go(-1)"> <i class="fa fa-angle-left"></i> Voltar</a>
+            Texto: <button class="more bt-resize">+</button> <button class="bt-resize minus">-</button>
+        </div>
+        <nav class="breadcumb">
+            <a href="@Url.Action("Index","Home")">Home</a>
+            <span>Troféu Guará</span>
+        </nav>
+    </header>
+    <h1 class="title-page">Troféu Guará</h1>
+    <div class="block-text">
+       <img src="../images/guarainterna.jpg" alt="" style="margin: 0 10px 10px 0; float: left;">
+       <p>O Troféu Guará é reconhecido pelo público como o mais importante prêmio do futebol mineiro, e exalta os destaques da temporada em todas as posições. Criado em 1962 pela Rádio CompanyName, teve como objetivo acabar com as diversas seleções dos melhores do ano no futebol, elaboradas pelos órgãos de imprensa de Minas Gerais.</p>
+       <p>Com o Troféu Guará foi criada uma lista única e final, que soma os votos de toda a mídia esportiva, entre rádios, televisões, revistas e jornais. Escolhidos os ganhadores, a Rádio CompanyName produz a solenidade de entrega dos troféus. A premiação teve seu nome escolhido em homenagem ao grande jogador do Atlético Mineiro nas décadas de 30 e 40, Guaracy Januzzi, o Guará.</p>
+       <p>São agraciados os jogadores que se destacaram no ano, além do melhor juiz, dirigente do ano, jogador revelação, craque do ano, artilheiro do ano, técnico do ano, preparador físico do ano.</p>
+       <p>Ainda há o prêmio Guará Especial, que prestigia pessoas ou instituições que se destacaram no cenário esportivo municipal. </p>
+       <div class="clearfix"></div>
+       <p><br></p>
+       <p><strong>Quem foi Guará?</strong></p>
+       <img src="../images/Guaracy_Januzzi.jpg" alt="" style="margin: 0 10px 10px 0;float: left;">
+       <p>Guaracy Januzzi (1914-1978) nasceu em Ubá, na Zona da Mata mineira. Famoso já no time local, o Aimorés, de Ubá, foi contratado pelo Atlético Mineiro aos 18 anos. Vestindo a camisa alvinegra, Guará participou de quase 200 jogos e marcou 168 gols, média aproximada de um gol por partida, recorde batido até hoje somente por Dadá Maravilha, Mario de Castro e Reinaldo.</p>
+       <p>O apelido Perigo Louro surgiu daquele jovem franzino, cujos passes e dribles mágicos iam invariavelmente parar nas redes. Lenda no futebol mineiro, seu primeiro título veio em 1936, quando o profissionalismo já tomava conta dos clubes. Aos 24 anos, Guará se tornou o jogador mais bem pago do cenário esportivo estadual.</p>
+       <p>Mas a "fama teve inveja de Guará", escreveu Ary Barroso no prefácio do livro "Cabeçada Fatal" (Antônio Tibúrcio Henriques, 1968, Belo Horizonte). No dia 04 de julho de 1939, o Atlético Mineiro e o Palestra Itália (atual Cruzeiro) se enfrentavam pela segunda rodada do Campeonato da Cidade. Aos dez minutos de partida, o centroavante Guará e o zagueiro Caieira, do Palestra, disputaram uma bola alta e se chocaram cabeça com cabeça.</p>
+       <p>Vítima de traumatismo craniano, Guará passou oito meses fora do gramado. Quando voltou, não era mais o mesmo. Chegou a ser contratado pelo Flamengo, em 1941, mas acabou disputando apenas um jogo. Era o fim de uma carreira brilhante, pois a estrela do centroavante Guará se apagou, e ele teve que se afastar, definitivamente, dos campos de futebol.</p>
+       <p><strong>Confira os vencedores da última edição:</strong></p>
+       <p><i>Técnico: Mano Menezes (Cruzeiro)</i></p>
+       <p><i>Preparador físico: Eduardo Silva (Cruzeiro)</i></p>
+       <p><i>Dirigente do Ano: Daniel Nepomuceno (presidente do Atlético)</i></p>
+       <p><i>Jogador revelação: Gabriel (zagueiro do Atlético)</i></p>
+       <p><i>Melhor árbitro: Igor Junio Benevenuto</i></p>
+       <p><i>Craque do ano: Robinho (Atlético)</i></p>
+       <p><i>Artilheiro: Robinho (Atlético), com 25 gols</i></p>
+       <p><i>Campeão Mineiro: América</i></p>
+       <p><i>Campeão Mineiro Módulo II: Democrata-GV</i></p>
+       <p><i>Campeão Mineiro da Segunda Divisão: Tupynambás</i></p>
+       <p><i>Campeão Brasileiro da Série C: Boa Esporte</i></p>
+       <p><i>Campeão Mineiro Júnior Sub-20: Cruzeiro</i></p>
+       <p><i>Campeão Mundial de Vôlei: Sada Cruzeiro</i></p>
+       <p><i>Prêmio Guará Especial: Cruzeiro, que comemora os 50 anos do título da Taça Brasil de 1966.</i></p>
+       <p><strong>Veja como ficou a seleção Guará de 2016:</strong></p>
+       <p><i>Goleiro: João Ricardo (América)</i></p>
+       <p><i>Lateral-direito: Marcos Rocha (Atlético)</i></p>
+       <p><i>Zagueiros: Leonardo Silva (Atlético) e Manoel (Cruzeiro)</i></p>
+       <p><i>Lateral-esquerdo: Fábio Santos (Atlético)</i></p>
+       <p><i>Volantes: Henrique (Cruzeiro) e Robinho (Cruzeiro)</i></p>
+       <p><i>Meia: Arrascaeta (Cruzeiro)</i></p>
+       <p><i>Atacantes: Fred (Atlético) Lucas Pratto (Atlético) e Robinho (Atlético)</i></p>
+    </div>
+
+    <section class="wrapper-comments">
+        <button class="bt-red large" id="bt-comentario">Comentar</button>
+        <fieldset class="form-post-comment">
+            <div class="content">
+                <div class="write-comment">
+                    <h2 class="title-medium">Escreva seu comentário</h2>
+                    <textarea id="msg-comentario" maxlength="500"></textarea>
+                    <div class="recaptcha">
+                        <div class="g-recaptcha" data-sitekey="6LfApwkUAAAAAFzdCpMnHhM__-ddbOvTnGX2QfpZ"></div>
+                    </div>
+                </div>
+                <div class="posts-data">
+                    <h2 class="title-medium">Preencha seus wdados</h2>
+                    <input type="text" placeholder="Nome" id="nome-user" maxlength="250">
+                    <input type="text" placeholder="CPF" id="cpf" maxlength="20">
+                    <button class="bt-red total" id="post-comment">Enviar Comentário</button>
+                    <span class="or">ou</span>
+                    <button class="login-facebook" id="post-facebook">Enviar com Facebook</button>
+                </div>
+            </div>
+        </fieldset>
+        <div class="box-comment">
+            <header class="header-control">
+                <h2 class="title-bottom"></h2>
+
+                <div class="select-box" style="display:none;">
+                    <label for="order-by">Ordenar Por:</label>
+                    <select name="order" id="orderby">
+                        <option value="0">Mais Recentes</option>
+                        <option value="1">Mais Revelantes</option>
+                        <option value="2">Ordem Alfabética</option>
+                    </select>
+                </div>
+            </header>
+            <ul class="posts-comments" id="post-comments"></ul>
+            <div class="pagination-bottom">
+                <input type="hidden" id="pagina-atual" value="0" />
+                <img src="~/images/loading-circle.gif" id="loading" />
+                <button class="bt-red" id="load-comments" style="display:none;">Carregar Mais</button>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+@section scripts {
+<script src='https://www.google.com/recaptcha/api.js'></script>
+    
+<script>
+    window.fbAsyncInit = function () {
+        
+            FB.init({
+                appId: '296505570791797',
+                xfbml: true,
+                version: 'v2.9'
+            });
+            FB.AppEvents.logPageView();
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+</script>
+<script type="text/javascript">
+        $(document).ready(function () {
+
+            var idNoticia = @ViewBag.IdNoticia;
+
+            var gostarComentario = function (idComentario) {
+                if ($('.like[data-id=' + idComentario + ']')) {
+                    $.post({
+                        url: "@Url.Action("GostarComentario", "Comentarios")",
+                        data: { id: idComentario },
+                        dataType: "json"
+                    }).done(function () {
+
+                        if (verificaNaoGostei(idComentario)) {
+                            $.post({
+                                url: "@Url.Action("RemoverNaoGostarComentario", "Comentarios")",
+                                data: { id: idComentario },
+                                dataType: "json"
+                            }).done(function () {
+                                var naoGosteiPagina = localStorage.getItem("naogostei-" + idNoticia).split(',');
+                                if (naoGosteiPagina) {
+                                    $(naoGosteiPagina).each(function () {
+                                        naoGosteiPagina = jQuery.grep(naoGosteiPagina, function (value) {
+                                            return value != idComentario;
+                                        });
+                                    })
+                                }
+
+                                localStorage.setItem("naogostei-" + idNoticia, naoGosteiPagina);
+                            })
+                        }
+                        var gosteiPagina = localStorage.getItem("gostei-" + idNoticia);
+                        if (gosteiPagina) {
+                            gosteiPagina = gosteiPagina.split(',');
+                            gosteiPagina.push(idComentario);
+                        } else {
+                            gosteiPagina = [ idComentario ];
+                        }
+
+                        localStorage.setItem("gostei-" + idNoticia, gosteiPagina);
+
+                    })
+                }
+            }
+
+            var naoGostarComentario = function (idComentario) {
+
+                if ($('.deslike[data-id=' + idComentario + ']')) {
+                    $.post({
+                        url: "@Url.Action("NaoGostarComentario", "Comentarios")",
+                        data: { id: idComentario },
+                        dataType: "json"
+                    }).done(function () {
+
+                        if (verificaGostei(idComentario)) {
+                            $.post({
+                                url: "@Url.Action("RemoverGostarComentario", "Comentarios")",
+                                data: { id: idComentario },
+                                dataType: "json"
+                            }).done(function () {
+                                var gosteiPagina = localStorage.getItem("gostei-" + idNoticia).split(',');
+                                if (gosteiPagina) {
+                                    gosteiPagina = jQuery.grep(gosteiPagina, function (value) {
+                                        return value != idComentario;
+                                    });
+                                }
+
+                                localStorage.setItem("gostei-" + idNoticia, gosteiPagina);
+                            })
+                        }
+                        var naoGosteiPagina = localStorage.getItem("naogostei-" + idNoticia);
+                        if (naoGosteiPagina) {
+                            naoGosteiPagina = naoGosteiPagina.split(',');
+                            naoGosteiPagina.push(idComentario);
+                        } else {
+                            naoGosteiPagina = [ idComentario ];
+                        }
+
+                        localStorage.setItem("naogostei-" + idNoticia, naoGosteiPagina);
+
+                    })
+                }
+                }
+
+            var verificaGostei = function (idComentario)
+            {
+                var retorno = false;
+
+                var gosteiPagina = localStorage.getItem("gostei-" + idNoticia);
+                if (gosteiPagina) {
+                    $(gosteiPagina.split(',')).each(function ()
+                    {
+                        if (parseInt(this) == idComentario) {
+                            retorno = true;
+                        }
+                    })
+                }
+                return retorno;
+            }
+
+            var verificaNaoGostei = function (idComentario)
+            {
+                var retorno = false;
+
+                var naoGosteiPagina = localStorage.getItem("naogostei-" + idNoticia);
+                if (naoGosteiPagina) {
+                    $(naoGosteiPagina.split(',')).each(function ()
+                    {
+                        if (parseInt(this) == idComentario) {
+                            retorno = true;
+                        }
+                    })
+                }
+                return retorno;
+            }
+
+            var pintarGosteiNaoGostei = function()
+            {
+                var gosteiPagina = localStorage.getItem("gostei-" + idNoticia);
+
+                if (gosteiPagina) {
+                    $(gosteiPagina.split(',')).each(function () {
+                        var curtirAtual = $(".action.like[data-id='" + this + "']");
+                        if (curtirAtual) {
+                            curtirAtual.addClass('active');
+                        }
+                    })
+                }
+                var naoGosteiPagina = localStorage.getItem("naogostei-" + idNoticia);
+
+                if (naoGosteiPagina) {
+                    $(naoGosteiPagina.split(',')).each(function () {
+                        var descurtirAtual = $(".action.deslike[data-id='" + this + "']");
+                        if (descurtirAtual) {
+                            descurtirAtual.addClass('active');
+                        }
+                    })
+                }
+            }
+            pintarGosteiNaoGostei();
+
+            $('#cpf').mask('999.999.999-99');
+
+            $('#bt-comentario').click(function () {
+                $(this).hide()
+                $('.form-post-comment').slideDown(600);
+            });
+
+            var IniciarContador = function ()
+            {
+                $.get({
+                    url: "@Url.Action("QuantidadeComentarios", "Comentarios")",
+                    data: { idNoticia: idNoticia },
+                    dataType: "json"
+                }).done(function (data) {
+                        var totalNoticias = data;
+
+                        if (totalNoticias && totalNoticias > 0) {
+                        $(".header-control .title-bottom").html("Comentários (<span id='numero-posts'>" + totalNoticias + "</span>)");
+                        $(".select-box").show();
+                            if (totalNoticias > 3) {
+                            $("#load-comments").show();
+                            }
+                        } else {
+                        $(".header-control .title-bottom").html("Nenhum comentário");
+                        }
+                    });
+
+            }
+
+            IniciarContador();
+
+            var AtualizaContador = function()
+            {
+                var contador = $(".header-control .title-bottom #numero-posts")[0];
+
+                if (contador)
+                {
+                    $(contador).val($(contador).val() + 1)
+                } else {
+                    $(".header-control .title-bottom").html("Comentários (<span id='numero-posts'>1</span>)");
+                    $(".select-box").show();
+                }
+            }
+
+            var reordenarComentarios = function ()
+            {
+                $("#pagina-atual").val(0);
+                $("#post-comments").html("");
+
+                CarregarMais();
+            }
+
+            var MontarComentario = function (comentario)
+            {
+                var post =
+                    "<li data-id='" + comentario.Id +"'>"
+                    + "<h3 class='name'>" + comentario.Nome + "</h3>"
+                    + "<small class='date'>" + comentario.DataCadastro + "</small>"
+                    + "<div class='block-text'><p>" + comentario.Texto + "</p>" + "</div>"
+                    + "<ul class='sub-comments block-text'>";
+                if (comentario.Respostas) {
+                    $(comentario.Respostas).each(function () {
+                        post +=
+                      "<li>"
+                          + "<h3 class='name'>" + this.Nome + "</h3>"
+                          + "<small class='date'>" + this.DataCadastro + "</small>"
+                          + "<div class='block-text'><p>" + this.Texto + "</p></div>"
+                        + "<div class='actions-comment'>"
+                        + "<button class='action like' data-id='" + this.Id + "'><i class='fa fa-thumbs-o-up " + (verificaGostei(this.Id) ? "active" : "") + "'></i> <span class='count'>" + this.Gostei + "</span></button>"
+                        + "<button class='action deslike' data-id=" + this.Id + "><i class='fa fa-thumbs-o-down " + (verificaNaoGostei(this.Id) ? "active" : "") + "'></i> <span class='count'>" + this.NaoGostei + "</span></button>"
+                          + "</div>"
+                    + "</li>"
+                    })
+                }
+                post += "</ul>";
+
+                if (comentario.Gostei == null) {
+                    comentario.Gostei = 0
+                }
+
+                if (comentario.NaoGostei == null) {
+                    comentario.NaoGostei = 0
+                }
+
+                var textoCompactado = comentario.Texto.length > 25 ? comentario.Texto.substring(0, 25) + "..." : comentario.Texto;
+
+                var linkFacebook = "https://www.facebook.com/sharer.php?caption=" + comentario.Nome + "&description=" + textoCompactado + "&u=@HttpContext.Current.Request.Url.AbsoluteUri&picture=@("http://" + HttpContext.Current.Request.Url.Authority)/images/copaIta.jpg&display=popup&ref=plugin";
+                var openFacebook = 'window.open("' + linkFacebook + '");';
+
+                var linkTwitter = "https://twitter.com/intent/tweet?text=" + textoCompactado + "&amp;url=@("http://" + HttpContext.Current.Request.Url.Authority)";
+                var openTwitter = 'window.open("' + linkTwitter + '");';
+
+
+                post +=
+                      "<div class='actions-comment'>"
+                    + "<button class='action like' data-id='" + comentario.Id + "'>"
+                    + "<i class='fa fa-thumbs-o-up'></i> <span class='count'>" + comentario.Gostei + "</span>"
+                    + "</button>"
+                    + "<button class='action deslike' data-id='" + comentario.Id + "'>"
+                    + "<i class='fa fa-thumbs-o-down'></i> <span class='count'>" + comentario.NaoGostei + "</span>"
+                    + "</button>"
+                //    + "<div class='box-share'>"
+                //    + "<span class='title'>"
+                //    + "<i class='fa fa-share-alt'></i>Compartilhar"
+                //    + "</span>"
+                //+ "<nav>"
+                //+ "<a href='#' onclick='" + openFacebook + "' class='icon-facebook'>"
+                //    + "<i class='fa fa-facebook'></i> Facebook"
+                //+ "</a>"
+                //+ "<a href='#' class='icon-twitter-squared' onclick='" + openTwitter + "');'><i class='fa fa-twitter'></i>Twitter"
+                //    + "</a>"
+                //    + "</nav>"
+                //    + " </div>"
+                    + "<button class='insert-comment'>"
+                + "<i class='fa fa-commenting'></i> "
+                + "Responder Comentário"
+                    + "</button>"
+                    + " </div>"
+                    + "</li>";
+
+                return post;
+            }
+
+            $("#orderby").change(function () {
+                reordenarComentarios();
+            });
+
+            var CarregarMais = function ()
+            {
+                var paginaAtual = parseInt($("#pagina-atual").val());
+                var ordem = parseInt($("#orderby").val());
+
+                $.get({
+                    url: "@Url.Action("CarregarComentarios", "Comentarios")",
+                    data: { pagina: paginaAtual + 1, noticiaId: idNoticia, ordem: ordem },
+                    dataType: "json",
+                    beforeSend: function ()
+                    {
+                        $("#load-comments").hide();
+                        $("#loading").show();
+                    },
+                    success: function (data)
+                    {
+                        setTimeout(function () {
+                        if (data) {
+                            $("#pagina-atual").val(data.Pagina);
+
+                            $(data.Comentarios).each(function ()
+                            {
+                                var comentario = { Id: this.Id, Nome: this.Nome, DataCadastro: this.DataCadastro, Texto: this.Texto, Respostas: this.Respostas, Gostei: this.Gostei, NaoGostei: this.NaoGostei };
+
+                                var post = MontarComentario(comentario);
+
+                                $('.posts-comments').append(post);
+                            });
+
+                            if (!isNaN(parseInt($("#numero-posts").html()))) {
+                                if ($("ul.posts-comments li").length >= parseInt($("#numero-posts").html())) {
+                                    $("#load-comments").hide();
+                                } else {
+                                    $("#load-comments").show();
+                                }
+                            }
+
+                            bindEvents();
+                            pintarGosteiNaoGostei();
+                            }
+                        $("#loading").hide();
+                        $('.posts-comments').show('slow');
+                        }, 600);
+
+                    }
+                });
+            }
+
+            CarregarMais();
+            IniciarContador();
+
+            var OcultarEnvio = function ()
+            {
+                $('.posts-data').hide();
+            }
+
+            var PostComment = function (user) {
+
+                OcultarEnvio();
+
+                user.noticiaId = idNoticia;
+
+                if ($('.posts-comments li.selected')[0]) {
+                    user.comentarioId = $('.posts-comments li.selected').data("id");
+                }
+
+                $.post({
+                    url: "@Url.Action("Comentar", "Comentarios")",
+                    data: { comentarioVM: user },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data) {
+
+                            sweetAlert({
+                                title: "Sucesso",
+                                text: "Seu comentário foi enviado! Em breve poderá ser visualizado.",
+                                type: "success",
+                                timer: 3000,
+                                showConfirmButton: false
+                            });
+
+                            setTimeout(function () {
+
+                                $('.form-post-comment').slideUp(600);
+
+                                actionsButton();
+
+                                $('#msg-comentario').val('');
+                                $('#nome-user').val('');
+                                $('#cpf').val('');
+
+                                if ($('.posts-comments li').hasClass('selected')) {
+
+                                    var subcomment =
+                                        "<li>"
+                                        + "<h3 class='name'>" + user.nameUser + "</h3>"
+                                        + "<small class='date'>" + data.MomentoPostagem + "</small>"
+                                        + "<div class='block-text'><p>" + user.mensagemUser + "</p>" + "</div>"
+                                        + "<div class='actions-comment'>"
+                                        + "<button class='action like' data-id=" + data.Id + ">" + "<i class='fa fa-thumbs-o-up'></i><span class='count'>0</span></button>"
+                                        + "<button class='action deslike' data-id=" + data.Id + ">" + "<i class='fa fa-thumbs-o-down'></i><span class='count'>0</span></button>"
+                                        + "</div>"
+                                        + "</div>"
+                                        + "</li>";
+
+                                    setTimeout(function () {
+
+                                        $('body, html').animate({
+                                            scrollTop: $('.posts-comments li.selected').offset().top - 100
+                                        }, 800);
+                                        $('.posts-comments li.selected .sub-comments').prepend(subcomment);
+                                        $('.posts-comments li').removeClass('selected');
+
+                                    }, 1000);
+                                }
+                                else {
+
+                                    var comentario = { Nome: user.nameUser, DataCadastro: data.MomentoPostagem, Texto: user.mensagemUser, Id: data.Id };
+
+                                    var post = MontarComentario(comentario);
+
+                                    $('.posts-comments').prepend(post);
+
+                                    if ($(".post-comments .li").length > 3) {
+                                        $('.posts-comments').last().remove();
+                                    }
+
+                                }
+
+                                AtualizaContador();
+
+                                $('.box-share').on("click", function () {
+                                    if ($(this).hasClass('ok')) {
+                                        $('.box-share.ok').removeClass('ok');
+                                    }
+                                    else {
+                                        $('.box-share.ok').removeClass('ok');
+                                        $(this).toggleClass('ok');
+                                    }
+                                });
+                            }, 3100);
+                        } else {
+                            sweetAlert({
+                                title: "Error",
+                                text: "Ocorreu um erro durante o processamento de seu comentário! Reveja os campos preenchidos e tente novamente.",
+                                type: "error",
+                                timer: 3000,
+                                showConfirmButton: false
+                            });
+                        }
+                    }
+                });
+            };
+
+            var validarCPF = function (strCPF) {
+                strCPF = strCPF.replace(/[^\d]+/g, '');
+                var Soma;
+                var Resto;
+                Soma = 0;
+                if (strCPF == "00000000000") return false;
+
+                for (i = 1; i <= 9; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (11 - i);
+                Resto = (Soma * 10) % 11;
+
+                if ((Resto == 10) || (Resto == 11)) Resto = 0;
+                if (Resto != parseInt(strCPF.substring(9, 10))) return false;
+
+                Soma = 0;
+                for (i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (12 - i);
+                Resto = (Soma * 10) % 11;
+
+                if ((Resto == 10) || (Resto == 11)) Resto = 0;
+                if (Resto != parseInt(strCPF.substring(10, 11))) return false;
+                return true;
+            }
+            // Ação de like e deslike
+
+            var actionsButton = function () {
+                $('.posts-comments .actions-comment .action').click(function () {
+
+                    var id = $(this).data("id");
+
+                    if (!$(this).hasClass('active')) {
+                        if ($(this).hasClass('like')) {
+                            gostarComentario(id);
+                        }
+                        else {
+                            naoGostarComentario(id);
+                        }
+                        var contador = $(this).find('.count');
+                        contador.text(parseInt(contador.text()) + 1);
+
+                        var botao = $($(this).siblings('.action.active')[0]);
+                        var contadorOposto = $(botao.find('.count')[0]);
+                        if (contadorOposto) {
+                            contadorOposto.text(parseInt(contadorOposto.text()) - 1);
+                            contadorOposto.closest('.action.active').removeClass('active');
+                        }
+
+                        $(this).addClass('active');
+                    }
+                })
+          }
+
+            $("#load-comments").click(function (e) {
+                e.preventDefault();
+                CarregarMais();
+            });
+
+                var compartilharComentario = function (idComentario) {
+
+                    FB.ui({
+                        method: 'feed',
+                        name: 'Testeee',
+                        link: '@("http://www." + HttpContext.Current.Request.Url.Authority + Url.Action("ComentarioCompartilhado", "Comentarios"))/' + idComentario,
+                        picture: 'url_da_imagem_aqui',
+                        caption: 'Testando',
+                        description: 'Descrição'
+                    });
+                }
+
+            var bindEvents = function ()
+            {
+                $('.insert-comment').off('click');
+                $(".icon-facebook").off('click');
+                $('.posts-comments .actions-comment .action').off('click');
+
+                $(".icon-facebook").click(function ()
+                {
+                    var idComentario = $(this).closest("li").data("id");
+
+                    compartilharComentario(idComentario);
+
+                });
+
+                $('.insert-comment').click(function () {
+
+                    $('.form-post-comment').slideDown(600);
+                    $('body, html').animate({
+                        scrollTop: $('.form-post-comment').offset().top - 100
+                    }, 800);
+                    $("li.selected").removeClass('selected');
+                    $(this).parent().parent().addClass('selected');
+                });
+
+                structure.share();
+
+                actionsButton();
+
+            }
+
+            bindEvents();
+
+            var user = new Object();
+
+            // Posta um comentário retornando o usuário normal
+            $('#post-comment').click(function (e) {
+
+                e.preventDefault();
+                var mensagem = $('#msg-comentario').val();
+                var nomeinput = $('#nome-user').val();
+                var cpf = $('#cpf').val();
+
+                var response = grecaptcha.getResponse();
+                
+                if (response.length == 0)
+                {
+                    sweetAlert("Por favor...", "Marque a caixa de verificação para confirmar que não é uma máquina!", "error");
+                    return;
+                }
+
+                if (nomeinput == '' || cpf == '' || mensagem == '' || !validarCPF(cpf)) {
+                    sweetAlert("Por favor...", "preencha seus dados corretamente!", "error");
+                }
+                else {
+                    user.nameUser = nomeinput;
+                    user.cpfUser = cpf;
+                    user.mensagemUser = mensagem;
+                    PostComment(user);
+                    $("#bt-comentario").show();
+                }
+
+            });
+
+
+            // Posta um comentário retornando o usuário via Facebook
+
+            $('#post-facebook').click(function (e) {
+                e.preventDefault();
+
+                var response = grecaptcha.getResponse();
+                if (response.length == 0) {
+                    sweetAlert("Por favor...", "Marque a caixa de verificação para confirmar que não é uma máquina!", "error");
+                    return;
+                }
+
+                var mensagem = $('#msg-comentario').val();
+
+                if (mensagem != '') {
+                    FB.login(function (response) {
+
+                        if (response.authResponse) {
+
+                            FB.api('/me', { fields: 'name, email, id, link' }, function (response) {
+                                user.nameUser = response.name;
+                                user.emailUser = response.email;
+                                user.idUser = response.id;
+                                user.link = response.link;
+                                user.mensagemUser = mensagem;
+                                PostComment(user);
+
+                                $("#bt-comentario").show();
+                            });
+                        }
+
+                    });
+                } else {
+                    sweetAlert("Por favor...", "Digite sua mensagem", "error");
+                }
+
+            });
+        });
+</script>
+    }

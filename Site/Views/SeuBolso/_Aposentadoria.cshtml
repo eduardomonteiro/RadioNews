@@ -1,0 +1,33 @@
+﻿<div class="box-bi">
+    <p class="tit">aposentadoria </p>
+    <p>Veja quando você vai se aposentar com a nova regra</p>
+    <form id="formcalcular">
+        <div class="apon-sexo">
+            <label for="man" class="labelsexo ativo">
+                <input type="radio" name="sexo" value="m" id="man" checked="checked">
+                Homem
+            </label>
+            <label for="wom" class="labelsexo">
+                <input type="radio" name="sexo" value="f" id="wom">
+                Mulher
+            </label>
+        </div>
+        <fieldset>
+            <label for="apon-serv">Servidor(a)</label>
+            <select name="" id="apon-serv" required>
+                <option value="">Selecione</option>
+                <option value="1">Publico</option>
+                <option value="2">Privado</option>
+            </select>
+        </fieldset>
+        <fieldset>
+            <label for="apon-ida">Sua idade atual</label>
+            <input type="text" id="apon-ida" placeholder="Digite aqui" required>
+        </fieldset>
+        <fieldset>
+            <label for="apon-inss">Anos que já contribuiu INSS</label>
+            <input type="text" id="apon-inss" placeholder="Exemplo: 25" required>
+        </fieldset>
+        <input id="calcularaposentadoria" type="submit" value="calcular" data-fancybox data-src="#float-aposentado" data-options='{"smallBtn" : false}'>
+    </form>
+</div>

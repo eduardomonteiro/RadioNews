@@ -1,0 +1,204 @@
+﻿@using System.Text.RegularExpressions
+@using PagedList
+@using PagedList.Mvc
+@using Site.Helpers
+@model Site.ViewModels.BuscaViewModel
+
+@section SEO{
+    <meta name="DC.title" content="Busca -  @Request.Params["busca"] - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:title" content="Busca -  @Request.Params["busca"] - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="@Url.Content("~/images/ico-facebook.jpg")" />
+    <meta property="og:url" content="@HttpContext.Current.Request.Url.AbsoluteUri" />
+    <title>Busca por @Request.Params["busca"] - Rádio CompanyName | A Rádio de Minas</title>
+}
+
+
+<div class="wrapper-general center">
+    <header class="nav-intern clearfix">
+        <div class="buttons">
+            <a class="bt-back" href="javascript:window.history.go(-1)"> <i class="fa fa-angle-left"></i> Voltar</a>
+            Texto: <button class="more bt-resize">+</button> <button class="bt-resize minus">-</button>
+        </div>
+        <nav class="breadcumb">
+            <a href="@Url.Action("Index","Home")">Home</a>
+            <span>@Request.Params["busca"]</span>
+        </nav>
+    </header>
+
+    <h1 class="title-page">
+        <strong>@Model.paginacao.TotalItemCount</strong>
+        @(ViewContext.RouteData.Values["busca"] != null ? "Resultados encontrados para:" : "Resultados encontrados")
+        <span style="font-style: italic;">
+            @(ViewContext.RouteData.Values["busca"] != null ? ViewContext.RouteData.Values["busca"] : null)
+    </span>
+</h1>
+<div class="row-grid clearfix">
+
+    <div class="grid-9 main-grid">
+
+
+        @if (Model.Banner != null)
+            {
+            <div class="banner-container">
+                @if (!string.IsNullOrEmpty(Model.Banner.Link))
+                {
+                    <a href="@Model.Banner.Link" target="_blank" onclick="clickBanner(@Model.Banner.Id)">
+                        <img class="promotional-banner" data-cliente="@Model.Banner.Anunciante" data-comercial="@Model.Banner.AreaBanner.FirstOrDefault().Descricao" data-dimensao="@Model.Banner.AreaBanner.FirstOrDefault().Tamanho" src="/admin/Conteudo/Banners/@Model.Banner.AreaBanner.FirstOrDefault().Tamanho/@Model.Banner.Arquivo" alt="@Model.Banner.Titulo" data-banner-id="@Model.Banner.Id">
+                    </a>
+                }
+                else
+                {
+                    <img class="promotional-banner" 
+                         data-cliente="@Model.Banner.Anunciante" 
+                         data-comercial="@Model.Banner.AreaBanner.FirstOrDefault().Descricao" 
+                         data-dimensao="@Model.Banner.AreaBanner.FirstOrDefault().Tamanho" 
+                         src="/admin/Conteudo/Banners/@Model.Banner.AreaBanner.FirstOrDefault().Tamanho/@Model.Banner.Arquivo" alt="@Model.Banner.Titulo" data-banner-id="@Model.Banner.Id">
+                }
+            </div>
+        }
+
+       
+            <section style="margin-top: -45px">
+
+                <header class="filters">
+                    @using (Html.BeginForm("Index", "Busca", new { busca = (!string.IsNullOrEmpty(Request.Params["editoria"]) ? Request.Params["editoria"] : ViewContext.RouteData.Values["busca"]) }, FormMethod.Post, new { @class = "row-grid clearfix", @id = "form-busca" }))
+                        {
+                        <div class="grid-4">
+                            <label for="palavrachave">Palavra Chave</label>
+                            <input type="text" class="input-form" name="busca" maxlength="160" id="busca" value="@(ViewContext.RouteData.Values["busca"]!=null?ViewContext.RouteData.Values["busca"]:null)">
+                        </div>
+
+                        <div class="grid-3">
+                            <label for="categoria">Editoria</label>
+                            @Html.DropDownList("editoria", null, "Selecione...", new { @class = "input-form", @id = "editoria", @name = "editoria" })
+                        </div>
+                        <div class="grid-2">
+                            <label for="datainicio">De</label>
+                            <input type="date" class="input-form dates" id="datainicio" value="@Request.Params["dataInicio"]" name="dataInicio">
+                        </div>
+                        <div class="grid-2">
+                            <label for="datafinal">Até</label>
+                            <input type="date" class="input-form dates" id="datafinal" value="@Request.Params["dataFinal"]" name="dataFinal">
+                        </div>
+                        <div class="grid-1">
+                            <button type="submit" id="post-search" title="Buscar" class="search-filter fa fa-search"></button>
+                        </div>
+                        }
+
+                </header>
+
+                @if (Model.paginacao.Count > 0)
+                {
+                    <ul class="news-line">
+                        @foreach (var item in Model.paginacao)
+                        {
+                            var urlCompartilha = HttpContext.Current.Request.Url.Authority + "/" + item.Control + "/" + item.Url;
+                            <li>
+                                <article class="container">
+
+                                    @if (!string.IsNullOrEmpty(item.Imagem))
+                                    {
+                                        <figure>
+                                            <a href="/@item.Control/@item.Url">
+                                                <img src="@Utils.fullUrlImage("260x173", item.Id,168)" alt="@item.Titulo">
+                                            </a>
+                                        </figure>
+
+                                    }
+
+                                    <div class="info">
+                                        <div class="clearfix header-content">
+
+                                            <span class="info-publication">
+                                                Por <strong>@item.Autor</strong>, @item.Data.Value.ToShortDateString()  às  @item.Data.Value.ToShortTimeString()
+                                            </span>
+
+                                            <div class="box-share">
+                                                <span class="title">
+                                                    <i class="fa fa-share-alt"></i>Compartilhar
+                                                </span>
+                                                <nav>
+                                                    <a href="#" class="icon-facebook" onclick="openwindow('https://www.facebook.com/sharer/sharer.php?u=@urlCompartilha&display=popup&ref=plugin');">
+                                                        <i class="fa fa-facebook"></i> Facebook
+                                                    </a>
+
+                                                    <a href="#" class="icon-twitter-squared" onclick="openwindow('https://twitter.com/intent/tweet?text=@Regex.Replace(item.Chamada != null ? item.Chamada : item.Titulo, @"<[^>]+>|&nbsp;", "").Trim()&url=@urlCompartilha');">
+                                                        <i class="fa fa-twitter"></i>Twitter
+                                                    </a>
+                                                </nav>
+                                            </div>
+                                        </div>
+                                        <a href="/@item.Control/@item.Url">
+                                            <h3 class="tag-area">@item.Titulo</h3>
+                                            <span class="title-medium">@Html.Raw(item.Chamada)</span>
+                                        </a>
+                                    </div>
+                                </article>
+                            </li>
+                        }
+
+                    </ul>
+                }
+
+                <footer class="pagination-bottom">
+
+                    <ul class="pag">
+                        @if (Model.paginacao.PageCount > 1)
+                            {
+                            @Html.PagedListPager(Model.paginacao, page => Url.Action("Index", "Busca", new
+                       {
+                           page,
+                           busca = (!string.IsNullOrEmpty(Request.Params["editoria"]) ? Request.Params["editoria"] : ViewContext.RouteData.Values["busca"]),
+                           editoria = Request.Params["editoria"],
+                           datainicio = Request.Params["datainicio"],
+                           datafinal = Request.Params["datafinal"]
+                       }),
+                           new PagedListRenderOptions
+                           {
+                               LinkToNextPageFormat = "Próximo",
+                               LinkToPreviousPageFormat = "Anterior",
+                               MaximumPageNumbersToDisplay = 5,
+                               DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                               DisplayLinkToFirstPage = PagedListDisplayMode.Never
+                           })
+                            }
+                    </ul>
+
+                </footer>
+
+            </section>
+        
+
+    </div>
+
+    @{Html.RenderAction("Sidebar", "Home");}
+
+</div>
+</div>
+
+@section scripts{
+    <script language="JavaScript1.2">
+        function openwindow(url) {
+            window.open(url,
+                "mywindow", "location=no,status=no,scrollbars=no,width=400,height=300");
+        }
+
+        $(document).ready(function () {
+            //   $("#form-busca")
+            $("#post-search").click(function (e) {
+                e.preventDefault();
+                var search = $("#busca").val();
+                $("#form-busca").attr("action", "/busca/" + search);
+
+                $("#form-busca").submit();
+
+            });
+
+        });
+
+
+    </script>
+
+}

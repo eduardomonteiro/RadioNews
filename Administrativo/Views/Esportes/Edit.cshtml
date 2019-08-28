@@ -1,0 +1,85 @@
+﻿@model Administrativo.Models.Editoriais
+
+@{
+    ViewBag.Title = "Editar Editoriais";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Altere as informações de Editoriais";
+}
+
+<div class="content">
+    <div class="row">
+        <div class="box box-warning">
+            <div class="box-header">
+                <h3 class="box-title">Editar Editoriais</h3>
+            </div>
+            @using (Html.BeginForm())
+            {
+                <div class="box-body">
+                    @Html.HiddenFor(model => model.id)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.nome)
+
+                        @Html.TextBoxFor(model => model.nome, new { @maxlength = 100, @class = "text-box" })
+                        @Html.ValidationMessageFor(model => model.nome)
+                    </div>
+
+                    @*<div class="form-group">
+                        <label>É uma editoria Especial?</label>
+                        @Html.BooleanFieldFor(model => model.especial, Model.especial, new { @class = "form-control", style = "width: 120px;" })
+                        @Html.ValidationMessageFor(model => model.especial)
+                    </div>*@
+
+                    <div class="form-group" style="display:none;">
+                        <label>É uma editoria de Esportes?</label>
+                        @Html.BooleanFieldFor(model => model.esportes, true, new { @class = "form-control", style = "width: 120px;" })
+                        @Html.ValidationMessageFor(model => model.esportes)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ativo)
+                        @Html.BooleanFieldFor(model => model.ativo, Model.ativo, new { @class = "form-control", style = "width: 120px;" })
+                        @Html.ValidationMessageFor(model => model.ativo)
+                    </div>
+
+
+                    <div class="form-group div-modelo" style="display:none;">
+                        <label>Modelo</label>
+                        @Html.DropDownList("modeloEspecial", null,"Selecione...", new { @class = "chosen-select" })
+                    </div>
+
+                </div>
+                <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a href="@Url.Action("Index", "Esportes")" class="btn btn-info">Voltar</a>
+
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+<script>
+        $(document).ready(function () {
+            $(".chosen-select").chosen({ width: "100%" });
+
+            $("#especial").on('change', function () {
+                var value = $(this).val();
+                console.log(value);
+                if (value == "true") {
+                    $(".div-modelo").show();
+                }
+                else {
+                    $(".div-modelo").hide();
+                }
+
+
+            });
+
+        });
+</script>
+}

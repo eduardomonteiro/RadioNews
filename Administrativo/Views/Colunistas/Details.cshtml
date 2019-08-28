@@ -1,0 +1,123 @@
+﻿@model Administrativo.Models.Colunista
+
+@{
+    ViewBag.Title = "Colunista";
+    ViewBag.Icon = "fa fa-quote-right";
+    ViewBag.SmallDescription = "Visualizar detalhes de Colunista";
+}
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">Detalhes</h3>
+            </div>
+            <div class="box-content padded">
+                <table class="table table-bordered table-striped responsive">
+                    <tbody>
+                        <tr>
+                            <td style="width:200px;">@Html.DisplayNameFor(model => model.id)</td>
+                            <td>@Html.DisplayFor(model => model.id)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.nome)</td>
+                            <td>@Html.DisplayFor(model => model.nome)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.email)</td>
+                            <td>@Html.DisplayFor(model => model.email)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.descricao)</td>
+                            <td>@Html.Raw(Model.descricao)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.foto)</td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(Model.foto))
+                                {
+
+                                    <a class="btn btn-block btn-primary" data-toggle="modal" data-target="#foto" style="width: 120px; padding: 3px;">Imagem Atual</a>
+
+                                }
+                                else
+                                {
+                                    <p class="text-yellow">Sem Miniatura.</p>
+                                }
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.dataCadastro)</td>
+                            <td>@Html.DisplayFor(model => model.dataCadastro)</td>
+                        </tr>
+
+                        @if (ViewBag.UserName != null)
+                        {
+                            <tr>
+                                <td>@Html.Label("Nome de usuário")</td>
+                                <td>@ViewBag.UserName</td>
+                            </tr>
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="box-footer">
+
+
+
+                <a href="@Url.Action("Edit","Colunistas", new { id = Model.id })" class="btn btn-warning">Editar</a>
+                <a href="@Url.Action("Index","Colunistas")" class="btn btn-info">Voltar</a>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="foto" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Imagem Atual</h4>
+            </div>
+            <div class="modal-body">
+                <img src="@Url.Content("~/Conteudo/Colunistas/Foto/" + Model.foto)" width="550" />
+            </div>
+            <div class="modal-footer clearfix">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="fa fa-times"></i>Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="foto-mini" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Miniatura Atual</h4>
+            </div>
+            <div class="modal-body">
+                <img src="@Url.Content("~/Conteudo/Colunistas/90x90/" + Model.fotoMini)" width="90" />
+            </div>
+            <div class="modal-footer clearfix">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="fa fa-times"></i>Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

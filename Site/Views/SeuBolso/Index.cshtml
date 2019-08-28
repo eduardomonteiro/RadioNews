@@ -1,0 +1,243 @@
+﻿@model Site.ViewModels.SeuBolso.SeuBolsoViewModel
+@using System.Text.RegularExpressions
+@using PagedList.Mvc
+@using Site.Helpers;    
+@{
+    ViewBag.Title = "Index";
+
+    var bannerlateral = Model.Banners.Where(x => x.Chave == "seu-bolso1").OrderBy(x => Guid.NewGuid()).FirstOrDefault();
+    var bannercentral = Model.Banners.Where(x => x.Chave == "seu-bolso").OrderBy(x => Guid.NewGuid()).FirstOrDefault();
+    var bannerrodape = Model.Banners.Where(x => x.Chave == "seu-bolso2").OrderBy(x => Guid.NewGuid()).FirstOrDefault();
+    
+}
+@section SEO{
+    <meta name="DC.title" content="Banco Inter - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:title" content="Banco Inter - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="@Url.Content("~/images/ico-facebook.jpg")" />
+    <meta property="og:url" content="@HttpContext.Current.Request.Url.AbsoluteUri" />
+    <title>Banco Inter - Rádio CompanyName | A Rádio de Minas</title>
+}
+@section css{
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    @Styles.Render("~/Content/seubolso")
+} 
+
+<div class="wrapper-general center" style="padding-top: 245px;">
+    <h1 class="title-page" style="margin-top: 20px;">Seu Bolso - Banco Inter</h1>
+    <header class="nav-intern clearfix">
+        <div class="buttons">
+            <a class="bt-back" href="javascript:window.history.go(-1)"> <i class="fa fa-angle-left"></i> Voltar</a>
+            Texto: <button class="more bt-resize">+</button> <button class="bt-resize minus">-</button>
+        </div>
+        <nav class="breadcumb">
+            <a href="@Url.Action("Index","Home")">Home</a>
+            <a href="#">Especiais</a>
+            <a href="#">Seu Bolso</a>
+            <span>Banco Inter</span>
+        </nav>
+    </header>
+</div>
+    <div class="content-bancointer">
+
+        <div class="banner-bi" style="margin-bottom: 40px;">
+            <div class="list-ban">
+                <div class="item" style="background-image: url('images/ban-bancointer1.jpg')">
+                    <div class="center">
+                        <div class="info">
+                            <p class="title">JUNTAR QUASE R$7.000,00 EM 52 SEMANAS É POSSÍVEL!</p>
+                            <p>Estudos, viagens, trocar de carro, redecorar a casa... Início de ano é cheio de planos. Dizem que “sonhar não custa nada”, ...</p>
+                            <a href="https://bancointer.com.br/" target="_blank">
+                                <button>SAIBA COMO, aqui</button>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="center">
+            <div class="row-grid clearfix">
+                <div class="grid-6">
+                    <div class="box-bi hm290">
+                        <div class="grid-7">
+                            <p class="tit">Seu Bolso</p>
+                            <p>Como você anda cuidando das suas finanças pessoais? Qual é o sua situação financeira?</p>
+                            <p>Veja em que situação você se encontra!</p>
+                        </div>
+                        <div class="grid-5 align-center">
+                            <img src="../images/ico-calc.png" alt="">
+                            <a onclick="abrefuncy('.float-seubolso');">
+                                <button>
+                                    Calcular agora
+                                </button>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="grid-6">
+                    @if (Model.Indicadores.Bovespa != null)
+                    {
+                        <div class="box-bi hm290">
+                            <div class="grid-4">
+                                <p class="tit">ibovespa</p>
+                                <div class="border"></div>
+                                <p class="txt-porc">
+                                    @Model.Indicadores.Bovespa.PercentualVariacao
+                                    <small>
+                                        %
+                                    </small>
+                                </p>
+                                <p class="txt-pont">@Model.Indicadores.Bovespa.Pontos</p>
+                            </div>
+                            <div class="grid-8">
+                                <div class="txt border clearfix">
+                                    <p class="tit">moeda</p>
+                                    <p class="ibo-com">compra</p>
+                                </div>
+                                <div class="txt border clearfix">
+                                    <p>Dólar</p>
+                                    <p id="dolarvalor">R$ 3,576</p>
+                                </div>
+                                <div class="txt border clearfix">
+                                    <p>Euro</p>
+                                    <p id="eurovalor">R$ 3,975</p>
+                                </div>
+                                <div class="txt clearfix">
+                                    <p>libra</p>
+                                    <p id="libravalor">R$ 0,211</p>
+                                </div>
+                            </div>
+                            <div class="border clearfix"></div>
+                            <p class="legenda clearfix">Atualizado: 10/10/2016, 10h19</p>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="row-grid clearfix">
+                <div class="grid-9">
+                    <div class="grid-4">
+                        <div class="box-bi hm320">
+                            <p class="tit">Conversor de moedas</p>
+                            <div class="bi-conversordemoedas">
+                                <fieldset>
+                                    <label for="conversor-de">de</label>
+                                    <select name="conversor-de" id="conversor-de">
+                                        <option value="BRL">R$ - Real</option>
+                                        <option value="USD">$ - Dolar</option>
+                                        <option value="GBP">£ - Libra</option>
+                                        <option value="EUR">€ - Euro</option>
+                                    </select>
+                                </fieldset>
+                                <fieldset>
+                                    <label for="conversor-para">para</label>
+                                    <select name="conversor-para" id="conversor-para">
+                                        <option value="USD">$ - Dolar</option>
+                                        <option value="GBP">£ - Libra</option>
+                                        <option value="EUR">€ - Euro</option>
+                                        <option value="BRL">R$ - Real</option>
+                                    </select>
+                                </fieldset>
+                                <fieldset>
+                                    <label for="conversor-valor">valor</label>
+                                    <input type="text" value="0,00" name="conversor-valor" id="conversor-valor">
+                                </fieldset>
+                                <p>Resultado <strong id="conversor-resultado">0,00</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid-4">
+                        <div class="box-bi hm320">
+                            <p class="tit">Commodities</p>
+                            <div class="commodities-base" style="height: 20px;width: 100%;background: #f6f6f6;position: absolute;"></div>
+                            <iframe frameborder="0" scrolling="no" height="230" width="100%" allowtransparency="true" marginwidth="0" marginheight="0" src="https://sslcomrates.forexprostools.com/index.php?force_lang=12&pairs_ids=8851;49768;13916;959199;8869;8914;8894;959207;8830;8836;&header-text-color=%23FFFFFF&header-bg=%23ad1111&curr-name-color=%230059b0&inner-text-color=%23000000&green-text-color=%232A8215&green-background=%23B7F4C2&red-text-color=%23DC0001&red-background=%23FFE2E2&inner-border-color=%23ffffff&border-color=%23ffffff&bg1=%23F6F6F6&bg2=%23ffffff&last=hide&open=hide&month=hide&high=hide&low=hide&change=hide&last_update=hide"></iframe>
+                        </div>
+                    </div>
+                    <div class="grid-4">
+                        <div class="box-bi hm320">
+                            <p class="tit">Indicadores</p>
+                            <div class="bi-indicadores">
+
+                                @foreach (var i in Model.Indicadores.Financeiros)
+                                {
+                                    @Html.Raw(String.Format("<p>{0}<span>{1}</span></p>", i.Nome, i.Valor));
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <aside class="grid-3 wrap-aponse">
+
+                    @if (bannerlateral != null)
+                    {
+                        <a href="@(!string.IsNullOrEmpty(bannerlateral.Link)? bannerlateral.Link:" #")" target="_blank" onclick="clickBanner(@bannerlateral.Id)">
+                            <img style="margin-bottom: 40px; margin-top:0" class="random-banner promotional-banner"
+                                 data-cliente="@bannerlateral.Anunciante"
+                                 data-comercial="@bannerlateral.AreaBannerDescricao"
+                                 data-dimensao="@bannerlateral.AreaBannerTamanho"
+                                 data-banner-id="@bannerlateral.Id"
+                                 src="/admin/Conteudo/Banners/@bannerlateral.AreaBannerTamanho/@bannerlateral.Arquivos"
+                                 alt="@bannerlateral.Titulo">
+                        </a>
+                    }
+                </aside>
+
+                <div class="grid-12">
+                    @if (bannercentral != null)
+                        {
+                            <a href="@(!string.IsNullOrEmpty(bannercentral.Link)? bannercentral.Link:" #")" target="_blank" onclick="clickBanner(@bannercentral.Id)">
+                                <img style="margin: 0" class="random-banner promotional-banner"
+                                    data-cliente="@bannercentral.Anunciante"
+                                    data-comercial="@bannercentral.AreaBannerDescricao"
+                                    data-dimensao="@bannercentral.AreaBannerTamanho"
+                                    data-banner-id="@bannercentral.Id"
+                                    src="/admin/Conteudo/Banners/@bannercentral.AreaBannerTamanho/@bannercentral.Arquivos"
+                                    alt="@bannercentral.Titulo">
+
+                            </a>
+                        }
+                </div>
+                <div class="grid-9">
+                    @Html.Partial("_NoticiasSeuBolso",Model)
+                </div>
+                <aside class="grid-3 wrap-aponse">
+                    @Html.Partial("_Aposentadoria")
+                 </aside>
+
+                @if (bannerrodape != null) {
+                    <a href="@(!string.IsNullOrEmpty(bannerrodape.Link)? bannerrodape.Link:" #")" target="_blank" onclick="clickBanner(@bannerrodape.Id)">
+                        <img style="margin-top: 0" class="random-banner promotional-banner"
+                             data-cliente="@bannerrodape.Anunciante"
+                             data-comercial="@bannerrodape.AreaBannerDescricao"
+                             data-dimensao="@bannerrodape.AreaBannerTamanho"
+                             data-banner-id="@bannerrodape.Id"
+                             src="/admin/Conteudo/Banners/@bannerrodape.AreaBannerTamanho/@bannerrodape.Arquivos"
+                             alt="@bannerrodape.Titulo">
+                    </a>
+                }
+            </div>
+        </div>
+
+    </div>
+
+    @Html.Partial("_SeuBolso")
+
+
+    <div class="float-aposentado" id="float-aposentado" style="display: none;">
+        <div class="content-fl-apo">
+            <p class="subtit">Você vai se aposentar com</p>
+            <p id="paragrafoaposentadoria" class="title">60 anos</p>
+            <p>A simulação não possui efeito legal nem garante o direito ao benefício, se as condições informadas ao realizar o cálculo não forem comprovadas quando você solicitar o benefício ao INSS.</p>
+        </div>
+    </div>
+
+    @section script_seubolso{
+        @Scripts.Render("~/bundles/seubolso");
+    }

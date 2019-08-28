@@ -1,0 +1,22 @@
+﻿@using Administrativo.Models
+@model ColecoesAudios
+
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Titulo)
+
+    @Html.TextBoxFor(model => model.Titulo, new { @class = "text-box"})
+    @Html.ValidationMessageFor(model => model.Titulo)
+</div>
+
+<div class="form-group">
+    <label for="EditoriaId">Categoria</label>
+    @Html.DropDownListFor(model => model.CategoriaId, (List<SelectListItem>)ViewBag.Categorias, "Selecione...", new { @class = "chosen-select" })
+    @Html.ValidationMessage("CategoriaId")
+</div>
+
+<div class="form-group">
+    <label>Ativo?</label>
+    @Html.BooleanFieldFor(model => model.Liberado, true, new { @class = "form-control", style = "width: 120px;" })
+    @Html.ValidationMessageFor(model => model.Liberado)
+</div>

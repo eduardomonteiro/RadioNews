@@ -1,0 +1,91 @@
+﻿@model Administrativo.Models.Elencos
+
+@{
+    ViewBag.Title = "Cadastrar Jogador no Elenco do Time";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Insere um jogador no elenco do time";
+}
+
+<div class="content">
+    <div class="row">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Cadastrar Jogador</h3>
+            </div>
+            @using (Html.BeginForm("Create", "Elencos", FormMethod.Post, new { enctype = "multipart/form-data", @Id = "form-Elenco" }))
+            {
+                @Html.AntiForgeryToken()
+
+
+                <div class="box-body">
+
+                    <div class="form-group">
+                        <label for="EditoriaId">Time</label>
+                        @Html.DropDownList("TimeId", null, "Selecione...", new { @class = "chosen-select" })
+                        @Html.ValidationMessage("TimeId")
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Nome)
+
+                        @Html.EditorFor(model => model.Nome)
+                        @Html.ValidationMessageFor(model => model.Nome)
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Posicao)
+
+                        <select name="Posicao" id="Posicao" class="chosen-select">
+                            <option value="">Selecione</option>
+                            <option value="Goleiro">Goleiro</option>
+                            <option value="Defensor">Defensor</option>
+                            <option value="Meia">Meia</option>
+                            <option value="Atacante">Atacante</option>
+
+                        </select>
+                        @Html.ValidationMessageFor(model => model.Posicao)
+                    </div>
+
+
+                    @*<h4 class="page-header"></h4>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+
+                                <label>Foto</label>
+                                <input type="file" name="Foto" id="Foto" />
+                                @Html.ValidationMessageFor(model => model.Foto)
+                            </div>
+                        </div>
+
+                    </div>*@
+
+                    <div class="form-group">
+                        <label>Ativo?</label>
+                        @Html.BooleanFieldFor(model => model.Ativo, true, new { @class = "form-control", style = "width: 120px;" })
+                        @Html.ValidationMessageFor(model => model.Ativo)
+                    </div>
+
+                </div>
+                <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a href="@Url.Action("Index", "Elencos", new { timeId = ViewBag.idTime })" class="btn btn-info">Voltar</a>
+
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".chosen-select").chosen({ width: "100%" });
+
+        });
+    </script>
+}

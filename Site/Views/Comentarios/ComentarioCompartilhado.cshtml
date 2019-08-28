@@ -1,0 +1,24 @@
+﻿@model Site.Models.Comentario
+@{
+    Layout = null;    
+}
+
+<html>
+<head>
+    <meta name="DC.title" content="Rádio CompanyName | @Model.Noticia.chamada" />
+    <meta property="og:title" content="Rádio CompanyName | @Model.Noticia.chamada" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="@Model.Texto" />
+    <meta property="og:image" content="@Url.Content("~/images/ico-facebook.jpg")" />
+    <meta property="og:url" content="@HttpContext.Current.Request.Url.AbsoluteUri" />
+    <title>Rádio CompanyName | @Model.Noticia.chamada</title>
+</head>
+<body>
+
+    <script>
+    window.onload = function () {
+        window.location = "@Url.Action("Detalhes", "Noticias", new { chave = Model.Noticia.url })";
+    }
+    </script>
+</body>
+</html>

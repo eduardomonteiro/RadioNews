@@ -1,0 +1,383 @@
+<!-- Desenvolvimento Front: Iago Machado -->
+<!doctype html>
+<html xml:lang="pt-br" lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <title>STYLE GUIDE</title>
+        <!-- Guia de orientação de estilo do projeto -->
+        <link rel="stylesheet" href="styles/jquery.fancybox.css">
+        <link rel="stylesheet" href="styles/styles.css">
+        <!--[if lt IE 9]>
+            <script src="scripts/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="center" style="padding: 30px 0">
+            <div class="block-text" style="text-align: center; margin-bottom: 25px; border-bottom: 1px solid #ccc; padding-bottom: 25px">
+                <h2 class="title-big">Style Guide Rádio Itatiaia</h2>
+                <p>Desenvolvido por Iago Machado</p>
+            </div>
+            <div style="background: #f2f2f2; padding: 20px; margin-bottom: 15px">
+                <h2 class="title-page">Botões</h2>
+                <br/>
+                <div class="row-grid clearfix">
+                    <div class="grid-2">
+                        <button class="bt-submit">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                        <button class="bt-menu">Menu</button>
+                        <button class="bt-red">Enviar</button>
+                        <button class="bt-resize">+</button>
+                        <button class="bt-resize">-</button>
+                    </div>
+                    <div class="grid-4">
+                        <button class="bt-red bt-large">Botão Expandido</button>
+                    </div>
+                    <div class="grid-4">
+                        <a href="#" class="bt-line">Acesar Interna</a>
+                    </div>
+                </div>
+            </div>
+            <div style="background: #f2f2f2; padding: 20px; margin-bottom: 15px">
+                <h2 class="title-page">Tipografia</h2>
+                <br/>
+                <div class="row-grid clearfix">
+                    <div class="grid-2">
+                        <p class="title-area">Título</p>
+                        <p class="date-post">02/06/1994</p>
+                        <p class="title-medium">Título</p>
+                        <p class="font-small">Legenda</p>
+                        <p class="title-normal">Título</p>
+                        <p class="title-mini">Título</p>
+                        <p class="title-card">Título</p>
+                        <p class="title-bottom">Título</p>
+                    </div>
+                    <div class="grid-2">
+                        <p class="title-miniupper">Título</p>
+                        <p class="mini-function">Título</p>
+                        <p class="name-people">Título</p>
+                        <p class="tit-function">Título</p>
+                        <p class="description-noticie">Descrição</p>
+                    </div>
+                    <div class="grid-2">
+                        <p class="title-sector">Título</p>
+                        <p class="title-page">Título</p>
+                    </div>
+                    <div class="grid-6">
+                        <p class="title-big">Bloco de Texto</p>
+                        <div class="block-text">
+                            <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="background: #f2f2f2; padding: 20px; margin-bottom: 15px">
+                <h2 class="title-page">Cards</h2>
+                <br/>
+                <div class="row-grid clearfix">
+                    <div class="grid-3">
+                        <div class="card-players">
+                            <header>
+                                <ul class="equips">
+                                    <li class="active" id="atletico">
+                                        <img src="images/thumb_galo-logo.png" alt="Atlético Mineiro" title="Atlético Mineiro">
+                                    </li>
+                                    <li id="brasil">
+                                        <img src="images/thumb_brasil-logo-brasil.png" alt="Seleção Brasileira" title="Seleção Brasileira">
+                                    </li>
+                                    <li  id="cruzeiro">
+                                        <img src="images/thumb_cruzeiro-logo-01.png" alt="Cruzeiro" title="Cruzeiro">
+                                    </li>
+                                    <li id="america">
+                                        <img src="images/thumb_america-mineiro.png" alt="América Mineiro" title="América Mineiro">
+                                    </li>
+                                </ul>
+                            </header>
+                            <div class="tabs" data-tab="atletico" style="display: block">
+                                <div class="content">
+                                    <h5>Próximo Jogo</h5>
+                                    <ul>
+                                        <li>
+                                            <img src="images/clubes/atleticomineiro.png" alt="Atlético Mineiro" title="Atlético Mineiro">
+                                            <span>Atlético Mineiro</span>
+                                        </li>
+                                        <li>
+                                            <img src="images/clubes/palmeiras.png" alt="Palmeiras" title="Palmeiras">
+                                            <span>Palmeiras</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <footer>
+                                    <h4>Campeonato Brasileiro Série A</h4>
+                                    <p>Sábado, 24 de Setembro às 21:00 h Mineirão</p>
+                                </footer>
+                            </div>
+                            <div class="tabs" data-tab="brasil">
+                                <div class="content">
+                                    <h5>Próximo Jogo</h5>
+                                    <ul>
+                                        <li>
+                                            <img src="images/clubes/brasil.png" alt="Brasil" title="Brasil">
+                                            <span>Brasil</span>
+                                        </li>
+                                        <li>
+                                            <img src="images/clubes/franca.png" alt="França" title="França">
+                                            <span>França</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <footer>
+                                    <h4>Amistoso Internacional</h4>
+                                    <p>Sábado, 24 de Setembro às 21:00 h Parc and Princes</p>
+                                </footer>
+                            </div>
+                            <div class="tabs" data-tab="cruzeiro">
+                                <div class="content">
+                                    <h5>Próximo Jogo</h5>
+                                    <ul>
+                                        <li>
+                                            <img src="images/clubes/cruzeiro.png" alt="Cruzeiro" title="Cruzeiro">
+                                            <span>Cruzeiro</span>
+                                        </li>
+                                        <li>
+                                            <img src="images/clubes/botafogo.png" alt="Botafogo" title="Botafogo">
+                                            <span>Botafogo</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <footer>
+                                    <h4>Campeonato Brasileiro Série A</h4>
+                                    <p>Sábado, 24 de Setembro às 21:00 h Mineirão</p>
+                                </footer>
+                            </div>
+                            <div class="tabs" data-tab="america">
+                                <div class="content">
+                                    <h5>Próximo Jogo</h5>
+                                    <ul>
+                                        <li>
+                                            <img src="images/clubes/Flamengo.png" alt="Flamengo" title="Flamengo">
+                                            <span>Flamengo</span>
+                                        </li>
+                                        <li>
+                                            <img src="images/clubes/americamineiro.png" alt="América Mineiro" title="América Mineiro">
+                                            <span>América Mineiro</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <footer>
+                                    <h4>Campeonato Brasileiro Série A</h4>
+                                    <p>Sábado, 24 de Setembro às 21:00 h São Januário</p>
+                                </footer>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid-3">
+                        <div class="cards-side" id="maislidas">
+                            <h1 class="title-card">Mais Lidas</h1>
+                            <ul class="trending-topics">
+                                <li>
+                                    <article>
+                                        <span class="number">1</span>
+                                        <a href="noticias-detalhe.html" class="info title-mini">Dois ônibus são incendiados na zona leste de Belo Horizonte.</a>
+                                    </article>
+                                </li>
+                                <li>
+                                    <article>
+                                        <span class="number">2</span>
+                                        <a href="noticias-detalhe.html" class="info title-mini">Dois ônibus são incendiados na zona leste de Belo Horizonte.</a>
+                                    </article>
+                                </li>
+                                <li>
+                                    <article>
+                                        <span class="number">3</span>
+                                        <a href="noticias-detalhe.html" class="info title-mini">Dois ônibus são incendiados na zona leste de Belo Horizonte.</a>
+                                    </article>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="grid-3">
+                        <div class="cards-side" id="bolsa">
+                            <h1 class="title-card">Indicadores Monetários</h1>
+                            <div class="block-money">
+                                <span>Dolar Comercial</span>
+                                <span class="pct">-0,35%</span>
+                                <h2 class="big-value">R$ 3,205</h2>
+                            </div>
+                            <div class="block-money">
+                                <span>Euro</span>
+                                <span class="pct">-0,95%</span>
+                                <span class="pull-right">R$ 3,576</span>
+                            </div>
+                            <small class="font-small">atualizado: 10/10/2016, 10h19</small>
+                        </div>
+                    </div>
+                    <div class="grid-3">
+                        <div class="cards-side" id="videos">
+                            <h1 class="title-card">Vídeo</h1>
+                            <figure class="thumb-video" data-href="images/videos/exemplo.mp4">
+                                <i class="fa fa-play-circle"></i>
+                                <img src="images/videos/thumbs/thumb.jpg" alt="{{Titulo}}">
+                            </figure>
+                            <a href="videos.html" class="title-miniupper">Mais Vídeos</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row-grid clearfix">
+                    <div class="grid-3">
+                        <div class="cards-side" id="colunistas">
+                            <h1 class="title-card">Colunistas</h1>
+                            <div class="box-columnists">
+                                <ul class="list">
+                                    <li>
+                                        <a href="coluna-detalhe.html" class="clearfix">
+                                            <img src="images/conteudo/colunistas/1.png" alt="{{Nome do Colunista}}">
+                                            <h2>José Lino Souza Barros</h2>
+                                            <p>Brio de mulher</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="coluna-detalhe.html" class="clearfix">
+                                            <img src="images/conteudo/colunistas/2.png" alt="{{Nome do Colunista}}">
+                                            <h2>Wellington Campos</h2>
+                                            <p>Conmebol anuncia nova libertadores</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="coluna-detalhe.html" class="clearfix">
+                                            <img src="images/conteudo/colunistas/2.png" alt="{{Nome do Colunista}}">
+                                            <h2>Wellington Campos</h2>
+                                            <p>Conmebol anuncia nova libertadores</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="coluna-detalhe.html" class="clearfix">
+                                            <img src="images/conteudo/colunistas/1.png" alt="{{Nome do Colunista}}">
+                                            <h2>José Lino Souza Barros</h2>
+                                            <p>Brio de mulher</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="coluna-detalhe.html" class="clearfix">
+                                            <img src="images/conteudo/colunistas/1.png" alt="{{Nome do Colunista}}">
+                                            <h2>José Lino Souza Barros</h2>
+                                            <p>Brio de mulher</p>
+                                        </a>
+                                    </li>
+
+                                </ul> 
+                                <ul class="dots"></ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid-3">
+                        <form class="cards-side" id="enquete">
+                            <h1 class="title-card">Enquete</h1>
+                            <p class="title-mini upper">Na sua opinião, qual time mineiro ficará mais bem colocado no Campeonato Brasileiro 2016?</p>
+                            <label for="1" class="options">
+                                <input type="radio" name="option" id="1">
+                                América
+                            </label>
+                            <label for="2" class="options">
+                                <input type="radio" name="option" id="2">
+                                Atlético-MG
+                            </label>
+                            <label for="3" class="options">
+                                <input type="radio" name="option" id="3">
+                                Cruzeiro
+                            </label>
+                            <button class="bt-line">Votar</button>
+                        </form>
+                    </div>
+                    <div class="grid-3">
+                        <div class="cards-side" id="podcast">
+                            <h1 class="title-card">Podcast</h1>
+                            <article class="podcast-item">
+                                <button class="fa button fa-play-circle"></button>
+                                <div class="info">
+                                    <h4 class="tag-area">Esporte - <small>10/10/2016</small></h4>
+                                    <h3 class="title-normal">Mano enaltece comprometimento dos atletas, mas acha que time precisa melhorar</h3>
+                                </div>
+                                <div class="player-audio clearfix">
+                                    <div class="playbar">
+                                        <div class="progress"></div>
+                                    </div>
+                                    <audio preload="metadata">
+                                        <source src="images/podcast/podcast.mp3" type="audio/mpeg">
+                                    </audio>
+                                </div>
+                            </article>
+                            <article class="podcast-item">
+                                <button class="fa button fa-play-circle"></button>
+                                <div class="info">
+                                    <h4 class="tag-area">Esporte - <small>10/10/2016</small></h4>
+                                    <h3 class="title-normal">Mano enaltece comprometimento dos atletas, mas acha que time precisa melhorar</h3>
+                                </div>
+                                <div class="player-audio clearfix">
+                                    <div class="playbar">
+                                        <div class="progress"></div>
+                                    </div>
+                                    <audio preload="metadata">
+                                        <source src="images/podcast/podcast.mp3" type="audio/mpeg">
+                                    </audio>
+                                </div>
+                            </article>
+                            <a href="podcasts.html" class="more-podcasts">mais podcasts</a>
+                        </div>
+                    </div>
+                    <div class="grid-3">
+                        <div class="cards-side" id="clima">
+                            <h1 class="title-card">Belo Horizonte/MG</h1>
+                            <div class="climate">
+                                <img class="ico" src="images/chuvoso.png" alt="Pancadas de Chuva" title="Pancadas de Chuva">
+                                <div>24° <strong>Min</strong></div>
+                                <div>28° <strong>Máx</strong></div>
+                            </div>
+                        </div>
+                        <div class="cards-side" id="plantao">
+                            <h1 class="title-card">Plantão BH</h1>
+                            <div class="item-scroll">
+                                <p><strong>09:00</strong>  Dois ônibus são incendiados na zona leste de Belo Horizonte.</p>
+                                <p><strong>10:00</strong>  Lula é indicado na Lava jato.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="background: #f2f2f2; padding: 30px; margin-bottom: 15px">
+                <h2 class="title-page">Colunistas</h2>
+                <br/>
+                <div class="block-text">
+                    <p>A classe <strong>row-grid</strong> é aplicada quando é preciso inserir Colunistas.</p>
+                    <p>- O layout é distribuido em 12 Colunistas.</p>
+                    <p>- Utilize a classe <strong>.grid-{{numero}}</strong>, onde {{número}} é a largura da coluna que você precisa. (Exemplo: Para uma coluna ocupar 3 / 12 do espaço do layout, basta aplicar a classe <strong>.grid-3</strong>).</p>
+                </div>
+                <div class="row-grid clearfix" style="margin-top: 40px;">
+                    <div class="grid-3">
+                        <div class="title-area" style="background: white; padding: 30px">GRID-3</div>
+                    </div>
+                    <div class="grid-9">
+                        <div class="title-area" style="background: white; padding: 30px">GRID-9</div>
+                    </div>
+                </div>
+                <div class="row-grid clearfix" style="margin-top: 15px;">
+                    <div class="grid-4">
+                        <div class="title-area" style="background: white; padding: 30px">GRID-4</div>
+                    </div>
+                    <div class="grid-8">
+                        <div class="title-area" style="background: white; padding: 30px">GRID-8</div>
+                    </div>
+                </div>
+                <div class="row-grid clearfix" style="margin-top: 15px;">
+                    <div class="grid-12">
+                        <div class="title-area" style="background: white; padding: 30px">GRID-12</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/slick.js"></script>
+    <script src="scripts/scripts.js"></script>
+</html>

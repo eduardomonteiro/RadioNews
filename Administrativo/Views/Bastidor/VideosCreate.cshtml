@@ -1,0 +1,153 @@
+﻿@model Administrativo.Models.BastidoresMidias
+
+@{
+    ViewBag.Title = "Cadastrar Videos nos bastidores";
+    ViewBag.Icon = "fa fa-cubes";
+    ViewBag.SmallDescription = "Insere um registro no sistema";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="content">
+    <div class="row">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Cadastrar Vídeo</h3>
+            </div>
+            @using (Html.BeginForm("VideosCreate", "Bastidor", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="box-body">
+
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.legenda)
+
+                        @Html.TextBoxFor(model => model.legenda, new { @maxlength = 300, @class = "text-box" })
+
+                        @Html.ValidationMessageFor(model => model.legenda)
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.midia)
+
+                                @Html.TextBoxFor(model => model.midia, new { @maxlength = 300, @class = "text-box" })
+                                @Html.ValidationMessageFor(model => model.midia)
+                            </div>
+                            <div class="col-md-6">
+                                <div class="callout callout-warning">
+                                    <h4>Exemplo:</h4>
+                                    <p>https://www.youtube.com/watch?v=tCXaSncssMw</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="idGaleria" value="1" id="idGaleria" />
+                        
+
+                    <div class="preview" style="display:none;">
+                        <h3>Preview</h3>
+                        <div id="playerYoutube"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ativo</label>
+                        @Html.BooleanFieldFor(model => model.ativo, false, new { @class = "form-control", style = "width: 120px;" })
+                        @Html.ValidationMessageFor(model => model.ativo)
+                    </div>
+
+
+                </div>
+                <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    @*<a href="@Url.Action("Index", "Bastidor")" class="btn btn-info">Voltar</a>*@
+
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".chosen-select").chosen({ width: "100%" });
+            $('#texto').wysihtml5();
+            $('#texto').css('height', '200');
+            $('#erroMP3').hide();
+
+            $("#midia").blur(function () {
+              
+                var urlYoutube = $(this).val();
+
+                var video_id = urlYoutube.split('v=')[1];
+                var ampersandPosition = video_id.indexOf('&');
+                if (ampersandPosition != -1) {
+                    video_id = video_id.substring(0, ampersandPosition);
+                }
+
+                $(".preview").show();
+                alterVideo(video_id);
+
+            });
+
+        });
+
+
+        var tag = document.createElement('script');
+
+        tag.src = "http://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('playerYoutube', {
+                height: '300',
+                width: '450',
+                videoId: 'FE5jN0rqMtM',
+                events: {
+                    'onStateChange': onPlayerStateChange
+                },
+                playerVars: {
+                    rel: 0,
+                    wmode: "opaque"
+                }
+            });
+        }
+
+        function onPlayerStateChange(evt) {
+            if (evt.data == 0) {
+                $('#video_popup').removeClass('hide_pop');
+                $('#video_popup').addClass('display_pop');
+            }
+            else if (evt.data == -1) {
+                $('#video_popup').removeClass('display_pop');
+                $('#video_popup').addClass('hide_pop');
+            }
+            else {
+                $('#video_popup').removeClass('display_pop');
+                $('#video_popup').addClass('hide_pop');
+            }
+        }
+
+
+        function alterVideo(id_video) {
+            player.loadVideoById({ 'videoId': '' + id_video + '', 'startSeconds': 0 });
+        }
+
+
+    </script>
+}
+
+
+

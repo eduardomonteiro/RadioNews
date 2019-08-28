@@ -1,0 +1,24 @@
+﻿@model Administrativo.Models.UserProfile
+
+<table class="table table-striped responsive table-hover dataTable">
+    <tbody>
+        <tr style="width: 200px;">
+            <td>
+                <p>
+                    @Html.DisplayNameFor(model => model.UserId)
+                </p>
+                @Html.TextBoxFor(model => model.UserId, new { @readonly="readonly" })
+                @Html.ValidationMessageFor(model => model.UserId)
+               
+            </td>
+             <td>
+                <p>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </p>
+                @Html.TextBoxFor(model => model.UserName, new { @readonly="readonly" })
+                @*@Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @disabled = "disabled", @readonly = "readonly" } })*@
+                @Html.ValidationMessageFor(model => model.UserName)
+            </td>
+        </tr>
+    </tbody>
+</table>

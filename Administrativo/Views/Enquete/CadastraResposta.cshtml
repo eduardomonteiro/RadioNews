@@ -1,0 +1,41 @@
+﻿@model Administrativo.Models.Enquete
+
+@{
+    ViewBag.Title = "Cadastrar Resposta";
+    ViewBag.SmallDescription = "Inserir resposta aqui.";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="box box-success">
+    <div class="box-header">
+        <h3 class="box-title">Cadastrar</h3>
+    </div>
+    <!-- /.box-header -->
+      @using (Html.BeginForm())
+            {
+    <div class="box-body">
+      
+        <table class="table ">
+                    <tr>
+                        <th style="width:50%;">
+                            Resposta
+                        </th>
+                    </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <input class="text-box single-line valid" name="resposta" type="text">
+                                </div>
+                            </td>
+                        </tr>
+                </table>
+
+    </div>
+    <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a class="btn btn-info" href="~/Enquete/Edit/@Model.id">Voltar</a>
+                </div> 
+            }
+</div>

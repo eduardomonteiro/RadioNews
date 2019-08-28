@@ -1,0 +1,126 @@
+﻿@model Administrativo.Models.Noticias
+
+<table class="table table-bordered table-striped responsive">
+    <tbody>
+        <tr>
+            <td style="width:200px;">@Html.DisplayNameFor(model => model.id)</td>
+            <td>@Html.DisplayFor(model => model.id)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.titulo)</td>
+            <td>@Html.DisplayFor(model => model.titulo)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.chamada)</td>
+            <td>@Html.DisplayFor(model => model.chamada)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.texto)</td>
+            <td>
+                <div class="slimscroll noticias-detalhes box box-solid" style="">
+                    @Html.Raw(HttpUtility.HtmlDecode(Model.texto).Replace("\\n", ""))
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.foto)</td>
+            <td>
+                @if (!string.IsNullOrEmpty(Model.foto))
+                {
+
+                    <a class="btn btn-block btn-primary" data-toggle="modal" data-target="#imagem-foto" style="width: 120px; padding: 3px;">Imagem Atual</a>
+
+                }
+                else
+                {
+                    <p class="text-yellow">Sem Foto</p>
+                }
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.fotoDescricao)</td>
+            <td>@Html.DisplayFor(model => model.fotoDescricao)</td>
+        </tr>
+
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.audio)</td>
+            <td>
+                @if (!string.IsNullOrEmpty(Model.audio))
+                {
+
+                    <audio controls>
+                        @*<source src="horse.ogg" type="audio/ogg">*@
+                        <source src="@Url.Content("~/conteudo/noticias/"+Model.id+"/audio/"+Model.audio)" type="audio/mpeg">
+                        Atualize seu navegador para ouvir.
+                    </audio>
+                }
+                else
+                {
+                    <p class="text-yellow">Sem áudio.</p>
+                }
+            </td>
+
+        </tr>
+
+       
+
+        @if (Model.idGaleria != null)
+        {
+
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Galeria.titulo) da Galeria</td>
+                <td>
+                    @Html.DisplayFor(model => model.Galeria.titulo)
+                    <a href="@Url.Action("edit", "galeria", new { id = Model.idGaleria })">
+                       - Editar Galeria
+                    </a>
+            </td>
+                
+            </tr>
+        }
+
+        @if (Model.videoYoutube != null)
+        {
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.videoYoutube)</td>
+                <td>@Html.DisplayFor(model => model.videoYoutube)</td>
+            </tr>
+          
+        }
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.visualizacao)</td>
+            <td>@Html.DisplayFor(model => model.visualizacao)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.dataCadastro)</td>
+            <td>@Html.DisplayFor(model => model.dataCadastro)</td>
+        </tr>
+
+    </tbody>
+</table>
+
+
+<div class="modal fade" id="imagem-foto" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Imagem Atual</h4>
+            </div>
+            <div class="modal-body">
+                <img src="@Url.Content(string.Format(ViewBag.pathOriginal,Model.id) + Model.foto)" width="600" />
+            </div>
+            <div class="modal-footer clearfix">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="fa fa-times"></i>Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

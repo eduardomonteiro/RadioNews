@@ -1,0 +1,171 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<Administrativo.Models.Transporte>
+
+
+
+
+@{
+		ViewBag.Title = "Listagem de Transporte";
+		ViewBag.Icon = "fa ";
+		ViewBag.SmallDescription = "Lista de todos os Transporte cadastrados no sistema";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="row">
+    <div class="col-md-12">
+		  <div class="box box-info">
+            <div class="box-header">
+				<h3 class="box-title">Transportes</h3>
+			</div>
+            
+            <section class="content">
+              <div class="row">
+                  @if (Model.TotalItemCount > 0) {
+					  foreach (var item in Model) {
+                          var cor = "";
+                          var ico = "";
+                          
+                          //seleciono a cor
+                          switch(item.Status){
+                              case "Bom":
+                                  cor = "bg-green";
+                                  break;
+                              case "Regular":
+                                  cor = "bg-yellow";
+                                  break;
+                              case "Ruim":
+                                  cor = "bg-red";
+                                  break;
+                          }
+                          
+                          //seleciono o icone
+                          switch(item.Id){
+                              case 1:
+                                  ico = "fa-subway";
+                                  break;
+                              case 2:
+                                  ico = "fa-ship";
+                                  break;
+                              case 3:
+                                  ico = "fa-train";
+                                  break;
+                              case 4:
+                                  ico = "fa-plane";
+                                  break;
+                          }
+                          
+                        <div class="col-lg-3 col-xs-6">
+                            <!-- small box -->
+                            <div class="small-box @cor">
+                                <div class="inner">
+                                    <h3>
+                                        @item.Titulo
+                                    </h3>
+                                    <p>
+                                        @item.Status
+                                    </p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa @ico"></i>
+                                </div>
+                                <a href="@Url.Action("Edit", new { id = item.Id })" class="small-box-footer">
+                                    Alterar status <i class="fa fa-arrow-circle-right"></i>
+                                </a>
+                            </div>
+                        </div><!-- ./col -->
+                        }
+					}
+					else{ 
+                      <h4>Nenhum registro encontrado.</h4>
+					}
+                       
+                    </div>
+                </section>
+		</div>
+
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">Transporte no Rio</h3>
+                <div class="pull-right">
+                    <a style="margin:4px; color:white;" href="@Url.Action("Create", "RotasNoRio")" class="btn btn-success pull-right"><i class="fa fa-plus-circle white"></i>&nbsp;Cadastrar</a>
+                </div>
+            </div>
+            <div class="box-body no-padding">
+                <div class="fc fc-ltr">
+                    <table class="table table-striped responsive table-hover dataTable">
+                        <thead>
+                            <tr role="row">
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.First().Id)
+                                </th>
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.First().Titulo)
+                                </th>
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.First().Status)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.First().Atualizacao)
+                                </th>
+
+                                <th style="width: 160px;">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.TotalItemCount > 0)
+                            {
+                                foreach (var rota in ViewBag.RotasNoRio)
+                                {
+                                    <tr>
+
+                                        <td>
+                                            @rota.Id
+                                        </td>
+
+                                        <td>
+                                            @rota.Titulo
+                                        </td>
+
+                                        <td>
+                                            @rota.Status
+                                        </td>
+                                        <td>
+                                            @rota.Atualizacao
+                                        </td>
+
+                                        <td>
+                                            <div class="btn-group">
+                                                <a href="@Url.Action("Edit", "RotasNoRio",new { id = rota.Id })" class="btn btn-warning btn-small"><i class="fa fa-edit"></i></a>
+                                                <a href="@Url.Action("Details", "RotasNoRio", new { id = rota.Id })" class="btn bg-olive btn-small"><i class="fa fa-search-plus"></i></a>
+                                                <a href="@Url.Action("Delete", "RotasNoRio", new { id = rota.Id })" class="btn btn-danger btn-small"><i class="fa fa-trash-o"></i></a>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="7" align="center">Nenhum registro encontrado.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="box-footer clearfix no-border">
+
+            </div>
+        </div>
+	</div>
+</div>
+
+
+

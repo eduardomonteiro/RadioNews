@@ -1,0 +1,147 @@
+﻿@model Administrativo.Models.Horoscopoes
+
+@{
+    ViewBag.Title = "Editar Signo";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Altere as informações de Signo";
+}
+
+<div class="content">
+    <div class="row">
+        <div class="box box-warning">
+            <div class="box-header">
+                <h3 class="box-title">Editar Signo</h3>
+            </div>
+            @using (Html.BeginForm("Edit", "Horoscopo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="box-body">
+                    @Html.HiddenFor(model => model.Id)
+
+                    <div class="form-group">
+                        Signo:
+                        @Html.TextBoxFor(model => model.Signo, new { @maxlength = 250, @class = "text-box" })
+                        <br>
+                        Descrição:
+                        @Html.TextBoxFor(model => model.Descricao, new { @maxlength = 250, @class = "text-box" })
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.Audio)
+
+                                @Html.HiddenFor(model => model.Audio)
+                                <input type="file" name="AudioF" id="AudioF" onchange="javascript: $('#AudioF').val($(this).val().split('\\').pop());" />
+                                @Html.ValidationMessageFor(model => model.Audio)
+                            </div>
+                            @*<div class="col-md-5">
+                                @if (!string.IsNullOrEmpty(Model.Audio))
+                                {
+                                    <a href="@Url.Action("Download", new { filename = Model.Audio }) " class="btn btn-block btn-primary" style="width: 120px;">Audio atual</a>
+                                }
+                                else
+                                {
+                                    <p class="text-yellow">Sem Audio.</p>
+                                }
+                            </div>*@
+                        </div>
+                    </div>
+
+
+                    @*<div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    @Html.LabelFor(model => model.Miniatura)
+
+                                    @Html.HiddenFor(model => model.Miniatura)
+                                    <input type="file" name="MiniaturaF" id="MiniaturaF" onchange="javascript: $('#Miniatura').val($(this).val().split('\\').pop());" />
+                                    @Html.ValidationMessageFor(model => model.Miniatura)
+                                </div>
+                                <div class="col-md-5">
+                                    @if (!string.IsNullOrEmpty(Model.Miniatura))
+                                    {
+                                        <a class="btn btn-block btn-primary" data-toggle="modal" data-target="#foto-externa" style="width: 120px;">Imagem Atual</a>
+                                    }
+                                    else
+                                    {
+                                        <p class="text-yellow">Sem Miniatura.</p>
+                                    }
+                                </div>
+                            </div>
+                        </div>*@
+
+                </div>
+                <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a href="@Url.Action("Index", "Horoscopo")" class="btn btn-info">Voltar</a>
+
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+@*<div class="modal fade" id="foto-externa" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Imagem Atual</h4>
+
+                </div>
+                <div class="modal-body">
+                    <img src="@Url.Content("~/conteudo/Horoscopo/miniaturas/" + Model.Id + "/" + Model.Min />
+                </div>
+                <div class="modal-footer clearfix">
+
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        <i class="fa fa-times"></i>Fechar
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>*@
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#AudioF").val('@Model.Audio');
+            @*$("#Miniatura").val('@Model.Miniatura');*@
+
+            $('input[name="AudioF"]').change(function () {
+                var valor = $(this).val().split('/').pop().split('\\').pop();
+
+                var value = valor, ext = value.split(".").pop();
+                var arrayPermitidos = ["aac", "mp3 ", "ogg"];
+
+                if ($.inArray(ext.toLowerCase(), arrayPermitidos) == -1) {
+                    swal({ title: 'Erro', text: "Extensão inválida!<br> As extensões aceitas são :<br><br><strong> mp3, aac e ogg</strong>", type: 'error', html: true });
+                    $(this).val('');
+                }
+
+            });
+            
+
+            $('input[name="MiniaturaF"]').change(function () {
+                var valor = $(this).val().split('/').pop().split('\\').pop();
+
+                var value = valor, ext = value.split(".").pop();
+                var arrayPermitidos = ["jpg", "jpeg", "gif", "png"];
+
+                if ($.inArray(ext.toLowerCase(), arrayPermitidos) == -1) {
+                    swal({ title: 'Erro', text: "Extensão inválida!<br> As extensões aceitas são :<br><br><strong> jpg,gif,png.</strong>", type: 'error', html: true });
+                    $(this).val('');
+                }
+
+            });
+
+
+
+        });
+    </script>
+
+}

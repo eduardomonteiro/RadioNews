@@ -1,0 +1,72 @@
+﻿@model Administrativo.Models.RotasNoRio
+
+
+@{
+    ViewBag.Title = "RotasNoRio";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Visualizar detalhes de RotasNoRio";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">Detalhes</h3>
+            </div>
+            <div class="box-content padded">
+                <table class="table table-bordered table-striped responsive" >
+                    <tbody>
+
+						<tr>
+                            <td style="width:200px;">@Html.DisplayNameFor(model => model.Id)</td>
+                            <td>@Html.DisplayFor(model => model.Id)</td>
+                        </tr>
+
+
+						<tr>
+                            <td>@Html.DisplayNameFor(model => model.Titulo)</td>
+                            <td>@Html.DisplayFor(model => model.Titulo)</td>
+                        </tr>
+
+
+						<tr>
+                            <td>@Html.DisplayNameFor(model => model.Status)</td>
+                            <td>@Html.DisplayFor(model => model.Status)</td>
+                        </tr>
+
+
+						<tr>
+                            <td>@Html.DisplayNameFor(model => model.Texto)</td>
+                            <td>@Html.Raw(Model.Texto)</td>
+                        </tr>
+
+						<tr>
+                            <td>@Html.DisplayNameFor(model => model.DataCadastro)</td>
+                            <td>@Html.DisplayFor(model => model.DataCadastro)</td>
+                        </tr>
+
+
+					</tbody>
+                </table>
+           </div>
+		   <div class="box-footer">
+
+
+
+		   
+					<a href="@Url.Action("Edit","RotasNoRio", new { id = Model.Id })" class="btn btn-warning">Editar</a>
+                <a href="@Url.Action("Index","Transporte")" class="btn btn-info">Voltar</a>
+				
+				
+                
+
+            </div>
+        </div>
+     </div>
+    </div>
+
+

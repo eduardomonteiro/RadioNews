@@ -1,0 +1,129 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@using Site.Helpers
+@model Site.ViewModels.ModeloEspecialViewModel
+
+
+@section SEO{
+    <meta name="DC.title" content="Especial - @Model.Editoria.nome - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:title" content="Especial - @Model.Editoria.nome - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="@Url.Content("~/images/ico-facebook.jpg")" />
+    <meta property="og:url" content="@HttpContext.Current.Request.Url.AbsoluteUri" />
+    <title>Especial - @Model.Editoria.nome  - Rádio CompanyName | A Rádio de Minas</title>
+}
+
+
+<div class="wrapper-general center">
+    <header class="nav-intern clearfix">
+        <div class="buttons">
+            <a class="bt-back" href="javascript:window.history.go(-1)"> <i class="fa fa-angle-left"></i> Voltar</a>
+            Texto: <button class="more bt-resize">+</button> <button class="bt-resize minus">-</button>
+        </div>
+        <nav class="breadcumb">
+            <a href="@Url.Action("Index","Home")">Home</a>
+            <a href="#">Especiais</a>
+            <span>@Model.Editoria.nome</span>
+        </nav>
+    </header>
+    <h1 class="title-page">@Model.Editoria.nome</h1>
+    <div class="block-text">
+        <p>Est&aacute; a fim de sair, mas ainda n&atilde;o sabe onde ir? Esta se&ccedil;&atilde;o re&uacute;ne em um s&oacute; lugar os principais eventos que acontecer&atilde;o em Belo Horizonte e na Regi&atilde;o Metropolitana. Aqui voc&ecirc; pode acessar a venda de ingressos para shows, cinemas e jogos de futebol. Ao selecionar o evento desejado, voc&ecirc; ser&aacute; redirecionado &agrave; p&aacute;gina que realiza a comercializa&ccedil;&atilde;o dos bilhetes.</p>
+    </div>
+
+    <div class="content-margin">
+        <header class="filters" style="border: 0">
+
+            @using (Html.BeginForm("ModeloSimples","Especiais", FormMethod.Post, new { chave = HttpContext.Current.Request.RequestContext.RouteData.Values["chave"], @class = "row-grid clearfix" }))
+            {
+
+                <div class="grid-4">
+                    <label for="palavrachave">Palavra Chave</label>
+                    <input type="text" class="input-form" name="palavraChave" id="palavraChave" value="@Request.Params["palavraChave"]">
+                </div>
+                <div class="grid-3">
+                    <label for="categoria">Categoria</label>
+                    @Html.DropDownList("categoria", null, "Selecione...", new { @class = "input-form", @id = "categoria", @name = "categoria" })
+                </div>
+                    <div class="grid-2">
+                        <label for="datainicio">De</label>
+                        <input type="date" class="input-form dates" id="datainicio" name="dataInicio" value="@Request.Params["dataInicio"]">
+                    </div>
+                    <div class="grid-2">
+                        <label for="datafinal">Até</label>
+                        <input type="date" class="input-form dates" id="datafinal" name="dataFinal" value="@Request.Params["dataFinal"]">
+                    </div>
+                    <div class="grid-1">
+                        <button type="submit" id="post-search" title="Buscar" class="search-filter fa fa-search"></button>
+                    </div>
+
+            }
+        </header>
+
+        @if (Model != null && Model.paginacao.Count > 0)
+        {
+            <ul class="list-products">
+                @foreach (var item in Model.paginacao)
+                {
+                    <li>
+                        <div class="left">
+                            @if (!string.IsNullOrEmpty(item.foto))
+                            {
+                                <img src="@Utils.fullUrlImage("260x173", item.id)" alt="@item.titulo">
+                            }
+                            
+                            <h4 class="date-post">@item.Categorias.FirstOrDefault().Titulo</h4>
+                            <h2 class="name-people">@item.titulo</h2>
+                            <p class="text">@Html.Raw(item.texto)</p>
+                            <p class="tags-event">
+                                <i class="fa fa-calendar-check-o"></i> Data: @(item.data.HasValue?item.data.Value.ToShortDateString():"")  <i class="fa fa-clock-o"></i> horário: @(item.hora.HasValue ?item.hora:null)   <i class="fa fa-map-marker"></i> Local: @item.local
+                            </p>
+                        </div>
+
+                        @if(!string.IsNullOrEmpty(item.link))
+                        {
+                            <a href="@item.link" class="bt-red" target="_blank">Comprar Ingresso</a>
+                        }
+
+                    </li>
+                }
+
+            </ul>
+        }
+        else
+        {
+            <div class="block-text">
+                <h3>Não foram encontrados resultados.</h3>
+            </div>
+        }
+
+
+
+        <footer class="pagination-bottom">
+
+            <ul class="pag">
+                @if (Model.paginacao.PageCount > 1)
+                {
+                    @Html.PagedListPager(Model.paginacao, page => Url.Action("Index", new
+               {
+                   page,
+                   palavrachave = Request.Params["palavrachave"],
+                   categoria = Request.Params["categoria"],
+                   datainicio = Request.Params["datainicio"],
+                   datafinal = Request.Params["datafinal"]
+               }),
+                  new PagedListRenderOptions { LinkToNextPageFormat = "Próximo", LinkToPreviousPageFormat = "Anterior" ,
+                      MaximumPageNumbersToDisplay = 5,
+                      DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                      DisplayLinkToFirstPage = PagedListDisplayMode.Never
+                  })
+                }
+            </ul>
+
+        </footer>
+
+    </div>
+</div>
+
+

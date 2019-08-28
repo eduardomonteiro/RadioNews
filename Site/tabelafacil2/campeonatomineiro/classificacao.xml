@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<standings>
+	<table type="C" group="1">
+<team name="Cruzeiro" id="CRU" uid="40" area="1" obs="0" pos="1" var="0" pts="29" pld="11" w="9" d="2" l="0" gf="18" ga="6" gd="12" per="87" />
+<team name="Atlético-MG" id="ATL" uid="33" area="1" obs="0" pos="2" var="0" pts="20" pld="11" w="6" d="2" l="3" gf="25" ga="11" gd="14" per="60" />
+<team name="U.R.T." id="URT" uid="1412" area="1" obs="0" pos="3" var="0" pts="19" pld="11" w="5" d="4" l="2" gf="10" ga="8" gd="2" per="57" />
+<team name="América-MG" id="AME" uid="53" area="1" obs="0" pos="4" var="0" pts="18" pld="11" w="5" d="3" l="3" gf="14" ga="11" gd="3" per="54" />
+<team name="Caldense" id="CAL" uid="340" area="0" obs="0" pos="5" var="1" pts="14" pld="11" w="4" d="2" l="5" gf="12" ga="12" gd="0" per="42" />
+<team name="Villa Nova" id="VIL" uid="345" area="0" obs="0" pos="6" var="-1" pts="14" pld="11" w="4" d="2" l="5" gf="15" ga="18" gd="-3" per="42" />
+<team name="Tricordiano" id="TRI" uid="1489" area="0" obs="0" pos="7" var="2" pts="13" pld="11" w="4" d="1" l="6" gf="13" ga="14" gd="-1" per="39" />
+<team name="Tombense" id="TMB" uid="1331" area="0" obs="0" pos="8" var="2" pts="13" pld="11" w="4" d="1" l="6" gf="14" ga="18" gd="-4" per="39" />
+<team name="Tupi" id="TUP" uid="344" area="0" obs="0" pos="9" var="-1" pts="13" pld="11" w="4" d="1" l="6" gf="9" ga="13" gd="-4" per="39" />
+<team name="Uberlândia-MG" id="UBE" uid="1133" area="0" obs="0" pos="10" var="-3" pts="12" pld="11" w="4" d="0" l="7" gf="7" ga="11" gd="-4" per="36" />
+<team name="Guarani-MG" id="GUA" uid="343" area="9" obs="0" pos="11" var="1" pts="12" pld="11" w="3" d="3" l="5" gf="11" ga="16" gd="-5" per="36" />
+<team name="Boa" id="BOA" uid="99" area="9" obs="0" pos="12" var="-1" pts="10" pld="11" w="3" d="1" l="7" gf="12" ga="22" gd="-10" per="30" />
+
+	</table>
+</standings>

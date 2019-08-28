@@ -1,0 +1,251 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@using Site.Helpers
+@model Site.ViewModels.NoticiaViewModel
+
+@section SEO{
+    <meta name="DC.title" content="Jornalismo - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:title" content="Jornalismo - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="@Url.Content("~/images/ico-facebook.jpg")" />
+    <meta property="og:url" content="@HttpContext.Current.Request.Url.AbsoluteUri" />
+    <title>Jornalismo - Rádio CompanyName | A Rádio de Minas</title>
+}
+
+<style type="text/css">
+    #contador-center{top: 245px;max-width: 1130px;margin: 0 auto;position: relative;}
+    #contador{display:flex; flex-direction:row; flex-wrap:wrap; justify-content:space-between;padding-bottom: 30px;}
+    #CompanyName-copa{width:100%; max-width:304px;}
+    #regressivo{width:100%; max-width:703px;}
+    #microfone{width:100%; max-width:84px;}
+    @@media (max-width:1000px){
+        #CompanyName-copa{max-width:1000px; background:red; text-align:center;}    
+        #regressivo{max-width:1000px; background:black; text-align:center;}
+        #regressivo img{width:100%;}
+        #microfone{display:none;}
+    }
+</style>
+<div id="contador-center">
+    <div id="contador">
+        <div id="CompanyName-copa"><img src="http://www.CompanyName.com.br/images/CompanyNameCopa.jpg" alt=""/></div>
+        @if (DateTime.Now.Day == 14)
+        {
+            <div id="regressivo"><img src="http://www.CompanyName.com.br/images/365-dias.jpg" alt=""/></div>
+        }
+        else if (DateTime.Now.Day == 15)
+        {
+            <div id="regressivo"><img src="http://www.CompanyName.com.br/images/364-dias.jpg" alt=""/></div>
+        }
+        else if (DateTime.Now.Day == 16)
+        {
+            <div id="regressivo"><img src="http://www.CompanyName.com.br/images/363-dias.jpg" alt=""/></div>
+        }
+        <div id="microfone"><img src="http://www.CompanyName.com.br/images/ImagemMicrofone.jpg" alt=""/></div>
+    </div>
+</div>
+
+<div class="wrapper-general center">
+    <header class="nav-intern clearfix">
+        <div class="buttons">
+            <a class="bt-back" href="javascript:window.history.go(-1)"> <i class="fa fa-angle-left"></i> Voltar</a>
+            Texto: <button class="more bt-resize">+</button> <button class="bt-resize minus">-</button>
+        </div>
+        <nav class="breadcumb">
+            <a href="@Url.Action("Index","Home")">Home</a>
+            <span>Notícias</span>
+        </nav>
+    </header>
+
+    <h1 class="title-page">Notícias</h1>
+    <div class="row-grid clearfix">
+        <div class="grid-9 main-grid">
+            @if (Model.DestaquesBanners != null && Model.DestaquesBanners.Count > 0)
+            {
+                <main class="featured-banner" id="destaque-banner">
+                    @foreach (var item in Model.DestaquesBanners)
+                    {
+                        <article>
+                            <a href="@Url.Action("Detalhes", "Noticias", new { chave = item.url })" class="title">
+                                @item.titulo
+                            </a>
+                            @if (!string.IsNullOrEmpty(item.foto))
+                            {
+                                <figure style="background-image: url(@Utils.fullUrlImage("744x500", item.id))" title="@Html.Raw(item.fotoCredito)" alt="@Html.Raw(item.fotoCredito)"></figure>
+                            }
+
+                        </article>
+                    }
+
+                </main>
+            }
+
+
+            <ul class="row-grid mb clearfix">
+                @if (Model.Destaques != null && Model.Destaques.Count > 0)
+                {
+                    foreach (var item in Model.Destaques)
+                    {
+                        <li class="grid-4">
+                            <article>
+                                <a href="@Url.Action("Detalhes", "Noticias", new { chave = item.url })" class="title">
+                                    @if (!string.IsNullOrEmpty(item.foto))
+                                    {
+                                        <figure style="background-image: url(@Utils.fullUrlImage("260x173", item.id));" title="@Html.Raw(item.fotoCredito)" alt="@Html.Raw(item.fotoCredito)"></figure>
+                                    }
+                                    <h4 class="tag-area">@item.titulo</h4>
+                                    <h3 class="title-normal">@Html.Raw(item.chamada)</h3>
+                                </a>
+                            </article>
+                        </li>
+                    }
+                }
+            </ul>
+
+            @if (Model.Banner != null)
+            {
+                <a href="@(!string.IsNullOrEmpty(Model.Banner.Link) ? Model.Banner.Link : " #")" target="_blank" onclick="clickBanner(@Model.Banner.Id)">
+                    <img class="promotional-banner promotional-banner"
+                            data-cliente="@Model.Banner.Anunciante"
+                            data-comercial="@Model.Banner.AreaBanner.FirstOrDefault().Descricao"
+                            data-dimensao="@Model.Banner.AreaBanner.FirstOrDefault().Tamanho" src="/admin/Conteudo/Banners/@Model.Banner.AreaBanner.FirstOrDefault().Tamanho/@Model.Banner.Arquivo" alt="@Model.Banner.Titulo" data-banner-id="@Model.Banner.Id">
+                </a>
+            }
+
+            <section>
+                <header class="filters">
+
+                    @using (Html.BeginForm("Index", "Noticias", FormMethod.Post, new { @class = "row-grid clearfix" }))
+                    {
+                        <div class="grid-5">
+                            <label for="palavrachave">Palavra Chave</label>
+                            <input type="text" class="input-form" name="palavraChave" id="palavraChave" value="@Request.Params["palavrachave"]">
+                        </div>
+
+                        <div class="grid-2">
+                            <label for="editoria">Editoria</label>
+                            @Html.DropDownList("editoria", null, "Selecione...", new { @class = "input-form", @id = "editoria", @name = "editoria" })
+                        </div>
+                        <div class="grid-2">
+                            <label for="datainicio">De</label>
+                            <input type="date" class="input-form dates" id="datainicio" value="@Request.Params["dataInicio"]" name="dataInicio">
+                        </div>
+                        <div class="grid-2">
+                            <label for="datafinal">Até</label>
+                            <input type="date" class="input-form dates" id="datafinal" value="@Request.Params["dataFinal"]" name="dataFinal">
+                        </div>
+                        <div class="grid-1">
+                            <button type="submit" id="post-search" title="Buscar" class="search-filter fa fa-search"></button>
+                        </div>
+                    }
+
+                </header>
+
+                @if (Model.paginacao != null && Model.paginacao.Count > 0)
+                {
+                    <ul class="news-line">
+                        @foreach (var item in Model.paginacao)
+                        {
+                            var urlCompartilha = HttpContext.Current.Request.Url.Authority + Url.Action("Detalhes", "Noticias", new { chave = item.url });
+
+                            <li>
+                                <article class="container">
+
+                                    @if (!string.IsNullOrEmpty(item.foto))
+                                    {
+                                        <figure>
+                                            <a href="@Url.Action("Detalhes", "Noticias", new { chave = item.url })">
+                                                <img src="@Utils.fullUrlImage("260x173", item.id)" title="@Html.Raw(item.fotoCredito)" alt="@Html.Raw(item.fotoCredito)">
+                                            </a>
+                                        </figure>
+
+                                    }
+
+                                    <div class="info">
+                                        <div class="clearfix header-content">
+
+                                            <span class="info-publication">
+                                                Por <strong>@item.porAutor</strong>, @item.dataCadastro.ToShortDateString()  às  @item.dataCadastro.ToShortTimeString()
+                                            </span>
+                                            <p></p>
+
+                                            <div class="box-share">
+                                                <span class="title">
+                                                    <i class="fa fa-share-alt"></i>Compartilhar
+                                                </span>
+                                                <nav>
+                                                    <a href="#" class="icon-facebook" onclick="openwindow('https://www.facebook.com/sharer/sharer.php?u=@urlCompartilha&display=popup&ref=plugin');">
+                                                        <i class="fa fa-facebook"></i> Facebook
+                                                    </a>
+
+                                                    <a href="#" class="icon-twitter-squared" onclick="openwindow('https://twitter.com/intent/tweet?text=@item.titulo&url=@urlCompartilha');">
+                                                        <i class="fa fa-twitter"></i>Twitter
+                                                    </a>
+                                                </nav>
+                                            </div>
+                                        </div>
+                                        <a href="@Url.Action("Detalhes", "Noticias", new { chave = item.url })">
+                                            <span class="tag-area">@item.titulo</span>
+                                            <h3 class="title-medium">@Html.Raw(item.chamada)</h3>
+                                        </a>
+                                    </div>
+                                </article>
+                            </li>
+                        }
+
+
+
+                    </ul>
+
+                    <footer class="pagination-bottom" style="border-top: 0; margin: 25px 0 40px; padding: 0">
+
+                        <ul class="pag">
+                            @if (Model.paginacao.PageCount > 1)
+                            {
+                                @Html.PagedListPager(Model.paginacao, page => Url.Action("Index", new
+                           {
+                               page,
+                               palavrachave = Request.Params["palavrachave"],
+                               editoria = Request.Params["editoria"],
+                               datainicio = Request.Params["datainicio"],
+                               datafinal = Request.Params["datafinal"]
+                           }),
+                           new PagedListRenderOptions { LinkToNextPageFormat = "Próximo", LinkToPreviousPageFormat = "Anterior" ,
+                               MaximumPageNumbersToDisplay = 5,
+                               DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                               DisplayLinkToFirstPage = PagedListDisplayMode.Never
+                           })
+                            }
+                        </ul>
+
+                    </footer>
+                }
+                else
+                {
+                    <div class="block-text">
+                        <h3>Não foram encontrados resultados.</h3>
+                    </div>
+                }
+
+
+
+            </section>
+        </div>
+
+
+        @{Html.RenderAction("Sidebar", "Home");}
+
+
+    </div>
+</div>
+
+
+@section scripts{
+    <script language="JavaScript1.2">
+        function openwindow(url) {
+            window.open(url,
+                "mywindow", "location=no,status=no,scrollbars=no,width=400,height=300");
+        }
+    </script>
+
+}

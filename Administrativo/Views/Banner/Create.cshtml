@@ -1,0 +1,202 @@
+﻿@model Administrativo.Models.Banners
+@{
+    ViewBag.Title = "Cadastrar Banner";
+    ViewBag.Icon = "fa fa-newspaper-o";
+    ViewBag.SmallDescription = "Insere um Banner no sistema";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="content">
+    <div class="row">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Cadastrar Banner</h3>
+            </div>
+            @using (Html.BeginForm("Create", "Banner", FormMethod.Post, new { enctype = "multipart/form-data", @Id = "form-banner" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="box-body">
+
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.Anunciante)
+
+                        @Html.TextBoxFor(model => model.Anunciante, new { @maxlength = 100, @class = "text-box" })
+                        @Html.ValidationMessageFor(model => model.Anunciante)
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.Link)
+                                @Html.TextBoxFor(model => model.Link, new { @maxlength = 300, @class = "text-box" })
+                                @Html.ValidationMessageFor(model => model.Link)
+                            </div>
+                            <div class="col-md-6">
+                                <div class="callout callout-warning">
+                                    <h4>Exemplos de links:</h4>
+                                    <p>Interno: <i>/Noticia/25</i><br />Externo: <i>http://www.exemplo.com</i></p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.DataInicio)
+                                <input type="datetime" id="DataInicio" name="DataInicio" class="form-control" value="@DateTime.Now.Date.ToShortDateString()" />
+                                @Html.ValidationMessageFor(model => model.DataInicio)
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.DataFim)
+                                <input type="datetime" id="DataFim" name="DataFim" class="form-control" value="@DateTime.Now.Date.AddDays(7).ToShortDateString()" />
+                                @Html.ValidationMessageFor(model => model.DataFim)
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Tamanho da imagem")
+                        @Html.DropDownList("Tamanhos", (SelectList)ViewBag.Tamanhos, new { @class = "chosen-select" })
+                        @Html.ValidationMessage("Tamanho")
+
+                    </div>
+                    @*<div class="form-group">
+                        <label for="isHtml">É HTML?</label>
+                        <input id="isHtml" name="isHtml" type="checkbox"/>
+                    </div>*@
+
+                    <div id="envioArquivo" class="form-group"  >
+                        @Html.LabelFor(model => model.Arquivo)
+                        <input type="file" name="Arquivo" id="Arquivo" accept="image/*" />
+                        @*@Html.ValidationMessageFor(model => model.Arquivo)*@
+                    </div>
+                    <div class="form-group" id="divArquivo2" style="display:none">
+                        @Html.LabelFor(model => model.Arquivo2)
+                        <input type="file" name="Arquivo2" id="Arquivo2" accept="image/*" @*data-val="false" data-val-required="Essa área precisa de duas imagens."*@ />
+                        @*@Html.ValidationMessageFor(model => model.Arquivo2)*@
+                    </div>
+                    @*<div id="envioHTML" class="form-group" style="display: none">
+
+                        @Html.LabelFor(model => model.Html)
+
+                        @Html.EditorFor(model => model.Html, new { @maxlength = 500, @class = "text-box" })
+                    </div>*@
+
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.Liberado)
+
+                        @Html.BooleanFieldFor(model => model.Liberado, true, new { @class = "form-control", style = "width: 120px;" })
+                        @Html.ValidationMessageFor(model => model.Liberado)
+                    </div>
+                    </div>
+                <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a href="@Url.Action("Index", "Banner")" class="btn btn-info">Voltar</a>
+
+                </div>  }
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+
+        $(document).ready(function () {
+            //$('#isHtml').on('ifClicked', function(event) {
+            //    if (!this.checked) {
+            //        $('#envioArquivo').hide();
+            //        $('#envioHTML').show();
+            //    } else {
+            //        $('#envioArquivo').show();
+            //        $('#envioHTML').hide();
+            //    }
+            //});
+            $('#Tamanhos').on('change', function () {
+
+                $.ajax({
+                    url: "/Admin/Banner/DuasImagens/",
+                    data: { areaId: $('#Tamanhos option:selected').val() },
+                    type: "post",
+                    dataType: "json",
+                    success: function (response) {
+                        if (response == 'true') {
+                            $('#Arquivo2').attr('required','');
+                            $('#divArquivo2').show();
+                        } else {
+                            $('#Arquivo2').removeAttr('required');
+                            $('#divArquivo2').hide();
+                        }
+                    }
+                });
+            })
+
+            $('#formAreas').hide();
+            $(".chosen-select").chosen({ width: "100%" });
+            $('#DataInicio, #DataFim').daterangepicker({ format: 'DD/MM/YYYY', singleDatePicker: true });
+            $("#form-banner").validate({
+                rules: {
+                    Tamanhos: { required: true }
+                },
+                messages: { required: "Campo obrigatório." }
+            })
+
+            $('input[name="Arquivo"]').change(function () {
+                var valor = $(this).val().split('/').pop().split('\\').pop();
+
+                var value = valor, ext = value.split(".").pop();
+                var arrayPermitidos = ["jpg", "jpeg", "png", "gif"];
+
+                if ($.inArray(ext.toLowerCase(), arrayPermitidos) == -1) {
+                    swal({ title: 'Erro', text: "Extensão inválida!<br> As extensões aceitas são :<br><br><strong> jpg,gif,png.</strong>", type: 'error', html: true });
+                    $(this).val('');
+                }
+
+            });
+
+
+        });
+
+        $('#tipoDoArquivo').on('change', function () {
+            if ($(this).val() == 'true') {
+                $('#TipoArquivo').val(true);
+            } else {
+                $('#TipoArquivo').val(false);
+            }
+        });
+
+        $('#Tamanhos').on('change', function () {
+            $.ajax({
+                url: "/Banner/Areas/",
+                data: { tamanho: $("#Tamanhos").val() },
+                type: "post",
+                dataType: "json",
+                success: function (data) {
+                    $('#formAreas').show();
+                    var opt = $('#Area');
+                    opt.empty();
+                    $(data).each(function () {
+                        $(document.createElement('option'))
+                            .attr('value', this.Id)
+                            .text(this.Titulo)
+                            .appendTo(opt);
+                    });
+                    $(".chosen-select").trigger("chosen:updated");
+                }
+            });
+        });
+    </script>
+}
+
+
+
+

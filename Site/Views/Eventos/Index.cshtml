@@ -1,0 +1,255 @@
+﻿@using Site.Models
+@using Site.Helpers
+@model List<Eventos>
+@section SEO{
+    <link href="~/Content/rangecalendar.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css">
+}
+@{
+    var banner = (Banners)ViewBag.Banner;
+
+}
+<div class="wrapper-general center">
+    <header class="nav-intern clearfix">
+        <div class="buttons">
+            <a class="bt-back" href="@Url.Action("Index", "Home")"> <i class="fa fa-angle-left"></i> Voltar</a>
+            Texto: <button class="more bt-resize">+</button> <button class="bt-resize minus">-</button>
+        </div>
+        <nav class="breadcumb">
+            <a href="@Url.Action("Index", "Home")">Home</a>
+            <span>CompanyName no Ponto</span>
+        </nav>
+    </header>
+    <div class="row-grid clearfix">
+        <div class="grid-9 main-grid">
+            <h1 class="title-page">CompanyName no Ponto</h1>
+            <header class="filters" style="margin: 0; padding: 0">
+
+                <form class="row-grid clearfix">
+                    <div class="grid-11">
+                        <label for="palavrachave">Listagem de Eventos</label>
+                        @Html.DropDownList("evento", (List<SelectListItem>)ViewBag.Eventos, "Selecione um evento", new { @class = "chosen-select input-form" })
+                    </div>
+                    <div class="grid-1">
+                        <button type="submit" id="post-search" title="Buscar" class="search-filter fa fa-search"></button>
+                    </div>
+                </form>
+            </header>
+
+            <div class="calendar-rolling">
+                <div class="fa fa-angle-right" id="next"></div>
+                <div class="fa fa-angle-left" id="prev"></div>
+                <div id="calendar"></div>
+            </div>
+            @Html.Hidden("dataSelecionada", string.Empty, new { @id = "dataSelecionada" })
+
+            <ul class="cards-events">
+                @*@if (Model != null && Model.Any())
+                {
+                    foreach (var evento in Model)
+                    {
+                        <li>
+                            <a href="@evento.Url">
+
+                                <img src="/admin/conteudo/eventos/foto/@evento.Imagem?width=300&height=145">
+
+                                <span class="tit">@evento.Titulo</span>
+                            </a>
+                        </li>
+                    }
+                }
+                else
+                {
+                    <p class="description-noticie">Não ocorrerá nenhum evento neste mês.</p>
+                }*@
+            </ul>
+        </div>
+        @if (banner != null)
+        {
+            <aside class="grid-3 promotional">
+                <a href="@banner.Link" target="_blank">
+                    <img class="promotion-side" src="/admin/Conteudo/Banners/@banner.AreaBanner.FirstOrDefault().Tamanho/@banner.Arquivo" alt="@banner.Anunciante">
+                </a>
+            </aside>
+        }
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/scripts/jquery-1.1.0.js"></script>
+    <script src="~/scripts/jquery-ui-1.1.0.js"></script>
+    <script src="~/scripts/jquery.ui.touch-punch.min.js"></script>
+    <script src="~/scripts/jquery.fancybox.js"></script>
+    <script src="~/scripts/moment-with-locales.js"></script>
+    <script src="~/scripts/slick.js"></script>
+    <script src="~/scripts/jquery.rangecalendar.js"></script>
+    <script>
+
+        $(function () {
+            
+            //$(".chosen-select").chosen({ width: "100%" });
+            var agora = new Date();
+
+            var defaultCalendar = $("#calendar").rangeCalendar({
+                lang: "pt-BR",
+                maxRangeWidth: 1,
+                startDate: agora,
+                start: "-100"
+            });
+
+            var mesAtual = "";
+
+            if (agora.getMonth() + 1 < 10) {
+                mesAtual = "0" + (agora.getMonth() + 1);
+            } else {
+                mesAtual = agora.getMonth() + 1;
+            }
+
+            $(".month-cell.cell[month-id='" + agora.getFullYear() + "" + mesAtual + "']").click();
+
+            defaultCalendar.setStartDate(agora);
+            $(".cal-cell.cell.selected").removeClass("selected");
+            
+            
+            rangeChanged(null, false);
+
+            function rangeChanged(target, range) {
+                if (range.objChanged == "day") {
+                    $.ajax({
+                        url: "@Url.Action("ObterEventosData")",
+                        data: { data: range.start, evento: getQueryVariable("evento") },
+                        method: "POST",
+                        success: function (data) {
+                            preencheEventos(data, "Não ocorrerá nenhum evento neste dia.");
+                        }
+                    });
+
+                    var dataFormatPlugin = convertToId(range.start);
+
+                    $(".cal-cell.cell.selected").removeClass("selected");
+                    $(".cal-cell.cell[date-id=" + dataFormatPlugin + "]").addClass("selected");
+                    $("#dataSelecionada").val(range.start);
+
+                } else {
+
+                    var ano = $(".month-cell.cell.selected").attr("month-id").substring(0, 4);
+                    var mes = $(".month-cell.cell.selected").attr("month");
+
+                    var date = new Date(ano + "-" + mes + "-1");
+
+                    $.ajax({
+                        url: "@Url.Action("ObterEventosMes")",
+                        data: { data: date.toLocaleDateString(), evento: getQueryVariable("evento") },
+                        method: "POST",
+                        success: function (data) {
+                            if (preencheEventos(data.noticias, "Não ocorrerá nenhum evento neste mês."))
+                            {
+                                marcarDiasEventos(ano + mes, data.dias);
+                            }
+                        }
+                    });
+
+                    $(".cal-cell.cell.selected").removeClass("selected");1
+                    $("#dataSelecionada").val(date);
+                }
+
+            }
+
+            function marcarDiasEventos(anoMesAtual, dias)
+            {
+                $.each(dias, function () {
+
+                    $(".cal-cell.cell[date-id=" + anoMesAtual + this.valueOf() + "]").addClass("tem-evento");
+
+                });
+
+            }
+
+            function preencheEventos(data, mensagem) {
+                if (data) {
+                    var retorno = false;
+                    $(".cards-events").html("");
+                    var item = "";
+
+                    if (data.length > 0) {
+                        $.each(data, function () {
+
+                            item += "<li> <a href='/eventos/detalhes/" + $(this)[0].Id + "'> <img src='/admin/conteudo/eventos/foto/" + $(this)[0].Imagem + "' /> <span class='tit'>" + $(this)[0].Titulo + "</span> </a> </li>";
+
+                        });
+                        retorno = true;
+                    } else {
+                        item = '<p class="description-noticie">' + mensagem + '</p>'
+                    }
+
+                    $(".cards-events").append(item);
+                    return retorno;
+                }
+            }
+
+            $(".month-cell.cell").on('click', function () {
+
+                var ano = $(".month-cell.cell.selected").attr("month-id").substring(0, 4);
+                var mes = $(".month-cell.cell.selected").attr("month");
+
+                var date = new Date(ano + "-" + mes + "-1");
+
+                $("#dataSelecionada").val(date);
+
+            });
+
+            defaultCalendar.changeRangeCallback = rangeChanged;
+
+            $("#next").on("click", function () {
+                navigate(1);
+            });
+
+            $("#prev").on("click", function () {
+                navigate(-1);
+            });
+
+            function navigate (count)
+            {
+                var dataAtual = new Date($("#dataSelecionada").val());
+
+                dataAtual = new Date(dataAtual.setDate(dataAtual.getDate() + count));                
+                dataFormatPlugin = convertToId(dataAtual);
+
+                $(".cal-cell.cell[date-id=" + dataFormatPlugin + "]").click();
+
+                defaultCalendar.changeRangeCallback = null;
+                defaultCalendar.dayTransactionEffect(dataAtual);
+                defaultCalendar.changeRangeCallback = rangeChanged;
+
+                $("#dataSelecionada").val(dataAtual);
+            }
+
+            $("#dataSelecionada").val(agora);
+        });
+
+        function convertToId(date)
+        {
+            var data = new Date(date);
+
+            var mesSemFormato = String(data.getMonth() + 1);
+            var format = "00";
+            var mes = format.substring(0, format.length - mesSemFormato.length) + mesSemFormato;
+
+            return String(data.getFullYear()) + mes + String(data.getDate());
+        }
+
+        function getQueryVariable(variable) {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split("=");
+                if (pair[0] == variable) {
+                    return pair[1];
+                }
+            }
+            return null;
+        }
+
+
+    </script>
+}

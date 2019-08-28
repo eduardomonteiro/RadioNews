@@ -1,0 +1,54 @@
+﻿@using System.Text.RegularExpressions
+@model List<Site.Models.Noticias>
+
+@if (Model != null && Model.Count > 0)
+    {
+        <ul class="news-line">
+            @foreach (var item in Model)
+            {
+                <li>
+                    <article class="container">
+                        <div class="info">
+                            <div class="clearfix header-content">
+                                <span class="info-publication">
+                                    Por <strong>@item.Colunista.nome </strong>, às @item.dataCadastro.ToShortDateString() - @item.dataCadastro.ToString("HH:mm")
+                                </span>
+
+                                <div class="box-share">
+                                    <span class="title">
+                                        <i class="fa fa-share-alt"></i>Compartilhar
+                                    </span>
+                                    <nav>
+                                        <a href="#" class="icon-facebook" onclick="openwindow('https://www.facebook.com/sharer/sharer.php?u=@HttpContext.Current.Request.Url.AbsoluteUri&display=popup&ref=plugin');">
+                                            <i class="fa fa-facebook"></i> Facebook
+                                        </a>
+
+                                        <a href="#" class="icon-twitter-squared" onclick="openwindow('https://twitter.com/intent/tweet?text=@Regex.Replace(item.titulo, @"<[^>]+>|&nbsp;", "").Trim()&url=@HttpContext.Current.Request.Url.AbsoluteUri');">
+                                            <i class="fa fa-twitter"></i>Twitter
+                                        </a>
+                                    </nav>
+                                </div>
+
+                            </div>
+                            <a href="@Url.Action("Materia", "Colunistas", new { chave = item.url, colunistaSlug = item.Colunista.chave })">
+                                <span class="tag-area">@item.Editoriais.FirstOrDefault().nome</span>
+                                <h3 class="title-medium">@item.titulo</h3>
+                            </a>
+                        </div>
+                    </article>
+                </li>
+            }
+                        
+        </ul>
+        <input type="hidden" name="ultimoId" value="@Model.Last().id" id="ultimoId" />
+}
+
+
+
+@if (Model.Count > 6)
+{
+    <footer class="footer-buttons">
+        <button class="bt-red">Carregar Mais</button>
+    </footer>
+
+}

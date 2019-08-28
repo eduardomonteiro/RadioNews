@@ -1,0 +1,139 @@
+﻿@using Site.Helpers
+@model Site.ViewModels.ModeloEspecialSecoesViewModel
+
+@section SEO{
+    <meta name="DC.title" content="Especial - @Model.Editoria.nome - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:title" content="Especial - @Model.Editoria.nome  - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="@Url.Content("~/images/ico-facebook.jpg")" />
+    <meta property="og:url" content="@HttpContext.Current.Request.Url.AbsoluteUri" />
+    <title>Especial - @Model.Editoria.nome  - Rádio CompanyName | A Rádio de Minas</title>
+}
+
+<div class="wrapper-general center">
+    <header class="nav-intern clearfix">
+        <div class="buttons">
+            <a class="bt-back" href="javascript:window.history.go(-1)"> <i class="fa fa-angle-left"></i> Voltar</a>
+            Texto: <button class="more bt-resize">+</button> <button class="bt-resize minus">-</button>
+        </div>
+        <nav class="breadcumb">
+            <a href="@Url.Action("Index","Home")">Home</a>
+            <a href="#">Especiais</a>
+            <span>@Model.Editoria.nome</span>
+        </nav>
+    </header>
+    <h1 class="title-page clearfix">@Model.Editoria.nome <a href="@Url.Action("Index", "Editorias", new { chave = Model.Editoria.chave })" class="bt-red pull-right">Ver mais</a></h1>
+    <div class="noticie-hero" style="margin-bottom: 15px">
+        @if (Model != null && Model.Noticias.Count > 0)
+        {
+            <main class="featured-noticies mini" id="normal">
+                @foreach (var item in Model.Noticias.OrderByDescending(x => x.dataAtualizacao).Take(3))
+                {
+                    <article>
+
+                        @if (!string.IsNullOrEmpty(item.foto))
+                        {
+                            <figure style="background-image: url(@Utils.fullUrlImage("365x240", item.id))" class="pic"></figure>
+                        }
+
+                        <a href="@Url.Action("Detalhes","Noticias", new { chave = item.url })">
+                            <div class="content">
+                                <h4 class="cat">@item.Editoriais.FirstOrDefault().nome</h4>
+                                <h3 class="title">@item.titulo</h3>
+                            </div>
+                        </a>
+                    </article>
+                }
+
+
+            </main>
+
+        }
+
+    </div>
+
+    @if (Model != null && Model.Noticias.Count > 3)
+    {
+        <ul class="row-grid mb clearfix">
+
+            @foreach (var item in Model.Noticias.OrderByDescending(x => x.dataAtualizacao).Skip(3).Take(4))
+            {
+                <li class="grid-3">
+                    <article>
+                        <a href="@Url.Action("Detalhes","Noticias", new { chave = item.url })">
+                            <img src="@Utils.fullUrlImage("260x173", item.id)" alt="@item.titulo">
+                            <h4 class="tag-area">@item.subtitulo</h4>
+                            <h3 class="title-normal">@item.titulo</h3>
+                        </a>
+                    </article>
+                </li>
+
+            }
+        </ul>
+    }
+
+    @if (Model.Banner != null)
+    {
+        <div class="banner-container">
+            @if (!string.IsNullOrEmpty(Model.Banner.Link))
+            {
+            <a href="@Model.Banner.Link" target="_blank" onclick="clickBanner(@Model.Banner.Id)">
+                <img class="promotion-side promotional-banner" 
+                data-cliente="@Model.Banner.Anunciante" 
+                data-comercial="@Model.Banner.AreaBanner.FirstOrDefault().Descricao" 
+                data-dimensao="@Model.Banner.AreaBanner.FirstOrDefault().Tamanho"
+                src="/admin/Conteudo/Banners/@Model.Banner.AreaBanner.FirstOrDefault().Tamanho/@Model.Banner.Arquivo" alt="@Model.Banner.Titulo" data-banner-id="@Model.Banner.Id">
+            </a>
+            }
+            else
+            {
+            <img class="promotion-side" src="/admin/Conteudo/Banners/@Model.Banner.AreaBanner.FirstOrDefault().Tamanho/@Model.Banner.Arquivo" alt="@Model.Banner.Titulo" data-banner-id="@Model.Banner.Id">
+            }
+        </div>
+    }
+
+
+    @if (Model.Editoria != null && Model.Editoria.Especiais_Secoes.Count > 0)
+    {
+        foreach (var secao in Model.Editoria.Especiais_Secoes.Where(x => x.Ativo && !x.Excluido))
+        {
+            <section class="wrapper-information clearfix" id="roteiros">
+
+                <header class="clearfix">
+                    <h2 class="title-area">@secao.Titulo</h2>
+                </header>
+
+
+                @if (secao.Secoes_Locais != null && secao.Secoes_Locais.Count > 0)
+                {
+                    <ul class="row-grid news-box mini-sliders t-center" data-slide="roteiros">
+                        @foreach (var local in secao.Secoes_Locais.Where(x => x.Ativo && !x.Excluido))
+                        {
+                            <li class="grid-3">
+                                <article>
+
+                                    <a href="https://www.google.com.br/maps/place/@local.Endereco" target="_blank">
+
+                                        @if (!string.IsNullOrEmpty(local.Imagem))
+                                        {
+                                            <img src="/Admin/Conteudo/locais/@local.Id/405x270/@local.Imagem?width=238" alt="@local.Titulo">
+                                        }
+
+                                        <span class="label-location">Como Chegar</span>
+                                        <h4 class="tag-area">@local.Tipo</h4>
+                                        <h3 class="title-medium">@local.Titulo</h3>
+                                    </a>
+                                </article>
+                            </li>
+                        }
+                    </ul>
+                }
+
+            </section>
+
+        }
+
+    }
+
+</div>

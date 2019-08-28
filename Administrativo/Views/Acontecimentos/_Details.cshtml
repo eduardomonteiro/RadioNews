@@ -1,0 +1,42 @@
+﻿@using Administrativo.Models
+@model Acontecimentos
+
+<table class="table table-bordered table-striped responsive">
+    <tbody>
+        <tr>
+            <td style="width:200px;">@Html.DisplayNameFor(model => model.Id)</td>
+            <td>@Html.DisplayFor(model => model.Id)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Eventos.Titulo)</td>
+            <td>@Html.DisplayFor(model => model.Eventos.Titulo)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Data)</td>
+            <td>@Html.DisplayFor(model => model.Data)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.HoraInicio)</td>
+            <td>@Html.DisplayFor(model => model.HoraInicio)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.HoraFim)</td>
+            <td>@Html.DisplayFor(model => model.HoraFim)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Local)</td>
+            <td>@Html.DisplayFor(model => model.Local)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.FlickrId)</td>
+            <td>@Html.DisplayFor(model => model.FlickrId)</td>
+        </tr>
+
+    </tbody>
+</table>

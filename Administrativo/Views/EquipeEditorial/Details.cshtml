@@ -1,0 +1,27 @@
+﻿@model Administrativo.Models.Editoriais_Equipe
+
+@{
+    ViewBag.Title = "EquipeEditorial";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Visualizar detalhes de EquipeEditorial";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">Detalhes</h3>
+            </div>
+            <div class="box-content padded">
+                @Html.Partial("DetailsPartial")
+            </div>
+            <div class="box-footer">
+
+                <a href="@Url.Action("Edit","EquipeEditorial", new { id = Model.id })" class="btn btn-warning">Editar</a>
+                <a href="@Url.Action("Index", "EquipeEditorial", new { editorial = Model.EditoriaisId }))" class="btn btn-info">Voltar</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+

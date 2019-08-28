@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html  class="bg-black">
+<head  class="bg-black">
+    <meta charset="UTF-8">
+    <title>@ViewBag.Title - Radio Itaitiaia | Administrativo</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    @Styles.Render("~/Content/css-application")
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+    <!--[if lt IE 9]>
+        @Scripts.Render("~/bundles/ie9")
+        <![endif]-->
+
+</head>
+    <body class="">
+
+        @RenderBody()
+
+    </body>
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</html>

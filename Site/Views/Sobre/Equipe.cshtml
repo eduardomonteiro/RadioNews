@@ -1,0 +1,99 @@
+﻿@using Site.Models
+@model Site.ViewModels.EquipeViewModel
+
+@section SEO{
+    <meta name="DC.title" content="Equipe - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:title" content="Equipe - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="@Url.Content("~/images/ico-facebook.jpg")" />
+    <meta property="og:url" content="@HttpContext.Current.Request.Url.AbsoluteUri" />
+    <title>Equipe - Rádio CompanyName | A Rádio de Minas</title>
+}
+
+<div class="wrapper-general center">
+    <header class="nav-intern clearfix">
+        <div class="buttons">
+            <a class="bt-back" href="javascript:window.history.go(-1)"> <i class="fa fa-angle-left"></i> Voltar</a>
+            Texto: <button class="more bt-resize">+</button> <button class="bt-resize minus">-</button>
+        </div>
+        <nav class="breadcumb">
+            <a href="@Url.Action("Index","Home")">Home</a>
+            <span>Equipe</span>
+        </nav>
+    </header>
+    <h1 class="title-page">Equipe</h1>
+    <div class="block-text">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo.Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+    </div>
+
+    @if (Model != null && Model.Equipes.Count > 0)
+    {
+        <section class="content-margin">
+            <ul class="list-border">
+
+                @foreach (var item in Model.Equipes)
+                {
+                    <li class="row-grid">
+                        @if (!string.IsNullOrEmpty(item.imagem))
+                        {
+                            <figure class="grid-3">
+                                <img class="pic-radius" src="/Admin/Conteudo/Equipe/165x165/@item.imagem" alt="@item.nome">
+                            </figure>
+                        }
+
+                        <div class="grid-9 block-text">
+                            <header class="header-content">
+                                <div class="pull-left">
+                                    <h3 class="name-people">@item.nome</h3>
+                                    <h4 class="mini-function">@item.funcao</h4>
+                                </div>
+                                <div class="pull-right">
+                                    @if (!string.IsNullOrEmpty(item.facebook))
+                                    {
+                                        <a href="@item.facebook" class="fa fa-facebook buttons-share" title="Facebook" target="_blank"></a>
+                                    }
+                                    @if (!string.IsNullOrEmpty(item.twitter))
+                                    {
+                                        <a href="@item.twitter" class="fa fa-twitter buttons-share" title="Twitter" target="_blank"></a>
+                                    }
+
+                                </div>
+                            </header>
+                            @Html.Raw(item.texto)
+                        </div>
+                    </li>
+                }
+
+
+            </ul>
+
+            @if (Model.Banner != null)
+            {
+                if (!string.IsNullOrEmpty(Model.Banner.Link))
+                {
+                    <footer>
+                        <a href="@Model.Banner.Link" target="_blank" onclick="clickBanner(@Model.Banner.Id)">
+                            <img class="promotional-banner"
+                         data-cliente="@Model.Banner.Anunciante" 
+                         data-comercial="@Model.Banner.AreaBanner.FirstOrDefault().Descricao" 
+                         data-dimensao="@Model.Banner.AreaBanner.FirstOrDefault().Tamanho"  src="/admin/Conteudo/Banners/@Model.Banner.AreaBanner.FirstOrDefault().Tamanho/@Model.Banner.Arquivo" alt="@Model.Banner.Anunciante" data-banner-id="@Model.Banner.Id">
+                        </a>
+                    </footer>
+                }
+                else
+                {
+                    <footer>
+                        <img class="promotional-banner" 
+                         data-cliente="@Model.Banner.Anunciante" 
+                         data-comercial="@Model.Banner.AreaBanner.FirstOrDefault().Descricao" 
+                         data-dimensao="@Model.Banner.AreaBanner.FirstOrDefault().Tamanho" src="/admin/Conteudo/Banners/@Model.Banner.AreaBanner.FirstOrDefault().Tamanho/@Model.Banner.Arquivo" alt="@Model.Banner.Anunciante" data-banner-id="@Model.Banner.Id">
+                    </footer>
+                }
+
+            }
+
+        </section>
+
+    }
+</div>

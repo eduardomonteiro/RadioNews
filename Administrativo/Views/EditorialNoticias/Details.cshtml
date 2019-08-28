@@ -1,0 +1,207 @@
+﻿@model Administrativo.Models.Noticias
+
+@{
+    ViewBag.Title = "Visualizar Notícia - " + ViewBag.Editorial.nome;
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Visualizar detalhes de Notícia";
+}
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">Detalhes</h3>
+            </div>
+            <div class="box-content padded">
+                <table class="table table-bordered table-striped responsive">
+                    <tbody>
+                        <tr>
+                            <td style="width:200px;">@Html.DisplayNameFor(model => model.id)</td>
+                            <td>@Html.DisplayFor(model => model.id)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.titulo)</td>
+                            <td>@Html.DisplayFor(model => model.titulo)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.chamada)</td>
+                            <td>@Html.Raw(Html.DisplayFor(model => model.chamada))</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.texto)</td>
+                            <td>
+                                <div class="slimscroll noticias-detalhes box box-solid" style="">
+                                    @Html.Raw(HttpUtility.HtmlDecode(Model.texto).Replace("\\n", ""))
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.foto)</td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(Model.foto))
+                                {
+
+                                    <a class="btn btn-block btn-primary" data-toggle="modal" data-target="#imagem-foto" style="width: 120px; padding: 3px;">Imagem Atual</a>
+
+                                }
+                                else
+                                {
+                                    <p class="text-yellow">Sem Foto</p>
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.fotoDescricao)</td>
+                            <td>@Html.DisplayFor(model => model.fotoDescricao)</td>
+                        </tr>
+
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.audio)</td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(Model.audio))
+                                {
+
+                                    <audio controls>
+                                        @*<source src="horse.ogg" type="audio/ogg">*@
+                                        <source src="@Url.Content("~/conteudo/noticias/"+Model.id+"/audio/"+Model.audio)" type="audio/mpeg">
+                                        Atualize seu navegador para ouvir.
+                                    </audio>
+                                }
+                                else
+                                {
+                                    <p class="text-yellow">Sem áudio.</p>
+                                }
+                            </td>
+
+                        </tr>
+
+                        @if (!string.IsNullOrEmpty(Model.audio))
+                        {
+                            <tr>
+                                <td>Link de Compartilhamento<small>(<i>Cole no Facebook para Compartilhar o Áudio</i>)</small></td>
+                                <td>http://www.CompanyName.com.br/audio?tipo=noticia&id=@Model.id</td>
+                            </tr>
+                        }
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.destaque)</td>
+                            <td>@Html.DisplayFor(model => model.destaque)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.destaqueHome)</td>
+                            <td>@Html.DisplayFor(model => model.destaqueHome)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.assuntoSemana)</td>
+                            <td>@Html.DisplayFor(model => model.assuntoSemana)</td>
+                        </tr>
+
+
+
+                        @if (Model.idGaleria != null)
+                        {
+
+                            <tr>
+                                <td>@Html.DisplayNameFor(model => model.Galeria.titulo) da Galeria</td>
+                                <td>@Html.DisplayFor(model => model.Galeria.titulo)</td>
+                                <td>
+                                    <a href="@Url.Action("edit", "galeria", new { id = Model.idGaleria })">
+                                        Editar Galeria
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+
+                        @if (Model.videoYoutube != null)
+                        {
+                            <tr>
+                                <td>@Html.DisplayNameFor(model => model.videoYoutube)</td>
+                                <td>@Html.DisplayFor(model => model.videoYoutube)</td>
+                            </tr>
+                            <tr>
+                                <td>@Html.DisplayNameFor(model => model.videoDestaqueHome)</td>
+                                <td>@Html.DisplayFor(model => model.videoDestaqueHome)</td>
+                            </tr>
+                        }
+
+
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.plantao)</td>
+                            <td>@Html.DisplayFor(model => model.plantao)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.visualizacao)</td>
+                            <td>@Html.DisplayFor(model => model.visualizacao)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.dataCadastro)</td>
+                            <td>@Html.DisplayFor(model => model.dataCadastro)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayName("Programar matéria")</td>
+                            <td>@Html.DisplayFor(model => model.dataAtualizacao)</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+
+
+            </div>
+            <div class="box-footer">
+
+
+
+                <a href="@Url.Action("Edit", "EditorialNoticias", new { id = Model.id, editorial = ViewBag.EditorialChave })" class="btn btn-warning">Editar</a>
+                <a href="@Url.Action("Index", "EditorialNoticias", new { editorial = ViewBag.EditorialChave })" class="btn btn-info">Voltar</a>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="imagem-foto" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Imagem Atual</h4>
+            </div>
+            <div class="modal-body">
+                <img src="@Url.Content(string.Format(ViewBag.pathOriginal,Model.id) + Model.foto)" width="700" />
+            </div>
+            <div class="modal-footer clearfix">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="fa fa-times"></i>Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $(".slimscroll").slimscroll({
+                height: "350px",
+                alwaysVisible: false,
+                size: "5px"
+            }).css("width", "750px");
+        });
+
+    </script>
+
+}

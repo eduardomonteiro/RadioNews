@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<stages id="295">
+<stage id="1" name="Turno" type="C">
+<round id="1" startdate="14/05/2016" enddate="15/05/2016" last="false" next="false" current="false" short="1ª">1ª Rodada</round>
+<round id="2" startdate="21/05/2016" enddate="22/05/2016" last="false" next="false" current="false" short="2ª">2ª Rodada</round>
+<round id="3" startdate="25/05/2016" enddate="26/05/2016" last="false" next="false" current="false" short="3ª">3ª Rodada</round>
+<round id="4" startdate="28/05/2016" enddate="29/05/2016" last="false" next="false" current="false" short="4ª">4ª Rodada</round>
+<round id="5" startdate="01/06/2016" enddate="02/06/2016" last="false" next="false" current="false" short="5ª">5ª Rodada</round>
+<round id="6" startdate="04/06/2016" enddate="05/06/2016" last="false" next="false" current="false" short="6ª">6ª Rodada</round>
+<round id="7" startdate="11/06/2016" enddate="12/06/2016" last="false" next="false" current="false" short="7ª">7ª Rodada</round>
+<round id="8" startdate="15/06/2016" enddate="16/06/2016" last="false" next="false" current="false" short="8ª">8ª Rodada</round>
+<round id="9" startdate="18/06/2016" enddate="19/06/2016" last="false" next="false" current="false" short="9ª">9ª Rodada</round>
+<round id="10" startdate="21/06/2016" enddate="23/06/2016" last="false" next="false" current="false" short="10ª">10ª Rodada</round>
+<round id="11" startdate="25/06/2016" enddate="26/06/2016" last="false" next="false" current="false" short="11ª">11ª Rodada</round>
+<round id="12" startdate="29/06/2016" enddate="30/06/2016" last="false" next="false" current="false" short="12ª">12ª Rodada</round>
+<round id="13" startdate="02/07/2016" enddate="04/07/2016" last="false" next="false" current="false" short="13ª">13ª Rodada</round>
+<round id="14" startdate="09/07/2016" enddate="12/07/2016" last="false" next="false" current="false" short="14ª">14ª Rodada</round>
+<round id="15" startdate="16/07/2016" enddate="18/07/2016" last="false" next="false" current="false" short="15ª">15ª Rodada</round>
+<round id="16" startdate="23/07/2016" enddate="25/07/2016" last="false" next="false" current="false" short="16ª">16ª Rodada</round>
+<round id="17" startdate="30/07/2016" enddate="31/07/2016" last="false" next="false" current="false" short="17ª">17ª Rodada</round>
+<round id="18" startdate="03/08/2016" enddate="03/09/2016" last="false" next="false" current="false" short="18ª">18ª Rodada</round>
+<round id="19" startdate="06/08/2016" enddate="04/09/2016" last="false" next="false" current="false" short="19ª">19ª Rodada</round>
+
+</stage>
+<stage id="2" name="Returno" type="C">
+<round id="20" startdate="13/08/2016" enddate="15/08/2016" last="false" next="false" current="false" short="20ª">20ª Rodada</round>
+<round id="21" startdate="19/08/2016" enddate="22/08/2016" last="false" next="false" current="false" short="21ª">21ª Rodada</round>
+<round id="22" startdate="27/08/2016" enddate="29/08/2016" last="false" next="false" current="false" short="22ª">22ª Rodada</round>
+<round id="23" startdate="07/09/2016" enddate="08/09/2016" last="false" next="false" current="false" short="23ª">23ª Rodada</round>
+<round id="24" startdate="10/09/2016" enddate="12/09/2016" last="false" next="false" current="false" short="24ª">24ª Rodada</round>
+<round id="25" startdate="14/09/2016" enddate="15/09/2016" last="false" next="false" current="false" short="25ª">25ª Rodada</round>
+<round id="26" startdate="17/09/2016" enddate="19/09/2016" last="false" next="false" current="false" short="26ª">26ª Rodada</round>
+<round id="27" startdate="24/09/2016" enddate="25/09/2016" last="false" next="false" current="false" short="27ª">27ª Rodada</round>
+<round id="28" startdate="01/10/2016" enddate="03/10/2016" last="false" next="false" current="false" short="28ª">28ª Rodada</round>
+<round id="29" startdate="05/10/2016" enddate="09/10/2016" last="false" next="false" current="false" short="29ª">29ª Rodada</round>
+<round id="30" startdate="12/10/2016" enddate="13/10/2016" last="false" next="false" current="false" short="30ª">30ª Rodada</round>
+<round id="31" startdate="16/10/2016" enddate="17/10/2016" last="false" next="false" current="false" short="31ª">31ª Rodada</round>
+<round id="32" startdate="19/10/2016" enddate="24/10/2016" last="false" next="false" current="false" short="32ª">32ª Rodada</round>
+<round id="33" startdate="27/10/2016" enddate="31/10/2016" last="false" next="false" current="false" short="33ª">33ª Rodada</round>
+<round id="34" startdate="05/11/2016" enddate="07/11/2016" last="false" next="false" current="false" short="34ª">34ª Rodada</round>
+<round id="35" startdate="15/11/2016" enddate="17/11/2016" last="false" next="false" current="false" short="35ª">35ª Rodada</round>
+<round id="36" startdate="20/11/2016" enddate="21/11/2016" last="false" next="false" current="false" short="36ª">36ª Rodada</round>
+<round id="37" startdate="26/11/2016" enddate="28/11/2016" last="true" next="false" current="true" short="37ª">37ª Rodada</round>
+<round id="38" startdate="11/12/2016" enddate="11/12/2016" last="false" next="true" current="false" short="38ª">38ª Rodada</round>
+
+</stage>
+
+</stages>

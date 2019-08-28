@@ -1,0 +1,101 @@
+﻿@model List<Site.ViewModels.AcontecimentoViewModel>
+
+<style>
+    .fa.fa-angle-right.slick-arrow.slick-disabled {
+        display: none !important;
+    }
+
+    .fa.fa-angle-left.slick-arrow.slick-disabled {
+        display: none !important;
+    }
+    
+    .t-left {
+
+        text-align:left !important;
+    }
+
+</style>
+
+<aside class="grid-3 promotional">
+    <div class="cards-side proximos" id="eventos-side">
+        <div id="arrow-left" class="fa fa-angle-left"></div>
+        <div id="arrow-right" class="fa fa-angle-right"></div>
+        <div class="container">
+            <div class="blocks" style="">
+                <header class="title-rodada">
+                    <h2 class="title-card">Calendário de Ações</h2>
+                </header>
+
+                
+
+                <div id="calendario-acoes">
+                    @if (Model != null && Model.Any())
+                    {
+                        for (int i = 0; i < Model.Count(); i++)
+                        {
+                            <ul class="list-games">
+
+                                <li class="t-left">
+                                    <p class="tit-black red">
+                                        <i class="fa fa-calendar-check-o"></i> @Model[i].Data.ToString("dd/MM/yyyy")
+                                    </p>
+                                    <p class="tit-black">
+                                        <i class="fa fa-clock-o"></i> @Model[i].HoraInicio.Replace(":", "h") até @Model[i].HoraFim.Replace(":", "h")
+                                    </p>
+                                    <p class="tit-black">
+                                        <i class="fa fa-map-marker"></i> @Model[i].Local
+                                    </p>
+                                </li>
+
+                                @if (Model.Count > i + 1)
+                                {
+                                    <li class="t-left">
+                                        <p class="tit-black red">
+                                            <i class="fa fa-calendar-check-o"></i> @Model[i + 1].Data.ToString("dd/MM/yyyy")
+                                        </p>
+                                        <p class="tit-black">
+                                            <i class="fa fa-clock-o"></i> @Model[i + 1].HoraInicio.Replace(":", "h") até @Model[i + 1].HoraFim.Replace(":", "h")
+                                        </p>
+                                        <p class="tit-black">
+                                            <i class="fa fa-map-marker"></i> @Model[i + 1].Local
+                                        </p>
+                                    </li>
+                                    
+                                }
+                                
+                                @if (Model.Count > i + 2)
+                                {
+                                    <li class="t-left">
+                                        <p class="tit-black red">
+                                            <i class="fa fa-calendar-check-o"></i> @Model[i + 2].Data.ToString("dd/MM/yyyy")
+                                        </p>
+                                        <p class="tit-black">
+                                            <i class="fa fa-clock-o"></i> @Model[i + 2].HoraInicio.Replace(":", "h") até @Model[i + 2].HoraFim.Replace(":", "h")
+                                        </p>
+                                        <p class="tit-black">
+                                            <i class="fa fa-map-marker"></i> @Model[i + 2].Local
+                                        </p>
+                                    </li>
+                                }
+
+
+                                @{i = i + 2;}
+                            </ul>
+                        }
+                    }
+                    else
+                    {
+                        <p class="title-mini">Nenhum acontecimento futuro para esse evento.</p>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</aside>
+
+<script>
+
+
+
+</script>

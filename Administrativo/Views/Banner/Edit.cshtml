@@ -1,0 +1,250 @@
+﻿@model Administrativo.Models.Banners
+@{
+    ViewBag.Title = "Editar Banner";
+    ViewBag.Icon = "fa fa-newspaper-o";
+    ViewBag.SmallDescription = "Altere as informações de Banner";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<div class="content">
+    <div class="row">
+        <div class="box box-warning">
+            <div class="box-header">
+                <h3 class="box-title">Editar Banner</h3>
+            </div>
+            @using (Html.BeginForm("Edit", "Banner", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="box-body">
+
+                    @Html.HiddenFor(model => model.Id)
+                    @Html.HiddenFor(model => model.DataCadastro)
+                    @Html.HiddenFor(model => model.TipoArquivo)
+
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.Anunciante)
+
+                        @Html.TextBoxFor(model => model.Anunciante, new { @maxlength = 100, @class = "text-box" })
+                        @Html.ValidationMessageFor(model => model.Anunciante)
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.Link)
+                                @Html.TextBoxFor(model => model.Link, new { @maxlength = 300, @class = "text-box" })
+                                @Html.ValidationMessageFor(model => model.Link)
+                            </div>
+                            <div class="col-md-6">
+                                <div class="callout callout-warning">
+                                    <h4>Exemplos de links:</h4>
+                                    <p>Interno: <i>/Noticia/25</i><br />Externo: <i>http://www.exemplo.com</i></p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.DataInicio)
+                                <input type="datetime" id="DataInicio" name="DataInicio" class="form-control" value="@Model.DataInicio" />
+                                @Html.ValidationMessageFor(model => model.DataInicio)
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.DataFim)
+                                <input type="datetime" id="DataFim" name="DataFim" class="form-control" value="@Model.DataFim" />
+                                @Html.ValidationMessageFor(model => model.DataFim)
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Tamanho da imagem")
+                        @Html.DropDownList("Tamanho", (SelectList)ViewBag.Tamanho, new { @class = "chosen-select" })
+                        @Html.ValidationMessage("Tamanho")
+                    </div>
+                    @*<div class="form-group">
+                        <label for="isHtml">É HTML?</label>
+                        <input id="isHtml" name="isHtml" type="checkbox" @(string.IsNullOrEmpty(Model.Arquivo) ? "checked='checked'" : "")/>
+                    </div>*@
+
+                    <div id="envioArquivo" class="form-group" @(string.IsNullOrEmpty(Model.Arquivo) ? "style=display:none" : "")>
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.Arquivo)
+
+                                @Html.TextBoxFor(model => model.Arquivo, new { style = "display: none;" })
+                                <input type="file" name="arquivoUpload" id="arquivoUpload" onchange="javascript: $('#Arquivo').val($(this).val().split('\\').pop());" accept="image/*" />
+                                @Html.ValidationMessageFor(model => model.Arquivo)
+                            </div>
+                            <div class="col-md-5">
+                                @if (!string.IsNullOrEmpty(Model.Arquivo))
+                                {
+                                    <a class="btn btn-block btn-primary" data-toggle="modal" data-target="#imagem-arquivo" style="width: 120px;">Imagem Atual</a>
+                                }
+                                else
+                                {
+                                    <p class="text-yellow">Sem Miniatura.</p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div id="Arquivo2" @(string.IsNullOrEmpty(Model.Arquivo2) ? "style=display:none" : "")>
+                                <div class="col-md-6">
+                                    @Html.LabelFor(model => model.Arquivo2)
+
+                                    @Html.TextBoxFor(model => model.Arquivo2, new { style = "display: none;" })
+                                    <input type="file" name="Arquivo2" id="Arquivo2" onchange="javascript: $('#Arquivo2').val($(this).val().split('\\').pop());" accept="image/*" />
+                                    @Html.ValidationMessageFor(model => model.Arquivo2)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+
+                @*<div id="envioHTML" class="form-group" @(string.IsNullOrEmpty(Model.Html) ? "style=display:none" : "")>
+
+                    @Html.LabelFor(model => model.Html)
+
+                    @Html.EditorFor(model => model.Html, new { @maxlength = 500, @class = "text-box" })
+                </div>*@
+                    <div class="form-group">
+                        <div class="form-group">
+
+                            @Html.LabelFor(model => model.Liberado)
+
+                            @Html.BooleanFieldFor(model => model.Liberado, Model.Liberado, new { @class = "form-control", style = "width: 120px;" })
+                            @Html.ValidationMessageFor(model => model.Liberado)
+                        </div>
+
+                    </div>
+                <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a href="@Url.Action("Index", "Banner")" class="btn btn-info">Voltar</a>
+
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="imagem-arquivo" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Imagem Atual</h4>
+            </div>
+            <div class="modal-body">
+                <h3>Imagem 1</h3>
+                <img src="@Url.Content("~/Conteudo/Banners/" + ViewBag.tamanhoSelecionado + "/" + Model.Arquivo)" width="550" @(string.IsNullOrEmpty(Model.Arquivo2) ? "" : "height=65") />
+                @if (!string.IsNullOrEmpty(Model.Arquivo2))
+                {
+                    <br />
+                    <h3>Imagem 2</h3>
+                    <img src="@Url.Content("~/Conteudo/Banners/" + ViewBag.tamanhoSelecionado2 + "/" + Model.Arquivo2)" width="550" />
+                }
+            </div>
+            <div class="modal-footer clearfix">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="fa fa-times"></i>Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        //$(document).ready(function () {
+        //    $('#isHtml').on('ifClicked', function(event) {
+        //        if (!this.checked) {
+        //            $('#envioArquivo').hide();
+        //            $('#envioHTML').show();
+        //        } else {
+        //            $('#envioArquivo').show();
+        //            $('#envioHTML').hide();
+        //        }
+        //    });
+        //});
+
+
+        function uploadImagem(editName) {
+            $('input[name="' + editName + '"]').change(function () {
+                var valor = $(this).val().split('/').pop().split('\\').pop();
+
+                var value = valor, ext = value.split(".").pop();
+                var arrayPermitidos = ["jpg", "jpeg", "png", "gif"];
+
+                if ($.inArray(ext.toLowerCase(), arrayPermitidos) == -1) {
+                    swal({ title: 'Erro', text: "Extensão inválida!<br> As extensões aceitas são :<br><br><strong> jpg,gif,png.</strong>", type: 'error', html: true });
+                    $(this).val('');
+                }
+
+            });
+        }
+
+        $(document).ready(function () {
+
+            @if(Model.AreaBanner == null){
+            <text>
+            $('#formAreas').hide();
+            </text>
+            }
+            $("#Tamanho").val("@ViewBag.TamanhoId");
+
+            $(".chosen-select").chosen({ width: "100%" });
+
+            $('#DataInicio, #DataFim').daterangepicker({ format: 'DD/MM/YYYY', singleDatePicker: true });
+
+            uploadImagem('arquivoUpload');
+            uploadImagem('Arquivo2');
+
+        });
+
+        $('#tipoDoArquivo').on('change', function () {
+            if ($(this).val() == 'true') {
+                $('#TipoArquivo').val(true);
+            } else {
+                $('#TipoArquivo').val(false);
+            }
+        });
+
+        $('#Tamanho').on('change', function () {
+            $.ajax({
+                url: "/Admin/Banner/Areas/",
+                data: { tamanho: $("#Tamanho").val() },
+                type: "post",
+                dataType: "json",
+                success: function (data) {
+                    $('#formAreas').show();
+                    var opt = $('#Area');
+                    opt.empty();
+                    $(data).each(function () {
+                        $(document.createElement('option'))
+                            .attr('value', this.Id)
+                            .text(this.Titulo)
+                            .appendTo(opt);
+                    });
+                    $(".chosen-select").trigger("chosen:updated");
+                }
+            });
+        });
+    </script>
+}
+
+
+

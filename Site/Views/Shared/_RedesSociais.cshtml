@@ -1,0 +1,67 @@
+﻿@using Site.Helpers
+@model Site.ViewModels.RedesSociaisHomeViewModel
+
+<section class="widgets-social">
+    <div class="center">
+        <header>
+            <h2>#CompanyNameNasRedes</h2>
+            <div class="links">
+                <span>Siga-nos</span>
+                <a href="https://www.facebook.com/radioCompanyName/?fref=ts" class="icons" target="_blank" title="Curta nossa página no Facebook">
+                    <i class="fa fa-facebook"></i>
+                </a>
+                <a href="https://twitter.com/radioCompanyName?lang=pt" class="icons" target="_blank" title="Siga-nos no Twitter">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </div>
+        </header>
+
+
+        @if (Model.Facebook.Count > 0 && Model.Twitter.Count > 0)
+        {
+            <div class="box clearfix">
+                <div class="content-articles-social">
+
+                    <div class="wrapper" id="twitter-post">
+                        @foreach (var item in Model.Twitter)
+                        {
+                            <article class="block tw">
+                                <h2>RadioCompanyName</h2>
+                                <p>@(!string.IsNullOrEmpty(item.Texto)?Utils.TruncateText(item.Texto,178,true):"")</p>
+                                <a href="@item.Link" target="_blank">Acessar Link</a>
+                            </article>
+                        }
+                        
+                    </div>
+
+                    <div class="wrapper" id="fb-post">
+                        @foreach (var item in Model.Facebook)
+                        {
+                            <article class="block fb">
+                                <h2>RadioCompanyName</h2>
+                                <p>@(!string.IsNullOrEmpty(item.Texto) ? Utils.TruncateText(item.Texto,178,true) : "")</p>
+                                <a href="@item.Link" target="_blank">Acessar Link</a>
+                            </article>
+                        }
+                        
+                    </div>
+                </div>
+
+
+                @if (Model.FotoDestaque != null)
+                {
+                    <article class="featured-box" id="fb-big">
+                        <a href="@Model.FotoDestaque.Link" target="_blank">
+                            <img src="@Model.FotoDestaque.Imagem" alt="@Model.FotoDestaque.Texto" width="313" height="314" title="@Model.FotoDestaque.Texto">
+                        </a>
+                    </article>
+                }
+                
+
+            </div>
+        }
+
+
+
+    </div>
+</section>

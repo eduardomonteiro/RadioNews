@@ -1,0 +1,214 @@
+﻿@model Administrativo.Models.Materia
+
+
+@{
+    ViewBag.Title = "Causas";
+    ViewBag.Icon = "fa fa-puzzle-piece";
+    ViewBag.SmallDescription = "Visualizar detalhes de Causas - " + Model.Programacao.nome;
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">Detalhes</h3>
+            </div>
+            <div class="box-content padded">
+                <table class="table table-bordered table-striped responsive">
+                    <tbody>
+
+                        <tr>
+                            <td style="width:200px;">@Html.DisplayNameFor(model => model.id)</td>
+                            <td>@Html.DisplayFor(model => model.id)</td>
+                        </tr>
+
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Programacao.nome)</td>
+                            <td>@Html.DisplayFor(model => model.Programacao.nome)</td>
+                        </tr>
+
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.AssuntoMateria.assunto)</td>
+                            <td>@Html.DisplayFor(model => model.AssuntoMateria.assunto)</td>
+                        </tr>
+
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.titulo)</td>
+                            <td>@Html.DisplayFor(model => model.titulo)</td>
+                        </tr>
+
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.chamada)</td>
+                            <td>@Html.DisplayFor(model => model.chamada)</td>
+                        </tr>
+
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.texto)</td>
+                            <td>@Html.Raw(Model.texto)</td>
+                        </tr>
+
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.foto)</td>
+                            <td><a class="btn btn-block btn-primary" data-toggle="modal" data-target="#imagem-foto" style="width: 120px;">Imagem Atual</a></td>
+                        </tr>
+
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.status)</td>
+                            <td>@(Model.status == 0 ? "Finalizado" : "Em andamento")</td>
+                        </tr>
+
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.dataCadastro)</td>
+                            <td>@Html.DisplayFor(model => model.dataCadastro)</td>
+                        </tr>
+                        @*<tr>
+                            <td>@Html.DisplayName("Novidades")</td>
+                            <td><a class="btn btn-block btn-primary" style="width: 130px;" href="~/Novidades/Index">Ir para Novidades</a></td>
+                        </tr>*@
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="box-footer">
+
+
+
+
+                <a href="@Url.Action("Edit", "Causas", new { id = Model.id })" class="btn btn-warning">Editar</a>
+                <a href="@Url.Action("Index", "Causas", new { programa = Model.idProgramacao })" class="btn btn-info">Voltar</a>
+
+
+
+
+            </div>
+        </div>
+
+        @*Box Novidades*@
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">Acontecimentos</h3>
+                <div class="pull-right">
+                    <a style="margin:4px; color:white;" href="@Url.Action("Create", "Novidades", new { idMateria = Model.id })" class="btn btn-success pull-right"><i class="fa fa-plus-circle white"></i>&nbsp;Cadastrar</a>
+                </div>
+            </div>
+            <div class="box-body no-padding">
+                <div class="fc fc-ltr">
+                    <table class="table table-striped responsive table-hover dataTable">
+                        <thead>
+                            <tr role="row">
+
+                                <th style="width:40px;">
+                                    @Html.DisplayName("Id")
+                                </th>
+
+                                <th>
+                                    @Html.DisplayName("Status")
+                                </th>
+
+                                <th>
+                                    @Html.DisplayNameFor(model=>model.MateriaNovidades.FirstOrDefault().novidades)
+                                </th>
+
+                                <th>
+                                    @Html.DisplayName("Audio")
+                                </th>
+
+                                <th>
+                                    @Html.DisplayName("Data de cadastro")
+                                </th>
+
+                                <th style="width: 160px;">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (ViewBag.Novidades.Count > 0)
+                            {
+                                foreach (var item in ViewBag.Novidades)
+                                {
+                                    <tr>
+
+                                        <td>
+                                            @item.id
+                                        </td>
+
+                                        <td>
+                                            @item.status
+                                        </td>
+
+                                        <td>
+                                            @item.novidades
+                                        </td>
+
+                                        <td>
+                                            @item.audio
+                                        </td>
+
+                                        <td>
+                                            @item.dataCadastro
+                                        </td>
+
+                                        <td>
+                                            <div class="btn-group">
+                                                <a href="@Url.Action("Edit", "Novidades", new { id = item.id })" class="btn btn-warning btn-small"><i class="fa fa-edit"></i></a>
+                                                <a href="@Url.Action("Details", "Novidades", new { id = item.id })" class="btn bg-olive btn-small"><i class="fa fa-search-plus"></i></a>
+                                                <a href="@Url.Action("Delete", "Novidades", new { id = item.id })" class="btn btn-danger btn-small"><i class="fa fa-trash-o"></i></a>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="9" align="center">Nenhum registro encontrado.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="box-footer clearfix no-border">
+
+            </div>
+        </div>
+        @*Fim Box Novidades*@
+
+    </div>
+</div>
+
+<div class="modal fade" id="imagem-foto" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Imagem Atual</h4>
+
+            </div>
+            <div class="modal-body">
+                <img src="@Url.Content("~/conteudo/materias/" + Model.id + "/interna/" + Model.foto)" width="200" />
+            </div>
+            <div class="modal-footer clearfix">
+
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="fa fa-times"></i>Fechar
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,116 @@
+﻿@model Administrativo.Models.Materia
+
+
+@{
+    ViewBag.Title = "Cadastrar Causas";
+    ViewBag.Icon = "fa fa-puzzle-piece";
+    ViewBag.SmallDescription = "Insere um Causa no sistema";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="content">
+    <div class="row">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Cadastrar Causa</h3>
+            </div>
+            @using (Html.BeginForm("Create", "Causas", new { programa = ViewBag.ProgramaId }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="box-body">
+
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.titulo)
+                        @Html.EditorFor(model => model.titulo)
+
+                        @Html.ValidationMessageFor(model => model.titulo)
+                    </div>
+
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.chamada)
+
+                        @Html.EditorFor(model => model.chamada)
+                        @Html.ValidationMessageFor(model => model.chamada)
+                    </div>
+
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.texto)
+
+
+
+                        @Html.EditorFor(model => model.texto, new { @class = "text-box", style = "height: 500px;" })
+
+                        @Html.ValidationMessageFor(model => model.texto)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.idProgramacao)
+
+                        @Html.DropDownList("idProgramacao", null, "Selecione...", new { @class = "chosen-select", disabled = "disabled" })
+                        @Html.HiddenFor(model=>model.idProgramacao)
+                        @Html.ValidationMessageFor(model => model.idProgramacao)
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.idAssunto)
+
+                        @Html.DropDownList("idAssunto", null, String.Empty, new { @class = "chosen-select" })
+                        @Html.ValidationMessageFor(model => model.idAssunto)
+                    </div>
+
+
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.foto)
+
+
+
+                        <input type="file" name="foto" id="loginForm" />
+                        @Html.ValidationMessageFor(model => model.foto)
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.status)
+
+                        <select id="status" name="status" class="chosen-select">
+                            <option value="" selected="selected">Selecione...</option>
+                            <option value="0">Finalizado</option>
+                            <option value="1">Em andamento</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => model.status)
+                    </div>
+
+
+                </div>
+                <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a href="@Url.Action("Details", "Programacao", new { Id = ViewBag.ProgramaId })" class="btn btn-info">Voltar</a>
+
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".chosen-select").chosen({ width: "100%" });
+            $('#texto').wysihtml5();
+            $('#texto').css('height', '200');
+        });
+    </script>
+}

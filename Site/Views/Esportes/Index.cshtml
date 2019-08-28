@@ -1,0 +1,289 @@
+﻿@using Site.Helpers
+@model Site.ViewModels.EsportesViewModel
+
+@section SEO{
+    <meta name="DC.title" content="Esportes - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:title" content="Esportes - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="@Url.Content("~/images/ico-facebook.jpg")" />
+    <meta property="og:url" content="@HttpContext.Current.Request.Url.AbsoluteUri" />
+    <title>Esportes - Rádio CompanyName | A Rádio de Minas</title>
+}
+
+<div class="wrapper-general center">
+    <header class="nav-intern clearfix">
+        <div class="buttons">
+            <a class="bt-back" href="javascript:window.history.go(-1)"> <i class="fa fa-angle-left"></i> Voltar</a>
+            Texto: <button class="more bt-resize">+</button> <button class="bt-resize minus">-</button>
+        </div>
+        <nav class="breadcumb">
+            <a href="@Url.Action("Index","Home")">Home</a>
+            <span>Esporte</span>
+        </nav>
+    </header>
+    <h1 class="title-page">Esporte</h1>
+    <div class="row-grid clearfix">
+
+
+        @if (Model.NoticiasSlider != null && Model.NoticiasSlider.Count > 0)
+        {
+            <div class="grid-9 main-grid">
+                <main class="featured-banner" id="destaque-banner">
+
+                    @foreach (var item in Model.NoticiasSlider)
+                    {
+                        <article>
+
+                            <a href="@Url.Action("Detalhes","Noticias", new { chave = item.url })" class="title">
+                                @item.TituloCapa
+                            </a>
+
+                            @if (!string.IsNullOrEmpty(item.foto))
+                            {
+                                <figure style="background-image: url(@Utils.fullUrlImage("744x500", item.id,840))" alt="item.fotoCredito"></figure>
+                            }
+
+                        </article>
+                    }
+
+                </main>
+            </div>
+        }
+
+
+        <aside class="grid-3 news-sidebar" role="complementary">
+
+            @if (Model.NoticiasDestaque != null && Model.NoticiasDestaque.Count > 0)
+            {
+                <ul class="news-side mb clearfix">
+                    @foreach (var item in Model.NoticiasDestaque.Take(2))
+                    {
+                        <li>
+                            <article>
+                                <a href="@Url.Action("Detalhes","Noticias", new {chave = item.url })">
+                                    @if (!string.IsNullOrEmpty(item.foto))
+                                    {
+                                        <img src="@Utils.fullUrlImage("260x173", item.id,260)" alt="@item.titulo" class="pic-radius"/>
+                                    }
+                                    <h4 class="tag-area">@item.titulo</h4>
+                                    <h3 class="title-normal">@Html.Raw(item.chamada)</h3>
+                                </a>
+                            </article>
+                        </li>
+                    }
+
+                </ul>
+            }
+        </aside>
+
+
+
+    </div>
+
+    @if (Model.NoticiasDestaque != null && Model.NoticiasDestaque.Count > 0)
+    {
+        <ul class="row-grid mb clearfix">
+            @foreach (var item in Model.NoticiasDestaque.Skip(2))
+            {
+                <li class="grid-3">
+                    <article>
+                        <a href="@Url.Action("Detalhes","Noticias", new {chave = item.url })">
+
+                            @if (!string.IsNullOrEmpty(item.foto))
+                            {
+                                <figure style="background-image: url(@Utils.fullUrlImage("260x173", item.id,260));" title="@item.titulo"></figure>
+                            }
+
+                            <h4 class="tag-area">@item.titulo</h4>
+                            <h3 class="title-normal">@Html.Raw(item.chamada)</h3>
+                        </a>
+                    </article>
+                </li>
+            }
+
+
+        </ul>
+    }
+
+
+    @if (Model.Banner != null)
+    {
+        <div class="banner-container">
+            @if (!string.IsNullOrEmpty(Model.Banner.Link))
+            {
+            <a href="@Model.Banner.Link" target="_blank" onclick="clickBanner(@Model.Banner.Id)">
+                <img class="promotion-banner promotional-banner" 
+                data-cliente="@Model.Banner.Anunciante" 
+                data-comercial="@Model.Banner.AreaBanner.FirstOrDefault().Descricao" 
+                data-dimensao="@Model.Banner.AreaBanner.FirstOrDefault().Tamanho"     
+                src="/admin/Conteudo/Banners/@Model.Banner.AreaBanner.FirstOrDefault().Tamanho/@Model.Banner.Arquivo" alt="@Model.Banner.Titulo" data-banner-id="@Model.Banner.Id">
+            </a>
+            }
+            else
+            {
+                <img class="promotion-banner" src="/admin/Conteudo/Banners/@Model.Banner.AreaBanner.FirstOrDefault().Tamanho/@Model.Banner.Arquivo" alt="@Model.Banner.Titulo" data-banner-id="@Model.Banner.Id">
+            }
+        </div>
+    }
+    
+
+    <section class="wrapper-information clearfix" id="roteiros">
+        <ul class="row-grid news-box flexs">
+            <li class="grid-3">
+                <h2 class="title-equips america">
+                    <img src="images/thumb_america-mineiro.png" alt="América">
+                    América
+                </h2>
+
+                @if (Model.NoticiasAmerica != null && Model.NoticiasAmerica.Count > 0)
+                {
+                    foreach (var item in Model.NoticiasAmerica.OrderByDescending(x => x.foto))
+                    {
+                        <article class="@(Model.NoticiasAmerica.OrderByDescending(x => x.foto).Last().id == item.id && Model.NoticiasAmerica.Count>1? "border" : "")">
+                            <a href="@Url.Action("Detalhes","Noticias", new {chave = item.url })" target="_blank">
+                                @if (!string.IsNullOrEmpty(item.foto))
+                                {
+                                    <figure style="background-image: url(@Utils.fullUrlImage("260x173", item.id,260));" title="@item.titulo" class="pic-radius"></figure>
+                                }
+
+                                <h4 class="tag-area">@item.titulo</h4>
+                                <h3 class="title-medium">@Html.Raw(item.chamada)</h3>
+                            </a>
+                        </article>
+                    }
+                }
+
+
+            </li>
+            <li class="grid-3">
+                <h2 class="title-equips atletico">
+                    <img src="images/thumb_galo-logo.png" alt="Atlético">
+                    Atlético
+                </h2>
+                @if (Model.NoticiasAtletico != null && Model.NoticiasAtletico.Count > 0)
+                {
+                    foreach (var item in Model.NoticiasAtletico.OrderByDescending(x => x.foto))
+                    {
+                        <article class="@(Model.NoticiasAtletico.OrderByDescending(x => x.foto).Last().id == item.id && Model.NoticiasAtletico.Count>1 ? "border" : "")">
+                            <a href="@Url.Action("Detalhes","Noticias", new {chave = item.url })" target="_blank">
+                                @if (!string.IsNullOrEmpty(item.foto))
+                                {
+                                    <figure style="background-image: url(@Utils.fullUrlImage("260x173", item.id,260));" title="@item.titulo" class="pic-radius"></figure>
+                                }
+
+                                <h4 class="tag-area">@item.titulo</h4>
+                                <h3 class="title-medium">@Html.Raw(item.chamada)</h3>
+                            </a>
+                        </article>
+                    }
+                }
+
+            </li>
+            <li class="grid-3">
+                <h2 class="title-equips cruzeiro">
+                    <img src="images/thumb_cruzeiro-logo-01.png" alt="Cruzeiro">Cruzeiro
+                </h2>
+                @if (Model.NoticiasCruzeiro != null && Model.NoticiasCruzeiro.Count > 0)
+                {
+                    foreach (var item in Model.NoticiasCruzeiro.OrderByDescending(x => x.foto))
+                    {
+                        <article class="@(Model.NoticiasCruzeiro.OrderByDescending(x => x.foto).Last().id == item.id  && Model.NoticiasCruzeiro.Count>1? "border" : "")">
+                            <a href="@Url.Action("Detalhes","Noticias", new {chave=item.url })" target="_blank">
+                                @if (!string.IsNullOrEmpty(item.foto))
+                                {
+                                    <figure style="background-image: url(@Utils.fullUrlImage("260x173", item.id,260));" title="@item.titulo" class="pic-radius"></figure>
+                                }
+
+                                <h4 class="tag-area">@item.titulo</h4>
+                                <h3 class="title-medium">@Html.Raw(item.chamada)</h3>
+                            </a>
+                        </article>
+                    }
+                }
+
+
+            </li>
+            <li class="grid-3">
+                <h2 class="title-equips brasil">
+                    <img src="images/thumb_brasil-logo-brasil.png" alt="Seleção Brasileira">
+                    Seleção
+                </h2>
+                @if (Model.NoticiasBrasil != null && Model.NoticiasBrasil.Count > 0)
+                {
+                    foreach (var item in Model.NoticiasBrasil.OrderByDescending(x => x.foto))
+                    {
+                        <article class="@(Model.NoticiasBrasil.OrderByDescending(x => x.foto).Last().id == item.id  && Model.NoticiasBrasil.Count>1? "border" : "")">
+                            <a href="@Url.Action("Detalhes","Noticias", new {chave=item.url })" target="_blank">
+                                @if (!string.IsNullOrEmpty(item.foto))
+                                {
+                                    <figure style="background-image: url(@Utils.fullUrlImage("260x173", item.id,260));" title="@item.titulo" class="pic-radius"></figure>
+                                }
+
+                                <h4 class="tag-area">@item.titulo</h4>
+                                <h3 class="title-medium">@Html.Raw(item.chamada)</h3>
+                            </a>
+                        </article>
+                    }
+                }
+            </li>
+        </ul>
+    </section>
+
+
+    @if (Model.NoticiasEditoriaEsportes != null && Model.NoticiasEditoriaEsportes.Count > 0)
+    {
+                <!-- noticias-->
+        <section class="wrapper-information" id="nacional">
+            <header class="clearfix">
+                <h2 class="title-area">Esportes</h2>
+                <a href="@Url.Action("Index","Editorias", new { chave = "esporte"})" class="bt-red">Ver mais</a>
+            </header>
+
+            @if (Model.NoticiasEditoriaEsportes.Count > 0)
+            {
+                <ul class="row-grid news-box">
+                    @foreach (var item in Model.NoticiasEditoriaEsportes.OrderByDescending(x => x.dataAtualizacao).Take(3))
+                    {
+                        <li class="grid-4">
+                            <article>
+                                <a href="@Url.Action("Detalhes","Noticias", new { chave=item.url })">
+
+                                    @if (!string.IsNullOrEmpty(item.foto))
+                                    {
+                                        <figure style="background-image: url(@Utils.fullUrlImage("260x173", item.id,356));" title="@item.fotoDescricao"></figure>
+                                    }
+                                    <h4 class="tag-area">@item.titulo</h4>
+                                    <h3 class="title-medium">@Html.Raw(item.chamada)</h3>
+                                </a>
+                            </article>
+                        </li>
+
+                    }
+                </ul>
+            }
+
+
+            @if (Model.NoticiasEditoriaEsportes.Count > 3)
+            {
+                <ul class="mini-articles clearfix">
+                    @foreach (var item in Model.NoticiasEditoriaEsportes.OrderByDescending(x => x.dataAtualizacao).Skip(3).Take(6))
+                    {
+                        <li>
+                            <article>
+                                <a href="@Url.Action("Detalhes", "Noticias", new { chave=item.url})">
+
+                                    <h4 class="tag-area">@(!string.IsNullOrEmpty(item.titulo) ? item.titulo : item.subtitulo)</h4>
+
+                                    <h3 class="title-normal">@Html.Raw(item.chamada)</h3>
+                                </a>
+                            </article>
+                        </li>
+                    }
+
+                </ul>
+            }
+
+        </section>
+    }
+</div>

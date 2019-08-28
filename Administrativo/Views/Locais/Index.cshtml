@@ -1,0 +1,118 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<Administrativo.Models.Secoes_Locais>
+
+@{
+    ViewBag.Title = "Listagem de Locais";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Lista de todos os Locais cadastrados no sistema";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">Lista</h3>
+                <div class="pull-right">
+                    <a style="margin:4px; color:white;" href="@Url.Action("Index","EspeciaisModelo", new { EspecialId = ViewBag.EspecialId })" class="btn btn-info pull-right"><i class="fa fa-reply white"></i>&nbsp;Voltar para Especial</a>
+                    <a style="margin:4px; color:white;" href="@Url.Action("Create", new { EspecialId = ViewBag.EspecialId })" class="btn btn-success pull-right"><i class="fa fa-plus-circle white"></i>&nbsp;Cadastrar</a>
+                    
+                </div>
+            </div>
+            <div class="box-body no-padding">
+                <div class="fc fc-ltr">
+                    @using (Html.BeginForm())
+                    {
+                        <table class="fc-header" style="width: 35%;">
+                            <tbody>
+                                <tr style="height: 48px;">
+                                    <td class="fc-header-left" style="width: 10px;"></td>
+                                    <td class="fc-header-center">
+                                        @Html.TextBox("Search", null, new { @class = "text-box", placeholder = "Busca" })
+                                    </td>
+                                    <td class="fc-header-right">
+                                        <input type="submit" value="Enviar" class="btn bg-olive margin" style="margin: 0px;" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    }
+                    <table class="table table-striped responsive table-hover dataTable">
+                        <thead>
+                            <tr role="row">
+                                <th style="width:40px;" onclick="document.location='@Url.Action("Index", new { sortField = "Id", order = @ViewBag.Order == "DESC" ? "ASC" : "DESC", page = ViewBag.Page, search = ViewBag.Search })'" class="@ViewBag.SortClassId">
+                                    @Html.DisplayNameFor(model => model.First().Id)
+                                </th>
+                                <th onclick="document.location='@Url.Action("Index", new { sortField = "SecaoId", order = @ViewBag.Order == "DESC" ? "ASC" : "DESC", page = ViewBag.Page, search = ViewBag.Search })'" class="@ViewBag.SortClassSecaoId">
+                                    @Html.DisplayNameFor(model => model.First().SecaoId)
+                                </th>
+                                <th onclick="document.location='@Url.Action("Index", new { sortField = "Tipo", order = @ViewBag.Order == "DESC" ? "ASC" : "DESC", page = ViewBag.Page, search = ViewBag.Search })'" class="@ViewBag.SortClassTipo">
+                                    @Html.DisplayNameFor(model => model.First().Tipo)
+                                </th>
+                                <th onclick="document.location='@Url.Action("Index", new { sortField = "Titulo", order = @ViewBag.Order == "DESC" ? "ASC" : "DESC", page = ViewBag.Page, search = ViewBag.Search })'" class="@ViewBag.SortClassTitulo">
+                                    @Html.DisplayNameFor(model => model.First().Titulo)
+                                </th>
+
+                                <th onclick="document.location='@Url.Action("Index", new { sortField = "Ativo", order = @ViewBag.Order == "DESC" ? "ASC" : "DESC", page = ViewBag.Page, search = ViewBag.Search })'" class="@ViewBag.SortClassAtivo">
+                                    Status
+                                </th>
+
+                                <th onclick="document.location='@Url.Action("Index", new { sortField = "DataCadastro", order = @ViewBag.Order == "DESC" ? "ASC" : "DESC", page = ViewBag.Page, search = ViewBag.Search })'" class="@ViewBag.SortClassDataCadastro">
+                                    @Html.DisplayNameFor(model => model.First().DataCadastro)
+                                </th>
+                                <th style="width: 160px;">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.TotalItemCount > 0)
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Id)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Especiais_Secoes.Titulo)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Tipo)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Titulo)
+                                        </td>
+                                        <td>
+                                            @(item.Ativo ? "SIM" : "NÃO")
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DataCadastro)
+                                        </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-warning btn-small"><i class="fa fa-edit"></i></a>
+                                                <a href="@Url.Action("Details", new { id = item.Id })" class="btn bg-olive btn-small"><i class="fa fa-search-plus"></i></a>
+                                                <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-danger btn-small"><i class="fa fa-trash-o"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="12" align="center">Nenhum registro encontrado.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="box-footer clearfix no-border">
+                @if (Model.PageCount > 1)
+                {
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, search = ViewBag.Search, order = ViewBag.Order, SortField = ViewBag.SortField, EspecialId = ViewBag.EspecialId,SecaoId = ViewBag.SecaoId }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,190 @@
+﻿@using Site.Helpers
+@model Site.ViewModels.SideBarHomeViewModel
+
+
+<aside class="grid-3 sidebar" id="sidebar" role="complementary">
+    @if (Model.PlantaoBH != null && Model.PlantaoBH.Count > 0)
+    {
+        <div class="cards-side" id="plantao">
+            <h1 class="title-card">Plantão BH</h1>
+            <div class="item-scroll">
+                @foreach (var item in Model.PlantaoBH)
+                {
+                    <p><strong>@item.Hora.ToString("h':'mm''")</strong> @Html.Raw(item.Titulo) </p>
+                }
+            </div>
+        </div>
+
+    }
+
+    <div class="cards-side" id="clima">
+        <h1 class="title-card">Belo Horizonte/MG</h1>
+        <div class="climate">
+            <img src="~/images/chuvoso.png" class="icone-clima-preto ico" alt="Tempo">
+            <div><span id="tempoMin">21º</span> <strong>Min</strong></div>
+            <div><span id="tempoMax">28º</span>  <strong>Máx</strong></div>
+        </div>
+    </div>
+
+    @*@if (Model.MaisLidas != null && Model.MaisLidas.Count > 0)
+    {
+        int i = 1;
+        <div class="cards-side" id="maislidas">
+
+            <h1 class="title-card">Mais Lidas</h1>
+            <ul class="trending-topics">
+                @foreach (var item in Model.MaisLidas)
+                {
+                    <li>
+                        <article>
+                            <span class="number">@i</span>
+                            <a href="@Url.Action("Detalhes", "Noticias", new { chave = item.Url })" class="info title-mini">@Html.Raw(Utils.TruncateText(item.Chamada, 70, true))</a>
+                        </article>
+                    </li>
+
+                    i++;
+                }
+            </ul>
+        </div>
+    }*@
+
+
+    <div class="cards-side" id="bolsa">
+        <h1 class="title-card">Indicadores Monetários</h1>
+        <div class="block-money">
+            <span>Dolar Comercial</span>
+            <span class="pct" id="variacaoDolar"></span>
+            <h2 class="big-value" id="valorDolar">R$ 3,205</h2>
+        </div>
+        <div class="block-money">
+            <span>Euro</span>
+            <span class="pct" id="variacaoEuro"></span>
+            <span class="pull-right" id="valorEuro">R$ 3,576</span>
+        </div>
+        <small class="font-small">atualizado: @DateTime.Now.ToShortDateString(), @DateTime.Now.ToString("HH:mm")</small>
+    </div>
+
+    @if (Model.Colunistas != null && Model.Colunistas.Count > 0)
+    {
+        <div class="cards-side" id="colunistas">
+            <h1 class="title-card"><a href="@Url.Action("Index", "Colunistas")" title="Ver todos">Colunistas</a></h1>
+
+            <div class="box-columnists">
+                <ul class="list">
+                    @foreach (var item in Model.Colunistas)
+                    {
+                        <li>
+                            <a href="@Url.Action("Materia", "Colunistas", new { chave = item.Url, colunistaSlug = item.Chave })" class="clearfix">
+                                <img src="/Admin/Conteudo/Colunistas/Foto/@item.Foto" alt="@item.Nome">
+                                <h2>@item.Nome</h2>
+
+                                <p>@Html.Raw(item.Titulo)</p>
+
+                            </a>
+                        </li>
+                    }
+                </ul>
+
+                <ul class="dots"></ul>
+            </div>
+
+
+        </div>
+    }
+
+    @Html.Partial("_Copa")
+
+    @*@if (Model.Banner != null)
+    {
+        if (!string.IsNullOrEmpty(Model.Banner.Link))
+        {
+            <a href="@Model.Banner.Link" target="_blank" onclick="clickBanner(@Model.Banner.Id)">
+                <img class="promotion-side promotional-banner" 
+                data-cliente="@Model.Banner.Anunciante" 
+                data-comercial="@Model.Banner.AreaBannerDescricao" 
+                data-dimensao="@Model.Banner.AreaBannerTamanho"     
+                src="/admin/Conteudo/Banners/@Model.Banner.AreaBannerTamanho/@Model.Banner.Arquivos" alt="@Model.Banner.Titulo" data-banner-id="@Model.Banner.Id">
+            </a>
+        }
+        else
+        {
+            <img class="promotion-side" src="/admin/Conteudo/Banners/@Model.Banner.AreaBannerTamanho/@Model.Banner.Arquivos" alt="@Model.Banner.Titulo" data-banner-id="@Model.Banner.Id">
+        }
+    }*@
+
+    @if (Model.Enquete != null)
+    {
+        int xx = 1;
+        using (Ajax.BeginForm("Votar", "Home", new AjaxOptions
+        {
+            OnSuccess = "OnSuccess",
+            OnFailure = "OnFailure"
+
+        }, new { id = "enquete", @class = "cards-side" }))
+        {
+
+            <div id="step-1" data-step="init">
+
+                <header class="clearfix" style="margin-bottom: 20px">
+                    <h1 class="title-card t-center">Enquete</h1>
+                </header>
+
+                <p class="title-mini upper">@Model.Enquete.pergunta</p>
+
+                @foreach (var item in Model.Enquete.Respostas)
+                    {
+                    <label for="@item.id" class="options">
+                        <input type="radio" name="option" id="@item.id" value="@item.id" required>
+                        @item.resposta
+                    </label>
+
+                }
+                <div class="clearfix" style="margin-top:20px;">
+                    <button id="result" class="bt-headcard pull-left">Ver Resultado</button>
+                    <input type="submit" class="bt-line btn-votar pull-right" style="width: 70px; margin-top:5px; padding-top:0px" id="result" value="Votar">
+                </div>
+            </div>
+
+            <div id="step-2" data-step="result" style="display: none">
+                <header class="clearfix">
+                    <h1 class="title-card pull-left">Resultado</h1>
+                    <button id="init" class="bt-headcard">Voltar</button>
+                </header>
+
+                <ul class="result-enquete">
+
+                    @{ 
+                        var totalVotos = Model.Enquete.Respostas.Sum(x => x.votos);
+                    }
+
+                    @foreach (var item2 in Model.Enquete.Respostas.OrderByDescending(x => x.votos))
+                    {
+                        <li>
+                            <span>@xx°</span> @item2.resposta - @(String.Format("{0:0.##}", (double)((double)item2.votos / (double)totalVotos) * 100))%
+                        </li>
+                        xx++;
+                    }
+                </ul>
+            </div>
+        }
+    }
+
+    @if (Model.BannerUltimoSidebar != null)
+    {
+        if (!string.IsNullOrEmpty(Model.BannerUltimoSidebar.Link))
+        {
+            <a href="@Model.BannerUltimoSidebar.Link" target="_blank" onclick="clickBanner(@Model.BannerUltimoSidebar.Id)">
+                <img class="promotion-side promotional-banner"
+                     data-cliente="@Model.BannerUltimoSidebar.Anunciante"
+                     data-comercial="@Model.BannerUltimoSidebar.AreaBannerDescricao"
+                     data-dimensao="@Model.BannerUltimoSidebar.AreaBannerTamanho"
+                     src="/admin/Conteudo/Banners/@Model.BannerUltimoSidebar.AreaBannerTamanho/@Model.BannerUltimoSidebar.Arquivos" alt="@Model.BannerUltimoSidebar.Titulo" data-banner-id="@Model.BannerUltimoSidebar.Id">
+            </a>
+        }
+        else
+        {
+            <img class="promotion-side" src="/admin/Conteudo/Banners/@Model.BannerUltimoSidebar.AreaBannerTamanho/@Model.BannerUltimoSidebar.Arquivos" alt="@Model.BannerUltimoSidebar.Titulo" data-banner-id="@Model.BannerUltimoSidebar.Id">
+        }
+    }
+
+</aside>

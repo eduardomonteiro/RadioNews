@@ -1,0 +1,62 @@
+﻿@model Administrativo.Models.GruposPush
+
+@{
+    ViewBag.Title = "Cadastrar Grupos de Notificações Push";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Insere um Grupo de Notificações Push no sistema";
+}
+
+<div class="content">
+    <div class="row">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Cadastrar Grupo de Notificações Push</h3>
+            </div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="box-body">
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Title)
+
+                        @Html.EditorFor(model => model.Title)
+                        @Html.ValidationMessageFor(model => model.Title)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Tags) / Assuntos
+                        <input name="ListaTags" id="ListaTags" value="" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Liberado)
+
+                        @Html.BooleanFieldFor(model => model.Liberado, true, new { @class = "form-control", style = "width: 120px;" })
+                        @Html.ValidationMessageFor(model => model.Liberado)
+                    </div>
+
+
+                </div>
+                <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a href="@Url.Action("Index", "GruposPush")" class="btn btn-info">Voltar</a>
+
+                </div>  }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+            var sampleTags = @Html.Raw(Json.Encode(ViewBag.AutoCompleteTags));
+
+            $('#ListaTags').tagit({
+            availableTags: sampleTags
+            });
+    </script>
+}
+
+

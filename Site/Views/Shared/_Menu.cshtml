@@ -1,0 +1,684 @@
+﻿@model Site.ViewModels.MenuViewModel
+
+<style>
+    .ouca-ao-vivo {
+        font-size: 22px;
+        text-transform: uppercase;
+        position: absolute;
+        left: 65px;
+        line-height: 42px;
+        font-style: italic;
+    }
+
+    .play-button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        height: 75px;
+        width: 75px;
+        color: white;
+        border-radius: 20px;
+        background-color: #cccccc;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        cursor: pointer;
+    }
+
+        .play-button i {
+            font-size: 40px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            color: #ad1111;
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+
+    .audio-range {
+        margin-left: 620px;
+        vertical-align: middle;
+        margin-top: -31px;
+    }
+
+    .texto-programa {
+        float: right;
+        font-size: 20px;
+        margin-right: 30px;
+        font-weight: bold;
+        vertical-align: middle;
+        margin-top: -29px;
+    }
+
+    .choice-station {
+        margin-left: calc(40% - 155px);
+    }
+
+    @@media (max-width: 1024px) {
+        .choice-station {
+            /*margin-left: 70px;*/
+        }
+
+        .audio-range {
+            margin-left: calc(100% - 394px)
+        }
+
+        .main-header .top-bar .info-timer {
+            display: none;
+        }
+    }
+
+    @@media (max-width: 1024px) {
+
+        #audio-range {
+            width: 150px;
+        }
+    }
+
+    @@media (max-width: 800px) {
+        .texto-programa {
+            float: right;
+            font-size: 1.2em;
+            margin-right: 0px;
+            margin-top: -23px;
+            font-weight: bold;
+            vertical-align: middle;
+        }
+
+        .audio-range {
+            margin-left: 400px;
+            margin-top: -8px;
+        }
+
+        .play-button {
+            height: 50px;
+            width: 50px;
+        }
+
+            .play-button i {
+                font-size: 20px;
+            }
+
+        .choice-station {
+            right: 498px;
+            bottom: -9px;
+        }
+
+        .ouca-ao-vivo {
+            font-size: 1.2em;
+            left: 65px;
+            line-height: 26px;
+        }
+
+        #header-2017 {
+            padding-top: 50px !important;
+            top: -25px;
+            position: relative;
+        }
+
+        .choice-station .stations {
+            top: 100%;
+            bottom: auto;
+        }
+
+        .submenu {
+            top: 100%;
+        }
+
+        .fa-spinner .fa-pulse {
+            top: 29%;
+            left: 23%;
+        }
+    }
+
+    @@media(max-width:768px){
+        .ouca-ao-vivo {
+            display: none
+        }
+    }
+
+    @@media(max-width: 670px) {
+        .choice-station {
+            left: 0;
+            margin-left: 20px;
+        }
+    }
+
+    @@media(max-width: 640px) {
+        .texto-programa {
+            display: none;
+        }
+
+        .audio-range {
+            margin-left: 70%;
+        }
+    }
+
+    @@media (max-width: 425px) {
+        .main-header .top-bar .link {
+            display: none;
+        }
+
+        .audio-range, .img-live, .texto-programa {
+            display: none;
+        }
+
+        .play-button {
+            left: 9%;
+        }
+
+        .choice-station {
+            right: 9px;
+            bottom: -20px;
+        }
+
+        .main-header .medium-bar {
+            padding: 30px 0;
+        }
+
+        .ouca-ao-vivo {
+            font-size: 1.5em;
+            left: 85px;
+            line-height: 5px;
+        }
+
+        .fa-spinner .fa-pulse {
+            top: 29%;
+            left: 23%;
+        }
+    }
+
+    @@media (max-width: 425px) {
+        .ouca-ao-vivo {
+            left: 69px;
+        }
+    }
+
+    @@media (max-width: 320px) {
+        .ouca-ao-vivo {
+            left: 61px;
+        }
+    }
+
+    @@media (max-width: 926px) {
+        .ouca-ao-vivo {
+            left: 20px;
+        }
+    }
+
+    @@media (max-width: 940px) {
+        .texto-programa {
+            margin-right: 0;
+        }
+
+        .audio-range {
+            margin-left: calc(100% - 357px);
+        }
+    }
+
+    @@media (max-width: 850px) {
+
+        #audio-range{
+            width: 100px;
+        } 
+        .audio-range {
+            margin-left: calc(100% - 300px);
+        }
+    }
+
+    @@media(max-width: 800px) {
+        .main-header .medium-bar {
+            padding: 20px 0;
+        }
+    }
+
+    @@media(max-width: 768px) {
+        .audio-range {
+            margin-left: calc(100% - 260px);
+        }
+    }
+
+    @@media(max-width: 640px) {
+        .audio-range {
+            display: none;
+        }
+
+        .main-header .medium-bar {
+            padding: 25.5px 0;
+        }
+
+        .choice-station{
+            left: initial;
+            right: 0;
+            margin-right: 20px;
+        }
+    }
+
+    @@media(max-width: 425px){
+        .ouca-ao-vivo {
+            display: block;
+            left: 60px;
+        }
+    }
+
+    #volume {
+        color: #ad1111;
+        cursor: pointer;
+    }
+
+    #audio-range {
+            outline: none;
+            height: 6px;
+            background-color: #cccccc;
+            background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ad1111), color-stop(100%, #ad1111));
+            background-image: -webkit-linear-gradient(#ad1111, #ad1111);
+            background-image: -moz-linear-gradient(#ad1111, #ad1111);
+            background-image: -o-linear-gradient(#ad1111, #ad1111);
+            background-image: linear-gradient(#ad1111, #ad1111);
+            background-size: 50% 100%;
+            background-repeat: no-repeat;
+            border-radius: 10px;
+            cursor: pointer;
+            -webkit-appearance: none;
+        }
+
+    #audio-range::-webkit-slider-runnable-track {
+        box-shadow: none;
+        border: none;
+        background: transparent;
+        -webkit-appearance: none;
+    }
+
+    #audio-range::-moz-range-track {
+        box-shadow: none;
+        border: none;
+        background: transparent;
+    }
+
+    #audio-range::-moz-focus-outer {
+        border: 0;
+    }
+
+    #audio-range::-webkit-slider-thumb {
+        width: 14px;
+        height: 14px;
+        border: 0;
+        background: #fff;
+        border-radius: 100%;
+        box-shadow: 0 0 1px 0px rgba(0,0,0,0.1);
+        -webkit-appearance: none;
+    }
+
+    #audio-range::-moz-range-thumb {
+        width: 14px;
+        height: 14px;
+        border: 0;
+        background: #fff;
+        border-radius: 100%;
+        box-shadow: 0 0 1px 0px rgba(0,0,0,0.1);
+    }
+
+    .choice-station .stations .rdoLink {
+        display: block;
+        padding: 15px 15px;
+        font-size: 13px;
+        font-weight: bold;
+        color: black;
+        position: relative;
+        -webkit-transition: background 0.2s ease;
+        transition: background 0.2s ease;
+    }
+
+    .choice-station .stations .rdoLink:hover {
+        background: #640000;
+        color: white;
+    }
+
+    .lds-spinner {
+        position: relative;
+    }
+
+    .fa-pulse {
+        top: 22% !important;
+        left: 16% !important;
+    }
+</style>
+<script src="https://use.fontawesome.com/ac367eb9dd.js"></script>
+<div class="medium-bar">
+    <div class="center clearfix">
+        <img src="../images/radio-live.gif" style="vertical-align: middle;" class="img-live" />
+        <b class="ouca-ao-vivo" >ouça ao vivo</b>
+        <div class="choice-station">
+            <header class="title">
+                <b id="selectedRadio">OUÇA AGORA</b>
+            </header>
+            <nav class="stations">
+                @if (Model.Radios != null && Model.Radios.Count > 0)
+                {
+                    <ul id="radioList">
+                        @foreach (var item in Model.Radios)
+                        {
+                            <li class="rdoLink" id="@item.Chave"><b></b>@item.Titulo</li>
+                        }
+                    </ul>
+                }
+            </nav>
+        </div>
+        <input type="hidden" name="radio-name" value="belo-horizonte" id="radio-name" />
+        <audio id="player" controls name="media" controlsList="nodownload" style="display:none">
+            <source id="source1" src="@Model.Radios.FirstOrDefault(e=>e.Chave=="belo-horizonte").Stream1" type="audio/@(Model.Radios.FirstOrDefault(e=>e.Chave=="belo-horizonte").Stream1.EndsWith(".aac") ? "aac" : "mpeg" )">
+            <source id="source2" src="@Model.Radios.FirstOrDefault(e=>e.Chave=="belo-horizonte").Stream2" type="audio/@(Model.Radios.FirstOrDefault(e=>e.Chave=="belo-horizonte").Stream2.EndsWith(".aac") ? "aac" : "mpeg" )">
+        </audio>
+        <div class="lds-css ng-scope">
+            <div class="lds-spinner" style="width:100%;height:100%"></div>
+        </div>
+        <div id="play-button" class="play-button" onclick="playMusic()">
+            <i class="fa"></i>
+        </div>
+
+        <div class="audio-range">
+            <input type="range" id="audio-range" class="audio-range1" min="0" max="1" step="0.01">
+            <i id="volume" class="fa" style="font-size: 22px;" onclick="muteButton()"></i>
+        </div>
+
+        <div class="texto-programa">
+            <div id="idProgramacao" style="display:none;"></div>
+            <div id="nomeProgramacao"></div>
+            <div id="horarioProgramacao"></div>
+
+            <input type="hidden" id="inicioProgramacao" value="" />
+            <input type="hidden" id="fimProgramacao" value="" />
+        </div>
+
+
+    </div>
+
+</div>
+
+<script>
+    var win;
+    $(document).ready(function () {
+
+        ///////////////////// Início - Programação do Player /////////////////////
+
+        //Executa a função para exibir os dados da programação ao carregar a página
+        atualizaProgramacao();
+        //Roda de 1 em 1 minuto no client side verificando o horário
+        setInterval(verificaHorario, 60000);
+
+        //Função para atualizar a programação do Player
+        function atualizaProgramacao() {
+            $.ajax({
+                type: "GET",
+                url: "http://localhost/Home/ProgramacaoRadioMenu",
+
+                success: function (data) {
+
+                    $.each(data, function (k, v) {
+                        $('#idProgramacao').html(v[0]['Id']);
+                        $('#nomeProgramacao').html(v[0]['Nome']);
+                        $('#horarioProgramacao').html(v[0]['Horario'] + ' - ' + v[0]['FimHorario']);
+
+                        $('#inicioProgramacao').prop('value', v[0]['Horario']);
+                        $('#fimProgramacao').prop('value', v[0]['FimHorario']);
+                    });
+                }
+            });
+        }
+
+        //Função para verificar o horário da programação
+        function verificaHorario() {
+            var timeStamp = Date.parse("@System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")");
+            var horarioServidor = new Date(timeStamp);
+
+            var diaAtual = @System.DateTime.Now.Day;
+            var mesAtual = @System.DateTime.Now.Month;
+            var anoAtual = @System.DateTime.Now.Year;
+            var inicioProgramacaoAtual = new Date(Date.parse(anoAtual + '-' + mesAtual + '-' + diaAtual + ' ' + $('#inicioProgramacao').val() + ':00'));
+            var fimProgramacaoAtual = new Date(Date.parse(anoAtual + '-' + mesAtual + '-' + diaAtual + ' ' + $('#fimProgramacao').val() + ':00'));
+
+            if (fimProgramacaoAtual <= horarioServidor)
+            {
+                atualizaProgramacao();
+            }
+        }
+        ///////////////////// Fim - Programação do Player /////////////////////
+
+        if (localStorage.volume == undefined) {
+            localStorage.setItem('volume', 0.5);
+        } else {
+            localStorage.setItem('volume', localStorage.volume/100);
+        }
+        $('#audio-range').val(localStorage.volume);
+
+        if (localStorage.abrirPopup == undefined) {
+            localStorage.setItem('abrirPopup', 0);
+        }
+
+        if (localStorage.radioId == undefined) {
+            localStorage.setItem('radioId', 'belo-horizonte');
+        } else {
+            var nomeRadio = $('#' + localStorage.radioId).html();
+            $('#selectedRadio').html(nomeRadio);
+        }
+
+        if (localStorage.status == undefined) {
+            localStorage.setItem('status', 0);
+        }
+
+        if (localStorage.mute == undefined) {
+            localStorage.setItem('mute', '0');
+        }
+
+        if (localStorage.mute == 0) {
+            $('#volume').addClass('fa-volume-up').removeClass('fa-volume-off');
+        } else {
+            $('#volume').removeClass('fa-volume-up').addClass('fa-volume-off');
+        }
+
+        if (localStorage.status == 1) {
+            $('#play-button i').toggleClass('fa-pause');
+        } else {
+            $('#play-button i').toggleClass('fa-play');
+        }
+
+
+        var audio = $('#player');
+        audio[0].load();
+        var playButton = $('#play-button');
+        var volumeButton = $('#volume');
+        console.log(audio);
+        console.log(playButton);
+        console.log(playButton.find('.fa'));
+        var sliderAudio = $('#audio-range');
+
+
+        $('#audio-range').on('input', function (e) {
+            var min = e.target.min,
+                max = e.target.max,
+                val = e.target.value;
+
+            $(e.target).css({'backgroundSize': (val - min) * 100 / (max - min) + '% 100%'});
+        }).trigger('input');
+
+            $('#radioList li').on("click", function () {
+                    var radio = $(this);
+                    if (radio !== undefined && radio != null && radio[0] !== null && radio[0] !== undefined) {
+                $('#selectedRadio').text(radio.text());
+                $.ajax({
+                            url: "@Url.Action("RadioJsonAsync", "Home")?chave=" + radio[0].id,
+                    type: "GET",
+                    success: function (data) {
+                                console.log(data.data);
+                                console.log(data.data.Stream1);
+                        $('#source1').attr('src', data.data.Stream1);
+                        $('#source2').attr('src', data.data.Stream2);
+                        $('#source1').attr('type', data.data.Stream1.endsWith(".aac") ? "audio/aac" : "audio/mpeg");
+                        $('#source2').attr('type', data.data.Stream2.endsWith(".aac") ? "audio/aac" : "audio/mpeg");
+
+                                //console.log($('#source1'));
+                                //console.log($('#source1'));
+                                //console.log(audio);
+                                $('#radio-name').val(radio[0].id);
+                                localStorage.setItem('radioId', radio[0].id);
+
+                                //if (localStorage.abrirPopup == 0) {
+                                //    playMusic(radio[0].id);
+                                //}
+
+
+                            }
+                        });
+                    }
+            });
+
+            sliderAudio.on('input', function () {
+
+                localStorage.setItem('mute', '0');
+                $('#volume').addClass('fa-volume-up').removeClass('fa-volume-off');
+                $('#player').prop('muted', false);
+
+                $('#player')[0].volume = this.value;
+                if (win && !win.closed) {
+                    win.$('#player')[0].volume = $('#player')[0].volume;
+                }
+
+                console.log($('#player')[0].volume * 100);
+                porcentagem = $('#player')[0].volume * 100;
+                localStorage.setItem('volume', porcentagem);
+                $('#audio-range').attr('style', 'background-size:' + porcentagem + '% 100%');
+
+                if (win) {
+                    if (win.$('#player')[0].volume == 0 && $('#player')[0].volume == 0) {
+                        $('#volume').removeClass('fa fa-volume-up').addClass('fa fa-volume-off');
+                        win.$('#volume').removeClass('fa fa-volume-up').addClass('fa fa-volume-off');
+                    }
+                    else {
+                        $('#volume').removeClass('fa fa-volume-off').addClass('fa fa-volume-up');
+                        win.$('#volume').removeClass('fa fa-volume-off').addClass('fa fa-volume-up');
+                    }
+                }
+            });
+
+    });
+
+    function secToStr(secNum) {
+        secNum = Math.floor(secNum);
+        var horas = Math.floor(secNum / 3600);
+        var minutos = Math.floor((secNum - (horas * 3600)) / 60);
+        var segundos = secNum - (horas * 3600) - (minutos * 60);
+
+        if (horas < 10) horas = "0" + horas;
+        if (minutos < 10) minutos = "0" + minutos;
+        if (segundos < 10) segundos = "0" + segundos;
+
+        var tempo = horas + ':' + minutos + ':' + segundos;
+
+        return tempo;
+    }
+
+
+    function playMusic(musica) {
+
+        if (musica == null || musica == undefined) {
+            musica = localStorage.radioId;
+
+            var nomeRadio = $('#' + localStorage.radioId).html();
+            $('#selectedRadio').html(nomeRadio);
+        }
+
+        $('#play-button i').toggleClass('fa-play');
+        $('#play-button i').toggleClass('fa-pause');
+
+        if (localStorage.status == 0) {
+            localStorage.setItem('status', '1');
+        } else {
+            localStorage.setItem('status', '0');
+        }
+
+        var left = (screen.width / 3);
+        var top = (screen.height / 3);
+        var popWidth = screen.width;
+        var popHeight = 420;
+        var popTop = top - popHeight / 3;
+        var popLeft = left - popWidth / 3;
+        if (win && !win.closed) { //checks to see if window is open
+            console.log('pra não dar erro')
+        } else {
+
+            if (localStorage.abrirPopup == 0) {
+                win = window.open('/Home/Player?chave=' + musica, 'mypopup', 'height=' + popHeight + ',width=' + popWidth + ',resizeable=0, top=' + popTop + ', left=' + popLeft);
+                localStorage.setItem('abrirPopup', '1');
+            }
+        }
+
+        return false;
+    }
+
+    function muteButton() {
+        if (localStorage.mute == 0) {
+            localStorage.setItem('mute', '1');
+            $('#volume').removeClass('fa-volume-up').addClass('fa-volume-off');
+        } else {
+            localStorage.setItem('mute', '0');
+            $('#volume').addClass('fa-volume-up').removeClass('fa-volume-off');
+        }
+    }
+
+    window.addEventListener('storage', function (e) {
+
+        console.log(e);
+
+        if (e.key == 'status') {
+            $('#play-button i').toggleClass('fa-play');
+            $('#play-button i').toggleClass('fa-pause');
+        }
+
+        if (e.key == 'volume') {
+            $('#audio-range').val(e.newValue/100);
+            $('#audio-range').attr('style', 'background-size:' + e.newValue + '% 100%');
+
+            if (e.newValue == 0) {
+                $('#volume').removeClass('fa-volume-up').addClass('fa-volume-off');
+            } else {
+                $('#volume').addClass('fa-volume-up').removeClass('fa-volume-off');
+            }
+        }
+
+        if (e.key == 'mute') {
+            if (e.newValue == 0) {
+                $('#volume').addClass('fa-volume-up').removeClass('fa-volume-off');
+            } else {
+                $('#volume').removeClass('fa-volume-up').addClass('fa-volume-off');
+            }
+        }
+
+        if (e.key == 'radioId') {
+            $.ajax({
+                url: "@Url.Action("RadioJsonAsync", "Home")?chave=" + localStorage.radioId,
+                type: "GET",
+                success: function (data) {
+                    console.log(data.data);
+                    console.log(data.data.Stream1);
+                    $('#selectedRadio').text(data.data.Titulo);
+                    //playMusic(localStorage.radioId);
+                }
+            });
+        }
+
+        if (localStorage.abrirPopup == 0) {
+            $('#play-button i').addClass('fa-play').removeClass('fa-pause');
+        }
+
+    });
+
+    $(document).on('input', '#audio-range', function () {
+        localStorage.setItem('volume', $(this).val() * 100);
+    });
+
+</script>

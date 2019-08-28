@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<results id="301">
+<match id="1" uid="42040" stage="1" round="1" group="1" status="2" date="03/06/2016" wday="6" time="22:30" venue="Levi's Stadium" city="Santa Clara" et="0" pk="0">
+<team name="Estados Unidos" code="USA" uid="16" order="1" home="true" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+<team name="Colômbia" code="COL" uid="448" order="2" home="false" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Zapata" uid="99130" partial="3" minute="8" />
+<event type="3" player="Rodríguez" uid="2781" partial="3" minute="41" />
+
+</team>
+</match>
+<match id="2" uid="42041" stage="1" round="1" group="1" status="2" date="04/06/2016" wday="7" time="18:00" venue="Citrus Bowl" city="Orlando" et="0" pk="0">
+<team name="Costa Rica" code="CRC" uid="75" order="1" home="true" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+<team name="Paraguai" code="PAR" uid="28" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="3" uid="42047" stage="1" round="1" group="2" status="2" date="04/06/2016" wday="7" time="20:30" venue="The Clink" city="Seattle" et="0" pk="0">
+<team name="Haiti" code="HAI" uid="579" order="1" home="true" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+<team name="Peru" code="PER" uid="449" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Paolo Guerrero" uid="1000931" partial="4" minute="16" />
+
+</team>
+</match>
+<match id="4" uid="42046" stage="1" round="1" group="2" status="2" date="04/06/2016" wday="7" time="23:00" venue="Rose Bowl" city="Pasadena" et="0" pk="0">
+<team name="Brasil" code="BRA" uid="1" order="1" home="true" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+<team name="Equador" code="ECU" uid="77" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="5" uid="42053" stage="1" round="1" group="3" status="2" date="05/06/2016" wday="1" time="18:00" venue="Soldier Field" city="Chicago" et="0" pk="0">
+<team name="Jamaica" code="JAM" uid="596" order="1" home="true" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+<team name="Venezuela" code="VEN" uid="450" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Martínez" uid="1011520" partial="3" minute="15" />
+
+</team>
+</match>
+<match id="6" uid="42052" stage="1" round="1" group="3" status="2" date="05/06/2016" wday="1" time="21:00" venue="University of Phoenix" city="Glendale" et="0" pk="0">
+<team name="México" code="MEX" uid="24" order="1" home="true" score="3" rtscore="3" etscore="" pkscore="">
+<event type="2" player="Pereira" uid="99598" partial="3" minute="4" />
+<event type="1" player="Márquez" uid="99489" partial="4" minute="40" />
+<event type="1" player="Herrera" uid="1012312" partial="4" minute="46" />
+
+</team>
+<team name="Uruguai" code="URU" uid="32" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Godín" uid="1000" partial="4" minute="29" />
+
+</team>
+</match>
+<match id="7" uid="42059" stage="1" round="1" group="4" status="2" date="06/06/2016" wday="2" time="20:00" venue="Citrus Bowl" city="Orlando" et="0" pk="0">
+<team name="Panamá" code="PAN" uid="634" order="1" home="true" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Blas Pérez" uid="1013564" partial="3" minute="10" />
+<event type="1" player="Blas Pérez" uid="1013564" partial="4" minute="41" />
+
+</team>
+<team name="Bolívia" code="BOL" uid="447" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Juan Arce" uid="63715" partial="4" minute="7" />
+
+</team>
+</match>
+<match id="8" uid="42058" stage="1" round="1" group="4" status="2" date="06/06/2016" wday="2" time="23:00" venue="Levi's Stadium" city="Santa Clara" et="0" pk="0">
+<team name="Argentina" code="ARG" uid="5" order="1" home="true" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Di María" uid="414" partial="4" minute="6" />
+<event type="1" player="Banega" uid="4385" partial="4" minute="13" />
+
+</team>
+<team name="Chile" code="CHI" uid="8" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Fuenzalida" uid="1013565" partial="4" minute="48" />
+
+</team>
+</match>
+<match id="9" uid="42042" stage="1" round="2" group="1" status="2" date="07/06/2016" wday="3" time="21:00" venue="Soldier Field" city="Chicago" et="0" pk="0">
+<team name="Estados Unidos" code="USA" uid="16" order="1" home="true" score="4" rtscore="4" etscore="" pkscore="">
+<event type="3" player="Dempsey" uid="99275" partial="3" minute="9" />
+<event type="1" player="Jones" uid="99283" partial="3" minute="37" />
+<event type="1" player="Wood" uid="1013566" partial="3" minute="42" />
+<event type="1" player="Zusi" uid="99287" partial="4" minute="42" />
+
+</team>
+<team name="Costa Rica" code="CRC" uid="75" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="10" uid="42043" stage="1" round="2" group="1" status="2" date="07/06/2016" wday="3" time="23:30" venue="Rose Bowl" city="Pasadena" et="0" pk="0">
+<team name="Colômbia" code="COL" uid="448" order="1" home="true" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Bacca" uid="99112" partial="3" minute="12" />
+<event type="1" player="Rodríguez" uid="2781" partial="3" minute="30" />
+
+</team>
+<team name="Paraguai" code="PAR" uid="28" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Victor Ayala" uid="1013567" partial="4" minute="25" />
+
+</team>
+</match>
+<match id="11" uid="42048" stage="1" round="2" group="2" status="2" date="08/06/2016" wday="4" time="20:30" venue="Citrus Bowl" city="Orlando" et="0" pk="0">
+<team name="Brasil" code="BRA" uid="1" order="1" home="true" score="7" rtscore="7" etscore="" pkscore="">
+<event type="1" player="Philippe Coutinho" uid="289" partial="3" minute="14" />
+<event type="1" player="Philippe Coutinho" uid="289" partial="3" minute="29" />
+<event type="1" player="Renato Augusto" uid="92899" partial="3" minute="35" />
+<event type="1" player="Renato Augusto" uid="92899" partial="4" minute="41" />
+<event type="1" player="Lucas Lima" uid="1009194" partial="4" minute="22" />
+<event type="1" player="Gabriel" uid="1009303" partial="4" minute="14" />
+<event type="1" player="Philippe Coutinho" uid="289" partial="4" minute="46" />
+
+</team>
+<team name="Haiti" code="HAI" uid="579" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Marcelin" uid="1013568" partial="4" minute="25" />
+
+</team>
+</match>
+<match id="12" uid="42049" stage="1" round="2" group="2" status="2" date="08/06/2016" wday="4" time="23:00" venue="University of Phoenix" city="Glendale" et="0" pk="0">
+<team name="Equador" code="ECU" uid="77" order="1" home="true" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Valencia" uid="99231" partial="3" minute="39" />
+<event type="1" player="Bolanos" uid="1011853" partial="4" minute="3" />
+
+</team>
+<team name="Peru" code="PER" uid="449" order="2" home="false" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Flores" uid="1013569" partial="3" minute="13" />
+<event type="1" player="Cueva" uid="1012340" partial="3" minute="5" />
+
+</team>
+</match>
+<match id="13" uid="42055" stage="1" round="2" group="3" status="2" date="09/06/2016" wday="5" time="20:30" venue="Lincoln Financial Field" city="Philadelphia" et="0" pk="0">
+<team name="Uruguai" code="URU" uid="32" order="1" home="true" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+<team name="Venezuela" code="VEN" uid="450" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Rondón" uid="4183" partial="3" minute="36" />
+
+</team>
+</match>
+<match id="14" uid="42054" stage="1" round="2" group="3" status="2" date="09/06/2016" wday="5" time="23:00" venue="Rose Bowl" city="Pasadena" et="0" pk="0">
+<team name="México" code="MEX" uid="24" order="1" home="true" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Hernández" uid="852" partial="3" minute="18" />
+<event type="1" player="Oribe Peralta" uid="1009979" partial="4" minute="35" />
+
+</team>
+<team name="Jamaica" code="JAM" uid="596" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="15" uid="42061" stage="1" round="2" group="4" status="2" date="10/06/2016" wday="6" time="20:00" venue="Gillette Stadium" city="Foxborough" et="0" pk="0">
+<team name="Chile" code="CHI" uid="8" order="1" home="true" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Vidal" uid="479" partial="4" minute="1" />
+<event type="3" player="Vidal" uid="479" partial="4" minute="55" />
+
+</team>
+<team name="Bolívia" code="BOL" uid="447" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Campos" uid="1012318" partial="4" minute="16" />
+
+</team>
+</match>
+<match id="16" uid="42060" stage="1" round="2" group="4" status="2" date="10/06/2016" wday="6" time="22:30" venue="Soldier Field" city="Chicago" et="0" pk="0">
+<team name="Argentina" code="ARG" uid="5" order="1" home="true" score="5" rtscore="5" etscore="" pkscore="">
+<event type="1" player="Otamendi" uid="427" partial="3" minute="7" />
+<event type="1" player="Messi" uid="4002" partial="4" minute="23" />
+<event type="1" player="Messi" uid="4002" partial="4" minute="32" />
+<event type="1" player="Messi" uid="4002" partial="4" minute="41" />
+<event type="1" player="Aguero" uid="98952" partial="4" minute="44" />
+
+</team>
+<team name="Panamá" code="PAN" uid="634" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="17" uid="42044" stage="1" round="3" group="1" status="2" date="11/06/2016" wday="7" time="20:00" venue="Lincoln Financial Field" city="Philadelphia" et="0" pk="0">
+<team name="Estados Unidos" code="USA" uid="16" order="1" home="true" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Dempsey" uid="99275" partial="3" minute="27" />
+
+</team>
+<team name="Paraguai" code="PAR" uid="28" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="18" uid="42045" stage="1" round="3" group="1" status="2" date="11/06/2016" wday="7" time="22:00" venue="NRG Stadium" city="Houston" et="0" pk="0">
+<team name="Colômbia" code="COL" uid="448" order="1" home="true" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Fabra" uid="1013375" partial="3" minute="6" />
+<event type="1" player="Moreno" uid="1013151" partial="4" minute="28" />
+
+</team>
+<team name="Costa Rica" code="CRC" uid="75" order="2" home="false" score="3" rtscore="3" etscore="" pkscore="">
+<event type="1" player="Venegas" uid="1013572" partial="3" minute="1" />
+<event type="2" player="Fabra" uid="1013375" partial="3" minute="34" />
+<event type="1" player="Borges" uid="1011726" partial="4" minute="13" />
+
+</team>
+</match>
+<match id="19" uid="42051" stage="1" round="3" group="2" status="2" date="12/06/2016" wday="1" time="19:30" venue="MetLife Stadium" city="East Rutherford" et="0" pk="0">
+<team name="Equador" code="ECU" uid="77" order="1" home="true" score="4" rtscore="4" etscore="" pkscore="">
+<event type="1" player="Valencia" uid="99231" partial="3" minute="11" />
+<event type="1" player="Ayoví" uid="1012300" partial="3" minute="20" />
+<event type="1" player="Noboa" uid="99240" partial="4" minute="12" />
+<event type="1" player="Valencia" uid="99231" partial="4" minute="33" />
+
+</team>
+<team name="Haiti" code="HAI" uid="579" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="20" uid="42050" stage="1" round="3" group="2" status="2" date="12/06/2016" wday="1" time="21:30" venue="Gillette Stadium" city="Foxborough" et="0" pk="0">
+<team name="Brasil" code="BRA" uid="1" order="1" home="true" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+<team name="Peru" code="PER" uid="449" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Ruidíaz" uid="1001146" partial="4" minute="29" />
+
+</team>
+</match>
+<match id="21" uid="42056" stage="1" round="3" group="3" status="2" date="13/06/2016" wday="2" time="21:00" venue="NRG Stadium" city="Houston" et="0" pk="0">
+<team name="México" code="MEX" uid="24" order="1" home="true" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Jesús Corona" uid="1012310" partial="4" minute="35" />
+
+</team>
+<team name="Venezuela" code="VEN" uid="450" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Velázquez" uid="1012943" partial="3" minute="10" />
+
+</team>
+</match>
+<match id="22" uid="42057" stage="1" round="3" group="3" status="2" date="13/06/2016" wday="2" time="23:00" venue="Levi's Stadium" city="Santa Clara" et="0" pk="0">
+<team name="Uruguai" code="URU" uid="32" order="1" home="true" score="3" rtscore="3" etscore="" pkscore="">
+<event type="1" player="Hernández" uid="1012357" partial="3" minute="41" />
+<event type="2" player="Watson" uid="1012350" partial="4" minute="21" />
+<event type="1" player="Corujo" uid="1010429" partial="4" minute="43" />
+
+</team>
+<team name="Jamaica" code="JAM" uid="596" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="23" uid="42063" stage="1" round="3" group="4" status="2" date="14/06/2016" wday="3" time="21:00" venue="Lincoln Financial Field" city="Philadelphia" et="0" pk="0">
+<team name="Chile" code="CHI" uid="8" order="1" home="true" score="4" rtscore="4" etscore="" pkscore="">
+<event type="1" player="Vargas" uid="1001141" partial="3" minute="15" />
+<event type="1" player="Vargas" uid="1001141" partial="3" minute="43" />
+<event type="1" player="Sánchez" uid="478" partial="4" minute="5" />
+<event type="1" player="Sánchez" uid="478" partial="4" minute="44" />
+
+</team>
+<team name="Panamá" code="PAN" uid="634" order="2" home="false" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Camargo" uid="1013574" partial="3" minute="5" />
+<event type="1" player="Arroyo" uid="1013576" partial="4" minute="30" />
+
+</team>
+</match>
+<match id="24" uid="42062" stage="1" round="3" group="4" status="2" date="14/06/2016" wday="3" time="23:00" venue="The Clink" city="Seattle" et="0" pk="0">
+<team name="Argentina" code="ARG" uid="5" order="1" home="true" score="3" rtscore="3" etscore="" pkscore="">
+<event type="1" player="Lamela" uid="1008131" partial="3" minute="13" />
+<event type="1" player="Lavezzi" uid="98965" partial="3" minute="15" />
+<event type="1" player="Víctor Cuesta" uid="1013577" partial="3" minute="31" />
+
+</team>
+<team name="Bolívia" code="BOL" uid="447" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+</match>
+<match id="25" uid="42064" stage="2" round="4" group="5" status="2" date="16/06/2016" wday="5" time="22:30" venue="The Clink" city="Seattle" et="0" pk="0">
+<team name="Estados Unidos" code="USA" uid="16" order="1" home="true" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Dempsey" uid="99275" partial="3" minute="22" />
+<event type="1" player="Zardes" uid="1013580" partial="4" minute="20" />
+
+</team>
+<team name="Equador" code="ECU" uid="77" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Arroyo" uid="99224" partial="4" minute="29" />
+
+</team>
+</match>
+<match id="26" uid="42066" stage="2" round="4" group="7" status="2" date="17/06/2016" wday="6" time="21:00" venue="MetLife Stadium" city="East Rutherford" et="0" pk="1">
+<team name="Peru" code="PER" uid="449" order="1" home="true" score="0" rtscore="0" etscore="" pkscore="2">
+
+</team>
+<team name="Colômbia" code="COL" uid="448" order="2" home="false" score="0" rtscore="0" etscore="" pkscore="4">
+
+</team>
+</match>
+<match id="27" uid="42065" stage="2" round="4" group="6" status="2" date="18/06/2016" wday="7" time="20:00" venue="Gillette Stadium" city="Foxborough" et="0" pk="0">
+<team name="Argentina" code="ARG" uid="5" order="1" home="true" score="4" rtscore="4" etscore="" pkscore="">
+<event type="1" player="Higuain" uid="98964" partial="3" minute="8" />
+<event type="1" player="Higuain" uid="98964" partial="3" minute="29" />
+<event type="1" player="Messi" uid="4002" partial="4" minute="15" />
+<event type="1" player="Lamela" uid="1008131" partial="4" minute="26" />
+
+</team>
+<team name="Venezuela" code="VEN" uid="450" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Rondón" uid="4183" partial="4" minute="25" />
+
+</team>
+</match>
+<match id="28" uid="42067" stage="2" round="4" group="8" status="2" date="18/06/2016" wday="7" time="23:00" venue="Levi's Stadium" city="Santa Clara" et="0" pk="0">
+<team name="México" code="MEX" uid="24" order="1" home="true" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+<team name="Chile" code="CHI" uid="8" order="2" home="false" score="7" rtscore="7" etscore="" pkscore="">
+<event type="1" player="Puch" uid="1013306" partial="3" minute="16" />
+<event type="1" player="Vargas" uid="1001141" partial="3" minute="44" />
+<event type="1" player="Sánchez" uid="478" partial="4" minute="4" />
+<event type="1" player="Vargas" uid="1001141" partial="4" minute="7" />
+<event type="1" player="Vargas" uid="1001141" partial="4" minute="12" />
+<event type="1" player="Vargas" uid="1001141" partial="4" minute="29" />
+<event type="1" player="Puch" uid="1013306" partial="4" minute="42" />
+
+</team>
+</match>
+<match id="29" uid="42068" stage="3" round="5" group="9" status="2" date="21/06/2016" wday="3" time="22:00" venue="NRG Stadium" city="Houston" et="0" pk="0">
+<team name="Estados Unidos" code="USA" uid="16" order="1" home="true" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+<team name="Argentina" code="ARG" uid="5" order="2" home="false" score="4" rtscore="4" etscore="" pkscore="">
+<event type="1" player="Lavezzi" uid="98965" partial="3" minute="3" />
+<event type="1" player="Messi" uid="4002" partial="3" minute="32" />
+<event type="1" player="Higuain" uid="98964" partial="4" minute="5" />
+<event type="1" player="Higuain" uid="98964" partial="4" minute="40" />
+
+</team>
+</match>
+<match id="30" uid="42069" stage="3" round="5" group="10" status="2" date="22/06/2016" wday="4" time="21:00" venue="Soldier Field" city="Chicago" et="0" pk="0">
+<team name="Colômbia" code="COL" uid="448" order="1" home="true" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+<team name="Chile" code="CHI" uid="8" order="2" home="false" score="2" rtscore="2" etscore="" pkscore="">
+<event type="1" player="Aránguiz" uid="1009233" partial="3" minute="7" />
+<event type="1" player="Fuenzalida" uid="1013565" partial="3" minute="11" />
+
+</team>
+</match>
+<match id="31" uid="42070" stage="4" round="6" group="11" status="2" date="25/06/2016" wday="7" time="21:00" venue="University of Phoenix" city="Glendale" et="0" pk="0">
+<team name="Estados Unidos" code="USA" uid="16" order="1" home="true" score="0" rtscore="0" etscore="" pkscore="">
+
+</team>
+<team name="Colômbia" code="COL" uid="448" order="2" home="false" score="1" rtscore="1" etscore="" pkscore="">
+<event type="1" player="Bacca" uid="99112" partial="3" minute="31" />
+
+</team>
+</match>
+<match id="32" uid="42071" stage="4" round="7" group="12" status="2" date="26/06/2016" wday="1" time="21:00" venue="MetLife Stadium" city="East Rutherford" et="1" pk="1">
+<team name="Argentina" code="ARG" uid="5" order="1" home="true" score="0" rtscore="0" etscore="0" pkscore="2">
+
+</team>
+<team name="Chile" code="CHI" uid="8" order="2" home="false" score="0" rtscore="0" etscore="0" pkscore="4">
+
+</team>
+</match>
+
+</results>

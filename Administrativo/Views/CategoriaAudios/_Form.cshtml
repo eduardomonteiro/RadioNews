@@ -1,0 +1,15 @@
+﻿@model Administrativo.Models.CategoriasAudios
+
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Descricao)
+
+    @Html.TextBoxFor(model => model.Descricao, new { @class = "text-box"})
+    @Html.ValidationMessageFor(model => model.Descricao)
+</div>
+
+<div class="form-group">
+    <label>Ativo?</label>
+    @Html.BooleanFieldFor(model => model.Liberado, true, new { @class = "form-control", style = "width: 120px;" })
+    @Html.ValidationMessageFor(model => model.Liberado)
+</div>

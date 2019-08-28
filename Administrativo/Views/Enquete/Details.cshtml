@@ -1,0 +1,108 @@
+﻿@model Administrativo.Models.Enquete
+
+@{
+    ViewBag.Title = "Detalhes da Enquete";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Visualizar detalhes de Enquete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">Detalhes</h3>
+            </div>
+            <div class="box-content padded">
+                <table class="table table-bordered table-striped responsive">
+                    <tbody>
+                        <tr>
+                            <td style="width:200px;">@Html.DisplayNameFor(model => model.id)</td>
+                            <td>@Html.DisplayFor(model => model.id)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.pergunta)</td>
+                            <td>@Html.DisplayFor(model => model.pergunta)</td>
+                        </tr>
+
+                        @if (Model.dataInicioVotacao.HasValue)
+                        {
+                            <tr>
+                                <td>@Html.DisplayNameFor(model => model.dataInicioVotacao)</td>
+                                <td>@Html.DisplayFor(model => model.dataInicioVotacao)</td>
+                            </tr>
+
+                        }
+
+                        @if (Model.dataFimVotacao.HasValue)
+                        {
+
+                            <tr>
+                                <td>@Html.DisplayNameFor(model => model.dataFimVotacao)</td>
+                                <td>@Html.DisplayFor(model => model.dataFimVotacao)</td>
+                            </tr>
+
+                        }
+
+                        @if (Model.dataFimResultado.HasValue)
+                        {
+                            <tr>
+                                <td>@Html.DisplayNameFor(model => model.dataFimResultado)</td>
+                                <td>@Html.DisplayFor(model => model.dataFimResultado)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <table class="table ">
+                <tr>
+                    <td>
+
+                        <div class="box box-info">
+                            <div class="box-header">
+                                <h3 class="box-title">Respostas</h3>
+                            </div>
+                            <div class="box-body chart-responsive">
+                                @if (ViewBag.verifica != 0)
+                                {
+                                    <div class="chart" id="sales-chart" style="height: 300px; position: relative;"></div>
+                                }
+                                else
+                                {
+                                    @Html.Raw("Essa enquete ainda não possui nenhuma resposta.")
+                                }
+                            </div><!-- /.box-body -->
+                        </div><!-- /.box -->
+                    </td>
+                </tr>
+            </table>
+            <div class="box-footer">
+
+
+
+                <a href="@Url.Action("Edit", "Enquete", new { id = Model.id })" class="btn btn-warning">Editar</a>
+                <a href="@Url.Action("Index", "Enquete")" class="btn btn-info">Voltar</a>
+
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<p>
+
+    <script type="text/javascript">
+        $(function () {
+            "use strict";
+
+            //DONUT CHART
+            var donut = new Morris.Donut(@Html.Raw(ViewData["json"]));
+
+
+
+        });
+    </script>

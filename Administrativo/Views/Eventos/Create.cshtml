@@ -1,0 +1,84 @@
+﻿@model Administrativo.Models.Eventos
+
+@{
+    ViewBag.Title = "Cadastrar Evento";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Insere um Evento no sistema";
+}
+
+<div class="content">
+    <div class="row">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">Cadastrar Eventos</h3>
+            </div>
+            @using (Html.BeginForm("Create", "Eventos", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="box-body">
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Titulo)
+
+                        @Html.TextBoxFor(model => model.Titulo, new { @maxlength = 100, @class = "text-box" })
+                        @Html.ValidationMessageFor(model => model.Titulo)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Texto)
+
+                        @Html.TextAreaFor(model => model.Texto, new { @class = "text-area" })
+                        @Html.ValidationMessageFor(model => model.Texto)
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+
+                                <label>Foto - <em>Resolução mínima recomendada (744x500)</em></label>
+
+                                <input type="file" name="imageFile" id="foto" accept="image/*" />
+                                <label id="lblFotoExistente"></label>
+                                @Html.ValidationMessage("imagemArquivo")
+
+                                <input type="hidden" id="fotoExistente" name="fotoExistente" />
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="callout callout-info">
+                                <h4>Ou escolha uma imagem já enviada </h4>
+                                <a class="btn btn-primary iframe" href="@Url.Action("Index","Elfinder")"><i class="fa fa-search-plus"></i>&nbsp;Procurar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Liberado)
+                        @Html.BooleanFieldFor(model => model.Liberado, new { @class = "form-control", @style = "width: 200px" })
+                        @Html.ValidationMessageFor(model => model.Liberado)
+                    </div>
+
+                </div>
+                <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a href="@Url.Action("Index", "Eventos")" cl class="btn btn-info">Voltar</a>
+
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+
+        CKEDITOR.replace('Texto',
+                {
+                    height: "200px"
+                });
+
+    </script>
+}

@@ -1,0 +1,148 @@
+﻿@model Administrativo.Models.Equipe
+
+@{
+    ViewBag.Title = "Editar Equipes";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Altere as informações de Equipes";
+}
+
+<div class="content">
+    <div class="row">
+        <div class="box box-warning">
+            <div class="box-header">
+                <h3 class="box-title">Editar Equipes</h3>
+            </div>
+           @using (Html.BeginForm("Edit", "Equipes", FormMethod.Post, new { enctype = "multipart/form-data" }))
+           {
+                <div class="box-body">
+                    @Html.HiddenFor(model => model.id)
+                    @Html.HiddenFor(model => model.DataCadastro)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.nome)
+
+                        @Html.TextBoxFor(model => model.nome, new { @maxlength = 100, @class = "text-box" })
+                        @Html.ValidationMessageFor(model => model.nome)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.texto)
+
+                        @Html.TextAreaFor(model => model.texto, new { @class = "text-box", style = "height: 250px;" })
+                        @Html.ValidationMessageFor(model => model.texto)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.funcao)
+
+                        @Html.TextBoxFor(model => model.funcao, new { @maxlength = 100, @class = "text-box" })
+                        @Html.ValidationMessageFor(model => model.funcao)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.telefone)
+
+                        @Html.EditorFor(model => model.telefone)
+                        @Html.ValidationMessageFor(model => model.telefone)
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.email)
+
+                        @Html.TextBoxFor(model => model.email, new { @maxlength = 100, @class = "text-box" })
+                        @Html.ValidationMessageFor(model => model.email)
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-5">
+                                @Html.LabelFor(model => model.imagem)
+                                @Html.TextBoxFor(model => model.imagem, new { style = "display: none;" })
+                                <input type="file" name="Arquivo" title="" id="FotoUpload" onchange="javascript: $('#Foto').val($(this).val().split('\\').pop());" accept="image/*"/>
+                            </div>                            
+                            <div class="col-md-3">
+                                @if (!string.IsNullOrEmpty(Model.imagem))
+                                {
+
+                                    <a class="btn btn-block btn-primary" data-toggle="modal" data-target="#foto-interna" style="width: 120px;">Imagem Atual</a>
+
+                                }
+                                else
+                                {
+                                    <p class="text-yellow">Sem Miniatura.</p>
+                                }
+                            </div>
+                            <div class="col-md-4">
+                                <div class="callout callout-info">
+                                    <h4>Tamanho Ideal</h4>
+                                    <p>165 x 165</p>
+                                </div>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.imagem)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.facebook)
+
+                        @Html.TextBoxFor(model => model.facebook, new { @maxlength = 100, @class = "text-box" })
+                        @Html.ValidationMessageFor(model => model.facebook)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.twitter)
+
+                        @Html.TextBoxFor(model => model.twitter, new { @maxlength = 100, @class = "text-box" })
+                        @Html.ValidationMessageFor(model => model.twitter)
+                    </div>
+                  
+                </div>
+                <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a href="@Url.Action("Index", "Equipes")" class="btn btn-info">Voltar</a>
+
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="foto-interna" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Imagem Atual</h4>
+
+            </div>
+            <div class="modal-body">
+                <img src="@Url.Content("~/Conteudo/Equipe/165x165/" + Model.imagem)" width="165" height="165" />
+            </div>
+            <div class="modal-footer clearfix">
+
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="fa fa-times"></i>Fechar
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var editor = CKEDITOR.replace('texto',
+                {
+                    height: "200px"
+                });
+
+            $("#telefone").inputmask("(31) 2105-9999");
+        });
+    </script>
+}

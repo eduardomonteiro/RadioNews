@@ -1,0 +1,164 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@using Site.Helpers
+@using Site.Models
+@model IPagedList<Galeria>
+
+
+
+@section SEO{
+    <meta name="DC.title" content="Galerias da Redação - Vídeos - Rádio CompanyName  | A Rádio de Minas" />
+    <meta property="og:title" content="Galerias da Redação - Vídeos - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="@Url.Content("~/images/ico-facebook.jpg")" />
+    <meta property="og:url" content="@HttpContext.Current.Request.Url.AbsoluteUri" />
+    <title>Galerias da Redação - Vídeos - Rádio CompanyName | A Rádio de Minas</title>
+}
+
+<div class="wrapper-general center media-videos">
+    <header class="nav-intern clearfix">
+        <div class="buttons">
+            <a class="bt-back" href="javascript:window.history.go(-1)"> <i class="fa fa-angle-left"></i> Voltar</a>
+            Texto: <button class="more bt-resize">+</button> <button class="bt-resize minus">-</button>
+        </div>
+        <nav class="breadcumb">
+            <a href="@Url.Action("Index","Home")">Home</a>
+            <span>Vídeos</span>
+        </nav>
+    </header>
+
+    <div class="row-grid clearfix">
+        <div class="grid-9 main-grid">
+            <h1 class="title-page">Vídeos</h1>
+            <nav class="navs-upper">
+                <a href="@Url.Action("Index","Galerias")">Fotos</a>
+                <a class="active">Vídeos</a>
+            </nav>
+
+            @if (Model != null && Model.Count > 0)
+            {
+                <article class="big-article-gallery" id="galeria-grande">
+                    <small class="date-post data-video">@Model[0].dataCadastro.ToShortDateString()</small>
+                    <h2 class="title-medium big data-legenda">@Model[0].titulo</h2>
+
+
+                    @if (!string.IsNullOrEmpty(Model[0].Midias.FirstOrDefault(x => !x.excluido && x.video).midia))
+                    {
+                        <figure class="big-pic">
+                            <div id="playerYoutube"></div>
+                        </figure>
+                    }
+                    
+                    @if (!string.IsNullOrEmpty(Model[0].Midias.FirstOrDefault(x => !x.excluido && x.video).midia))
+                    {
+                        var primeiraMidia = Model[0].Midias.FirstOrDefault(x => !x.excluido && x.video);
+                        <div class="thumbs-galery clearfix">
+                            <img onclick="javascript:alterVideo('@primeiraMidia.midia','@primeiraMidia.legenda','@primeiraMidia.Galeria.dataCadastro.ToShortDateString()');" class="selected" src="https://i.ytimg.com/vi/@(primeiraMidia.midia)/hqdefault.jpg" alt="@primeiraMidia.legenda" title="@primeiraMidia.legenda">
+                           
+                            @foreach (var item in Model[0].Midias.Where(x => !x.excluido && x.video).Skip(1).ToList())
+                            {
+                                    <img onclick="javascript: alterVideo('@item.midia', '@item.legenda', '@item.Galeria.dataCadastro.ToShortDateString()');" src="https://i.ytimg.com/vi/@item.midia/hqdefault.jpg" alt="@item.legenda">
+                                    
+                            }
+
+                        </div>
+                    }
+                </article>
+
+                if (Model != null && Model.Count > 1)
+                {
+                    <section id="outros-albuns">
+                        <h2 class="title-bottom">Outros Álbuns</h2>
+                        <ul class="row-grid mb clearfix">
+                            @foreach (var item in Model.Skip(1))
+                            {
+                                <li class="grid-4">
+                                    <article>
+                                        <a href="@Url.Action("Videos", "Galerias", new { chave = item.chave })">
+
+                                            @if (item.Midias != null && item.Midias.Where(x => !x.excluido && x.video).ToList().Count > 0)
+                                            {
+                                                <img class="pic-radius" src="https://i.ytimg.com/vi/@item.Midias.FirstOrDefault().midia/hqdefault.jpg" alt="@item.titulo">
+                                                <h3 class="title-normal">@item.titulo</h3>
+                                            }
+
+                                        </a>
+                                    </article>
+                                </li>
+
+                            }
+
+                        </ul>
+                    </section>
+                }
+                else
+                {
+                    <p class="description-noticie">
+                        Não existe nenhuma outra galeria de vídeo.
+                    </p>
+                }
+            }
+            else
+            {
+                <p class="description-noticie">
+                    Nenhuma galeria de vídeo encontrada.
+                </p>
+            }
+
+            <footer class="pagination-bottom">
+                <ul class="pag">
+                    @if (Model.PageCount > 1)
+                    {
+                        @Html.PagedListPager(Model, page => Url.Action("Videos", new { page }), new PagedListRenderOptions { LinkToNextPageFormat = "Próximo", LinkToPreviousPageFormat = "Anterior" })
+                    }
+                </ul>
+            </footer>
+        </div>
+
+
+        @{Html.RenderAction("Sidebar", "Home");}
+
+    </div>
+</div>
+@section scripts{
+    <script type="text/javascript">
+
+        var tag = document.createElement('script');
+
+        tag.src = "http://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('playerYoutube', {
+                height: '500',
+                width: '840',
+                @if(Model!=null && Model.Count>0)
+                {
+                    @:videoId: '@Model.FirstOrDefault().Midias.FirstOrDefault().midia',
+                                                }
+                events: {
+                    'onStateChange': onPlayerStateChange
+                },
+                playerVars: {
+                    rel: 0,
+                    wmode: "opaque"
+                }
+            });
+        }
+
+        function onPlayerStateChange(evt) {
+        }
+
+
+        function alterVideo(id_video, legenda, data) {
+            player.loadVideoById({ 'videoId': '' + id_video + '', 'startSeconds': 0 });
+            $(".data-video").html(data);
+            $(".data-legenda").html(legenda);
+
+        }
+
+    </script>
+}

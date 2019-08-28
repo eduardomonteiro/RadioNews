@@ -1,0 +1,92 @@
+﻿@model Site.ViewModels.AcontecimentoViewModel
+
+
+@section SEO
+{
+
+
+}
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css" />
+
+<style>
+    .fancybox img {
+        display: block !important;
+    }
+</style>
+
+   
+
+    <div class="wrapper-general center">
+        <header class="nav-intern clearfix">
+            <div class="buttons">
+                <a class="bt-back" href="@Model.EventoUrl"> <i class="fa fa-angle-left"></i> Voltar</a>
+                Texto: <button class="more bt-resize">+</button> <button class="bt-resize minus">-</button>
+            </div>
+            <nav class="breadcumb">
+                <a href="@Url.Action("Index", "Home")">Home</a>
+                <a href="@Url.Action("Index", "Eventos")">CompanyName no Ponto</a>
+                <a href="@Model.EventoUrl">@Model.EventoTitulo</a>
+                <span>Acontecimento</span>
+            </nav>
+        </header>
+        <div class="row-grid clearfix">
+            <div class="grid-9 main-grid">
+                <h1 class="title-page">CompanyName no Ponto</h1>
+                <div class="header-titletop">
+                    <h2 class="title">@Model.Titulo</h2>
+                    <p class="tags-event block">
+                        <i class="fa fa-map-marker"></i>
+                        @Model.Local | <i class="fa fa-calendar-check-o"></i>@Model.Data.ToString("dd/MM/yyyy") | <i class="fa fa-clock-o"></i> De @Model.HoraInicio.Replace(":", "h") Até @Model.HoraFim.Replace(":", "h")
+                    </p>
+                </div>
+                <section class="gallery-thumbs-wrapper">
+                    <h2 class="title-card">Galeria de Fotos</h2>
+                    <ul class="clearfix row-grid">
+
+                        @if (Model.Imagens != null && Model.Imagens.Any())
+                        {
+                            foreach (var imagem in Model.Imagens)
+                            {
+                                <li class="grid-3">
+                                    <a class="fancybox" data-fancybox-group="gallery" href="@imagem.LargeUrl">
+                                        <img src="@imagem.Medium640Url">
+                                    </a>
+                                </li>
+                            }
+                        }
+                        else
+                        {
+                            <p class="description-noticie">Nenhuma imagem cadastrada no evento.</p>
+                        }
+
+
+
+                    </ul>
+                </section>
+            </div>
+
+
+
+            @Html.Action("MenuProximos", new { @id = Model.EventoId })
+
+        </div>
+    </div>
+
+@section scripts {
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+    <script>
+
+        $('#calendario-acoes').slick({
+            infinite: false,
+            arrows: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            focusOnSelect: true,
+            prevArrow: $('#arrow-left'),
+            nextArrow: $('#arrow-right'),
+
+        });
+
+    </script>
+}

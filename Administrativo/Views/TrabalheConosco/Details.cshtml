@@ -1,0 +1,89 @@
+﻿@model Administrativo.Models.TrabalheConosco
+
+@{
+    ViewBag.Title = "TrabalheConosco";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Visualizar detalhes de TrabalheConosco";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">Detalhes</h3>
+            </div>
+            <div class="box-content padded">
+                <table class="table table-bordered table-striped responsive">
+                    <tbody>
+                        <tr>
+                            <td style="width:200px;">@Html.DisplayNameFor(model => model.id)</td>
+                            <td>@Html.DisplayFor(model => model.id)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.nome)</td>
+                            <td>@Html.DisplayFor(model => model.nome)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.celular)</td>
+                            <td>@Html.DisplayFor(model => model.celular)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.telefone)</td>
+                            <td>@Html.DisplayFor(model => model.telefone)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.sexo)</td>
+                            <td>@Html.DisplayFor(model => model.sexo)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.estado)</td>
+                            <td>@Html.DisplayFor(model => model.estado)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.cidade)</td>
+                            <td>@Html.DisplayFor(model => model.cidade)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.areaPretencao)</td>
+                            <td>@Html.DisplayFor(model => model.areaPretencao)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.dataNascimento)</td>
+                            <td>@Html.DisplayFor(model => model.dataNascimento)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.curriculo)</td>
+                            <td><a href="@Url.Action("Download", new { id = Model.id })" target="_blank" class="btn btn-block btn-primary" style="width: 120px; padding: 3px;">Download</a></td>
+
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.email)</td>
+                            <td>@Html.DisplayFor(model => model.email)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.dataCadastro)</td>
+                            <td>@Html.DisplayFor(model => model.dataCadastro)</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="box-footer">
+                <a href="@Url.Action("Index","TrabalheConosco")" class="btn btn-info">Voltar</a>
+            </div>
+        </div>
+    </div>
+</div>
+<p>

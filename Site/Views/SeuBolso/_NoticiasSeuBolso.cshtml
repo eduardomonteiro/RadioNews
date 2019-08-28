@@ -1,0 +1,112 @@
+﻿@model Site.ViewModels.SeuBolso.SeuBolsoViewModel
+@using System.Text.RegularExpressions
+@using PagedList.Mvc
+@using Site.Helpers;
+  
+<section>
+    <header class="filters">
+
+        @using (Html.BeginForm("Index", "SeuBolso", FormMethod.Get, new { @class = "row-grid clearfix" })) {
+            <div class="grid-7">
+                <label for="palavrachave">Palavra Chave</label>
+                <input type="text" class="input-form" name="palavraChave" id="palavraChave" value="@Request.Params["palavrachave"]">
+            </div>
+
+                                @*<div class="grid-2">
+                                        <label for="categoria">Categoria</label>
+                                        @Html.DropDownList("categoria", null, "Selecione...", new { @class = "input-form", @id = "categoria", @name = "categoria" })
+                                    </div>*@
+                                <div class="grid-2">
+                                    <label for="datainicio">De</label>
+                                    <input type="date" class="input-form dates" id="datainicio" value="@Request.Params["dataInicio"]" name="dataInicio">
+                                </div>
+                                <div class="grid-2">
+                                    <label for="datafinal">Até</label>
+                                    <input type="date" class="input-form dates" id="datafinal" value="@Request.Params["dataFinal"]" name="dataFinal">
+                                </div>
+                                <div class="grid-1">
+                                    <button type="submit" id="post-search" title="Buscar" class="search-filter fa fa-search"></button>
+                                </div>
+        }
+
+    </header>
+
+    @if (Model.Noticias != null && Model.Noticias.Count > 0) {
+        <ul class="news-line">
+            @foreach (var item in Model.Noticias.ToList()) {
+                var urlCompartilha = HttpContext.Current.Request.Url.Authority + Url.Action("Detalhes", "Noticias", new { chave = item.Url });
+                <li>
+                    <article class="container">
+
+                        @if (!string.IsNullOrEmpty(item.Foto)) {
+                            <figure>
+                                <a href="@Url.Action("Detalhes", "Noticias", new { chave = item.Url })">
+                                    <img src="@Utils.fullUrlImage("365x240", item.Id,365)" title="@Html.Raw(item.FotoCredito)" alt="@Html.Raw(item.FotoCredito)">
+                                </a>
+                            </figure>
+
+                        }
+
+                        <div class="info">
+                            <div class="clearfix header-content">
+
+                                <span class="info-publication">
+                                    Por <strong>@item.PorAutor</strong>, @item.DataCadastro.ToShortDateString()  às  @item.DataCadastro.ToShortTimeString()
+                                </span>
+
+                                <div class="box-share">
+                                    <span class="title">
+                                        <i class="fa fa-share-alt"></i>Compartilhar
+                                    </span>
+                                    <nav>
+                                        <a href="#" class="icon-facebook" onclick="openwindow('https://www.facebook.com/sharer/sharer.php?u=@urlCompartilha&display=popup&ref=plugin');">
+                                            <i class="fa fa-facebook"></i> Facebook
+                                        </a>
+
+                                        <a href="#" class="icon-twitter-squared" onclick="openwindow('https://twitter.com/intent/tweet?text=@Regex.Replace(item.Chamada, @"<[^>]+>|&nbsp;", "").Trim()&url=@urlCompartilha');">
+                                            <i class="fa fa-twitter"></i>Twitter
+                                        </a>
+                                    </nav>
+                                </div>
+                            </div>
+                            <a href="@Url.Action("Detalhes", "Noticias", new { chave = item.Url })">
+                                <span class="tag-area">@item.Titulo</span>
+                                <h3 class="title-medium">@Html.Raw(item.Chamada)</h3>
+                            </a>
+                        </div>
+                    </article>
+                </li>
+            }
+
+        </ul>
+
+                            <footer class="pagination-bottom">
+
+                                <ul class="pag">
+                                    @if (Model.Noticias.PageCount > 1) {
+                                        @Html.PagedListPager(Model.Noticias, page => Url.Action("Index", new {
+                                       page,
+                                       palavrachave = Request.Params["palavrachave"],
+                                       categoria = Request.Params["categoria"],
+                                       datainicio = Request.Params["datainicio"],
+                                       datafinal = Request.Params["datafinal"]
+                                   }),
+                           new PagedListRenderOptions {
+                               LinkToNextPageFormat = "Próximo",
+                               LinkToPreviousPageFormat = "Anterior",
+                               MaximumPageNumbersToDisplay = 5,
+                               DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                               DisplayLinkToFirstPage = PagedListDisplayMode.Never
+
+                           })
+                                    }
+                                </ul>
+
+                            </footer>
+    } else {
+        <div class="block-text">
+            <h3>Não foram encontrados resultados.</h3>
+        </div>
+    }
+
+</section>

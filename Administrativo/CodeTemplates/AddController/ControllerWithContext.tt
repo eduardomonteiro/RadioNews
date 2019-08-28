@@ -1,0 +1,471 @@
+﻿<#@ template language="C#" HostSpecific="True" #>
+<#
+var Model = (MvcTextTemplateHost)Host;
+MvcTextTemplateHost mvcHost = MvcTemplateHost;
+var routePrefix = String.Empty;
+if (!String.IsNullOrWhiteSpace(Model.AreaName)) {
+    routePrefix = "/" + Model.AreaName;
+}
+routePrefix += "/" + Model.ControllerRootName + "/";
+#>
+<#@ assembly name="CustomAttributes" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Data.Linq" #>
+<#@ assembly name="System.Data.Entity" #>
+<#@ assembly name="System.ComponentModel.DataAnnotations" #>
+<#@ import namespace="System.ComponentModel.DataAnnotations" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Data.Objects" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Data.Linq.Mapping" #>
+<#@ import namespace="System.Data.Objects.DataClasses" #>
+<#@ import namespace="System.Reflection" #>
+<#@ import namespace="Microsoft.VisualStudio.Web.Mvc.Scaffolding.BuiltIn" #>
+<#@ import namespace="CustomAttributes" #>
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
+using System.Web;
+using PagedList;
+using System.Web.Mvc;
+<# if(MvcTextTemplateHost.NamespaceNeeded(Model.Namespace, Model.ModelType.Namespace)) { #>
+using <#= Model.ModelType.Namespace #>;
+<# } #>
+<# if(Model.ContextType.Namespace != Model.ModelType.Namespace && MvcTextTemplateHost.NamespaceNeeded(Model.Namespace, Model.ContextType.Namespace)) { #>
+using <#= Model.ContextType.Namespace #>;
+<# } #>
+
+namespace <#= Model.Namespace #>
+{
+<#
+    var modelName = Model.ModelType.Name;
+    var entitySetName = Model.EntitySetName;
+    var modelVariable = modelName.ToLower();
+    var entitySetVariable = entitySetName.ToLower();
+    var primaryKey = Model.PrimaryKeys[0];
+    var lambdaVar = modelVariable[0];
+    var isObjectContext = typeof(ObjectContext).IsAssignableFrom(Model.ContextType);
+	var properties = Model.ModelType.GetProperties();
+#>
+    public class <#= Model.ControllerName #> : Controller
+    {
+        private <#= Model.ContextType.Name #> db = new <#= Model.ContextType.Name #>();
+
+        //
+        // GET: <#= routePrefix #>
+
+        public ActionResult Index(int? page, string search = "", string sortField = "", string order = "")
+        {
+
+			ViewBag.<#= entitySetName #>Active = "active";
+            ViewBag.<#= entitySetName #>SubActive = "active";
+            ViewBag.Search = search;
+            ViewBag.Order = order;
+            ViewBag.SortField = sortField;
+            ViewBag.Page = page;
+            allClassOffSort();
+
+<#  var includeExpressions = "";
+    if(isObjectContext) {
+        includeExpressions = String.Join("", Model.RelatedProperties.Values.Select(property => String.Format(".Include(\"{0}\")", property.PropertyName)));
+    }
+    else {
+        includeExpressions = String.Join("", Model.RelatedProperties.Values.Select(property => String.Format(".Include({0} => {0}.{1})", lambdaVar, property.PropertyName)));
+    }
+#>
+            return View(GetListItens(page, search, sortField, order));
+
+        }
+
+
+		public void allClassOffSort()
+        {
+
+		<#List<ModelProperty> mProperties = GetModelProperties(Model.ModelType);
+		
+	foreach (ModelProperty property in mProperties) {
+		if (property.ScaffoldInList) {
+			if (property.Sortable){#>
+            ViewBag.SortClass<#= property.Name #> = "sorting";
+<#            }
+        }
+    }
+		#>
+
+        }
+
+		public IPagedList<<#= modelName #>> GetListItens(int? page, string searchParam = "", string sortField = "", string order = "")
+        {
+
+
+            var list = db.<#= entitySetName #>;
+
+            var pagedList = from obj in list select obj;
+            int pageNumber = (page ?? 1);
+
+            if (!string.IsNullOrEmpty(searchParam))
+            {
+                int outDate = 0;
+                int id = int.TryParse(searchParam, out outDate) ? int.Parse(searchParam) : 0;
+
+                pagedList = pagedList.Where(<#= lambdaVar #> => <#= lambdaVar #>.<#= primaryKey.Name #> == id);
+
+            }
+
+
+            switch (sortField)
+            {
+<# foreach (ModelProperty property in mProperties) {
+		if (property.ScaffoldInList) {
+			if (property.Sortable){ #>
+				case "<#= property.Name #>":
+					if (order == "ASC")
+					{
+						pagedList = pagedList.OrderBy(<#= lambdaVar #> => <#= lambdaVar #>.<#= property.Name #>);
+						ViewBag.SortClass<#= property.Name #> = "sorting_asc";
+
+					}
+					else
+					{
+						pagedList = pagedList.OrderByDescending(<#= lambdaVar #> => <#= lambdaVar #>.<#= property.Name #>);
+						ViewBag.SortClass<#= property.Name #> = "sorting_desc";
+					}
+					break;
+<#		}
+        }
+	
+} #>
+                default:
+                    pagedList = pagedList.OrderByDescending(<#= lambdaVar #> => <#= lambdaVar #>.<#= primaryKey.Name #>);
+					ViewBag.SortClass<#=primaryKey.Name #> = "sorting_asc";
+                    break;
+            }
+
+            return pagedList.ToPagedList<<#= modelName #>>(pageNumber, 10);
+        }
+
+        //
+        // GET: <#= routePrefix #>Details/5
+
+        public ActionResult Details(<#= primaryKey.ShortTypeName #> id = <#= primaryKey.DefaultValue #>)
+        {
+<# if(isObjectContext) { #>
+            <#= modelName #> <#= modelVariable #> = db.<#= entitySetName #>.Single(<#= lambdaVar #> => <#= lambdaVar #>.<#= primaryKey.Name #> == id);
+<# } else { #>
+            <#= modelName #> <#= modelVariable #> = db.<#= entitySetName #>.Find(id);
+<# } #>
+            if (<#= modelVariable #> == null)
+            {
+                return HttpNotFound();
+            }
+            return View(<#= modelVariable #>);
+        }
+
+        //
+        // GET: <#= routePrefix #>Create
+
+        public ActionResult Create()
+        {
+<# foreach (var property in Model.RelatedProperties.Values) { #>
+            ViewBag.<#= property.ForeignKeyPropertyName #> = new SelectList(db.<#= property.EntitySetName #>, "<#= property.PrimaryKey #>", "<#= property.DisplayPropertyName #>");
+<# } #>
+            return View();
+        }
+
+        //
+        // POST: <#= routePrefix #>Create
+
+        [HttpPost]
+        public ActionResult Create(<#= modelName #> <#= modelVariable #>)
+        {
+            if (ModelState.IsValid)
+            {
+<# if(primaryKey.Type == typeof(Guid)) { #>
+                <#= modelVariable #>.<#= primaryKey.Name #> = Guid.NewGuid();
+<# } #>
+<# if(isObjectContext) { #>
+                db.<#= entitySetName #>.AddObject(<#= modelVariable #>);
+<# } else { #>
+                db.<#= entitySetName #>.Add(<#= modelVariable #>);
+<# } #>
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+<# foreach (var property in Model.RelatedProperties.Values) { #>
+            ViewBag.<#= property.ForeignKeyPropertyName #> = new SelectList(db.<#= property.EntitySetName #>, "<#= property.PrimaryKey #>", "<#= property.DisplayPropertyName #>", <#= modelVariable #>.<#= property.ForeignKeyPropertyName #>);
+<# } #>
+            return View(<#= modelVariable #>);
+        }
+
+        //
+        // GET: <#= routePrefix #>Edit/5
+
+        public ActionResult Edit(<#= primaryKey.ShortTypeName #> id = <#= primaryKey.DefaultValue #>)
+        {
+<# if(isObjectContext) { #>
+            <#= modelName #> <#= modelVariable #> = db.<#= entitySetName #>.Single(<#= lambdaVar #> => <#= lambdaVar #>.<#= primaryKey.Name #> == id);
+<# } else { #>
+            <#= modelName #> <#= modelVariable #> = db.<#= entitySetName #>.Find(id);
+<# } #>
+            if (<#= modelVariable #> == null)
+            {
+                return HttpNotFound();
+            }
+<# foreach (var property in Model.RelatedProperties.Values) { #>
+            ViewBag.<#= property.ForeignKeyPropertyName #> = new SelectList(db.<#= property.EntitySetName #>, "<#= property.PrimaryKey #>", "<#= property.DisplayPropertyName #>", <#= modelVariable #>.<#= property.ForeignKeyPropertyName #>);
+<# } #>
+            return View(<#= modelVariable #>);
+        }
+
+        //
+        // POST: <#= routePrefix #>Edit/5
+
+        [HttpPost]
+        public ActionResult Edit(<#= modelName #> <#= modelVariable #>)
+        {
+            if (ModelState.IsValid)
+            {
+<# if(isObjectContext) { #>
+                db.<#= entitySetName #>.Attach(<#= modelVariable #>);
+                db.ObjectStateManager.ChangeObjectState(<#= modelVariable #>, EntityState.Modified);
+<# } else { #>
+                db.Entry(<#= modelVariable #>).State = EntityState.Modified;
+<# } #>
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+<# foreach (var property in Model.RelatedProperties.Values) { #>
+            ViewBag.<#= property.ForeignKeyPropertyName #> = new SelectList(db.<#= property.EntitySetName #>, "<#= property.PrimaryKey #>", "<#= property.DisplayPropertyName #>", <#= modelVariable #>.<#= property.ForeignKeyPropertyName #>);
+<# } #>
+            return View(<#= modelVariable #>);
+        }
+
+        //
+        // GET: <#= routePrefix #>Delete/5
+
+        public ActionResult Delete(<#= primaryKey.ShortTypeName #> id = <#= primaryKey.DefaultValue #>)
+        {
+<# if(isObjectContext) { #>
+            <#= modelName #> <#= modelVariable #> = db.<#= entitySetName #>.Single(<#= lambdaVar #> => <#= lambdaVar #>.<#= primaryKey.Name #> == id);
+<# } else { #>
+            <#= modelName #> <#= modelVariable #> = db.<#= entitySetName #>.Find(id);
+<# } #>
+            if (<#= modelVariable #> == null)
+            {
+                return HttpNotFound();
+            }
+            return View(<#= modelVariable #>);
+        }
+
+        //
+        // POST: <#= routePrefix #>Delete/5
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(<#= primaryKey.ShortTypeName #> id)
+        {
+<# if(isObjectContext) { #>
+            <#= modelName #> <#= modelVariable #> = db.<#= entitySetName #>.Single(<#= lambdaVar #> => <#= lambdaVar #>.<#= primaryKey.Name #> == id);
+            db.<#= entitySetName #>.DeleteObject(<#= modelVariable #>);
+<# } else { #>
+            <#= modelName #> <#= modelVariable #> = db.<#= entitySetName #>.Find(id);
+            db.<#= entitySetName #>.Remove(<#= modelVariable #>);
+<# } #>
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            db.Dispose();
+            base.Dispose(disposing);
+        }
+    }
+}
+
+
+
+
+<#+
+// Describes the information about a property on the model
+class ModelProperty {
+    public string Name { get; set; }
+    public string AssociationName { get; set; }
+    public string ValueExpression { get; set; }
+    public string ModelValueExpression { get; set; }
+    public string ItemValueExpression { get; set; }
+    public Type UnderlyingType { get; set; }
+    public bool IsPrimaryKey { get; set; }
+    public bool IsForeignKey { get; set; }
+    public bool IsReadOnly { get; set; }
+    public bool Scaffold { get; set; }
+    public bool ScaffoldInList { get; set; }
+	public bool Sortable { get; set; }
+}
+
+// Change this list to include any non-primitive types you think should be eligible for display/edit
+static Type[] bindableNonPrimitiveTypes = new[] {
+    typeof(string),
+    typeof(decimal),
+    typeof(Guid),
+    typeof(DateTime),
+    typeof(DateTimeOffset),
+    typeof(TimeSpan),
+};
+
+// Call this to get the list of properties in the model. Change this to modify or add your
+// own default formatting for display values.
+List<ModelProperty> GetModelProperties(Type type) {
+    List<ModelProperty> results = GetEligibleProperties(type);
+    
+    foreach (ModelProperty prop in results) {
+        if (prop.UnderlyingType == typeof(double) || prop.UnderlyingType == typeof(decimal)) {
+            prop.ModelValueExpression = "String.Format(\"{0:F}\", " + prop.ModelValueExpression + ")";
+        }
+        else if (prop.UnderlyingType == typeof(DateTime)) {
+            prop.ModelValueExpression = "String.Format(\"{0:g}\", " + prop.ModelValueExpression + ")";
+        }
+    }
+
+    return results;
+}
+
+// Call this to determine if property has scaffolding enabled
+bool Scaffold(PropertyInfo property) {
+    foreach (object attribute in property.GetCustomAttributes(true)) {
+        var scaffoldColumn = attribute as ScaffoldColumnAttribute;
+        if (scaffoldColumn != null && !scaffoldColumn.Scaffold) {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool ScaffoldInList(PropertyInfo property) {
+foreach (object attribute in property.GetCustomAttributes(true)) {
+    var scaffoldInListColumn = attribute as ScaffoldInListAttribute;
+    if (scaffoldInListColumn != null && !scaffoldInListColumn.ScaffoldInList) {
+        return false;
+    }
+}
+return true;
+}
+
+bool Sortable(PropertyInfo property){
+	foreach (object attribute in property.GetCustomAttributes(true)) {
+        var sortColumn = attribute as SortableAttribute;
+		
+        if (sortColumn != null ) {
+            return false;
+        }
+    }
+    return true;
+}
+
+// Call this to determine if the property represents a primary key. Change the
+// code to change the definition of primary key.
+bool IsPrimaryKey(PropertyInfo property) {
+    if (string.Equals(property.Name, "id", StringComparison.OrdinalIgnoreCase)) {  // EF Code First convention
+        return true;
+    }
+
+    if (string.Equals(property.Name, property.DeclaringType.Name + "id", StringComparison.OrdinalIgnoreCase)) {  // EF Code First convention
+        return true;
+    }
+
+    foreach (object attribute in property.GetCustomAttributes(true)) {
+        if (attribute is KeyAttribute) {  // WCF RIA Services and EF Code First explicit
+            return true;
+        }
+        
+        var edmScalar = attribute as EdmScalarPropertyAttribute;
+        if (edmScalar != null && edmScalar.EntityKeyProperty) {  // EF traditional
+            return true;
+        }
+
+        var column = attribute as ColumnAttribute;
+        if (column != null && column.IsPrimaryKey) {  // LINQ to SQL
+            return true;
+        }
+    }
+    
+    return false;
+}
+
+// This will return the primary key property name, if and only if there is exactly
+// one primary key. Returns null if there is no PK, or the PK is composite.
+string GetPrimaryKeyName(Type type) {
+    IEnumerable<string> pkNames = GetPrimaryKeyNames(type);
+    return pkNames.Count() == 1 ? pkNames.First() : null;
+}
+
+// This will return all the primary key names. Will return an empty list if there are none.
+IEnumerable<string> GetPrimaryKeyNames(Type type) {
+    return GetEligibleProperties(type).Where(mp => mp.IsPrimaryKey).Select(mp => mp.Name);
+}
+
+// Call this to determine if the property represents a foreign key.
+bool IsForeignKey(PropertyInfo property) {
+    return MvcTemplateHost.RelatedProperties.ContainsKey(property.Name);
+}
+
+// A foreign key, e.g. CategoryID, will have a value expression of Category.CategoryID
+string GetValueExpressionSuffix(PropertyInfo property) {
+    RelatedModel propertyModel;
+    MvcTemplateHost.RelatedProperties.TryGetValue(property.Name, out propertyModel);
+
+    return propertyModel != null ? propertyModel.PropertyName + "." + propertyModel.DisplayPropertyName : property.Name;
+}
+
+// A foreign key, e.g. CategoryID, will have an association name of Category
+string GetAssociationName(PropertyInfo property) {
+    RelatedModel propertyModel;
+    MvcTemplateHost.RelatedProperties.TryGetValue(property.Name, out propertyModel);
+
+    return propertyModel != null ? propertyModel.PropertyName : property.Name;
+}
+
+// Helper
+List<ModelProperty> GetEligibleProperties(Type type) {
+    List<ModelProperty> results = new List<ModelProperty>();
+
+    foreach (PropertyInfo prop in type.GetProperties(BindingFlags.Public | BindingFlags.Instance)) {
+        Type underlyingType = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType;
+        if (prop.GetGetMethod() != null && prop.GetIndexParameters().Length == 0 && IsBindableType(underlyingType)) {
+            string valueExpression = GetValueExpressionSuffix(prop);
+
+            results.Add(new ModelProperty {
+                Name = prop.Name,
+                AssociationName = GetAssociationName(prop),
+                ValueExpression = valueExpression,
+                ModelValueExpression = "Model." + valueExpression,
+                ItemValueExpression = "item." + valueExpression,
+                UnderlyingType = underlyingType,
+                IsPrimaryKey = IsPrimaryKey(prop),
+                IsForeignKey = IsForeignKey(prop),
+                IsReadOnly = prop.GetSetMethod() == null,
+                Scaffold = Scaffold(prop),
+                ScaffoldInList = ScaffoldInList(prop),
+				Sortable = Sortable(prop)
+            });
+        }
+    }
+
+    return results;
+}
+
+// Helper
+bool IsBindableType(Type type) {
+    return type.IsPrimitive || bindableNonPrimitiveTypes.Contains(type);
+}
+
+MvcTextTemplateHost MvcTemplateHost {
+    get {
+        return (MvcTextTemplateHost)Host;
+    }
+}
+#>

@@ -1,0 +1,111 @@
+﻿@model Administrativo.Models.Editoriais
+
+@{
+    ViewBag.Title = "Cadastrar Editoriais";
+    ViewBag.Icon = "fa ";
+    ViewBag.SmallDescription = "Insere um Editoriais no sistema";
+}
+
+
+<div class="content">
+    <div class="row">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Cadastrar Editoriais</h3>
+            </div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="box-body">
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.nome)
+
+                        @Html.TextBoxFor(model => model.nome, new { @maxlength = 100, @class = "text-box" })
+                        @Html.ValidationMessageFor(model => model.nome)
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>É uma editoria Especial?</label>
+                        @Html.BooleanFieldFor(model => model.especial, false, new { @class = "form-control", style = "width: 120px;" })
+                        @Html.ValidationMessageFor(model => model.especial)
+                    </div>
+
+                    <div class="form-group">
+                        <label>É uma editoria de Esportes?</label>
+                        @Html.BooleanFieldFor(model => model.esportes, false, new { @class = "form-control", style = "width: 120px;" })
+                        @Html.ValidationMessageFor(model => model.esportes)
+                    </div>
+
+                    <div class="form-group">
+                        <label>É um Canal?</label>
+                        @Html.BooleanFieldFor(model => model.canal, false, new { @class = "form-control", style = "width: 120px;" })
+                        @Html.ValidationMessageFor(model => model.canal)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ativo)
+                        @Html.BooleanFieldFor(model => model.ativo, true, new { @class = "form-control", style = "width: 120px;" })
+                        @Html.ValidationMessageFor(model => model.ativo)
+                    </div>
+
+                    <div class="div-modelo" style="display:none">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Descricao)
+                            @Html.TextBoxFor(model => model.Descricao, new { @maxlength = 512, @class = "text-box" })
+                            @Html.ValidationMessageFor(model => model.Descricao)
+                        </div>
+
+                        <div class="form-group">
+                            <label>Foto - <em>Resolução mínima recomendada (365x240)</em></label>
+
+                            <input type="file" name="foto" id="foto" accept="image/*" />
+                            <label id="lblFotoExistente"></label>
+                            @Html.ValidationMessageFor(model => model.FotoCapa)
+
+                            <input type="hidden" id="fotoExistente" name="fotoExistente" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Modelo</label>
+                            @Html.DropDownList("modeloEspecial", (SelectList)ViewBag.ModelosEspeciaisId, new { @class = "chosen-select" })
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a href="@Url.Action("Index", "Editoriais")" class="btn btn-info">Voltar</a>
+
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            $(".chosen-select").chosen({ width: "100%" });
+
+            $("#especial").on('change', function () {
+                var value = $(this).val();
+                if (value == "true") {
+                    $(".div-modelo").show();
+                }
+                else {
+                    $(".div-modelo").hide();
+                }
+
+
+            });
+
+        });
+    </script>
+}

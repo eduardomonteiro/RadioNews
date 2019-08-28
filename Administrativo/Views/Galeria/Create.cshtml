@@ -1,0 +1,74 @@
+﻿@model Administrativo.Models.Galeria
+
+	@{
+		ViewBag.Title = "Criando Galeria";
+			Layout = "~/Views/Shared/_Layout.cshtml";
+		}
+
+
+
+<div class="content">
+    <div class="row">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Cadastrar Galeria</h3>
+            </div>
+				@using (Html.BeginForm()) 
+				{
+					@Html.AntiForgeryToken()
+
+				<div class="box-body">
+	
+					<div class="form-group">
+							@Html.LabelFor(model => model.titulo)
+	
+							@Html.EditorFor(model => model.titulo)
+							@Html.ValidationMessageFor(model => model.titulo)
+					</div>
+
+					<div class="form-group">
+							@Html.LabelFor(model => model.chamada)
+	
+							@Html.EditorFor(model => model.chamada)
+							@Html.ValidationMessageFor(model => model.chamada)
+					</div>
+	
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ativo)
+
+                        @Html.CheckBoxFor(model => model.ativo)
+                        @Html.ValidationMessageFor(model => model.ativo)
+                    </div>
+
+
+					@*<div class="form-group">
+							@Html.LabelFor(model => model.texto)
+	
+							@Html.TextAreaFor(model => model.texto, new { @class= "form-control", @rows = 5 })
+							@Html.ValidationMessageFor(model => model.texto)
+					</div>*@
+                </div> 
+                <div class="box-footer">
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                    <a href="@Url.Action("Index", "Galeria")" class="btn btn-info">Voltar</a>
+
+                </div>  
+					}
+		</div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+    $(document).ready(function () {
+       /* var editor = CKEDITOR.replace('texto',
+                {
+                    height: "200px"
+                });
+                */
+        $('#chamada').wysihtml5();
+        $('#chamada').css('height', '80');
+        });
+</script>
+}

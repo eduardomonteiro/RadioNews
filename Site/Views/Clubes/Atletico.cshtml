@@ -1,0 +1,310 @@
+﻿@using Site.Helpers
+@model Site.ViewModels.ClubesViewModel
+
+@section SEO{
+    <meta name="DC.title" content="Esportes - Atlético - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:title" content="Esportes -  Atlético - Rádio CompanyName | A Rádio de Minas" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="@Url.Content(" ~/images/ico-facebook.jpg")" />
+    <meta property="og:url" content="@HttpContext.Current.Request.Url.AbsoluteUri" />
+    <title>Esportes -  Atlético  - Rádio CompanyName | A Rádio de Minas</title>
+}
+
+<div class="wrapper-general center @Model.ClasseCSS" style="padding-top: 244.667px;">
+    <header class="nav-intern clearfix">
+        <div class="buttons">
+            <a class="bt-back" href="javascript:window.history.go(-1)"> <i class="fa fa-angle-left"></i> Voltar</a>
+            Texto: <button class="more bt-resize">+</button> <button class="bt-resize minus">-</button>
+        </div>
+        <nav class="breadcumb">
+            <a href="@Url.Action("Index","Home")">Home</a>
+            <a href="@Url.Action("Index","Esportes")">Esportes</a>
+            <span>Atlético</span>
+        </nav>
+    </header>
+    <h1 class="title-page">
+        @*<img src="images/clubes/@(Model.NomeClube.ToLower()).png" alt="@Model.NomeClube">*@
+        <img src="/Admin/Conteudo/times/@Model.Time.Id/48x48/@Model.Time.Escudo" alt="Atlético">
+        Atlético
+    </h1>
+    <div class="row-grid clearfix">
+        <div class="grid-9 main-grid" role="toolbar">
+
+            @if (Model.Destaques != null && Model.Destaques.Count() > 0)
+            {
+                <main class="featured-banner" id="destaque-banner">
+                    @foreach (var item in Model.Destaques)
+                    {
+                        <article>
+
+                            <a href="@Url.Action("Detalhes","Noticias", new { chave = item.url })" class="title">
+                                @Html.Raw(item.chamada)
+                            </a>
+
+                            @if (!string.IsNullOrEmpty(item.foto))
+                            {
+                                <figure style="background-image: url(@Utils.fullUrlImage("744x500", item.id,840))"></figure>
+                            }
+
+                        </article>
+
+                    }
+
+                </main>
+            }
+
+
+
+
+            @*@if (Model.OutrasNoticias.Count() > 0)
+            {
+                <ul class="row-grid mb clearfix">
+                    @foreach (var item in Model.OutrasNoticias)
+                    {
+                        <li class="grid-4">
+                            <article>
+                                <a href="@Url.Action("Detalhes","Noticias", new { chave = item.url })">
+                                    @if (!string.IsNullOrEmpty(item.foto))
+                                    {
+                                        <figure style="background-image: url(@Utils.fullUrlImage("260x173", item.id,168))" alt="@item.titulo" class="pic-radius"></figure>
+                                    }
+                                <h4 class="tag-area">@item.titulo</h4>
+                                <h3 class="title-normal">@Html.Raw(item.chamada)</h3>
+                                </a>
+                            </article>
+                        </li>
+                    }
+                </ul>
+
+            }*@
+
+            @if (Model.Banner1 != null)
+            {
+                <div class="banner-container">
+                    @if (!string.IsNullOrEmpty(Model.Banner1.Link))
+                    {
+                        <a href="@Model.Banner1.Link" target="_blank" onclick="clickBanner(@Model.Banner1.Id)">
+                            <img class="promotional-banner" 
+                         data-cliente="@Model.Banner1.Anunciante" 
+                         data-comercial="@Model.Banner1.AreaBanner.FirstOrDefault().Descricao" 
+                         data-dimensao="@Model.Banner1.AreaBanner.FirstOrDefault().Tamanho" src="/admin/Conteudo/Banners/@Model.Banner1.AreaBanner.FirstOrDefault().Tamanho/@Model.Banner1.Arquivo" alt="@Model.Banner1.Titulo" data-banner-id="@Model.Banner1.Id">
+                        </a>
+                    }
+                    else
+                    {
+                        <img class="promotional-banner"
+                         data-cliente="@Model.Banner1.Anunciante" 
+                         data-comercial="@Model.Banner1.AreaBanner.FirstOrDefault().Descricao" 
+                         data-dimensao="@Model.Banner1.AreaBanner.FirstOrDefault().Tamanho"  src="/admin/Conteudo/Banners/@Model.Banner1.AreaBanner.FirstOrDefault().Tamanho/@Model.Banner1.Arquivo" alt="@Model.Banner1.Titulo" data-banner-id="@Model.Banner1.Id">
+                    }
+                </div>
+            }
+
+
+            @{Html.RenderPartial("_Noticias", Model.Noticias); }
+
+
+
+        </div>
+
+        <aside class="grid-3 sidebar" id="sidebar" role="complementary">
+            @if (Model.Banner2 != null)
+            {
+                <div class="banner-container">
+                    @if (!string.IsNullOrEmpty(Model.Banner2.Link))
+                    {
+                        <a href="@Model.Banner2.Link" target="_blank" onclick="clickBanner(@Model.Banner2.Id)">
+                            <img class="promotional-banner"
+                         data-cliente="@Model.Banner2.Anunciante" 
+                         data-comercial="@Model.Banner2.AreaBanner.FirstOrDefault().Descricao" 
+                         data-dimensao="@Model.Banner2.AreaBanner.FirstOrDefault().Tamanho"  src="/admin/Conteudo/Banners/@Model.Banner2.AreaBanner.FirstOrDefault().Tamanho/@Model.Banner2.Arquivo" alt="@Model.Banner2.Titulo" data-banner-id="@Model.Banner2.Id">
+                        </a>
+                    }
+                    else
+                    {
+                        <img class="promotional-banner"
+                         data-cliente="@Model.Banner2.Anunciante" 
+                         data-comercial="@Model.Banner2.AreaBanner.FirstOrDefault().Descricao" 
+                         data-dimensao="@Model.Banner2.AreaBanner.FirstOrDefault().Tamanho"  src="/admin/Conteudo/Banners/@Model.Banner2.AreaBanner.FirstOrDefault().Tamanho/@Model.Banner2.Arquivo" alt="@Model.Banner2.Titulo" data-banner-id="@Model.Banner2.Id">
+                    }
+                </div>
+            }
+
+            @if (Model.ProximoJogo != null)
+            {
+                <div class="card-players" style="margin-bottom: 30px">
+                    <div class="tabs" data-tab="cruzeiro" style="display: block">
+                        <div class="content">
+                            <h5>Próximo Jogo</h5>
+                            <ul>
+                                <li>
+                                    <img src="/tabelafacil/escudos/@Model.ProximoJogo.Mandante.Logo" alt="@Model.ProximoJogo.Mandante.Nome" title="@Model.ProximoJogo.Mandante.Nome">
+                                    <span>@Model.ProximoJogo.Mandante.Nome</span>
+                                </li>
+                                <li>
+                                    <img src="/tabelafacil/escudos/@Model.ProximoJogo.Visitante.Logo" alt="@Model.ProximoJogo.Visitante.Nome" title="@Model.ProximoJogo.Visitante.Nome">
+                                    <span>@Model.ProximoJogo.Visitante.Nome</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <footer>
+                            <h4>@Model.ProximoJogo.Campeonato</h4>
+                            <p>@Model.ProximoJogo.Data.ToLongDateString() @(Model.ProximoJogo.Data.ToShortTimeString())h @Model.ProximoJogo.Local</p>
+                        </footer>
+                    </div>
+                </div>
+            }
+
+
+            <!-- <div class="cards-side" id="artilheiros"> -->
+            <!-- <h2 class="title-card">Artilharia</h2> -->
+            <!-- <ul class="list-goals"> -->
+            <!-- <li> -->
+            <!-- <span class="number">13</span> -->
+            <!-- <p class="name">Cirino</p> -->
+            <!-- <strong class="club">Flamengo</strong> -->
+            <!-- </li> -->
+            <!-- <li> -->
+            <!-- <span class="number">10</span> -->
+            <!-- <p class="name">R. Oliveira</p> -->
+            <!-- <strong class="club">Santos</strong> -->
+            <!-- </li> -->
+            <!-- <li> -->
+            <!-- <span class="number">10</span> -->
+            <!-- <p class="name">Guerreiro</p> -->
+            <!-- <strong class="club">Flamengo</strong> -->
+            <!-- </li> -->
+            <!-- <li> -->
+            <!-- <span class="number">8</span> -->
+            <!-- <p class="name">G. Jesus</p> -->
+            <!-- <strong class="club">Palmeiras</strong> -->
+            <!-- </li> -->
+            <!-- <li> -->
+            <!-- <span class="number">10</span> -->
+            <!-- <p class="name">Guerreiro</p> -->
+            <!-- <strong class="club">Flamengo</strong> -->
+            <!-- </li> -->
+            <!-- </ul> -->
+            <!-- </div> -->
+            <div class="cards-side" id="elenco">
+                <h2 class="title-card">Elenco</h2>
+                <nav class="nav-elenco">
+                    <span id="gol" class="enable">Goleiros</span>
+                    <span id="def" class="">Defensores</span>
+                    <span id="mei" class="">Meias</span>
+                    <span id="ata" class="">Atacantes</span>
+                </nav>
+                <div class="list-elenco" style="display: block;" data-nav="gol">
+                    <h2>Goleiros</h2>
+                    <ul class="list">
+                        @foreach (var item in Model.Elenco.Where(e => e.Posicao.ToLower().Equals("goleiro")))
+                        {
+                            <li>@item.Nome</li>
+                        }
+                    </ul>
+                </div>
+                <div class="list-elenco" data-nav="def" style="display: none;">
+                    <h2>Defensores</h2>
+                    <ul class="list">
+                        @foreach (var item in Model.Elenco.Where(e => e.Posicao.ToLower().Equals("defensor")))
+                        {
+                            <li>@item.Nome</li>
+                        }
+                    </ul>
+                </div>
+                <div class="list-elenco" data-nav="mei" style="display: none;">
+                    <h2>Meias</h2>
+                    <ul class="list">
+                        @foreach (var item in Model.Elenco.Where(e => e.Posicao.ToLower().Equals("meia")))
+                        {
+                            <li>@item.Nome</li>
+                        }
+                    </ul>
+                </div>
+                <div class="list-elenco" data-nav="ata" style="display: none;">
+                    <h2>Atacantes</h2>
+                    <ul class="list">
+                        @foreach (var item in Model.Elenco.Where(e => e.Posicao.ToLower().Equals("atacante")))
+                        {
+                            <li>@item.Nome</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div id="informacoes" class="cards-side">
+                <h2 class="title-card">Sobre o @Model.NomeClube</h2>
+                <ul class="acordion">
+                    <li>
+                        <a class="title-acordion side-info" href="#informacoes">Informações Gerais <i class="fa fa-plus"></i></a>
+                    </li>
+                    <li>
+                        <a class="title-acordion side-info" href="#titulos">Títulos<i class="fa fa-plus"></i></a>
+                    </li>
+                </ul>
+            </div>
+
+
+            @if (Model.Banner3 != null)
+            {
+                <div class="banner-container">
+                    @if (!string.IsNullOrEmpty(Model.Banner3.Link))
+                    {
+                        <a href="@Model.Banner3.Link" target="_blank" onclick="clickBanner(@Model.Banner3.Id)">
+                            <img class="promotional-banner"
+                         data-cliente="@Model.Banner3.Anunciante" 
+                         data-comercial="@Model.Banner3.AreaBanner.FirstOrDefault().Descricao" 
+                         data-dimensao="@Model.Banner3.AreaBanner.FirstOrDefault().Tamanho"  src="/admin/Conteudo/Banners/@Model.Banner3.AreaBanner.FirstOrDefault().Tamanho/@Model.Banner3.Arquivo" alt="@Model.Banner3.Titulo" data-banner-id="@Model.Banner3.Id">
+                        </a>
+                    }
+                    else
+                    {
+                        <img class="promotional-banner"
+                         data-cliente="@Model.Banner3.Anunciante" 
+                         data-comercial="@Model.Banner3.AreaBanner.FirstOrDefault().Descricao" 
+                         data-dimensao="@Model.Banner3.AreaBanner.FirstOrDefault().Tamanho"  src="/admin/Conteudo/Banners/@Model.Banner3.AreaBanner.FirstOrDefault().Tamanho/@Model.Banner3.Arquivo" alt="@Model.Banner3.Titulo" data-banner-id="@Model.Banner3.Id">
+                    }
+                </div>
+            }
+        </aside>
+    </div>
+</div>
+
+<div class="boxs-modal" id="lightbox" style="display: none">
+    <div class="content">
+
+        @if (Model.Time != null)
+        {
+            <h2 class="title-big" id="informacoes">Informações Gerais</h2>
+            if (!string.IsNullOrEmpty(Model.Time.Informacoes))
+            {
+                <div class="block-text">
+                    @Html.Raw(Model.Time.Informacoes)
+                </div>
+            }
+
+            <h2 class="title-big" id="titulos">Títulos</h2>
+            if (!string.IsNullOrEmpty(Model.Time.Titulos))
+            {
+                <div class="block-text">
+                    <p>
+                        @Html.Raw(Model.Time.Titulos)
+                    </p>
+
+                </div>
+            }
+        }
+
+    </div>
+</div>
+
+
+@section scripts{
+    <script language="JavaScript1.2">
+        function openwindow(url) {
+            window.open(url,
+                "mywindow", "location=no,status=no,scrollbars=no,width=400,height=300");
+        }
+    </script>
+
+}

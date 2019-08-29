@@ -35,33 +35,33 @@ namespace Site.Services.Classes
 
 		public void PopularClassificacao(string caminho)
 		{
-			XDocument doc = XDocument.Load(caminho);
+			//XDocument doc = XDocument.Load(caminho);
 
-			Grupos = new List<Grupo>();
-			Grupos = (from grupo
-					  in doc.Descendants("table")
-					  select new Grupo
-					  {
-						  Abreviacao = (string)grupo.Attribute("short") + "",
-						  Id = (string)grupo.Attribute("group"),
-						  Nome = (string)grupo.Attribute("name") + "",
-						  Classificacao = (from time
-							 in grupo.Descendants("team")
-										   select new Classificacao
-										   {
-											   Aproveitamento = (double)time.Attribute("per"),
-											   Clube = Clubes.FirstOrDefault(c => c.Id == (string)time.Attribute("id")),
-											   Derrotas = (int)time.Attribute("l"),
-											   Empates = (int)time.Attribute("d"),
-											   GolsContra = (int)time.Attribute("ga"),
-											   GolsPro = (int)time.Attribute("gf"),
-											   Jogos = (int)time.Attribute("pld"),
-											   Pontos = (int)time.Attribute("pts"),
-											   Posicao = (int)time.Attribute("pos"),
-											   SaldoGols = (int)time.Attribute("gd"),
-											   Vitorias = (int)time.Attribute("w")
-										   }).ToList(),
-					  }).ToList();
+			//Grupos = new List<Grupo>();
+			//Grupos = (from grupo
+			//		  in doc.Descendants("table")
+			//		  select new Grupo
+			//		  {
+			//			  Abreviacao = (string)grupo.Attribute("short") + "",
+			//			  Id = (string)grupo.Attribute("group"),
+			//			  Nome = (string)grupo.Attribute("name") + "",
+			//			  Classificacao = (from time
+			//				 in grupo.Descendants("team")
+			//							   select new Classificacao
+			//							   {
+			//								   Aproveitamento = (double)time.Attribute("per"),
+			//								   Clube = Clubes.FirstOrDefault(c => c.Id == (string)time.Attribute("id")),
+			//								   Derrotas = (int)time.Attribute("l"),
+			//								   Empates = (int)time.Attribute("d"),
+			//								   GolsContra = (int)time.Attribute("ga"),
+			//								   GolsPro = (int)time.Attribute("gf"),
+			//								   Jogos = (int)time.Attribute("pld"),
+			//								   Pontos = (int)time.Attribute("pts"),
+			//								   Posicao = (int)time.Attribute("pos"),
+			//								   SaldoGols = (int)time.Attribute("gd"),
+			//								   Vitorias = (int)time.Attribute("w")
+			//							   }).ToList(),
+			//		  }).ToList();
 
 		}
 

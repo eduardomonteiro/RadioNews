@@ -17,7 +17,7 @@ namespace API.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class EditoriasController : ApiController
     {
-        [HttpGet]
+        [AcceptVerbs("GET")]
         [Route("")]
         [System.Web.Mvc.OutputCache(Duration = 120, Location = System.Web.UI.OutputCacheLocation.ServerAndClient)]
         public IHttpActionResult ObterEditorias()

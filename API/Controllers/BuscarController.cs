@@ -15,7 +15,7 @@ namespace API.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class BuscarController : ApiController
     {
-        [HttpGet]
+        [AcceptVerbs("GET")]
         [Route("")]
         [System.Web.Mvc.OutputCache(Duration = 120, Location = System.Web.UI.OutputCacheLocation.ServerAndClient, VaryByParam = "chave")]
         public IHttpActionResult BuscarConteudo(string chave = null)

@@ -52,25 +52,30 @@ namespace Site.Controllers
 
             var atual = programacoesDia.OrderBy(x => x.Data).LastOrDefault(x => x.Data <= DateTime.Now);
             var horarioFinal = programacoesDia.OrderBy(x => x.Data).Where(x => x.Data >= DateTime.Now).Take(2).FirstOrDefault();
-            var convertId = Int32.Parse(atual.programaId);
+			if (atual != null)
+			{
+				var convertId = Int32.Parse(atual.programaId);
 
-            var hf = "";
-            if (horarioFinal != null)
-            {
-                hf = horarioFinal.horario;
-            }
+				var hf = "";
+				if (horarioFinal != null)
+				{
+					hf = horarioFinal.horario;
+				}
 
-            var programaAtual = db.Programacao.Where(x => x.id == convertId).Select(a => new ProgramacaoMenuViewModel { Id = a.id, Horario = atual.horario, FimHorario = hf, Nome = a.nome }).ToList();
+				var programaAtual = db.Programacao.Where(x => x.id == convertId).Select(a => new ProgramacaoMenuViewModel { Id = a.id, Horario = atual.horario, FimHorario = hf, Nome = a.nome }).ToList();
 
-            var viewModel = new MenuViewModel
-            {
-                Editorias = editorias,
-                Radios = radios,
-                Campeonatos = campeonatos,
-                CategoriasAudios = categorias,
-                Programacao = programaAtual
-            };
-            return viewModel;
+				var viewModel = new MenuViewModel
+				{
+					Editorias = editorias,
+					Radios = radios,
+					Campeonatos = campeonatos,
+					CategoriasAudios = categorias,
+					Programacao = programaAtual
+				};
+				return viewModel;
+			}
+			else
+				return null;
         }
 
         public PartialViewResult MenuEspeciais()

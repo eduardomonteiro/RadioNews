@@ -86,18 +86,18 @@ namespace Site.Services
         {
             var lista = new List<Jogo>();
 
-            foreach (var item in campeonatos)
-            {
-                var ultimo = (from fase in item.Fases
-                              from rodada in fase.Rodadas
-                              from jogo in rodada.Jogos
-                              where jogo.Data >= DateTime.Now && (jogo.Mandante != null ? (jogo.Mandante.UID.Equals(UID) || (jogo.Visitante != null && jogo.Visitante.UID.Equals(UID))) : false)
-                              orderby jogo.Data
-                              select jogo)
-                         .FirstOrDefault();
+            //foreach (var item in campeonatos)
+            //{
+            //    var ultimo = (from fase in item.Fases
+            //                  from rodada in fase.Rodadas
+            //                  from jogo in rodada.Jogos
+            //                  where jogo.Data >= DateTime.Now && (jogo.Mandante != null ? (jogo.Mandante.UID.Equals(UID) || (jogo.Visitante != null && jogo.Visitante.UID.Equals(UID))) : false)
+            //                  orderby jogo.Data
+            //                  select jogo)
+            //             .FirstOrDefault();
 
-                if (ultimo != null) lista.Add(ultimo);
-            }
+            //    if (ultimo != null) lista.Add(ultimo);
+            //}
             return lista.OrderBy(j => j.Data).FirstOrDefault(l => l.Data >= DateTime.Now);
 
          

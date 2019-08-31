@@ -16,7 +16,7 @@ namespace API.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class NoticiasController : ApiController
     {
-        [HttpGet]
+        [AcceptVerbs("GET")]
         [Route("")]
         [System.Web.Mvc.OutputCache(Duration = 120, Location = System.Web.UI.OutputCacheLocation.ServerAndClient, VaryByParam = "idEditoria;idNoticia")]
         public IHttpActionResult ObterNoticias(int? idEditoria = null, int? idNoticia = null)
@@ -45,7 +45,7 @@ namespace API.Controllers
             return Json(noticias);
         }
 
-        [HttpGet]
+        [AcceptVerbs("GET")]
         [Route("maisVistas")]
         [System.Web.Mvc.OutputCache(Duration = 120, Location = System.Web.UI.OutputCacheLocation.ServerAndClient, VaryByParam = "idEditoria")]
         public IHttpActionResult MaisVistas(int? idEditoria = null)

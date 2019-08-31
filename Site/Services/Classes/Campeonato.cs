@@ -67,82 +67,83 @@ namespace Site.Services.Classes
 
 		public void PopularArtilharia(string caminho)
 		{
-			XDocument doc = XDocument.Load(caminho);
-			Artilharia = new List<Artilheiros>();
-			Artilharia = (from linha
-						 in doc.Descendants("player")
-						  select new Artilheiros
-						  {
-							  Clube = Clubes.FirstOrDefault(c => c.Id == (string)linha.Attribute("teamid")),
-							  Gols = (int)linha.Attribute("goals"),
-							  Nome = (string)linha.Attribute("name")
-						  }).Take(5).ToList();
+			//XDocument doc = XDocument.Load(caminho);
+			//Artilharia = new List<Artilheiros>();
+			//Artilharia = (from linha
+			//			 in doc.Descendants("player")
+			//			  select new Artilheiros
+			//			  {
+			//				  Clube = Clubes.FirstOrDefault(c => c.Id == (string)linha.Attribute("teamid")),
+			//				  Gols = (int)linha.Attribute("goals"),
+			//				  Nome = (string)linha.Attribute("name")
+			//			  }).Take(5).ToList();
 		}
 
 		public void PopularFaseseRodadas(string caminho)
 		{
-			XDocument doc = XDocument.Load(caminho);
-			Fases = null;
-			Fases = (from linha
-					 in doc.Descendants("stage")
-					 select new Fase
-					 {
-						 Nome = (string)linha.Attribute("name"),
-						 Tipo = (string)linha.Attribute("type"),
-						 Rodadas = (from rodada
-									in linha.Descendants("round")
-									select new Rodada
-									{
-										Abreviado = (string)rodada.Attribute("short"),
-										Atual = (bool)rodada.Attribute("current"),
-										DataFim = DateTime.Now,
-										DataInicio = DateTime.Now,
-										//DataFim = DateTime.Parse((string)rodada.Attribute("enddate")),
-										//DataInicio = DateTime.Parse((string)rodada.Attribute("startdate")),
-										Proxima = (bool)rodada.Attribute("next"),
-										Titulo = rodada.Value,
-										Id = (int)rodada.Attribute("id")
-									}).ToList()
+			//XDocument doc = XDocument.Load(caminho);
+			//Fases = null;
+			//Fases = (from linha
+			//		 in doc.Descendants("stage")
+			//		 select new Fase
+			//		 {
+			//			 Nome = (string)linha.Attribute("name"),
+			//			 Tipo = (string)linha.Attribute("type"),
+			//			 Rodadas = (from rodada
+			//						in linha.Descendants("round")
+			//						select new Rodada
+			//						{
+			//							Abreviado = (string)rodada.Attribute("short"),
+			//							Atual = (bool)rodada.Attribute("current"),
+			//							DataFim = DateTime.Now,
+			//							DataInicio = DateTime.Now,
+			//							//DataFim = DateTime.Parse((string)rodada.Attribute("enddate")),
+			//							//DataInicio = DateTime.Parse((string)rodada.Attribute("startdate")),
+			//							Proxima = (bool)rodada.Attribute("next"),
+			//							Titulo = rodada.Value,
+			//							Id = (int)rodada.Attribute("id")
+			//						}).ToList()
 
-					 }).ToList();
+			//		 }).ToList();
 		}
 
 		public void PopularJogos(string caminho)
 		{
-			XDocument doc = XDocument.Load(caminho);
-			foreach (var fase in Fases)
-			{
-				foreach (var rodada in fase.Rodadas)
-				{
-					rodada.Jogos = (from linha
-								   in doc.Descendants("match")
-									where ((int)linha.Attribute("round") == rodada.Id)
-									select new Jogo
-									{
-										Campeonato = Titulo,
-										Grupo = (string)linha.Attribute("group"),
-										Data = DateTime.Now,
-										//Data = DateTime.Parse((string)linha.Attribute("date") + " " + (string)linha.Attribute("time")),
-										Local = (string)linha.Attribute("venue"),
-										Mandante = (from clube
-												   in linha.Descendants("team")
-													where (bool)clube.Attribute("home")
-													select Clubes.FirstOrDefault(c => c.Id == (string)clube.Attribute("code"))).FirstOrDefault(),
-										Visitante = (from clube
-												   in linha.Descendants("team")
-													 where !(bool)clube.Attribute("home")
-													 select Clubes.FirstOrDefault(c => c.Id == (string)clube.Attribute("code"))).FirstOrDefault(),
-										PlacarMandante = (from clube
-														  in linha.Descendants("team")
-														  where (bool)clube.Attribute("home")
-														  select (string)clube.Attribute("score")).FirstOrDefault(),
-										PlacarVisitante = (from clube
-														   in linha.Descendants("team")
-														   where !(bool)clube.Attribute("home")
-														   select (string)clube.Attribute("score")).FirstOrDefault()
-									}).ToList();
-				}
-			}
+			//XDocument doc = XDocument.Load(caminho);
+			//foreach (var fase in Fases)
+			//{
+			//	foreach (var rodada in fase.Rodadas)
+			//	{
+			//		rodada.Jogos = (from linha
+			//					   in doc.Descendants("match")
+			//						where ((int)linha.Attribute("round") == rodada.Id)
+			//						select new Jogo
+			//						{
+			//							Campeonato = Titulo,
+			//							Grupo = (string)linha.Attribute("group"),
+			//							Data = DateTime.Now,
+			//							//Data = DateTime.Parse((string)linha.Attribute("date") + " " + (string)linha.Attribute("time")),
+			//							Local = (string)linha.Attribute("venue"),
+			//							Mandante = (from clube
+			//									   in linha.Descendants("team")
+			//										where (bool)clube.Attribute("home")
+			//										select Clubes.FirstOrDefault(c => c.Id == (string)clube.Attribute("code"))).FirstOrDefault(),
+			//							Visitante = (from clube
+			//									   in linha.Descendants("team")
+			//										 where !(bool)clube.Attribute("home")
+			//										 select Clubes.FirstOrDefault(c => c.Id == (string)clube.Attribute("code"))).FirstOrDefault(),
+			//							PlacarMandante = (from clube
+			//											  in linha.Descendants("team")
+			//											  where (bool)clube.Attribute("home")
+			//											  select (string)clube.Attribute("score")).FirstOrDefault(),
+			//							PlacarVisitante = (from clube
+			//											   in linha.Descendants("team")
+			//											   where !(bool)clube.Attribute("home")
+			//											   select (string)clube.Attribute("score")).FirstOrDefault()
+			//						}).ToList();
+			//	}
+			//}
+
 		}
 	}
 }

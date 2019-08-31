@@ -19,20 +19,20 @@ namespace Site.Services.Classes.Campeonatos
 
         public void PopularClubesCopaDoBrasil(string caminho)
         {
-            XDocument doc = XDocument.Load(caminho);
-            //Id = (from id in doc.Descendants("standings") select (int)id.Attribute("id")).First();
-            Clubes = new List<Clube>();
-            Clubes = (from linha
-                      in doc.Descendants("team")
-                      select new Clube
-                      {
-                          UID = (string)linha.Attribute("uid"),
-                          Id = (string)linha.Attribute("code"),
-                          Logo = string.IsNullOrEmpty(linha.Attribute("uid").ToString()) ? "escudo.gif" : (string)linha.Attribute("uid") + ".gif",
-                          Nome = (string)linha.Attribute("name")
-                      }).ToList();
+            //XDocument doc = XDocument.Load(caminho);
+            ////Id = (from id in doc.Descendants("standings") select (int)id.Attribute("id")).First();
+            //Clubes = new List<Clube>();
+            //Clubes = (from linha
+            //          in doc.Descendants("team")
+            //          select new Clube
+            //          {
+            //              UID = (string)linha.Attribute("uid"),
+            //              Id = (string)linha.Attribute("code"),
+            //              Logo = string.IsNullOrEmpty(linha.Attribute("uid").ToString()) ? "escudo.gif" : (string)linha.Attribute("uid") + ".gif",
+            //              Nome = (string)linha.Attribute("name")
+            //          }).ToList();
 
-            Clubes = Clubes.Distinct().ToList();
+            //Clubes = Clubes.Distinct().ToList();
 
         }
 

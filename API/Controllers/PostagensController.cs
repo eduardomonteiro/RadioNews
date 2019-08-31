@@ -15,7 +15,7 @@ namespace API.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class PostagensController : ApiController
     {
-        [HttpGet]
+        [AcceptVerbs("GET")]
         [Route("")]
         [System.Web.Mvc.OutputCache(Duration = 120, Location = System.Web.UI.OutputCacheLocation.ServerAndClient, VaryByParam = "idEditoria;idPostagem;idColunista")]
         public IHttpActionResult ObterPostagens(int? idEditoria = null, int? idPostagem = null, int? idColunista = null)

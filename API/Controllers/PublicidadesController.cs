@@ -5,8 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
@@ -17,7 +15,7 @@ namespace API.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class PublicidadesController : ApiController
     {
-        [HttpGet]
+        [AcceptVerbs("GET")]
         [Route("principais")]
         public IHttpActionResult ObterPublicidadesPrincipais()
         {
@@ -25,7 +23,7 @@ namespace API.Controllers
             return Json(publicidades);
         }
 
-        [HttpGet]
+        [AcceptVerbs("GET")]
         [Route("internas")]
         public IHttpActionResult ObterPublicidadesInternas()
         {
@@ -33,7 +31,7 @@ namespace API.Controllers
             return Json(publicidades);
         }
 
-        [HttpGet]
+        [AcceptVerbs("GET")]
         [Route("clique")]
         public IHttpActionResult Clique(int idBanner)
         {

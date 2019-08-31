@@ -43,7 +43,7 @@
                             <span>Esportes</span>
                             <i class="fa fa-angle-right"></i>
                         </li>
-                        @if (Model.Editorias.Any())
+                        @if (Model != null && Model.Editorias != null && Model.Editorias.Any())
                         {
                             <li class="link-red" data-submenu="noticias">
                                 <span>Editorias</span>
@@ -97,7 +97,7 @@
                         <a href="@Url.Action("Index","Editorias", new { chave = "esporte" })">Últimas notícias</a>
 
                         <h4 class="mini-title">Campeonatos</h4>
-                        @if (Model.Campeonatos != null && Model.Campeonatos.Count > 0)
+                        @if (Model != null && Model.Campeonatos != null && Model.Campeonatos.Count > 0)
                         {
                             foreach (var item in Model.Campeonatos)
                             {
@@ -118,7 +118,7 @@
                         <a href="@Url.Action("TrofeuGuara","Sobre")">Troféu Guará</a>
                     </nav>
                     <nav class="list-side" data-link="noticias">
-                        @if (Model.Editorias != null && Model.Editorias.Count > 0)
+                        @if (Model != null && Model.Editorias != null && Model.Editorias.Count > 0)
                         {
                             foreach (var item in Model.Editorias)
                             {
@@ -127,14 +127,17 @@
                         }
 
                     </nav>
-                    <nav class="list-side" data-link="audios">
-                        <a href="@Url.Action("Index","Podcast")">Podcast</a>
-                        @*<a href="@Url.Action("Horoscopo", "Podcast")">Horóscopo</a>*@
-                        @foreach (var categoria in Model.CategoriasAudios)
-                        {
-                            <a href="@Url.Action("CategoriaAudio", "Podcast", new { @id = categoria.Id, @slug = Site.Helpers.Utils.GenerateSlug(categoria.Descricao) })">@categoria.Descricao</a>
-                        }
-                    </nav>
+					<nav class="list-side" data-link="audios">
+						<a href="@Url.Action("Index","Podcast")">Podcast</a>
+						@*<a href="@Url.Action("Horoscopo", "Podcast")">Horóscopo</a>*@
+						@if (Model != null && Model.CategoriasAudios != null)
+						{
+							foreach (var categoria in Model.CategoriasAudios)
+							{
+								<a href="@Url.Action("CategoriaAudio", "Podcast", new { @id = categoria.Id, @slug = Site.Helpers.Utils.GenerateSlug(categoria.Descricao) })">@categoria.Descricao</a>
+							}
+						}
+					</nav>
                 </div>
             </div>
             <!-- <footer class="informations">

@@ -15,7 +15,7 @@ namespace API.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class CidadesController : ApiController
     {
-        [HttpGet]
+        [AcceptVerbs("GET")]
         [Route("")]
         [System.Web.Mvc.OutputCache(Duration = 120, Location = System.Web.UI.OutputCacheLocation.ServerAndClient)]
         public IHttpActionResult ObterCidades()

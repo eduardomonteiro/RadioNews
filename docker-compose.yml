@@ -1,44 +1,22 @@
 version: '3.4'
 
 services:
+  administrativo:
+    image: ${DOCKER_REGISTRY-}administrativo
+    build:
+      context: .\Administrativo
+      dockerfile: Dockerfile
+
   site:
     image: ${DOCKER_REGISTRY-}site
     build:
       context: .\Site
       dockerfile: Dockerfile
-    networks:
-      vpcbr:
-        ipv4_address: 10.1.0.3
+
 
   api:
     image: ${DOCKER_REGISTRY-}api
     build:
       context: .\API
       dockerfile: Dockerfile
-    networks:
-      vpcbr:
-        ipv4_address: 10.1.0.4
 
-
-  administrativo:
-    image: ${DOCKER_REGISTRY-}administrativo
-    build:
-      context: .\Administrativo
-      dockerfile: Dockerfile
-    networks:
-      vpcbr:
-        ipv4_address: 10.1.0.5
-
-  redis:
-    image: redis
-    ports:
-      - "16379:6379"
-    networks:
-      vpcbr:
-        ipv4_address: 10.1.0.6
-
-networks:
-  vpcbr:
-    ipam:
-     config:
-       - subnet: 10.1.0.0/16

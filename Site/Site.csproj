@@ -51,12 +51,10 @@
       <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="FlickrNet, Version=3.22.0.0, Culture=neutral, PublicKeyToken=2491df59efa5d132, processorArchitecture=MSIL">
       <HintPath>..\packages\FlickrNet.3.22.0\lib\net20\FlickrNet.dll</HintPath>
@@ -142,7 +140,6 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Net" />
@@ -248,17 +245,9 @@
     <Compile Include="Helpers\ItatiaiaFlickr.cs" />
     <Compile Include="Helpers\Tweet.cs" />
     <Compile Include="Helpers\Utils.cs" />
-    <Compile Include="Migrations\201612221606180_campomigracao.cs" />
-    <Compile Include="Migrations\201612221606180_campomigracao.Designer.cs">
-      <DependentUpon>201612221606180_campomigracao.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201701131324428_addActionEditoria.cs" />
-    <Compile Include="Migrations\201701131324428_addActionEditoria.Designer.cs">
-      <DependentUpon>201701131324428_addActionEditoria.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201701131328175_sizefield.cs" />
-    <Compile Include="Migrations\201701131328175_sizefield.Designer.cs">
-      <DependentUpon>201701131328175_sizefield.cs</DependentUpon>
+    <Compile Include="Migrations\201908291218568_InitialCreate.cs" />
+    <Compile Include="Migrations\201908291218568_InitialCreate.Designer.cs">
+      <DependentUpon>201908291218568_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Acontecimentos.cs" />
@@ -1092,18 +1081,12 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612221606180_campomigracao.resx">
-      <DependentUpon>201612221606180_campomigracao.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701131324428_addActionEditoria.resx">
-      <DependentUpon>201701131324428_addActionEditoria.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701131328175_sizefield.resx">
-      <DependentUpon>201701131328175_sizefield.cs</DependentUpon>
-    </EmbeddedResource>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
+    <EmbeddedResource Include="Migrations\201908291218568_InitialCreate.resx">
+      <DependentUpon>201908291218568_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

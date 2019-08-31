@@ -15,7 +15,7 @@ namespace API.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class AudiosController : ApiController
     {
-        [HttpGet]
+        [AcceptVerbs("GET")]
         [Route("")]
         [System.Web.Mvc.OutputCache(Duration = 120, Location = System.Web.UI.OutputCacheLocation.ServerAndClient)]
         public IHttpActionResult ObterAudios()
@@ -25,7 +25,7 @@ namespace API.Controllers
             return Json(audios);
         }
 
-        [HttpGet]
+        [AcceptVerbs("GET")]
         [Route("categorias")]
         [System.Web.Mvc.OutputCache(Duration = 120, Location = System.Web.UI.OutputCacheLocation.ServerAndClient)]
         public IHttpActionResult ObterCategorias()
@@ -34,7 +34,7 @@ namespace API.Controllers
             return Json(audios);
         }
 
-        [HttpGet]
+        [AcceptVerbs("GET")]
         [Route("podcast")]
         [System.Web.Mvc.OutputCache(Duration = 120, Location = System.Web.UI.OutputCacheLocation.ServerAndClient)]
         public IHttpActionResult ObterPodcast()
@@ -43,7 +43,7 @@ namespace API.Controllers
             return Json(audios);
         }
 
-        [HttpGet]
+        [AcceptVerbs("GET")]
         [Route("categoria")]
         [System.Web.Mvc.OutputCache(Duration = 120, Location = System.Web.UI.OutputCacheLocation.ServerAndClient)]
         public IHttpActionResult ObterCategorias(int? id)
